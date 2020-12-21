@@ -30,9 +30,9 @@ export function setTileViewDimensions(
     let heightToUse = clientHeight;
     let widthToUse = clientWidth;
 
-    if (isChatOpen) {
-        widthToUse -= CHAT_SIZE;
-    }
+    // if (isChatOpen) {
+    //     widthToUse -= CHAT_SIZE;
+    // }
 
     if (isToolboxVisible) {
         // The distance from the top and bottom of the screen, to avoid overlapping UI elements.

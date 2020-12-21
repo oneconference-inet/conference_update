@@ -28,6 +28,7 @@ import '../billing-counter/reducer';
 import '../blur/reducer';
 import '../calendar-sync/reducer';
 import '../chat/reducer';
+import '../note/reducer';
 import '../deep-linking/reducer';
 import '../device-selection/reducer';
 import '../dropbox/reducer';

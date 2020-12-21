@@ -1,12 +1,17 @@
 var listUrl = {
     nameJoin: '',
+    roomname: '',
     urlInvite: '',
     confirm: false,
-    urlhref: '',
+    meetingId: '',
     service: '',
     isModerator: false,
     isApprove: false,
     muteAllState: false
+  }
+
+  function setRoomName(roomname) {
+    listUrl.roomname = roomname
   }
 
   function setService (service) {
@@ -25,20 +30,24 @@ var listUrl = {
     listUrl.nameJoin = nameJoin
   }
   
-  function seturlhref (urlhref) {
-    listUrl.urlhref = urlhref
+  function setMeetingId (meetingId) {
+    listUrl.meetingId = meetingId
   }
   
   function seturlInvite (urlInvite){
     listUrl.urlInvite = urlInvite
   }
   
-  function setIsModerator (set) {
-    listUrl.isModerator = set;
+  function setIsModerator () {
+    listUrl.isModerator = true;
   }
   
   function setApprove (set) {
     listUrl.isApprove = set
+  }
+
+  function getRoomName() {
+    return listUrl.roomname;
   }
 
   function getService () {
@@ -53,8 +62,8 @@ var listUrl = {
     return listUrl.nameJoin;
   }
   
-  function geturlhref () {
-    return listUrl.urlhref;
+  function getMeetingId () {
+    return listUrl.meetingId;
   }
   
   function geturlInvite () {
@@ -78,6 +87,7 @@ var listUrl = {
   }
   
   export default{
+    getRoomName,
     getService,
     getConfirm,
     getMuteAllState,
@@ -86,12 +96,13 @@ var listUrl = {
     getNameJoin,
     geturlInvite,
     getIsModerator,
-    geturlhref,
+    getMeetingId,
+    setRoomName,
     setService,
     setConfirm,
     seturlInvite,
     setNameJoin,
-    seturlhref,
+    setMeetingId,
     setIsModerator,
     setApprove,
     setMuteAllState

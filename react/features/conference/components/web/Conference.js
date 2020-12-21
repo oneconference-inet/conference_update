@@ -9,6 +9,7 @@ import { connect, disconnect } from '../../../base/connection';
 import { translate } from '../../../base/i18n';
 import { connect as reactReduxConnect } from '../../../base/redux';
 import { Chat } from '../../../chat';
+import { Note } from '../../../note';
 import { Filmstrip } from '../../../filmstrip';
 import { CalleeInfoContainer } from '../../../invite';
 import { LargeVideo } from '../../../large-video';
@@ -198,6 +199,7 @@ class Conference extends AbstractConference<Props, *> {
 
                 { _showPrejoin || _isLobbyScreenVisible || <Toolbox /> }
                 <Chat />
+                <Note />
 
                 { this.renderNotificationsContainer() }
 

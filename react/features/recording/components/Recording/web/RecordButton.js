@@ -7,6 +7,8 @@ import AbstractRecordButton, {
     type Props
 } from '../AbstractRecordButton';
 
+import infoConf from '../../../../../../infoConference'
+
 declare var interfaceConfig: Object;
 
 /**
@@ -25,16 +27,27 @@ declare var interfaceConfig: Object;
  */
 export function _mapStateToProps(state: Object, ownProps: Props): Object {
     const abstractProps = _abstractMapStateToProps(state, ownProps);
+    const service = infoConf.getService();
+    const visibleByService = checkService(service)
     let { visible } = ownProps;
 
     if (typeof visible === 'undefined') {
-        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible;
+        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible && visibleByService;
     }
 
     return {
         ...abstractProps,
         visible
     };
+}
+
+function checkService(service) {
+    const services_check = interfaceConfig.SERVICE_RECORD_FEATURE || []
+    if (!services_check.includes(service)) {
+        return false
+    } else {
+        return true
+    }
 }
 
 export default translate(connect(_mapStateToProps)(AbstractRecordButton));

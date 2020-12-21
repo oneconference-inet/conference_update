@@ -20,7 +20,7 @@ import infoConf from '../../../infoConference';
 import infoUser from '../../../infoUser';
 import authXmpp from '../../../authXmpp';
 
-import { redirectToStaticPage, appNavigate } from '../app/actions';
+import { redirectToStaticPage } from '../app/actions';
 import CryptoJS  from 'crypto-js';
 import axios from 'axios';
 
@@ -64,7 +64,6 @@ export function resetAnalytics() {
 // Reload Page With Parameter (Token)
 
 function reloadPage() {
-    // console.log("Navigate Type: ", performance.navigation.type)
     if (performance.navigation.type == 1 && Boolean(localStorage.getItem("token_Access"))) {
         return true
     } else {
@@ -120,25 +119,28 @@ export async function createHandlers({ getState }: { getState: Function }) {
     const tokenDecode = locationURL.href.split('?')[1];
     const dataDecode = decode(tokenDecode, repeatAccess)
     const tokenAccess = Boolean(tokenDecode != undefined || repeatAccess)
-    console.log("Data Decode: ", dataDecode);
-    // console.log("token Decode: ", tokenDecode);
+    console.info("Data Decode: ", dataDecode);
+    // console.log("token Access: ", tokenAccess);
     if (dataDecode != undefined && tokenAccess) {
-        // infoConf.seturlhref(locationURL.href)
-        localStorage.setItem("token_Access", tokenDecode) // Set token for Reload page
+        infoConf.setMeetingId(dataDecode.meetingId);
+        infoConf.setRoomName(dataDecode.roomname);
+        localStorage.setItem("token_Access", tokenDecode || localStorage.getItem("token_Access")) // Set token for Reload page
         if (dataDecode.role == 'moderator' && meetingIdForCheck == dataDecode.meetingId) { // Moderator
             infoConf.setNameJoin(dataDecode.nickname)
-            infoConf.setIsModerator(true)
-            infoConf.setService(dataDecode.clientid)
+            infoConf.setIsModerator()
             authXmpp.setUser(dataDecode.userXmpAuth)
             authXmpp.setPass(dataDecode.passXmpAuth)
             try {
                 let keydb
                 if (dataDecode.clientid == 'ManageAi' || dataDecode.clientid == 'onechat') {
+                    infoConf.setService(dataDecode.clientid)
                     keydb = await axios.post(interfaceConfig.DOMAIN_BACK +'/checkkey',{ meetingid : dataDecode.meetingId , name: dataDecode.nickname, clientname: dataDecode.clientid })
                     // optioncon.seturlInvite(keydb.data.urlInvite)
                 } else if (dataDecode.clientid == 'onemail') {
+                    infoConf.setService(dataDecode.clientid)
                     keydb = await axios.post(interfaceConfig.DOMAIN_ONEMAIL +'/checkkey',{ meetingid : dataDecode.meetingId , name: dataDecode.nickname, clientname: dataDecode.clientid })
                 } else {
+                    infoConf.setService('oneconference')
                     keydb = await axios.post(interfaceConfig.DOMAIN +'/checkkey',{ meetingid : dataDecode.meetingId , clientname: 'oneconference' })
                     infoConf.seturlInvite(keydb.data.urlInvite)
                 }
@@ -147,19 +149,22 @@ export async function createHandlers({ getState }: { getState: Function }) {
             }
         } else if ( dataDecode.role == 'attendee' && meetingIdForCheck == dataDecode.meetingId ) { // Attendee
             infoConf.setNameJoin(dataDecode.nickname)
-            infoConf.setService(dataDecode.clientid)
             infoUser.setOption(dataDecode.option)
             infoUser.setName(dataDecode.nickname)
             infoUser.setUserId(dataDecode.clientid)
             try {
                 let keydb 
                 if(dataDecode.clientid == 'onechat' ){
+                    infoConf.setService(dataDecode.clientid);
                     keydb = await axios.post(interfaceConfig.DOMAIN_BACK+'/checkkey',{ meetingid : dataDecode.meetingId , name: dataDecode.nickname, clientname: 'onechat' })
                 } else if (dataDecode.clientid == 'onemail'){
+                    infoConf.setService(dataDecode.clientid);
                     keydb = await axios.post(interfaceConfig.DOMAIN_ONEMAIL+'/checkkey',{ meetingid : dataDecode.meetingId ,clientname: 'onemail' })
                 } else if (dataDecode.clientid == 'ManageAi') {
+                    infoConf.setService(dataDecode.clientid);
                     keydb = await axios.post(interfaceConfig.DOMAIN_BACK+'/checkkey',{ meetingid : dataDecode.meetingId , name: dataDecode.nickname, clientname: 'ManageAi' })
                 } else {
+                    infoConf.setService('oneconference');
                     keydb = await axios.post(interfaceConfig.DOMAIN+'/checkkey',{ meetingid : dataDecode.meetingId ,clientname: 'oneconference' })
                     infoConf.seturlInvite(keydb.data.urlInvite)
                 }

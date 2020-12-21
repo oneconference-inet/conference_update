@@ -8,6 +8,8 @@
  */
 export const SET_AUDIO_MUTED = 'SET_AUDIO_MUTED';
 
+
+export const SET_AUDIO_MUTED_ALL = 'SET_AUDIO_MUTED_ALL';
 /**
  * The type of (redux) action to adjust the availability of the local audio.
  *

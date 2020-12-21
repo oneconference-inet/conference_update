@@ -142,7 +142,7 @@ class Chat extends AbstractChat<Props> {
         );
     }
 
-    _renderPanelContent: () => React$Node | null;
+    _renderPanelContent: (string) => React$Node | null;
 
     /**
      * Renders the contents of the chat panel.
@@ -150,17 +150,19 @@ class Chat extends AbstractChat<Props> {
      * @private
      * @returns {ReactElement | null}
      */
-    _renderPanelContent() {
+    _renderPanelContent(state) {
+        this._isExited = state === 'exited';
+
         const { _isOpen, _showNamePrompt } = this.props;
-        const ComponentToRender = _isOpen
-            ? (
+        const ComponentToRender = !_isOpen && state === 'exited'
+            ? null
+            : (
                 <>
                     { this._renderChatHeader() }
                     { _showNamePrompt
                         ? <DisplayNameForm /> : this._renderChat() }
                 </>
-            )
-            : null;
+            );
         let className = '';
 
         if (_isOpen) {

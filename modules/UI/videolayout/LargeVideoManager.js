@@ -344,15 +344,15 @@ export default class LargeVideoManager {
         }
 
         let widthToUse = this.preferredWidth || window.innerWidth;
-        const { isOpen } = APP.store.getState()['features/chat'];
+        // const { isOpen } = APP.store.getState()['features/chat'];
 
-        if (isOpen) {
-            /**
-             * If chat state is open, we re-compute the container width
-             * by subtracting the default width of the chat.
-             */
-            widthToUse -= CHAT_SIZE;
-        }
+        // if (isOpen) {
+        //     /**
+        //      * If chat state is open, we re-compute the container width
+        //      * by subtracting the default width of the chat.
+        //      */
+        //     widthToUse -= CHAT_SIZE;
+        // }
 
         this.width = widthToUse;
         this.height = this.preferredHeight || window.innerHeight;

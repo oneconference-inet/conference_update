@@ -21,7 +21,8 @@ StateListenerRegistry.register(
 
             if (!equals(gridDimensions, oldGridDimensions)) {
                 const { clientHeight, clientWidth } = state['features/base/responsive-ui'];
-                const { isOpen } = state['features/chat'];
+                // const { isOpen } = state['features/chat'];
+                const isOpen = false
                 const { visible } = state['features/toolbox'];
 
                 store.dispatch(
@@ -50,7 +51,8 @@ StateListenerRegistry.register(
         switch (layout) {
         case LAYOUTS.TILE_VIEW: {
             const { clientHeight, clientWidth } = state['features/base/responsive-ui'];
-            const { isOpen } = state['features/chat'];
+            // const { isOpen } = state['features/chat'];
+            const isOpen = false
             const { visible } = state['features/toolbox'];
 
             store.dispatch(
@@ -103,13 +105,13 @@ StateListenerRegistry.register(
     /* listener */ (isChatOpen, store) => {
         const state = store.getState();
 
-        if (isChatOpen) {
-            // $FlowFixMe
-            document.body.classList.add('shift-right');
-        } else {
-            // $FlowFixMe
-            document.body.classList.remove('shift-right');
-        }
+        // if (isChatOpen) {
+        //     // $FlowFixMe
+        //     document.body.classList.add('shift-right');
+        // } else {
+        //     // $FlowFixMe
+        //     document.body.classList.remove('shift-right');
+        // }
 
         if (shouldDisplayTileView(state)) {
             const gridDimensions = getTileViewGridDimensions(state);
@@ -141,7 +143,8 @@ StateListenerRegistry.register(
         if (shouldDisplayTileView(state)) {
             const gridDimensions = getTileViewGridDimensions(state);
             const { clientHeight, clientWidth } = state['features/base/responsive-ui'];
-            const { isOpen } = state['features/chat'];
+            // const { isOpen } = state['features/chat'];
+            const isOpen = false
 
             store.dispatch(
                 setTileViewDimensions(

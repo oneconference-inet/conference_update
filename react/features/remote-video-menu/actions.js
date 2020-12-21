@@ -17,6 +17,8 @@ import {
 
 import { RemoteVideoMenu } from './components';
 
+import { kickParticipant } from '../base/participants';
+
 declare var APP: Object;
 
 /**
@@ -78,5 +80,21 @@ export function muteAllParticipants(exclude: Array<string>) {
             .map(id => id === localId ? muteLocal(true) : muteRemote(id))
             .map(dispatch);
         /* eslint-enable no-confusing-arrow */
+    };
+}
+
+/////////////////////////// End Meeting - Kick all PARTICIPANT //////////////////////////////////////
+
+export function endAllParticipants(exclude: Array<string>) {
+    return (dispatch: Dispatch<any>, getState: Function) => {
+        const state = getState();
+        const participantIds = state['features/base/participants'].map(p => p.id);
+
+        /* eslint-disable no-confusing-arrow */
+        const setParticipants = participantIds.filter(id => !exclude.includes(id));
+
+        setParticipants.map(person => {
+            dispatch(kickParticipant(person));
+        });
     };
 }

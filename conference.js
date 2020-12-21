@@ -41,7 +41,8 @@ import {
     lockStateChanged,
     onStartMutedPolicyChanged,
     p2pStatusChanged,
-    sendLocalParticipant
+    sendLocalParticipant,
+    setSubject
 } from './react/features/base/conference';
 import {
     checkAndNotifyForNewDevice,
@@ -1293,8 +1294,11 @@ export default {
     },
 
     _getConferenceOptions() {
+        // set Room By MC API
         this.changeLocalDisplayName.bind(this)
         this.changeLocalDisplayName(infoConf.getNameJoin())
+        APP.store.dispatch(setSubject(infoConf.getRoomName()));
+        
         return getConferenceOptions(APP.store.getState());
     },
 
@@ -1906,12 +1910,16 @@ export default {
 
         room.on(JitsiConferenceEvents.USER_ROLE_CHANGED, (id, role) => {
             if (this.isLocalId(id) && infoConf.getIsModerator()) {
+                // console.info("Role: Moderator")
                 logger.info(`My role changed, new role: ${role}`);
 
                 APP.store.dispatch(localParticipantRoleChanged(role));
                 APP.API.notifyUserRoleChanged(id, role);
             } else {
-                APP.store.dispatch(participantRoleChanged(id, role));
+                // console.info("Role: Participant")
+                logger.info('My role changed, new role: Participant');
+                APP.store.dispatch(participantRoleChanged(id, 'participant'));
+                APP.store.dispatch(localParticipantRoleChanged('participant'));
             }
         });
 

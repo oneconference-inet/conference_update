@@ -16,6 +16,11 @@ var interfaceConfig = {
     // 'https://oneconf-dev3.cloudns.asia/images/watermark.png',
     EDIT_NAME: false,
     DECODE_TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvbmVjb25mZXJlbmNlIiwibmFtZSI6Im9uZWNvbmZlcmVuY2VAaW5ldCEiLCJpYXQiOjE1MTYyMzkwMjJ9.76dYYbFS1Hlv9vfu2hZ31a3qwA4p_5jYuLqYiBiHPmw',
+    // service Intregate ['oneconference','onechat','ManageAi','onemail']
+    SERVICE_INVITE_FEATURE: ['oneconference'],
+    SERVICE_RECORD_FEATURE: ['oneconference'],
+    SERVICE_LIVE_FEATURE: ['oneconference'],
+    SERVICE_APPROVE_FEATURE: ['oneconference'],
 
     AUTO_PIN_LATEST_SCREEN_SHARE: 'remote-only',
     BRAND_WATERMARK_LINK: '',
@@ -110,7 +115,7 @@ var interfaceConfig = {
     /**
      * Hide the invite prompt in the header when alone in the meeting.
      */
-    HIDE_INVITE_MORE_HEADER: false,
+    HIDE_INVITE_MORE_HEADER: true,
 
     INITIAL_TOOLBAR_TIMEOUT: 20000,
     JITSI_WATERMARK_LINK: 'https://inet.co.th',
@@ -214,7 +219,7 @@ var interfaceConfig = {
 
     TOOLBAR_BUTTONS: [
         'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-        'fodeviceselection', 'hangup', 'profile', 'chat', 'recording',
+        'fodeviceselection', 'hangup', 'profile', 'chat', 'recording', 'endmeeting', 'note',
         'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand',
         'videoquality', 'filmstrip', 'invite', 'feedback', 'shortcuts',
         'tileview', 'download', 'help', 'mute-everyone', 'security'

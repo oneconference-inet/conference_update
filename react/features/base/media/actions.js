@@ -3,6 +3,7 @@
 import type { Dispatch } from 'redux';
 
 import {
+    SET_AUDIO_MUTED_ALL,
     SET_AUDIO_MUTED,
     SET_AUDIO_AVAILABLE,
     SET_CAMERA_FACING_MODE,
@@ -52,6 +53,13 @@ export function setAudioMuted(muted: boolean, ensureTrack: boolean = false) {
         type: SET_AUDIO_MUTED,
         ensureTrack,
         muted
+    };
+}
+
+export function setAudioMutedAll(stateMuteAll: boolean) {
+    return {
+        type: SET_AUDIO_MUTED_ALL,
+        stateMuteAll
     };
 }
 
