@@ -63,11 +63,10 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
      */
     render() {
         const { content, title } = this._getTranslations();
-        // console.log('DDDDDD', this._getTranslations());
 
         return (
             <Dialog
-                okKey = 'End-Meeting'
+                okKey = 'dialog.endmeet'
                 onSubmit = { this._onSubmit }
                 titleString = { title }
                 width = 'small'>
@@ -129,8 +128,8 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
      _getTranslations(): Translations {
         //  const { exclude, t } = this.props;
          const dialog = {
-                content: 'Ending the meeting will cause all users to exit this session.',
-                title: 'Do you want to end the meeting?'
+                content: 'dialog.endMeetingDialog',
+                title: 'dialog.endMeetingTitle'
          };
 
          return dialog

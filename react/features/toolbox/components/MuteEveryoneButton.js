@@ -37,8 +37,8 @@ class MuteEveryoneButton extends AbstractButton<Props, *> {
 
     accessibilityLabel = 'toolbar.accessibilityLabel.muteEveryone';
     icon = IconMuteEveryone;
-    label = !infoConf.getMuteAllState() ? 'toolbar.muteEveryone' : 'Unmute everyone';
-    tooltip = !infoConf.getMuteAllState() ? 'toolbar.muteEveryone' : 'Unmute everyone';
+    label = !infoConf.getMuteAllState() ? 'toolbar.muteEveryone' : 'toolbar.notMuteEveryone';
+    tooltip = !infoConf.getMuteAllState() ? 'toolbar.muteEveryone' : 'toolbar.notMuteEveryone';
 
     /**
      * Handles clicking / pressing the button, and opens a confirmation dialog.

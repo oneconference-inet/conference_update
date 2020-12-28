@@ -109,7 +109,7 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
             dialog: 'dialog.muteParticipantButton',
             track: true
         } : {
-            dialog: 'Unmute',
+            dialog: 'dialog.unMuteParticipantButton',
             track: false
         };
     }

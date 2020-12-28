@@ -27,10 +27,10 @@ class MuteEveryoneDialog extends AbstractMuteEveryoneDialog<Props> {
             <Dialog
                 okKey = { dialog }
                 onSubmit = { this._onSubmit }
-                titleString = { track ? this.props.title : 'UnMute everyone except yourself?'}
+                titleString = { track ? this.props.title : 'dialog.trackUnmuteTitle' }
                 width = 'small'>
                 <div>
-                    { track ? this.props.content : 'Unlock Mute everyone this Room.' }
+                    { track ? this.props.content : 'dialog.trackUnmuteContent' }
                 </div>
             </Dialog>
         );

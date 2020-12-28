@@ -36,10 +36,10 @@ type Props = AbstractButtonProps & {
  * every participant (except the local one)
  */
 class EndMeetingButton extends AbstractButton<Props, *> {
-    accessibilityLabel = 'End Meeting';
+    accessibilityLabel = 'toolbar.accessibilityLabel.endmeeting';
     icon = IconEndCall;
-    label = 'End Meeting';
-    tooltip = 'End Meeting';
+    label = 'toolbar.endmeeting';
+    tooltip = 'toolbar.endmeeting';
 
     /**
      * Handles clicking / pressing the button, and opens a confirmation dialog.
