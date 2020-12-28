@@ -107,9 +107,13 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
 
         return !trackMuteAll ? {
             dialog: 'dialog.muteParticipantButton',
+            _title: 'dialog.muteEveryoneTitle',
+            _content: 'dialog.muteEveryoneDialog',
             track: true
         } : {
             dialog: 'dialog.unMuteParticipantButton',
+            _title: 'dialog.trackUnmuteTitle',
+            _content: 'dialog.trackUnmuteContent',
             track: false
         };
     }
