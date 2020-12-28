@@ -44,7 +44,6 @@ export default {
 
     TOGGLE_SCREENSHARING: 'UI.toggle_screensharing',
     HANGUP: 'UI.hangup',
-    NOT_DEFIND: 'UI.notDefind',
     LOGOUT: 'UI.logout',
     VIDEO_DEVICE_CHANGED: 'UI.video_device_changed',
     AUDIO_DEVICE_CHANGED: 'UI.audio_device_changed',
