@@ -10,6 +10,9 @@ import AbstractMuteRemoteParticipantDialog, {
     type Props as AbstractProps
 } from './AbstractMuteRemoteParticipantDialog';
 
+import infoConf from '../../../../infoConference';
+import socketIOClient from 'socket.io-client';
+
 /**
  * The type of the React {@code Component} props of
  * {@link AbstractMuteEveryoneDialog}.
@@ -20,6 +23,13 @@ export type Props = AbstractProps & {
     exclude: Array<string>,
     title: string
 };
+
+export type PropsTrack = {
+
+    dialog: String,
+
+    track: boolean
+}
 
 /**
  *
@@ -40,21 +50,22 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
      * @inheritdoc
      * @returns {ReactElement}
      */
-    render() {
-        const { content, title } = this.props;
+    // render() {
+    //     const { content, title } = this.props;
+    //     const { track, dialog } = this._trackAudioMute();
 
-        return (
-            <Dialog
-                okKey = 'dialog.muteParticipantButton'
-                onSubmit = { this._onSubmit }
-                titleString = { title }
-                width = 'small'>
-                <div>
-                    { content }
-                </div>
-            </Dialog>
-        );
-    }
+    //     return (
+    //         <Dialog
+    //             okKey = { dialog }
+    //             onSubmit = { this._onSubmit }
+    //             titleString = { track ? title : 'UnMute everyone except yourself?'}
+    //             width = 'small'>
+    //             <div>
+    //                 { track ? content : 'Unlock Mute everyone this Room.' }
+    //             </div>
+    //         </Dialog>
+    //     );
+    // }
 
     _onSubmit: () => boolean;
 
@@ -69,9 +80,38 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
             exclude
         } = this.props;
 
-        dispatch(muteAllParticipants(exclude));
+        const socket = socketIOClient(interfaceConfig.SOCKET_NODE)
+        const { track } = this._trackAudioMute();
+        const data = {
+            eventName: 'trackMute',
+            meetingId: infoConf.getMeetingId(),
+            mute: track
+        }
+
+        if (track) {
+            dispatch(muteAllParticipants(exclude));
+            socket.emit('trackMute', data)
+            infoConf.setMuteAllState(true)
+        } else {
+            socket.emit('trackMute', data)
+            infoConf.setMuteAllState(false)
+        }
+
+        // dispatch(muteAllParticipants(exclude)); 
 
         return true;
+    }
+
+    _trackAudioMute(): PropsTrack {
+        const trackMuteAll = infoConf.getMuteAllState();
+
+        return !trackMuteAll ? {
+            dialog: 'dialog.muteParticipantButton',
+            track: true
+        } : {
+            dialog: 'Unmute',
+            track: false
+        };
     }
 }
 

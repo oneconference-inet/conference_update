@@ -91,7 +91,7 @@ import ToolbarButton from './ToolbarButton';
 import VideoSettingsButton from './VideoSettingsButton';
 
 import { setAudioMutedAll } from '../../../base/media';
-import { onSocketReqJoin } from '../../../lobby';
+import { onSocketReqJoin, setLobbyModeEnabled } from '../../../lobby';
 import infoConf from '../../../../../infoConference';
 import socketIOClient from 'socket.io-client';
 import axios from 'axios';
@@ -292,7 +292,8 @@ class Toolbox extends Component<Props, State> {
             getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
             // console.log("Approve: ", getApprove)
             if (getApprove.data.approve) {
-                onSocketReqJoin(meetingid, endpoint, this.props)
+                APP.store.dispatch(setLobbyModeEnabled(true));
+                onSocketReqJoin(meetingid, endpoint, this.props);
             }
         }
         // On socket for Host
@@ -319,7 +320,7 @@ class Toolbox extends Component<Props, State> {
                 case 'trackMute':
                     console.log("trackMute-Payload: ", payload)
                     // attendee.setLockMute(payload.mute) //true or false
-                    // this.props.dispatch(setAudioMutedAll(payload.mute)) // Lock is button Audio
+                    this.props.dispatch(setAudioMutedAll(payload.mute)) // Lock is button Audio
                     break;
                 default:
                     console.info('Event is not defind!!')

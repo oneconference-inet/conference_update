@@ -9,6 +9,8 @@ import {
     JitsiConnectionErrors
 } from '../../../react/features/base/lib-jitsi-meet';
 import UIUtil from '../util/UIUtil';
+
+import infoConf from '../../../infoConference'
 import authXmpp from '../../../authXmpp';
 
 import LoginDialog from './LoginDialog';
@@ -207,19 +209,20 @@ function doXmppAuth(room, lockPassword) {
  * @param {string} [lockPassword] password to use if the conference is locked
  */
 function authenticate(room, lockPassword) {
+    const isModerator = infoConf.getIsModerator();
     if (isTokenAuthEnabled || room.isExternalAuthEnabled()) {
         doExternalAuth(room, lockPassword);
-    } else {
+    } else if (isModerator) {
         const user = toJid(authXmpp.getUserXmpp(), config.hosts)
         const password = authXmpp.getPassXmpp()
-        // console.log("ID-Auth: ", id)
-        // console.log("Password-Auth: ", password)
         room.authenticateAndUpgradeRole({
             id: user,
             password: password,
             roomPassword: lockPassword
         })
         // doXmppAuth(room, lockPassword);
+    } else {
+        console.log("Waiting For Room Owner.")
     }
 }
 
@@ -253,9 +256,11 @@ function requireAuth(room, lockPassword) {
         return;
     }
 
-    authRequiredDialog = LoginDialog.showAuthRequiredDialog(
-        room.getName(), authenticate.bind(null, room, lockPassword)
-    );
+    // authRequiredDialog = LoginDialog.showAuthRequiredDialog(
+    //     room.getName(), authenticate.bind(null, room, lockPassword)
+    // );
+
+    authRequiredDialog = LoginDialog.showUserWaitingDialog(infoConf.getRoomName());
 }
 
 /**

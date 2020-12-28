@@ -3,7 +3,11 @@
 import { PureComponent } from 'react';
 
 import { isLocalParticipantModerator } from '../../base/participants';
-import { setKnockingParticipantApproval } from '../actions';
+import { knockingParticipantLeft } from '../actions';
+// import { setKnockingParticipantApproval } from '../actions';
+
+import infoConf from '../../../../infoConference';
+import socketIOClient from 'socket.io-client';
 
 export type Props = {
 
@@ -40,10 +44,17 @@ export default class AbstractKnockingParticipantList<P: Props = Props> extends P
     constructor(props: P) {
         super(props);
 
-        this._onRespondToParticipant = this._onRespondToParticipant.bind(this);
+        this.state = {
+            meetingId: '',
+            endpoint: interfaceConfig.SOCKET_NODE || 'https://oneconf-dev3.cloudns.asia' ///UAT test
+        }
     }
 
-    _onRespondToParticipant: (string, boolean) => Function;
+    componentDidMount () {
+        this.setState({
+            meetingId: infoConf.getMeetingId(),
+        })
+    }
 
     /**
      * Function that constructs a callback for the response handler button.
@@ -52,10 +63,21 @@ export default class AbstractKnockingParticipantList<P: Props = Props> extends P
      * @param {boolean} approve - The response for the knocking.
      * @returns {Function}
      */
-    _onRespondToParticipant(id, approve) {
-        return () => {
-            this.props.dispatch(setKnockingParticipantApproval(id, approve));
-        };
+    // return Approve to Socket
+    _onRespondToParticipantSocket(id, name, approve) {
+        const { dispatch } = this.props
+        const { meetingId, endpoint } = this.state
+        const socket = socketIOClient(endpoint)
+        const data = {
+            meetingId: meetingId,
+            id: id,
+            name: name,
+            approve: approve
+        }
+        console.info("DATA: ", data);
+        socket.emit('handleApprove', data) ;
+        // dispatch(setKnockingState(false))
+        dispatch(knockingParticipantLeft(id));
     }
 }
 
@@ -66,10 +88,10 @@ export default class AbstractKnockingParticipantList<P: Props = Props> extends P
  * @returns {Props}
  */
 export function mapStateToProps(state: Object): $Shape<Props> {
-    const { knockingParticipants, lobbyEnabled } = state['features/lobby'];
+    const { knockingParticipants } = state['features/lobby'];
 
     return {
         _participants: knockingParticipants,
-        _visible: lobbyEnabled && isLocalParticipantModerator(state) && Boolean(knockingParticipants.length)
+        _visible: isLocalParticipantModerator(state) && Boolean(knockingParticipants.length)
     };
 }

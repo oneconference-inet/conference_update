@@ -45,11 +45,11 @@ class KnockingParticipantList extends AbstractKnockingParticipantList<Props> {
                 <ul>
                     { _participants.map(p => (
                         <li key = { p.id }>
-                            <Avatar
+                            {/* <Avatar
                                 displayName = { p.name }
                                 size = { 48 }
                                 testId = 'knockingParticipant.avatar'
-                                url = { p.loadableAvatarUrl } />
+                                url = { p.loadableAvatarUrl } /> */}
                             <div className = 'details'>
                                 <span data-testid = 'knockingParticipant.name'>
                                     { p.name }
@@ -63,14 +63,14 @@ class KnockingParticipantList extends AbstractKnockingParticipantList<Props> {
                             <button
                                 className = 'primary'
                                 data-testid = 'lobby.allow'
-                                onClick = { this._onRespondToParticipant(p.id, true) }
+                                onClick = { () => this._onRespondToParticipantSocket(p.id ,p.name ,true) }
                                 type = 'button'>
                                 { t('lobby.allow') }
                             </button>
                             <button
                                 className = 'borderLess'
                                 data-testid = 'lobby.reject'
-                                onClick = { this._onRespondToParticipant(p.id, false) }
+                                onClick = { () => this._onRespondToParticipantSocket(p.id ,p.name ,false) }
                                 type = 'button'>
                                 { t('lobby.reject') }
                             </button>
@@ -80,8 +80,6 @@ class KnockingParticipantList extends AbstractKnockingParticipantList<Props> {
             </div>
         );
     }
-
-    _onRespondToParticipant: (string, boolean) => Function;
 }
 
 /**

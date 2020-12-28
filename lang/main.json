@@ -209,6 +209,7 @@
         "grantModeratorDialog": "Are you sure you want to make this participant a moderator?",
         "grantModeratorTitle": "Grant moderator",
         "IamHost": "I am the host",
+        "IamUser": "Waiting..",
         "incorrectRoomLockPassword": "Incorrect password",
         "incorrectPassword": "Incorrect username or password",
         "internalError": "Oops! Something went wrong. The following error occurred: {{error}}",

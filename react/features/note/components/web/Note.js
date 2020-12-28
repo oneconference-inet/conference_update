@@ -14,8 +14,9 @@ import AbstractNote, {
 
 import { getLocalParticipant } from '../../../base/participants';
 
-import Iframe from 'react-iframe'
-import infoConf from '../../../../../infoConference'
+import Iframe from 'react-iframe';
+import infoConf from '../../../../../infoConference';
+import infoUser from '../../../../../infoUser';
 
 declare var APP: Object;
 
@@ -57,7 +58,15 @@ class Note extends AbstractNote<Props> {
 
         const { name } = getLocalParticipant(reduxState);
         const config = reduxState['features/base/config'];
-        const meetingId_noNum = infoConf.getMeetingId().split('-')[0]
+
+        var meetingId_noNum;
+
+        if (infoUser.getiAmRecord()) {
+            meetingId_noNum = 'botNote' //for Bot iAmRecord
+        } else {
+            meetingId_noNum = infoConf.getMeetingId().split('-')[0];
+        }
+
         const etherpad_base = config.etherpad_base
 
         const url = etherpad_base + meetingId_noNum +'?' + 'userName=' + name

@@ -1,7 +1,8 @@
 var userInfo = {
     name: '',
     userId: '',
-    option: ''
+    option: '',
+    iAmRecorder: false
   }
 
   function setName(name) {
@@ -13,7 +14,11 @@ var userInfo = {
   }
 
   function setOption(option) {
-    userInfo.option = option
+      userInfo.option = option
+  }
+
+  function setiAmRecord () {
+      userInfo.iAmRecorder = true
   }
 
   function getName () {
@@ -28,11 +33,17 @@ var userInfo = {
     return userInfo.option;
   }
 
+  function getiAmRecord () {
+    return userInfo.iAmRecorder;
+  }
+
   export default {
     setName,
     setUserId,
     setOption,
+    setiAmRecord,
     getName,
     getUserId,
-    getOption
+    getOption,
+    getiAmRecord
   }

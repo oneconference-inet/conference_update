@@ -8,6 +8,9 @@ import { connect } from '../../base/redux';
 import { AbstractButton, type AbstractButtonProps } from '../../base/toolbox/components';
 import { EndMeetingDialog } from '../../remote-video-menu/components';
 
+import { JitsiRecordingConstants } from '../../base/lib-jitsi-meet';
+import { getActiveSession } from '../../recording/functions';
+
 declare var APP: Object;
 
 type Props = AbstractButtonProps & {
@@ -46,14 +49,19 @@ class EndMeetingButton extends AbstractButton<Props, *> {
      */
     _handleClick() {
         const { dispatch, localParticipantId } = this.props;
+        var state = APP.store.getState()
+        const _fileRecordingSessionOn = Boolean(getActiveSession(state, JitsiRecordingConstants.mode.FILE));
+
+        if (_fileRecordingSessionOn) {
+            const _conference = state['features/base/conference'].conference;
+            const _fileRecordingSession = getActiveSession(state, JitsiRecordingConstants.mode.FILE);
+            _conference.stopRecording(_fileRecordingSession.id);
+        }
 
         sendAnalytics(createToolbarEvent('endmeeting.pressed'));
         dispatch(openDialog(EndMeetingDialog, {
             exclude: [ localParticipantId ]
         }));
-        // console.log('Dispatch1--ev ===',openDialog(EndMeetingDialog, {
-        //     exclude: [ localParticipantId ]
-        // }));
     }
 }
 

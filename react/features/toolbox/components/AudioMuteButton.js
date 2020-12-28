@@ -149,7 +149,8 @@ class AudioMuteButton extends AbstractAudioMuteButton<Props, *> {
  * }}
  */
 function _mapStateToProps(state): Object {
-    const _audioMuted = isLocalTrackMuted(state['features/base/tracks'], MEDIA_TYPE.AUDIO);
+    const trackMuteAll = state['features/base/media'].audio.stateMuteAll
+    const _audioMuted = isLocalTrackMuted(state['features/base/tracks'], MEDIA_TYPE.AUDIO) || trackMuteAll;
     const _disabled = state['features/base/config'].startSilent;
 
     return {

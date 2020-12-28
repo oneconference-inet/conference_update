@@ -12,7 +12,9 @@ import 'focus-visible';
 // NOTE: If jitsi-local-storage is used before the initial setup is performed this will break the use case when we use
 // the  local storage from the parent page when the localStorage is disabled. Also the setup is relying that
 // window.location is not changed and still has all URL parameters.
-import './react/features/base/jitsi-local-storage/setup';
+
+// import './react/features/base/jitsi-local-storage/setup';
+
 import conference from './conference';
 import API from './modules/API';
 import UI from './modules/UI/UI';

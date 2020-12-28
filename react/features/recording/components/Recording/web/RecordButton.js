@@ -28,11 +28,13 @@ declare var interfaceConfig: Object;
 export function _mapStateToProps(state: Object, ownProps: Props): Object {
     const abstractProps = _abstractMapStateToProps(state, ownProps);
     const service = infoConf.getService();
-    const visibleByService = checkService(service)
+    const role = infoConf.getMeetingId().split('-')[0];
+    const visibleByService = checkService(service);
+    const visibleByRole = role == 'host' ? true : false ;
     let { visible } = ownProps;
 
     if (typeof visible === 'undefined') {
-        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible && visibleByService;
+        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible && visibleByService && visibleByRole;
     }
 
     return {

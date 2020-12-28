@@ -128,6 +128,9 @@ export async function createHandlers({ getState }: { getState: Function }) {
         if (dataDecode.role == 'moderator' && meetingIdForCheck == dataDecode.meetingId) { // Moderator
             infoConf.setNameJoin(dataDecode.nickname)
             infoConf.setIsModerator()
+            infoUser.setOption(dataDecode.option.trim())
+            infoUser.setName(dataDecode.nickname)
+            infoUser.setUserId(dataDecode.clientid)
             authXmpp.setUser(dataDecode.userXmpAuth)
             authXmpp.setPass(dataDecode.passXmpAuth)
             try {
@@ -149,7 +152,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             }
         } else if ( dataDecode.role == 'attendee' && meetingIdForCheck == dataDecode.meetingId ) { // Attendee
             infoConf.setNameJoin(dataDecode.nickname)
-            infoUser.setOption(dataDecode.option)
+            infoUser.setOption(dataDecode.option.trim())
             infoUser.setName(dataDecode.nickname)
             infoUser.setUserId(dataDecode.clientid)
             try {
@@ -172,7 +175,8 @@ export async function createHandlers({ getState }: { getState: Function }) {
                     infoConf.setConfirm()
                 }
             } catch (error) {
-                console.error(error)
+                console.error("Warring MeetingID Time out!! ERROR: ", error);
+                APP.store.dispatch(redirectToStaticPage('static/authError.html'));
             }
         } else { 
             console.error("Warring MeetingID or Token is not defind!!");

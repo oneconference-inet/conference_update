@@ -316,7 +316,7 @@ class ConferenceConnector {
             const { password }
                 = APP.store.getState()['features/base/conference'];
 
-            // AuthHandler.requireAuth(room, password);
+            AuthHandler.requireAuth(room, password);
 
             break;
         }
@@ -692,6 +692,7 @@ export default {
 
         if (config.iAmRecorder) {
             infoConf.setConfirm()
+            infoUser.setiAmRecord()
             this.recorder = new Recorder();
         }
 
@@ -718,16 +719,44 @@ export default {
      * @param {{ roomName: string }} options
      * @returns {Promise}
      */
+    // initialOptions ={
+    //     startAudioOnly: config.startAudioOnly,
+    //     startScreenSharing: config.startScreenSharing,
+    //     startWithAudioMuted: getStartWithAudioMuted(APP.store.getState())
+    //         || config.startSilent
+    //         || isUserInteractionRequiredForUnmute(APP.store.getState()),
+    //     startWithVideoMuted: getStartWithVideoMuted(APP.store.getState())
+    //         || isUserInteractionRequiredForUnmute(APP.store.getState())
+    // };
     async init({ roomName }) {
-        const initialOptions = {
-            startAudioOnly: config.startAudioOnly,
-            startScreenSharing: config.startScreenSharing,
-            startWithAudioMuted: getStartWithAudioMuted(APP.store.getState())
-                || config.startSilent
-                || isUserInteractionRequiredForUnmute(APP.store.getState()),
-            startWithVideoMuted: getStartWithVideoMuted(APP.store.getState())
-                || isUserInteractionRequiredForUnmute(APP.store.getState())
-        };
+        var initialOptions = {}
+        if (!config.iAmRecorder && infoUser.getOption() == 'voice') { // Only Voice
+            initialOptions ={
+                startAudioOnly: config.startAudioOnly,
+                startScreenSharing: config.startScreenSharing,
+                startWithAudioMuted: getStartWithAudioMuted(APP.store.getState())
+                    || config.startSilent
+                    || isUserInteractionRequiredForUnmute(APP.store.getState()),
+                startWithVideoMuted: true
+            };
+        } else if (!config.iAmRecorder && infoUser.getOption() == 'video') { // Normal Settings
+            initialOptions = {
+                startAudioOnly: config.startAudioOnly,
+                startScreenSharing: config.startScreenSharing,
+                startWithAudioMuted: getStartWithAudioMuted(APP.store.getState())
+                    || config.startSilent
+                    || isUserInteractionRequiredForUnmute(APP.store.getState()),
+                startWithVideoMuted: getStartWithVideoMuted(APP.store.getState())
+                    || isUserInteractionRequiredForUnmute(APP.store.getState())
+            };
+        } else {
+            initialOptions = { // Bot Setting
+                startAudioOnly: false,
+                startScreenSharing: false,
+                startWithAudioMuted: false,
+                startWithVideoMuted: true
+            }
+        }
 
         this.roomName = roomName;
 
@@ -990,11 +1019,12 @@ export default {
      * @return {boolean} whether the participant is moderator
      */
     isParticipantModerator(id) {
-        const isModerator = infoConf.getIsModerator()
-        const user = room.getParticipantById(id);
-        if (isModerator && !config.iAmRecorder) {
+        const isModerator = infoConf.getIsModerator();
+        if (isModerator) {
+            const user = room.getParticipantById(id);
             return user && user.isModerator();
         } else {
+            const user = room.getParticipantById(id);
             return user
         } 
     },
@@ -1918,8 +1948,8 @@ export default {
             } else {
                 // console.info("Role: Participant")
                 logger.info('My role changed, new role: Participant');
-                APP.store.dispatch(participantRoleChanged(id, 'participant'));
-                APP.store.dispatch(localParticipantRoleChanged('participant'));
+                // APP.store.dispatch(participantRoleChanged(id, 'participant'));
+                // APP.store.dispatch(localParticipantRoleChanged('participant'));
             }
         });
 
@@ -2149,11 +2179,6 @@ export default {
             }
         );
 
-        // not Defind Meeting 
-        APP.UI.addListener(UIEvents.NOT_DEFIND, () => {
-            this.leaveRoomAndDisconnect();
-        });
-
         // call hangup
         APP.UI.addListener(UIEvents.HANGUP, () => {
             this.hangup(false);
@@ -2170,10 +2195,10 @@ export default {
             });
         });
 
-        if (infoConf.getIsModerator()) {
+        if (infoConf.getIsModerator() && !config.iAmRecorder) {
             AuthHandler.authenticate(room);
         }
-
+        
         // APP.UI.addListener(UIEvents.AUTH_CLICKED, () => {
         //     AuthHandler.authenticate(room);
         // });

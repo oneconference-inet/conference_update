@@ -29,7 +29,7 @@ MiddlewareRegistry.register(store => next => action => {
         // We need the full update result to be in the store already
         const result = next(action);
 
-        _findLoadableAvatarForKnockingParticipant(store, action.participant);
+        // _findLoadableAvatarForKnockingParticipant(store, action.participant);
 
         return result;
     }

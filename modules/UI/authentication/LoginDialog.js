@@ -252,5 +252,22 @@ export default {
                 }
             }
         );
+    },
+
+    showUserWaitingDialog(room) {
+        const msg = APP.translation.generateTranslationHTML(
+            '[html]dialog.WaitForHostMsg',
+            { room }
+        );
+
+        return APP.UI.messageHandler.openDialog(
+            'dialog.WaitingForHost',
+            msg,
+            true,
+            (e) => {
+                // Do not close the dialog yet.
+                e.preventDefault();
+            }
+        );
     }
 };

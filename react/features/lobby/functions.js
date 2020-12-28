@@ -28,7 +28,7 @@ export function onSocketReqJoin(meetingId, endpoint, props) {
     const { dispatch } = props
     const socket = socketIOClient(endpoint)
     socket.on(meetingId+'-requestjoin' , (incoming) => {
-        console.log("Incoming-Join: ", incoming)
+        console.info("Incoming-Join: ", incoming)
         dispatch(participantIsKnockingOrUpdated(incoming));
     })
 }
