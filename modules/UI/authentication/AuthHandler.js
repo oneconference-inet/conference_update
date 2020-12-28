@@ -222,7 +222,7 @@ function authenticate(room, lockPassword) {
         })
         // doXmppAuth(room, lockPassword);
     } else {
-        console.log("Waiting For Room Owner.")
+        logger.warn("Waiting For Room Owner.")
     }
 }
 
