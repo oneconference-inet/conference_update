@@ -21,16 +21,16 @@ class MuteEveryoneDialog extends AbstractMuteEveryoneDialog<Props> {
      * @returns {ReactElement}
      */
     render() {
-        const { track, dialog } = this._trackAudioMute();
+        const { dialog, _title, _content } = this._trackAudioMute();
 
         return (
             <Dialog
                 okKey = { dialog }
                 onSubmit = { this._onSubmit }
-                titleString = { track ? this.props.title : 'dialog.trackUnmuteTitle' }
+                titleString = { _title }
                 width = 'small'>
                 <div>
-                    { track ? this.props.content : 'dialog.trackUnmuteContent' }
+                    { _content }
                 </div>
             </Dialog>
         );
