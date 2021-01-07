@@ -149,7 +149,9 @@
         "joinInApp": "Join this meeting using the app",
         "launchWebButton": "Launch in web",
         "title": "Launching your meeting in {{app}}...",
-        "tryAgainButton": "Try again in desktop"
+        "tryAgainButton": "Try again in desktop",
+        "joinMeeting": "Join this meeting",
+        "comingSoon": "Prepare to meet with the application. {{app}} on Android and IOS coming soon."
     },
     "defaultLink": "e.g. {{url}}",
     "defaultNickname": "ex. Jane Pink",

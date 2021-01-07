@@ -316,8 +316,10 @@ class ConferenceConnector {
             const { password }
                 = APP.store.getState()['features/base/conference'];
 
-            AuthHandler.requireAuth(room, password);
-
+            if (!infoConf.getIsModerator()) {
+                AuthHandler.requireAuth(room, password);
+            }
+            
             break;
         }
 

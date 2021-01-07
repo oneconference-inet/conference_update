@@ -132,10 +132,10 @@ class DeepLinkingMobilePage extends Component<Props> {
                             : null
                     }
                     <p className = { `${_SNS}__text` }>
-                        { t(`${_TNS}.appNotInstalled`, { app: NATIVE_APP_NAME }) }
+                        { t(`${_TNS}.comingSoon`, { app: NATIVE_APP_NAME }) }
                     </p>
                     <p className = { `${_SNS}__text` }>
-                        { t(`${_TNS}.ifHaveApp`) }
+                        { t(`${_TNS}.joinMeeting`) }
                     </p>
                     <a
                         { ...onOpenLinkProperties }
@@ -143,11 +143,11 @@ class DeepLinkingMobilePage extends Component<Props> {
                         href = { generateDeepLinkingURL() }
                         onClick = { this._onOpenApp }
                         target = '_top'>
-                        <button className = { `${_SNS}__button ${_SNS}__button_primary` }>
+                        {/* <button className = { `${_SNS}__button ${_SNS}__button_primary` }>
                             { t(`${_TNS}.joinInApp`) }
-                        </button>
+                        </button> */}
                     </a>
-                    <p className = { `${_SNS}__text` }>
+                    {/* <p className = { `${_SNS}__text` }>
                         { t(`${_TNS}.ifDoNotHaveApp`) }
                     </p>
                     <a
@@ -158,7 +158,7 @@ class DeepLinkingMobilePage extends Component<Props> {
                         <button className = { downloadButtonClassName }>
                             { t(`${_TNS}.downloadApp`) }
                         </button>
-                    </a>
+                    </a> */}
                     {
                         isSupportedMobileBrowser()
                             && <a
