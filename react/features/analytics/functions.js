@@ -176,15 +176,15 @@ export async function createHandlers({ getState }: { getState: Function }) {
                 }
             } catch (error) {
                 console.error("Warring MeetingID Time out!! ERROR: ", error);
-                APP.store.dispatch(redirectToStaticPage('static/authError.html'));
+                APP.store.dispatch(redirectToStaticPage('static/errorMeetingID.html'));
             }
         } else { 
             console.error("Warring MeetingID or Token is not defind!!");
-            APP.store.dispatch(redirectToStaticPage('static/authError.html'));
+            APP.store.dispatch(redirectToStaticPage('static/errorToken.html'));
         }
     } else { 
         console.error("Error URL is not defind!!");
-        APP.store.dispatch(redirectToStaticPage('static/authError.html'));
+        APP.store.dispatch(redirectToStaticPage('static/errorURL.html'));
     }
     document.title = 'ONECONFERENCE-MEET'
     const host = locationURL ? locationURL.host : '';
