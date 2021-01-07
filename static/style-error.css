@@ -1,0 +1,74 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:700);
+ *, *:before, *:after {
+	 box-sizing: border-box;
+}
+ html {
+	 height: 100%;
+}
+ body {
+     /* background: url(https://i.imgur.com/76NZB7A.gif) no-repeat center center fixed; */
+     background-color: #328ab6;
+	 background-size: cover;
+	 font-family: 'Raleway', sans-serif;
+	 height: 100%;
+}
+ .row:after {
+     content: "";
+     display: table;
+     clear: both;
+}
+ .column {
+     float: left;
+     padding: 10px;
+     height: 300px; 
+}
+ .left {
+     width: 50%;
+     margin-top: 120px;
+     padding-left: 150px;
+}
+  
+ .right {
+     width: 50%;
+     margin-top: 200px;
+}
+ .text-wrapper {
+	 height: 100%;
+	 display: flex;
+	 flex-direction: column;
+	 align-items: center;
+	 justify-content: center;
+}
+ .title {
+	 font-size: 4em;
+	 font-weight: 700;
+	 color: #ffffff;
+}
+ .subtitle {
+	 font-size: 30px;
+	 font-weight: 700;
+     color: #ffffff;
+     text-align: center;
+}
+ .buttons {
+	 margin: 30px;
+}
+ .buttons a.button {
+     font-weight: 700;
+     background-color:#18b8a5;
+	 border: 2px solid #18b8a5;
+	 text-decoration: none;
+	 padding: 15px;
+	 text-transform: uppercase;
+	 color: white;
+	 border-radius: 26px;
+	 /* transition: all 0.2s ease-in-out; */
+}
+ /* .buttons a.button:hover {
+	 background-color:#18b8a5;
+	 color: white;
+	 transition: all 0.2s ease-in-out;
+} */
+ .img {
+     margin-top: 200px;
+ }
