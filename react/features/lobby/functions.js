@@ -27,9 +27,10 @@ export function setKnockingParticipantApproval(getState: Function, id: string, a
 
 export function onSocketReqJoin(meetingId, endpoint, props) {
     const { dispatch } = props
+    const logger = Logger.getLogger(__filename);
     const socket = socketIOClient(endpoint)
     socket.on(meetingId+'-requestjoin' , (incoming) => {
-        Logger.log("Incoming-Join: ", incoming)
+        logger.log("Incoming-Join: ", incoming)
         dispatch(participantIsKnockingOrUpdated(incoming));
     })
 }

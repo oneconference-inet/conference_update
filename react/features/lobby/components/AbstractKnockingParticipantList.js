@@ -11,6 +11,8 @@ import socketIOClient from 'socket.io-client';
 
 import Logger from 'jitsi-meet-logger';
 
+const logger = Logger.getLogger(__filename);
+
 export type Props = {
 
     /**
@@ -76,7 +78,7 @@ export default class AbstractKnockingParticipantList<P: Props = Props> extends P
             name: name,
             approve: approve
         }
-        Logger.log("DATA: ", data);
+        logger.log("DATA: ", data);
         socket.emit('handleApprove', data) ;
         // dispatch(setKnockingState(false))
         dispatch(knockingParticipantLeft(id));

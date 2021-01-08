@@ -228,6 +228,8 @@ type State = {
 declare var APP: Object;
 declare var interfaceConfig: Object;
 
+const logger = Logger.getLogger(__filename);
+
 // XXX: We are not currently using state here, but in the future, when
 // interfaceConfig is part of redux we will. This will have to be retrieved from the store.
 const visibleButtons = new Set(interfaceConfig.TOOLBAR_BUTTONS);
@@ -294,15 +296,15 @@ class Toolbox extends Component<Props, State> {
             getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
             // console.log("Approve: ", getApprove)
             if (getApprove.data.approve) {
-                Logger.log('Room is require approve to join.')
+                logger.log('Room is require approve to join.')
                 APP.store.dispatch(setLobbyModeEnabled(true));
                 onSocketReqJoin(meetingid, endpoint, this.props);
             } else {
-                Logger.warn('Room is not defined function approve!!!')
+                logger.warn('Room is not defined function approve!!!')
             }
         }
         // On socket for Host
-        Logger.log('Moderator ONE-Conference On Socket-for-Feature')
+        logger.log('Moderator ONE-Conference On Socket-for-Feature')
         socket.emit('createRoom', { meetingId: meetingid, roomname: roomname, name: name });
         socket.on(meetingid, (payload) => {
             switch(payload.eventName) {
@@ -310,7 +312,7 @@ class Toolbox extends Component<Props, State> {
                   console.log("pollResponse-Payload: ", payload)
                   break;
                 default:
-                    Logger.warn('Event coming is not defined!!')
+                    logger.warn('Event coming is not defined!!')
               }
         });
 
@@ -319,16 +321,16 @@ class Toolbox extends Component<Props, State> {
     async onAttendee(state) {
         const { meetingid, roomname, name, checkPlatform, endpoint } = state
         const socket = socketIOClient(endpoint)
-        Logger.log('Attendee ONE-Conference On Socket-for-Feature')
+        logger.log('Attendee ONE-Conference On Socket-for-Feature')
         socket.on(meetingid, (payload) => {
             switch(payload.eventName) {
                 case 'trackMute':
-                    Logger.log("trackMute-Payload: ", payload)
+                    logger.log("trackMute-Payload: ", payload)
                     // attendee.setLockMute(payload.mute) //true or false
                     this.props.dispatch(setAudioMutedAll(payload.mute)) // Lock is button Audio
                     break;
                 default:
-                    Logger.warn('Event coming is not defined!!')
+                    logger.warn('Event coming is not defined!!')
                 }
         });
     }
