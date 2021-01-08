@@ -2,13 +2,15 @@
 <html>
     <head>
         <title> Error Meeting ID </title>
-        <link rel="stylesheet" href="static/style-error.css">
+        <script><!--#include virtual="/interface_config.js" --></script>
+        <script src="/static/close.js"></script>
+        <link rel="stylesheet" href="/static/style-error.css">
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="column left">
-                    <img src="images/meeting.png" height="450px" width="650px">
+                    <img src="/images/meeting.png" height="450px" width="650px">
                 </div>
 
                 <div class="column right">
@@ -22,8 +24,8 @@
                             Please signed out and sign in again.
                         </div>
             
-                        <div class="buttons_tohome">
-                            <a class="button" href="https://meet.one.th">Go to home</a>
+                        <div class="buttons">
+                            <a class="button" onclick="hrefUrltoHome()" >Go to home</a>
                         </div>
                     </div>
                 </div>

@@ -65,3 +65,7 @@ function onLoad() {
 }
 
 window.onload = onLoad;
+
+function hrefUrltoHome() {
+    window.location.href = interfaceConfig.DOMAIN;
+}
