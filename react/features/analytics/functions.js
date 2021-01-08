@@ -119,7 +119,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
     const tokenDecode = locationURL.href.split('?')[1];
     const dataDecode = decode(tokenDecode, repeatAccess)
     const tokenAccess = Boolean(tokenDecode != undefined || repeatAccess)
-    console.info("Data Decode: ", dataDecode);
+    logger.log("Data Decode: ", dataDecode);
     // console.log("token Access: ", tokenAccess);
     if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);

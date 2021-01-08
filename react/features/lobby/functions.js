@@ -3,6 +3,7 @@
 import { getCurrentConference } from '../base/conference';
 import { participantIsKnockingOrUpdated } from './actions';
 import socketIOClient from 'socket.io-client';
+import Logger from 'jitsi-meet-logger';
 
 /**
  * Approves (lets in) or rejects a knocking participant.
@@ -28,7 +29,7 @@ export function onSocketReqJoin(meetingId, endpoint, props) {
     const { dispatch } = props
     const socket = socketIOClient(endpoint)
     socket.on(meetingId+'-requestjoin' , (incoming) => {
-        console.info("Incoming-Join: ", incoming)
+        Logger.log("Incoming-Join: ", incoming)
         dispatch(participantIsKnockingOrUpdated(incoming));
     })
 }

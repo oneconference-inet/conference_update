@@ -90,6 +90,8 @@ import OverflowMenuProfileItem from './OverflowMenuProfileItem';
 import ToolbarButton from './ToolbarButton';
 import VideoSettingsButton from './VideoSettingsButton';
 
+import Logger from 'jitsi-meet-logger';
+
 import { setAudioMutedAll } from '../../../base/media';
 import { onSocketReqJoin, setLobbyModeEnabled } from '../../../lobby';
 import infoConf from '../../../../../infoConference';
@@ -292,12 +294,15 @@ class Toolbox extends Component<Props, State> {
             getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
             // console.log("Approve: ", getApprove)
             if (getApprove.data.approve) {
+                Logger.log('Room is require approve to join.')
                 APP.store.dispatch(setLobbyModeEnabled(true));
                 onSocketReqJoin(meetingid, endpoint, this.props);
+            } else {
+                Logger.warn('Room is not defined function approve!!!')
             }
         }
         // On socket for Host
-        console.info('Moderator ONE-Conference On Socket')
+        Logger.log('Moderator ONE-Conference On Socket-for-Feature')
         socket.emit('createRoom', { meetingId: meetingid, roomname: roomname, name: name });
         socket.on(meetingid, (payload) => {
             switch(payload.eventName) {
@@ -305,7 +310,7 @@ class Toolbox extends Component<Props, State> {
                   console.log("pollResponse-Payload: ", payload)
                   break;
                 default:
-                  console.info('Event is not defind!!')
+                    Logger.warn('Event coming is not defined!!')
               }
         });
 
@@ -314,16 +319,16 @@ class Toolbox extends Component<Props, State> {
     async onAttendee(state) {
         const { meetingid, roomname, name, checkPlatform, endpoint } = state
         const socket = socketIOClient(endpoint)
-        console.info('Attendee ONE-Conference On Socket')
+        Logger.log('Attendee ONE-Conference On Socket-for-Feature')
         socket.on(meetingid, (payload) => {
             switch(payload.eventName) {
                 case 'trackMute':
-                    console.log("trackMute-Payload: ", payload)
+                    Logger.log("trackMute-Payload: ", payload)
                     // attendee.setLockMute(payload.mute) //true or false
                     this.props.dispatch(setAudioMutedAll(payload.mute)) // Lock is button Audio
                     break;
                 default:
-                    console.info('Event is not defind!!')
+                    Logger.warn('Event coming is not defined!!')
                 }
         });
     }

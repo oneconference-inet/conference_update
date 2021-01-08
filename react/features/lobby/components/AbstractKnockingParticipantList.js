@@ -9,6 +9,8 @@ import { knockingParticipantLeft } from '../actions';
 import infoConf from '../../../../infoConference';
 import socketIOClient from 'socket.io-client';
 
+import Logger from 'jitsi-meet-logger';
+
 export type Props = {
 
     /**
@@ -74,7 +76,7 @@ export default class AbstractKnockingParticipantList<P: Props = Props> extends P
             name: name,
             approve: approve
         }
-        console.info("DATA: ", data);
+        Logger.log("DATA: ", data);
         socket.emit('handleApprove', data) ;
         // dispatch(setKnockingState(false))
         dispatch(knockingParticipantLeft(id));
