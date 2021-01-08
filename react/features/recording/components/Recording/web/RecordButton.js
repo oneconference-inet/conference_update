@@ -8,6 +8,7 @@ import AbstractRecordButton, {
 } from '../AbstractRecordButton';
 
 import infoConf from '../../../../../../infoConference'
+import infoUser from '../../../../../../infoUser'
 
 declare var interfaceConfig: Object;
 
@@ -28,7 +29,7 @@ declare var interfaceConfig: Object;
 export function _mapStateToProps(state: Object, ownProps: Props): Object {
     const abstractProps = _abstractMapStateToProps(state, ownProps);
     const service = infoConf.getService();
-    const role = infoConf.getMeetingId().split('-')[0];
+    const role = infoUser.getUserId().split('-')[0];
     const visibleByService = checkService(service);
     const visibleByRole = role == 'host' ? true : false ;
     let { visible } = ownProps;
