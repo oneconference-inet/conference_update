@@ -29,7 +29,7 @@ declare var interfaceConfig: Object;
 export function _mapStateToProps(state: Object, ownProps: Props): Object {
     const abstractProps = _abstractMapStateToProps(state, ownProps);
     const service = infoConf.getService();
-    const role = infoUser.getUserId().split('-')[0];
+    const role = infoUser.getUserId().split('-')[1];
     const visibleByService = checkService(service);
     const visibleByRole = role == 'host' ? true : false ;
     let { visible } = ownProps;
