@@ -126,10 +126,10 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
      * @private
      */
      _getTranslations(): Translations {
-        //  const { exclude, t } = this.props;
+         const { exclude, t } = this.props;
          const dialog = {
-                content: 'dialog.endMeetingDialog',
-                title: 'dialog.endMeetingTitle'
+                content: t('dialog.endMeetingDialog'),
+                title: t('dialog.endMeetingTitle')
          };
 
          return dialog

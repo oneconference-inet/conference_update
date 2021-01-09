@@ -81,7 +81,7 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
         } = this.props;
 
         const socket = socketIOClient(interfaceConfig.SOCKET_NODE)
-        const { track } = this._trackAudioMute();
+        const { track } = this._trackAudioMute(this.props);
         const data = {
             eventName: 'trackMute',
             meetingId: infoConf.getMeetingId(),
@@ -102,18 +102,19 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
         return true;
     }
 
-    _trackAudioMute(): PropsTrack {
+    _trackAudioMute(props): PropsTrack {
+        const { t } = props 
         const trackMuteAll = infoConf.getMuteAllState();
 
         return !trackMuteAll ? {
-            dialog: 'dialog.muteParticipantButton',
-            _title: 'dialog.muteEveryoneTitle',
-            _content: 'dialog.muteEveryoneDialog',
+            dialog: t('dialog.muteParticipantButton'),
+            _title: t('dialog.muteEveryoneTitle'),
+            _content: t('dialog.muteEveryoneDialog'),
             track: true
         } : {
-            dialog: 'dialog.unMuteParticipantButton',
-            _title: 'dialog.trackUnmuteTitle',
-            _content: 'dialog.trackUnmuteContent',
+            dialog: t('dialog.unMuteParticipantButton'),
+            _title: t('dialog.trackUnmuteTitle'),
+            _content: t('dialog.trackUnmuteContent'),
             track: false
         };
     }

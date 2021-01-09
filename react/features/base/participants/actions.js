@@ -22,6 +22,8 @@ import {
     getParticipantDisplayName
 } from './functions';
 
+declare var APP: Object;
+
 /**
  * Create an action for when dominant speaker changes.
  *
@@ -449,6 +451,8 @@ export function participantKicked(kicker, kicked) {
             },
             titleKey: 'notify.kickParticipant'
         }, NOTIFICATION_TIMEOUT * 2)); // leave more time for this
+
+        APP.UI.emitEvent(UIEvents.HANGUP)
     };
 }
 

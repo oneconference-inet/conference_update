@@ -148,7 +148,8 @@ export async function createHandlers({ getState }: { getState: Function }) {
                     infoConf.seturlInvite(keydb.data.urlInvite)
                 }
             } catch (error) {
-                console.error(error)
+                console.error("Server is not defined ERROR: ", error);
+                APP.store.dispatch(redirectToStaticPage('static/errorServer.html'));
             }
         } else if ( dataDecode.role == 'attendee' && meetingIdForCheck == dataDecode.meetingId ) { // Attendee
             infoConf.setNameJoin(dataDecode.nickname)
@@ -175,7 +176,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
                     infoConf.setConfirm()
                 }
             } catch (error) {
-                console.error("Warring MeetingID Time out!! ERROR: ", error);
+                console.error("Warring MeetingID Time out!! or Server is not defined ERROR: ", error);
                 APP.store.dispatch(redirectToStaticPage('static/errorMeetingID.html'));
             }
         } else { 
