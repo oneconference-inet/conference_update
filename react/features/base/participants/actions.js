@@ -24,8 +24,6 @@ import {
     getParticipantDisplayName
 } from './functions';
 
-import UIEvents from '../../../../service/UI/UIEvents';
-
 declare var APP: Object;
 
 const logger = Logger.getLogger(__filename);
