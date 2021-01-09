@@ -306,11 +306,17 @@ class Toolbox extends Component<Props, State> {
         // On socket for Host
         logger.log('Moderator ONE-Conference On Socket-for-Feature')
         socket.emit('createRoom', { meetingId: meetingid, roomname: roomname, name: name });
+        console.log(APP.store.getState())
         socket.on(meetingid, (payload) => {
             switch(payload.eventName) {
                 case 'pollResponse':
                   console.log("pollResponse-Payload: ", payload)
                   break;
+                // case 'invitedOut':
+                //     logger.log("invitedOut-ID: ", payload.toId)
+                //     if (payload.toId == ) {
+                //         APP.UI.emitEvent(UIEvents.HANGUP)
+                //     }
                 default:
                     logger.warn('Event coming is not defined!!')
               }
@@ -329,6 +335,11 @@ class Toolbox extends Component<Props, State> {
                     // attendee.setLockMute(payload.mute) //true or false
                     this.props.dispatch(setAudioMutedAll(payload.mute)) // Lock is button Audio
                     break;
+                // case 'invitedOut':
+                //     logger.log("invitedOut-ID: ", payload.toId)
+                //     if (payload.toId == ) {
+                //         APP.UI.emitEvent(UIEvents.HANGUP)
+                //     }
                 default:
                     logger.warn('Event coming is not defined!!')
                 }

@@ -96,7 +96,8 @@ MiddlewareRegistry.register(store => next => action => {
 
     case KICK_PARTICIPANT: {
         const { conference } = store.getState()['features/base/conference'];
-
+        /// emit to socket kick event
+        // socket.emit('kickUser', { meetingId: meetingid, toId: action.id, eventName: 'invitedOut' });
         conference.kickParticipant(action.id);
         break;
     }
