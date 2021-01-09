@@ -441,7 +441,6 @@ export function participantMutedUs(participant) {
 export function participantKicked(kicker, kicked) {
     return (dispatch, getState) => {
         
-        try {
             dispatch({
                 type: PARTICIPANT_KICKED,
                 kicked: kicked.getId(),
@@ -457,10 +456,6 @@ export function participantKicked(kicker, kicked) {
                 },
                 titleKey: 'notify.kickParticipant'
             }, NOTIFICATION_TIMEOUT * 2)); // leave more time for this
-        } catch (error) {
-            APP.UI.emitEvent(UIEvents.HANGUP)
-            logger.error("Kickout Success !!, Error lib: ",error)
-        }
     };
 }
 
