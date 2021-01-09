@@ -1,6 +1,8 @@
 import { NOTIFICATION_TIMEOUT, showNotification } from '../../notifications';
 import { set } from '../redux';
 
+import Logger from 'jitsi-meet-logger';
+
 import {
     DOMINANT_SPEAKER_CHANGED,
     HIDDEN_PARTICIPANT_JOINED,
@@ -24,6 +26,7 @@ import {
 
 declare var APP: Object;
 
+const logger = Logger.getLogger(__filename);
 /**
  * Create an action for when dominant speaker changes.
  *
@@ -435,24 +438,27 @@ export function participantMutedUs(participant) {
  */
 export function participantKicked(kicker, kicked) {
     return (dispatch, getState) => {
-
-        dispatch({
-            type: PARTICIPANT_KICKED,
-            kicked: kicked.getId(),
-            kicker: kicker.getId()
-        });
-
-        dispatch(showNotification({
-            titleArguments: {
-                kicked:
-                    getParticipantDisplayName(getState, kicked.getId()),
-                kicker:
-                    getParticipantDisplayName(getState, kicker.getId())
-            },
-            titleKey: 'notify.kickParticipant'
-        }, NOTIFICATION_TIMEOUT * 2)); // leave more time for this
-
-        APP.UI.emitEvent(UIEvents.HANGUP)
+        
+        try {
+            dispatch({
+                type: PARTICIPANT_KICKED,
+                kicked: kicked.getId(),
+                kicker: kicker.getId()
+            });
+    
+            dispatch(showNotification({
+                titleArguments: {
+                    kicked:
+                        getParticipantDisplayName(getState, kicked.getId()),
+                    kicker:
+                        getParticipantDisplayName(getState, kicker.getId())
+                },
+                titleKey: 'notify.kickParticipant'
+            }, NOTIFICATION_TIMEOUT * 2)); // leave more time for this
+        } catch (error) {
+            APP.UI.emitEvent(UIEvents.HANGUP)
+            logger.error("Kickout Success !!, Error lib: ",error)
+        }
     };
 }
 
