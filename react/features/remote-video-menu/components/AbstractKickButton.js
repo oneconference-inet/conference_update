@@ -41,8 +41,6 @@ export default class AbstractKickButton extends AbstractButton<Props, *> {
     _handleClick() {
         const { dispatch, participantID } = this.props;
 
-        console.log("เตะ : ",participantID);
-        
         dispatch(openDialog(KickRemoteParticipantDialog, { participantID }));
     }
 }

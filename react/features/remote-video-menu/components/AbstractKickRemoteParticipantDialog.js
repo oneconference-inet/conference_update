@@ -59,8 +59,6 @@ export default class AbstractKickRemoteParticipantDialog
                 'participant_id': participantID
             }));
 
-        console.log(participantID, " โดนเตะ");
-        
         dispatch(kickParticipant(participantID));
 
         return true;
