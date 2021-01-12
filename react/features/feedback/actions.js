@@ -1,20 +1,21 @@
 // @flow
 
-import type { Dispatch } from 'redux';
+import type { Dispatch } from "redux";
 
-import { FEEDBACK_REQUEST_IN_PROGRESS } from '../../../modules/UI/UIErrors';
-import { openDialog } from '../base/dialog';
+import { FEEDBACK_REQUEST_IN_PROGRESS } from "../../../modules/UI/UIErrors";
+import { openDialog } from "../base/dialog";
 
 import {
-    CANCEL_FEEDBACK,
-    SUBMIT_FEEDBACK_ERROR,
-    SUBMIT_FEEDBACK_SUCCESS
-} from './actionTypes';
-import { FeedbackDialog } from './components';
+  CANCEL_FEEDBACK,
+  SUBMIT_FEEDBACK_ERROR,
+  SUBMIT_FEEDBACK_SUCCESS,
+} from "./actionTypes";
+import { FeedbackDialog } from "./components";
 
 declare var config: Object;
 declare var interfaceConfig: Object;
 
+import axios from "axios";
 /**
  * Caches the passed in feedback in the redux store.
  *
@@ -28,11 +29,11 @@ declare var interfaceConfig: Object;
  * }}
  */
 export function cancelFeedback(score: number, message: string) {
-    return {
-        type: CANCEL_FEEDBACK,
-        message,
-        score
-    };
+  return {
+    type: CANCEL_FEEDBACK,
+    message,
+    score,
+  };
 }
 
 /**
@@ -47,50 +48,53 @@ export function cancelFeedback(score: number, message: string) {
  * submitted. Rejected if another dialog is already displayed.
  */
 export function maybeOpenFeedbackDialog(conference: Object) {
-    type R = {
-        feedbackSubmitted: boolean,
-        showThankYou: boolean
-    };
+  type R = {
+    feedbackSubmitted: boolean,
+    showThankYou: boolean,
+  };
 
-    return (dispatch: Dispatch<any>, getState: Function): Promise<R> => {
-        const state = getState();
-        const { feedbackPercentage = 100 } = state['features/base/config'];
+  return (dispatch: Dispatch<any>, getState: Function): Promise<R> => {
+    const state = getState();
+    const { feedbackPercentage = 100 } = state["features/base/config"];
 
-        if (config.iAmRecorder) {
-            // Intentionally fall through the if chain to prevent further action
-            // from being taken with regards to showing feedback.
-        } else if (state['features/base/dialog'].component === FeedbackDialog) {
-            // Feedback is currently being displayed.
+    if (config.iAmRecorder) {
+      // Intentionally fall through the if chain to prevent further action
+      // from being taken with regards to showing feedback.
+    } else if (state["features/base/dialog"].component === FeedbackDialog) {
+      // Feedback is currently being displayed.
 
-            return Promise.reject(FEEDBACK_REQUEST_IN_PROGRESS);
-        } else if (state['features/feedback'].submitted) {
-            // Feedback has been submitted already.
+      return Promise.reject(FEEDBACK_REQUEST_IN_PROGRESS);
+    } else if (state["features/feedback"].submitted) {
+      // Feedback has been submitted already.
 
-            return Promise.resolve({
-                feedbackSubmitted: true,
-                showThankYou: true
-            });
-        } else if (conference.isCallstatsEnabled() && feedbackPercentage > Math.random() * 100) {
-            return new Promise(resolve => {
-                dispatch(openFeedbackDialog(conference, () => {
-                    const { submitted } = getState()['features/feedback'];
+      return Promise.resolve({
+        feedbackSubmitted: true,
+        showThankYou: true,
+      });
+    }
+    // else if (conference.isCallstatsEnabled() && feedbackPercentage > Math.random() * 100) {
+    return new Promise((resolve) => {
+      dispatch(
+        openFeedbackDialog(conference, () => {
+          const { submitted } = getState()["features/feedback"];
 
-                    resolve({
-                        feedbackSubmitted: submitted,
-                        showThankYou: false
-                    });
-                }));
-            });
-        }
+          resolve({
+            feedbackSubmitted: submitted,
+            showThankYou: false,
+          });
+        })
+      );
+    });
+    // }
 
-        // If the feedback functionality isn't enabled we show a "thank you"
-        // message. Signaling it (true), so the caller of requestFeedback can
-        // act on it.
-        return Promise.resolve({
-            feedbackSubmitted: false,
-            showThankYou: true
-        });
-    };
+    // If the feedback functionality isn't enabled we show a "thank you"
+    // message. Signaling it (true), so the caller of requestFeedback can
+    // act on it.
+    // return Promise.resolve({
+    //     feedbackSubmitted: false,
+    //     showThankYou: true
+    // });
+  };
 }
 
 /**
@@ -104,10 +108,10 @@ export function maybeOpenFeedbackDialog(conference: Object) {
  * @returns {Object}
  */
 export function openFeedbackDialog(conference: Object, onClose: ?Function) {
-    return openDialog(FeedbackDialog, {
-        conference,
-        onClose
-    });
+  return openDialog(FeedbackDialog, {
+    conference,
+    onClose,
+  });
 }
 
 /**
@@ -122,19 +126,29 @@ export function openFeedbackDialog(conference: Object, onClose: ?Function) {
  * @returns {Function}
  */
 export function submitFeedback(
-        score: number,
-        message: string,
-        conference: Object) {
-    return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)
-        .then(
-            () => dispatch({ type: SUBMIT_FEEDBACK_SUCCESS }),
-            error => {
-                dispatch({
-                    type: SUBMIT_FEEDBACK_ERROR,
-                    error
-                });
+  score: number,
+  message: string,
+  conference: Object,
+  room: string
+) {
+  return axios
+    .post(interfaceConfig.DOMAIN + "/feedback", {
+      score: score,
+      message: message,
+      room: room,
+    })
+    .then((res) => (window.location.href = interfaceConfig.DOMAIN + "/main"));
 
-                return Promise.reject(error);
-            }
-        );
+  // return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)
+  //     .then(
+  //         () => dispatch({ type: SUBMIT_FEEDBACK_SUCCESS }),
+  //         error => {
+  //             dispatch({
+  //                 type: SUBMIT_FEEDBACK_ERROR,
+  //                 error
+  //             });
+
+  //             return Promise.reject(error);
+  //         }
+  //     );
 }
