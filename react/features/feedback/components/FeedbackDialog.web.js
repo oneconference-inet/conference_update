@@ -358,7 +358,7 @@ function _mapStateToProps(state) {
   const { message, score } = state["features/feedback"];
   const { room } = state['features/base/conference'];
 
-  console.log("STATE: ",state);
+  // console.log("STATE: ",state);
   
   return {
     /**
