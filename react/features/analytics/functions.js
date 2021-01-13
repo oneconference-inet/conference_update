@@ -153,7 +153,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             }
         } else if ( dataDecode.role == 'attendee' && meetingIdForCheck == dataDecode.meetingId ) { // Attendee
             infoConf.setNameJoin(dataDecode.nickname)
-            infoUser.setOption(dataDecode.option.trim())
+            infoUser.setOption(dataDecode.option)
             infoUser.setName(dataDecode.nickname)
             infoUser.setUserId(dataDecode.clientid)
             try {
