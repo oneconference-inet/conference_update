@@ -29,6 +29,7 @@ import axios from "axios";
  * }}
  */
 export function cancelFeedback(score: number, message: string) {
+  window.location.href = interfaceConfig.DOMAIN + "/main";
   return {
     type: CANCEL_FEEDBACK,
     message,
