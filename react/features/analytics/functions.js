@@ -64,7 +64,7 @@ export function resetAnalytics() {
 // Reload Page With Parameter (Token)
 
 function reloadPage() {
-    if (performance.navigation.type == 1 && Boolean(localStorage.getItem("token_Access"))) {
+    if (performance.navigation.type == 1 && Boolean(sessionStorage.getItem("token_Access"))) {
         return true
     } else {
         return false
@@ -75,7 +75,7 @@ function decode(data, checkReload){
     try {
         var resultData
         if (checkReload) {
-            var dataReload = localStorage.getItem("token_Access")
+            var dataReload = sessionStorage.getItem("token_Access")
             var bytesForReload = CryptoJS.AES.decrypt(dataReload, interfaceConfig.DECODE_TOKEN);
             resultData = bytesForReload.toString(CryptoJS.enc.Utf8);
         } else {
@@ -124,7 +124,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
     if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);
         infoConf.setRoomName(dataDecode.roomname);
-        localStorage.setItem("token_Access", tokenDecode || localStorage.getItem("token_Access")) // Set token for Reload page
+        sessionStorage.setItem("token_Access", tokenDecode || sessionStorage.getItem("token_Access")) // Set token for Reload page
         if (dataDecode.role == 'moderator' && meetingIdForCheck == dataDecode.meetingId) { // Moderator
             infoConf.setNameJoin(dataDecode.nickname)
             infoConf.setIsModerator()
