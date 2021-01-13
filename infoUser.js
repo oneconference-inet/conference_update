@@ -1,7 +1,7 @@
 var userInfo = {
     name: '',
     userId: '',
-    option: '',
+    option: {},
     iAmRecorder: false
   }
 

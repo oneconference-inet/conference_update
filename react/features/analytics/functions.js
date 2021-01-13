@@ -128,7 +128,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
         if (dataDecode.role == 'moderator' && meetingIdForCheck == dataDecode.meetingId) { // Moderator
             infoConf.setNameJoin(dataDecode.nickname)
             infoConf.setIsModerator()
-            infoUser.setOption(dataDecode.option.trim())
+            infoUser.setOption(dataDecode.option)
             infoUser.setName(dataDecode.nickname)
             infoUser.setUserId(dataDecode.clientid)
             authXmpp.setUser(dataDecode.userXmpAuth)

@@ -743,34 +743,19 @@ export default {
   // };
   async init({ roomName }) {
     var initialOptions = {};
-    if (!config.iAmRecorder && infoUser.getOption() == "voice") {
+    var media = infoUser.getOption()
+    if (!config.iAmRecorder) {
       // Only Voice
       initialOptions = {
         startAudioOnly: config.startAudioOnly,
         startScreenSharing: config.startScreenSharing,
-        startWithAudioMuted:
-          getStartWithAudioMuted(APP.store.getState()) ||
-          config.startSilent ||
-          isUserInteractionRequiredForUnmute(APP.store.getState()),
-        startWithVideoMuted: true,
-      };
-    } else if (!config.iAmRecorder && infoUser.getOption() == "video") {
-      // Normal Settings
-      initialOptions = {
-        startAudioOnly: config.startAudioOnly,
-        startScreenSharing: config.startScreenSharing,
-        startWithAudioMuted:
-          getStartWithAudioMuted(APP.store.getState()) ||
-          config.startSilent ||
-          isUserInteractionRequiredForUnmute(APP.store.getState()),
-        startWithVideoMuted:
-          getStartWithVideoMuted(APP.store.getState()) ||
-          isUserInteractionRequiredForUnmute(APP.store.getState()),
+        startWithAudioMuted: media.audio ? false : true,
+        startWithVideoMuted: media.video ? false : true,
       };
     } else {
       initialOptions = {
         // Bot Setting
-        startAudioOnly: false,
+        startAudioOnly: true,
         startScreenSharing: false,
         startWithAudioMuted: false,
         startWithVideoMuted: true,
