@@ -38,10 +38,9 @@ export function notifyKickedOut(participant: Object, _: ?Function) {
                 descriptionArguments: args,
                 titleKey: "dialog.kickTitle",
                 titleArguments: args,
-            }).then((res) => {
-                console.log("RES", res);
-                window.location.href = interfaceConfig.DOMAIN + "/main";
-            })
+            }).then(
+                () => (window.location.href = interfaceConfig.DOMAIN + "/main")
+            )
         );
     };
 }
