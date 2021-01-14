@@ -289,6 +289,7 @@ export function conferenceJoined(conference: Object) {
  * }}
  */
 export function conferenceLeft(conference: Object) {
+    console.log("chk_con: ",conference);
     return {
         type: CONFERENCE_LEFT,
         conference
