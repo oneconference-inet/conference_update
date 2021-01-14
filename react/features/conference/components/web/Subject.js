@@ -79,8 +79,8 @@ class Subject extends Component<Props> {
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
-    console.log("คน :", this.props.count);
-    
+    console.log("คน :", participantCount);
+
     return {
         _hideConferenceTimer: Boolean(state['features/base/config'].hideConferenceTimer),
         _showParticipantCount: participantCount > 2,
