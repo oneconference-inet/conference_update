@@ -28,8 +28,6 @@ export function notifyKickedOut(participant: Object, _: ?Function) {
             ),
         };
 
-        console.log("เตะ");
-
         dispatch(
             showNotification({
                 appearance: NOTIFICATION_TYPE.ERROR,
@@ -38,9 +36,7 @@ export function notifyKickedOut(participant: Object, _: ?Function) {
                 descriptionArguments: args,
                 titleKey: "dialog.kickTitle",
                 titleArguments: args,
-            }).then(
-                () => (window.location.href = interfaceConfig.DOMAIN + "/main")
-            )
+            })
         );
     };
 }
