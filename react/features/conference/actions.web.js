@@ -8,7 +8,6 @@ import { NOTIFICATION_TYPE, showNotification } from "../notifications";
 import UIEvents from "../../../service/UI/UIEvents";
 
 declare var APP: Object;
-declare var interfaceConfig: Object;
 
 /**
  * Notify that we've been kicked out of the conference.
@@ -37,6 +36,8 @@ export function notifyKickedOut(participant: Object, _: ?Function) {
                 titleKey: "dialog.kickTitle",
                 titleArguments: args,
             })
-        );
+        )
+        
+        // APP.UI.emitEvent(UIEvents.HANGUP)
     };
 }

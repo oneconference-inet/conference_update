@@ -1,17 +1,15 @@
 // @flow
 
-import Flag from '@atlaskit/flag';
-import EditorInfoIcon from '@atlaskit/icon/glyph/editor/info';
-import ErrorIcon from '@atlaskit/icon/glyph/error';
-import WarningIcon from '@atlaskit/icon/glyph/warning';
-import { colors } from '@atlaskit/theme';
-import React from 'react';
+import Flag from "@atlaskit/flag";
+import EditorInfoIcon from "@atlaskit/icon/glyph/editor/info";
+import ErrorIcon from "@atlaskit/icon/glyph/error";
+import WarningIcon from "@atlaskit/icon/glyph/warning";
+import { colors } from "@atlaskit/theme";
+import React from "react";
 
-import { translate } from '../../../base/i18n';
-import { NOTIFICATION_TYPE } from '../../constants';
-import AbstractNotification, {
-    type Props
-} from '../AbstractNotification';
+import { translate } from "../../../base/i18n";
+import { NOTIFICATION_TYPE } from "../../constants";
+import AbstractNotification, { type Props } from "../AbstractNotification";
 
 declare var interfaceConfig: Object;
 
@@ -25,7 +23,7 @@ const ICON_COLOR = {
     info: colors.N500,
     normal: colors.N0,
     success: colors.G400,
-    warning: colors.Y200
+    warning: colors.Y200,
 };
 
 /**
@@ -50,30 +48,33 @@ class Notification extends AbstractNotification<Props> {
             title,
             titleArguments,
             titleKey,
-            uid
+            uid,
         } = this.props;
 
         if (titleKey === "dialog.kickTitle") {
-            console.log("โดนเตะออกจากเว็บ");
+            setTimeout(function () {
+                window.location.href = interfaceConfig.DOMAIN + "/main";
+            }, 2000);
         }
-        
+
         return (
             <Flag
-                actions = { this._mapAppearanceToButtons(hideErrorSupportLink) }
-                appearance = { appearance }
-                description = { this._renderDescription() }
-                icon = { this._mapAppearanceToIcon() }
-                id = { uid }
-                isDismissAllowed = { isDismissAllowed }
-                onDismissed = { onDismissed }
-                testId = { titleKey }
-                title = { title || t(titleKey, titleArguments) } />
+                actions={this._mapAppearanceToButtons(hideErrorSupportLink)}
+                appearance={appearance}
+                description={this._renderDescription()}
+                icon={this._mapAppearanceToIcon()}
+                id={uid}
+                isDismissAllowed={isDismissAllowed}
+                onDismissed={onDismissed}
+                testId={titleKey}
+                title={title || t(titleKey, titleArguments)}
+            />
         );
     }
 
-    _getDescription: () => Array<string>
+    _getDescription: () => Array<string>;
 
-    _getDescriptionKey: () => string
+    _getDescriptionKey: () => string;
 
     _onDismissed: () => void;
 
@@ -88,11 +89,7 @@ class Notification extends AbstractNotification<Props> {
         const description = this._getDescription();
 
         // the id is used for testing the UI
-        return (
-            <div data-testid = { this._getDescriptionKey() } >
-                { description }
-            </div>
-        );
+        return <div data-testid={this._getDescriptionKey()}>{description}</div>;
     }
 
     /**
@@ -102,7 +99,7 @@ class Notification extends AbstractNotification<Props> {
      * @private
      */
     _onOpenSupportLink() {
-        window.open(interfaceConfig.SUPPORT_URL, '_blank', 'noopener');
+        window.open(interfaceConfig.SUPPORT_URL, "_blank", "noopener");
     }
 
     /**
@@ -116,46 +113,51 @@ class Notification extends AbstractNotification<Props> {
      */
     _mapAppearanceToButtons(hideErrorSupportLink) {
         switch (this.props.appearance) {
-        case NOTIFICATION_TYPE.ERROR: {
-            const buttons = [
-                {
-                    content: this.props.t('dialog.dismiss'),
-                    onClick: this._onDismissed
-                }
-            ];
+            case NOTIFICATION_TYPE.ERROR: {
+                const buttons = [
+                    {
+                        content: this.props.t("dialog.dismiss"),
+                        onClick: this._onDismissed,
+                    },
+                ];
 
-            if (!hideErrorSupportLink) {
-                buttons.push({
-                    content: this.props.t('dialog.contactSupport'),
-                    onClick: this._onOpenSupportLink
-                });
+                if (!hideErrorSupportLink) {
+                    buttons.push({
+                        content: this.props.t("dialog.contactSupport"),
+                        onClick: this._onOpenSupportLink,
+                    });
+                }
+
+                return buttons;
             }
-
-            return buttons;
-        }
-        case NOTIFICATION_TYPE.WARNING:
-            return [
-                {
-                    content: this.props.t('dialog.Ok'),
-                    onClick: this._onDismissed
-                }
-            ];
-
-        default:
-            if (this.props.customActionNameKey && this.props.customActionHandler) {
+            case NOTIFICATION_TYPE.WARNING:
                 return [
                     {
-                        content: this.props.t(this.props.customActionNameKey),
-                        onClick: () => {
-                            if (this.props.customActionHandler()) {
-                                this._onDismissed();
-                            }
-                        }
-                    }
+                        content: this.props.t("dialog.Ok"),
+                        onClick: this._onDismissed,
+                    },
                 ];
-            }
 
-            return [];
+            default:
+                if (
+                    this.props.customActionNameKey &&
+                    this.props.customActionHandler
+                ) {
+                    return [
+                        {
+                            content: this.props.t(
+                                this.props.customActionNameKey
+                            ),
+                            onClick: () => {
+                                if (this.props.customActionHandler()) {
+                                    this._onDismissed();
+                                }
+                            },
+                        },
+                    ];
+                }
+
+                return [];
         }
     }
 
@@ -169,32 +171,35 @@ class Notification extends AbstractNotification<Props> {
     _mapAppearanceToIcon() {
         const appearance = this.props.appearance;
         const secIconColor = ICON_COLOR[this.props.appearance];
-        const iconSize = 'medium';
+        const iconSize = "medium";
 
         switch (appearance) {
-        case NOTIFICATION_TYPE.ERROR:
-            return (
-                <ErrorIcon
-                    label = { appearance }
-                    secondaryColor = { secIconColor }
-                    size = { iconSize } />
-            );
+            case NOTIFICATION_TYPE.ERROR:
+                return (
+                    <ErrorIcon
+                        label={appearance}
+                        secondaryColor={secIconColor}
+                        size={iconSize}
+                    />
+                );
 
-        case NOTIFICATION_TYPE.WARNING:
-            return (
-                <WarningIcon
-                    label = { appearance }
-                    secondaryColor = { secIconColor }
-                    size = { iconSize } />
-            );
+            case NOTIFICATION_TYPE.WARNING:
+                return (
+                    <WarningIcon
+                        label={appearance}
+                        secondaryColor={secIconColor}
+                        size={iconSize}
+                    />
+                );
 
-        default:
-            return (
-                <EditorInfoIcon
-                    label = { appearance }
-                    secondaryColor = { secIconColor }
-                    size = { iconSize } />
-            );
+            default:
+                return (
+                    <EditorInfoIcon
+                        label={appearance}
+                        secondaryColor={secIconColor}
+                        size={iconSize}
+                    />
+                );
         }
     }
 }
