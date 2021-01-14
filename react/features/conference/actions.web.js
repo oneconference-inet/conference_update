@@ -18,28 +18,26 @@ declare var APP: Object;
  * @returns {Function}
  */
 export function notifyKickedOut(participant: Object, _: ?Function) {
-  // eslint-disable-line no-unused-vars
-  return (dispatch: Dispatch<any>, getState: Function) => {
-    const args = {
-      participantDisplayName: getParticipantDisplayName(
-        getState,
-        participant.getId()
-      ),
+    // eslint-disable-line no-unused-vars
+    return (dispatch: Dispatch<any>, getState: Function) => {
+        const args = {
+            participantDisplayName: getParticipantDisplayName(
+                getState,
+                participant.getId()
+            ),
+        };
+
+        console.log("เตะ");
+
+        dispatch(
+            showNotification({
+                appearance: NOTIFICATION_TYPE.ERROR,
+                hideErrorSupportLink: true,
+                descriptionKey: "dialog.kickMessage",
+                descriptionArguments: args,
+                titleKey: "dialog.kickTitle",
+                titleArguments: args,
+            })
+        ).then(() => (window.location.href = "https://www.google.com/"));
     };
-
-    // window.location.href = "https://www.google.com/"
-
-    dispatch(
-      showNotification({
-        appearance: NOTIFICATION_TYPE.ERROR,
-        hideErrorSupportLink: true,
-        descriptionKey: "dialog.kickMessage",
-        descriptionArguments: args,
-        titleKey: "dialog.kickTitle",
-        titleArguments: args,
-      })
-    );
-
-    APP.UI.emitEvent(UIEvents.HANGUP);
-  };
 }
