@@ -69,10 +69,6 @@ class ParticipantsCount extends PureComponent<Props> {
      */
 
     render() {
-        if (this.props.count) {
-            console.log("คน :", this.props.count);
-        }
-
         return (
             <div className="participants-count" onClick={this._onClick}>
                 <span className="participants-count-number">
