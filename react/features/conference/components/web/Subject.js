@@ -88,7 +88,11 @@ function _mapStateToProps(state) {
 
     console.log("คน: ",participantCount);
 
-    if (!participantCount) {
+    if (participantCount === 1) {
+        console.log("เหลือ 1");
+    }
+
+    if (participantCount === 0) {
         Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
             meetingid: infoConf.getMeetingId(),
         });
