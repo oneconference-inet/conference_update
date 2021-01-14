@@ -10,7 +10,7 @@ import ConferenceTimer from "../ConferenceTimer";
 
 import ParticipantsCount from "./ParticipantsCount";
 import Axios from "axios";
-import infoConf from '../../../../../infoConference'
+import infoConf from "../../../../../infoConference";
 /**
  * The type of the React {@code Component} props of {@link Subject}.
  */
@@ -86,35 +86,13 @@ class Subject extends Component<Props> {
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
-    console.log("คน: ",participantCount);
-
     window.onbeforeunload = function (event) {
-        var message = 'Important: Please click on \'Save\' button to leave this page.';
-        if (typeof event == 'undefined') {
-            event = window.event;
+        if (participantCount === 1) {
+            Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+                meetingid: infoConf.getMeetingId(),
+            });
         }
-        if (event) {
-            event.returnValue = message;
-        }
-        console.log("Close tab or browser");
-        return message;
     };
-
-    if (participantCount === 1) {
-        console.log("เหลือ 1");
-    }
-
-    if (participantCount === 0) {
-        Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-            meetingid: infoConf.getMeetingId(),
-        });
-    }
-
-    // if (!participantCount) {
-    //     Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-    //         meetingid: infoConf.getMeetingId(),
-    //     });
-    // }
 
     return {
         _hideConferenceTimer: Boolean(
