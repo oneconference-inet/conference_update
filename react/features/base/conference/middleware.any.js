@@ -402,8 +402,6 @@ function _pinParticipant({ getState }, next, action) {
                 : pinnedParticipant && pinnedParticipant.id;
     }
 
-    console.log("Count: ",conference.getParticipantCount());
-
     sendAnalytics(
         createPinnedEvent(actionName, participantIdForEvent, {
             local,
