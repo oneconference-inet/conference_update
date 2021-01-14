@@ -338,10 +338,6 @@ export function hiddenParticipantLeft(id) {
  * }}
  */
 export function participantLeft(id, conference) {
-    window.onbeforeunload = function (event) {
-        console.log("คนออก :", id);
-    };
-
     return {
         type: PARTICIPANT_LEFT,
         participant: {
