@@ -88,6 +88,18 @@ function _mapStateToProps(state) {
 
     console.log("คน: ",participantCount);
 
+    window.onbeforeunload = function (event) {
+        var message = 'Important: Please click on \'Save\' button to leave this page.';
+        if (typeof event == 'undefined') {
+            event = window.event;
+        }
+        if (event) {
+            event.returnValue = message;
+        }
+        console.log("Close tab or browser");
+        return message;
+    };
+
     if (participantCount === 1) {
         console.log("เหลือ 1");
     }
