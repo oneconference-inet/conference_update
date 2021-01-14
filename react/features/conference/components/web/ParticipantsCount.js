@@ -67,10 +67,14 @@ class ParticipantsCount extends PureComponent<Props> {
      * @inheritdoc
      * @returns {ReactElement}
      */
+
     render() {
+        if (this.props.count) {
+            console.log("คน :", this.props.count);
+        }
+
         return (
             <div className="participants-count" onClick={this._onClick}>
-                {console.log("CCCCC: ", this.props.count)}
                 <span className="participants-count-number">
                     {this.props.count}
                 </span>
