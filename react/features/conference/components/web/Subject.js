@@ -1,20 +1,20 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { getConferenceName } from '../../../base/conference/functions';
-import { getParticipantCount } from '../../../base/participants/functions';
-import { connect } from '../../../base/redux';
-import { isToolboxVisible } from '../../../toolbox/functions.web';
-import ConferenceTimer from '../ConferenceTimer';
+import { getConferenceName } from "../../../base/conference/functions";
+import { getParticipantCount } from "../../../base/participants/functions";
+import { connect } from "../../../base/redux";
+import { isToolboxVisible } from "../../../toolbox/functions.web";
+import ConferenceTimer from "../ConferenceTimer";
 
-import ParticipantsCount from './ParticipantsCount';
-
+import ParticipantsCount from "./ParticipantsCount";
+import Axios from "axios";
+import infoConf from '../../../../../infoConference'
 /**
  * The type of the React {@code Component} props of {@link Subject}.
  */
 type Props = {
-
     /**
      * Whether the conference timer should be shown or not.
      */
@@ -34,7 +34,7 @@ type Props = {
     /**
      * Indicates whether the component should be visible or not.
      */
-    _visible: boolean
+    _visible: boolean,
 };
 
 /**
@@ -42,8 +42,10 @@ type Props = {
  *
  * @class Subject
  */
-class Subject extends Component<Props> {
 
+declare var interfaceConfig: Object;
+
+class Subject extends Component<Props> {
     /**
      * Implements React's {@link Component#render()}.
      *
@@ -51,13 +53,18 @@ class Subject extends Component<Props> {
      * @returns {ReactElement}
      */
     render() {
-        const { _hideConferenceTimer, _showParticipantCount, _subject, _visible } = this.props;
+        const {
+            _hideConferenceTimer,
+            _showParticipantCount,
+            _subject,
+            _visible,
+        } = this.props;
 
         return (
-            <div className = { `subject ${_visible ? 'visible' : ''}` }>
-                <span className = 'subject-text'>{ _subject }</span>
-                { _showParticipantCount && <ParticipantsCount /> }
-                { !_hideConferenceTimer && <ConferenceTimer /> }
+            <div className={`subject ${_visible ? "visible" : ""}`}>
+                <span className="subject-text">{_subject}</span>
+                {_showParticipantCount && <ParticipantsCount />}
+                {!_hideConferenceTimer && <ConferenceTimer />}
             </div>
         );
     }
@@ -79,13 +86,19 @@ class Subject extends Component<Props> {
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
-    console.log("คน :", participantCount);
+    if (!participantCount) {
+        Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+            meetingid: infoConf.getMeetingId(),
+        });
+    }
 
     return {
-        _hideConferenceTimer: Boolean(state['features/base/config'].hideConferenceTimer),
+        _hideConferenceTimer: Boolean(
+            state["features/base/config"].hideConferenceTimer
+        ),
         _showParticipantCount: participantCount > 2,
         _subject: getConferenceName(state),
-        _visible: isToolboxVisible(state) && participantCount > 1
+        _visible: isToolboxVisible(state) && participantCount > 1,
     };
 }
 
