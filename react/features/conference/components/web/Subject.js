@@ -88,19 +88,17 @@ function _mapStateToProps(state) {
 
     console.log("คน: ",participantCount);
 
-    if (participantCount === 1) {
-        console.log("เหลือคนเดียว");
-        console.log("เบอร์ห้อง: ",infoConf.getMeetingId());
-        Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-            meetingid: infoConf.getMeetingId(),
-        });
-    }
-
     if (!participantCount) {
         Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
             meetingid: infoConf.getMeetingId(),
         });
     }
+
+    // if (!participantCount) {
+    //     Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+    //         meetingid: infoConf.getMeetingId(),
+    //     });
+    // }
 
     return {
         _hideConferenceTimer: Boolean(
