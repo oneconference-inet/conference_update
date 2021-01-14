@@ -5,23 +5,27 @@ import {
     ACTION_UNPINNED,
     createOfferAnswerFailedEvent,
     createPinnedEvent,
-    sendAnalytics
-} from '../../analytics';
-import { openDisplayNamePrompt } from '../../display-name';
-import { showErrorNotification } from '../../notifications';
-import { CONNECTION_ESTABLISHED, CONNECTION_FAILED, connectionDisconnected } from '../connection';
-import { JitsiConferenceErrors } from '../lib-jitsi-meet';
-import { MEDIA_TYPE } from '../media';
+    sendAnalytics,
+} from "../../analytics";
+import { openDisplayNamePrompt } from "../../display-name";
+import { showErrorNotification } from "../../notifications";
+import {
+    CONNECTION_ESTABLISHED,
+    CONNECTION_FAILED,
+    connectionDisconnected,
+} from "../connection";
+import { JitsiConferenceErrors } from "../lib-jitsi-meet";
+import { MEDIA_TYPE } from "../media";
 import {
     getLocalParticipant,
     getParticipantById,
     getPinnedParticipant,
     PARTICIPANT_ROLE,
     PARTICIPANT_UPDATED,
-    PIN_PARTICIPANT
-} from '../participants';
-import { MiddlewareRegistry } from '../redux';
-import { TRACK_ADDED, TRACK_REMOVED } from '../tracks';
+    PIN_PARTICIPANT,
+} from "../participants";
+import { MiddlewareRegistry } from "../redux";
+import { TRACK_ADDED, TRACK_REMOVED } from "../tracks";
 
 import {
     CONFERENCE_FAILED,
@@ -30,21 +34,21 @@ import {
     CONFERENCE_WILL_LEAVE,
     SEND_TONES,
     SET_PENDING_SUBJECT_CHANGE,
-    SET_ROOM
-} from './actionTypes';
+    SET_ROOM,
+} from "./actionTypes";
 import {
     conferenceFailed,
     conferenceWillLeave,
     createConference,
-    setSubject
-} from './actions';
+    setSubject,
+} from "./actions";
 import {
     _addLocalTracksToConference,
     _removeLocalTracksFromConference,
     forEachConference,
-    getCurrentConference
-} from './functions';
-import logger from './logger';
+    getCurrentConference,
+} from "./functions";
+import logger from "./logger";
 
 declare var APP: Object;
 
@@ -59,47 +63,46 @@ let beforeUnloadHandler;
  * @param {Store} store - The redux store.
  * @returns {Function}
  */
-MiddlewareRegistry.register(store => next => action => {
+MiddlewareRegistry.register((store) => (next) => (action) => {
     switch (action.type) {
-    case CONFERENCE_FAILED:
-        return _conferenceFailed(store, next, action);
+        case CONFERENCE_FAILED:
+            return _conferenceFailed(store, next, action);
 
-    case CONFERENCE_JOINED:
-        return _conferenceJoined(store, next, action);
+        case CONFERENCE_JOINED:
+            return _conferenceJoined(store, next, action);
 
-    case CONNECTION_ESTABLISHED:
-        return _connectionEstablished(store, next, action);
+        case CONNECTION_ESTABLISHED:
+            return _connectionEstablished(store, next, action);
 
-    case CONNECTION_FAILED:
-        return _connectionFailed(store, next, action);
+        case CONNECTION_FAILED:
+            return _connectionFailed(store, next, action);
 
-    case CONFERENCE_SUBJECT_CHANGED:
-        return _conferenceSubjectChanged(store, next, action);
+        case CONFERENCE_SUBJECT_CHANGED:
+            return _conferenceSubjectChanged(store, next, action);
 
-    case CONFERENCE_WILL_LEAVE:
-        _conferenceWillLeave();
-        break;
+        case CONFERENCE_WILL_LEAVE:
+            _conferenceWillLeave();
+            break;
 
-    case PARTICIPANT_UPDATED:
-        return _updateLocalParticipantInConference(store, next, action);
+        case PARTICIPANT_UPDATED:
+            return _updateLocalParticipantInConference(store, next, action);
 
-    case PIN_PARTICIPANT:
-        return _pinParticipant(store, next, action);
+        case PIN_PARTICIPANT:
+            return _pinParticipant(store, next, action);
 
-    case SEND_TONES:
-        return _sendTones(store, next, action);
+        case SEND_TONES:
+            return _sendTones(store, next, action);
 
-    case SET_ROOM:
-        return _setRoom(store, next, action);
+        case SET_ROOM:
+            return _setRoom(store, next, action);
 
-    case TRACK_ADDED:
-    case TRACK_REMOVED:
-        return _trackAddedOrRemoved(store, next, action);
+        case TRACK_ADDED:
+        case TRACK_REMOVED:
+            return _trackAddedOrRemoved(store, next, action);
     }
 
     return next(action);
 });
-
 
 /**
  * Makes sure to leave a failed conference in order to release any allocated
@@ -120,42 +123,52 @@ function _conferenceFailed({ dispatch, getState }, next, action) {
 
     // Handle specific failure reasons.
     switch (error.name) {
-    case JitsiConferenceErrors.CONFERENCE_DESTROYED: {
-        const [ reason ] = error.params;
+        case JitsiConferenceErrors.CONFERENCE_DESTROYED: {
+            const [reason] = error.params;
 
-        dispatch(showErrorNotification({
-            description: reason,
-            titleKey: 'dialog.sessTerminated'
-        }));
+            dispatch(
+                showErrorNotification({
+                    description: reason,
+                    titleKey: "dialog.sessTerminated",
+                })
+            );
 
-        if (typeof APP !== 'undefined') {
-            APP.UI.hideStats();
+            if (typeof APP !== "undefined") {
+                APP.UI.hideStats();
+            }
+            break;
         }
-        break;
-    }
-    case JitsiConferenceErrors.CONNECTION_ERROR: {
-        const [ msg ] = error.params;
+        case JitsiConferenceErrors.CONNECTION_ERROR: {
+            const [msg] = error.params;
 
-        dispatch(connectionDisconnected(getState()['features/base/connection'].connection));
-        dispatch(showErrorNotification({
-            descriptionArguments: { msg },
-            descriptionKey: msg ? 'dialog.connectErrorWithMsg' : 'dialog.connectError',
-            titleKey: 'connection.CONNFAIL'
-        }));
+            dispatch(
+                connectionDisconnected(
+                    getState()["features/base/connection"].connection
+                )
+            );
+            dispatch(
+                showErrorNotification({
+                    descriptionArguments: { msg },
+                    descriptionKey: msg
+                        ? "dialog.connectErrorWithMsg"
+                        : "dialog.connectError",
+                    titleKey: "connection.CONNFAIL",
+                })
+            );
 
-        break;
-    }
-    case JitsiConferenceErrors.OFFER_ANSWER_FAILED:
-        sendAnalytics(createOfferAnswerFailedEvent());
-        break;
+            break;
+        }
+        case JitsiConferenceErrors.OFFER_ANSWER_FAILED:
+            sendAnalytics(createOfferAnswerFailedEvent());
+            break;
     }
 
     // FIXME: Workaround for the web version. Currently, the creation of the
     // conference is handled by /conference.js and appropriate failure handlers
     // are set there.
-    if (typeof APP !== 'undefined') {
-        if (typeof beforeUnloadHandler !== 'undefined') {
-            window.removeEventListener('beforeunload', beforeUnloadHandler);
+    if (typeof APP !== "undefined") {
+        if (typeof beforeUnloadHandler !== "undefined") {
+            window.removeEventListener("beforeunload", beforeUnloadHandler);
             beforeUnloadHandler = undefined;
         }
 
@@ -163,12 +176,12 @@ function _conferenceFailed({ dispatch, getState }, next, action) {
     }
 
     // XXX After next(action), it is clear whether the error is recoverable.
-    !error.recoverable
-        && conference
-        && conference.leave().catch(reason => {
+    !error.recoverable &&
+        conference &&
+        conference.leave().catch((reason) => {
             // Even though we don't care too much about the failure, it may be
             // good to know that it happen, so log it (on the info level).
-            logger.info('JitsiConference.leave() rejected with:', reason);
+            logger.info("JitsiConference.leave() rejected with:", reason);
         });
 
     return result;
@@ -190,8 +203,8 @@ function _conferenceFailed({ dispatch, getState }, next, action) {
 function _conferenceJoined({ dispatch, getState }, next, action) {
     const result = next(action);
     const { conference } = action;
-    const { pendingSubjectChange } = getState()['features/base/conference'];
-    const { requireDisplayName } = getState()['features/base/config'];
+    const { pendingSubjectChange } = getState()["features/base/conference"];
+    const { requireDisplayName } = getState()["features/base/config"];
 
     pendingSubjectChange && dispatch(setSubject(pendingSubjectChange));
 
@@ -203,11 +216,13 @@ function _conferenceJoined({ dispatch, getState }, next, action) {
     beforeUnloadHandler = () => {
         dispatch(conferenceWillLeave(conference));
     };
-    window.addEventListener('beforeunload', beforeUnloadHandler);
+    window.addEventListener("beforeunload", beforeUnloadHandler);
 
-    if (requireDisplayName
-        && !getLocalParticipant(getState)?.name
-        && !conference.isHidden()) {
+    if (
+        requireDisplayName &&
+        !getLocalParticipant(getState)?.name &&
+        !conference.isHidden()
+    ) {
         dispatch(openDisplayNamePrompt(undefined));
     }
 
@@ -233,7 +248,7 @@ function _connectionEstablished({ dispatch }, next, action) {
 
     // FIXME: Workaround for the web version. Currently, the creation of the
     // conference is handled by /conference.js.
-    typeof APP === 'undefined' && dispatch(createConference());
+    typeof APP === "undefined" && dispatch(createConference());
 
     return result;
 }
@@ -255,19 +270,19 @@ function _connectionEstablished({ dispatch }, next, action) {
 function _connectionFailed({ dispatch, getState }, next, action) {
     const result = next(action);
 
-    if (typeof beforeUnloadHandler !== 'undefined') {
-        window.removeEventListener('beforeunload', beforeUnloadHandler);
+    if (typeof beforeUnloadHandler !== "undefined") {
+        window.removeEventListener("beforeunload", beforeUnloadHandler);
         beforeUnloadHandler = undefined;
     }
 
     // FIXME: Workaround for the web version. Currently, the creation of the
     // conference is handled by /conference.js and appropriate failure handlers
     // are set there.
-    if (typeof APP === 'undefined') {
+    if (typeof APP === "undefined") {
         const { connection } = action;
         const { error } = action;
 
-        forEachConference(getState, conference => {
+        forEachConference(getState, (conference) => {
             // It feels that it would make things easier if JitsiConference
             // in lib-jitsi-meet would monitor it's connection and emit
             // CONFERENCE_FAILED when it's dropped. It has more knowledge on
@@ -279,13 +294,15 @@ function _connectionFailed({ dispatch, getState }, next, action) {
                 // connectionFailed is always an object with .name property.
                 // This fact needs to be checked prior to enabling this logic on
                 // web.
-                const conferenceAction
-                    = conferenceFailed(conference, error.name);
+                const conferenceAction = conferenceFailed(
+                    conference,
+                    error.name
+                );
 
                 // Copy the recoverable flag if set on the CONNECTION_FAILED
                 // action to not emit recoverable action caused by
                 // a non-recoverable one.
-                if (typeof error.recoverable !== 'undefined') {
+                if (typeof error.recoverable !== "undefined") {
                     conferenceAction.error.recoverable = error.recoverable;
                 }
 
@@ -315,16 +332,16 @@ function _connectionFailed({ dispatch, getState }, next, action) {
  */
 function _conferenceSubjectChanged({ dispatch, getState }, next, action) {
     const result = next(action);
-    const { subject } = getState()['features/base/conference'];
+    const { subject } = getState()["features/base/conference"];
 
     if (subject) {
         dispatch({
             type: SET_PENDING_SUBJECT_CHANGE,
-            subject: undefined
+            subject: undefined,
         });
     }
 
-    typeof APP === 'object' && APP.API.notifySubjectChanged(subject);
+    typeof APP === "object" && APP.API.notifySubjectChanged(subject);
 
     return result;
 }
@@ -338,8 +355,8 @@ function _conferenceSubjectChanged({ dispatch, getState }, next, action) {
  * @returns {void}
  */
 function _conferenceWillLeave() {
-    if (typeof beforeUnloadHandler !== 'undefined') {
-        window.removeEventListener('beforeunload', beforeUnloadHandler);
+    if (typeof beforeUnloadHandler !== "undefined") {
+        window.removeEventListener("beforeunload", beforeUnloadHandler);
         beforeUnloadHandler = undefined;
     }
 }
@@ -360,36 +377,39 @@ function _conferenceWillLeave() {
  */
 function _pinParticipant({ getState }, next, action) {
     const state = getState();
-    const { conference } = state['features/base/conference'];
+    const { conference } = state["features/base/conference"];
 
     if (!conference) {
         return next(action);
     }
 
-    const participants = state['features/base/participants'];
+    const participants = state["features/base/participants"];
     const id = action.participant.id;
     const participantById = getParticipantById(participants, id);
     const pinnedParticipant = getPinnedParticipant(participants);
     const actionName = id ? ACTION_PINNED : ACTION_UNPINNED;
-    const local
-        = (participantById && participantById.local)
-            || (!id && pinnedParticipant && pinnedParticipant.local);
+    const local =
+        (participantById && participantById.local) ||
+        (!id && pinnedParticipant && pinnedParticipant.local);
     let participantIdForEvent;
 
     if (local) {
         participantIdForEvent = local;
     } else {
-        participantIdForEvent
-            = actionName === ACTION_PINNED ? id : pinnedParticipant && pinnedParticipant.id;
+        participantIdForEvent =
+            actionName === ACTION_PINNED
+                ? id
+                : pinnedParticipant && pinnedParticipant.id;
     }
 
-    sendAnalytics(createPinnedEvent(
-        actionName,
-        participantIdForEvent,
-        {
+    console.log("Count: ",conference.getParticipantCount());
+
+    sendAnalytics(
+        createPinnedEvent(actionName, participantIdForEvent, {
             local,
-            'participant_count': conference.getParticipantCount()
-        }));
+            participant_count: conference.getParticipantCount(),
+        })
+    );
 
     return next(action);
 }
@@ -408,7 +428,7 @@ function _pinParticipant({ getState }, next, action) {
  */
 function _sendTones({ getState }, next, action) {
     const state = getState();
-    const { conference } = state['features/base/conference'];
+    const { conference } = state["features/base/conference"];
 
     if (conference) {
         const { duration, tones, pause } = action;
@@ -435,7 +455,7 @@ function _sendTones({ getState }, next, action) {
  */
 function _setRoom({ dispatch, getState }, next, action) {
     const state = getState();
-    const { subject } = state['features/base/config'];
+    const { subject } = state["features/base/config"];
     const { room } = action;
 
     if (room) {
@@ -463,9 +483,9 @@ function _syncConferenceLocalTracksWithState({ getState }, action) {
         const track = action.track.jitsiTrack;
 
         if (action.type === TRACK_ADDED) {
-            promise = _addLocalTracksToConference(conference, [ track ]);
+            promise = _addLocalTracksToConference(conference, [track]);
         } else {
-            promise = _removeLocalTracksFromConference(conference, [ track ]);
+            promise = _removeLocalTracksFromConference(conference, [track]);
         }
     }
 
@@ -493,9 +513,9 @@ function _trackAddedOrRemoved(store, next, action) {
     // Since we swap the tracks for the web client in conference.js, ignore
     // presenter tracks here and do not add/remove them to/from the conference.
     if (track && track.local && track.mediaType !== MEDIA_TYPE.PRESENTER) {
-        return (
-            _syncConferenceLocalTracksWithState(store, action)
-                .then(() => next(action)));
+        return _syncConferenceLocalTracksWithState(store, action).then(() =>
+            next(action)
+        );
     }
 
     return next(action);
@@ -513,24 +533,36 @@ function _trackAddedOrRemoved(store, next, action) {
  * @private
  * @returns {Object} The value returned by {@code next(action)}.
  */
-function _updateLocalParticipantInConference({ dispatch, getState }, next, action) {
-    const { conference } = getState()['features/base/conference'];
+function _updateLocalParticipantInConference(
+    { dispatch, getState },
+    next,
+    action
+) {
+    const { conference } = getState()["features/base/conference"];
     const { participant } = action;
     const result = next(action);
 
     const localParticipant = getLocalParticipant(getState);
 
     if (conference && participant.id === localParticipant.id) {
-        if ('name' in participant) {
+        if ("name" in participant) {
             conference.setDisplayName(participant.name);
         }
 
-        if ('role' in participant && participant.role === PARTICIPANT_ROLE.MODERATOR) {
-            const { pendingSubjectChange, subject } = getState()['features/base/conference'];
+        if (
+            "role" in participant &&
+            participant.role === PARTICIPANT_ROLE.MODERATOR
+        ) {
+            const { pendingSubjectChange, subject } = getState()[
+                "features/base/conference"
+            ];
 
             // When the local user role is updated to moderator and we have a pending subject change
             // which was not reflected we need to set it (the first time we tried was before becoming moderator).
-            if (typeof pendingSubjectChange !== 'undefined' && pendingSubjectChange !== subject) {
+            if (
+                typeof pendingSubjectChange !== "undefined" &&
+                pendingSubjectChange !== subject
+            ) {
                 dispatch(setSubject(pendingSubjectChange));
             }
         }
