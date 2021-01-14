@@ -55,7 +55,7 @@ class NotificationsContainer extends AbstractNotificationsContainer<Props> {
      */
     _renderFlags() {
         const { _notifications } = this.props;
-        console.log("notinoti: ", _notifications);
+
         return _notifications.map((notification) => {
             const { props, uid } = notification;
 

@@ -53,6 +53,10 @@ class Notification extends AbstractNotification<Props> {
             uid
         } = this.props;
 
+        if (titleKey === "dialog.kickTitle") {
+            console.log("โดนเตะออกจากเว็บ");
+        }
+        
         return (
             <Flag
                 actions = { this._mapAppearanceToButtons(hideErrorSupportLink) }
