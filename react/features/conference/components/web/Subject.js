@@ -90,6 +90,7 @@ function _mapStateToProps(state) {
         if (window.performance) {
             console.info("window.performance works fine on this browser");
         }
+        console.log("TYPE_RESERVED: ",performance.navigation.TYPE_RESERVED);
         if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
             console.info("This page is reloaded");
         } else {
