@@ -87,16 +87,22 @@ function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
     window.onbeforeunload = function (event) {
-        var message = "You are about to close the browser window";
-        if (typeof event == "undefined") {
-            event = window.event;
+        e = e || window.event;
+        var localStorageTime = localStorage.getItem("storagetime");
+        if (localStorageTime != null && localStorageTime != undefined) {
+            var currentTime = new Date().getTime(),
+                timeDifference = currentTime - localStorageTime;
+
+            if (timeDifference < 25) {
+                //Browser Closed
+                localStorage.removeItem("storagetime");
+            } else {
+                //Browser Tab Closed
+                localStorage.setItem("storagetime", new Date().getTime());
+            }
+        } else {
+            localStorage.setItem("storagetime", new Date().getTime());
         }
-        if (event) {
-            event.returnValue = message;
-        }
-        console.log("eventRe: ", event);
-        console.log("messageRe: ", message);
-        return message;
         // if (participantCount === 1) {
         //     Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
         //         meetingid: infoConf.getMeetingId(),
