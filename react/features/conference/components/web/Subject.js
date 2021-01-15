@@ -87,16 +87,15 @@ function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
     window.onbeforeunload = function (event) {
-        var message = "You are about to close the browser window";
-        if (typeof event == "undefined") {
-            event = window.event;
+        if (window.performance) {
+            console.info("window.performance works fine on this browser");
         }
-        if (event) {
-            event.returnValue = message;
+        console.info(performance.navigation.type);
+        if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+            console.info("This page is reloaded");
+        } else {
+            console.info("This page is not reloaded");
         }
-        console.log("eventRe: ", event);
-        console.log("messageRe: ", message);
-        return message;
         // if (participantCount === 1) {
         //     Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
         //         meetingid: infoConf.getMeetingId(),
