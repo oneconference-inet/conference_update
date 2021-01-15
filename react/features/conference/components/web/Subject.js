@@ -93,7 +93,7 @@ function _mapStateToProps(state) {
         if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
             console.info("This page is reloaded");
         } else {
-            if (participantCount === 1) {
+            if (participantCount === 1 && !window.performance) {
                 Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
                     meetingid: infoConf.getMeetingId(),
                 });
