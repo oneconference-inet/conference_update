@@ -53,7 +53,7 @@ class Notification extends AbstractNotification<Props> {
 
         if (titleKey === "dialog.kickTitle") {
             setTimeout(function () {
-                location.replace(interfaceConfig.DOMAIN + "/main");
+                window.location.href = interfaceConfig.DOMAIN + "/main";
             }, 2000);
         }
 

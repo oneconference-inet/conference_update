@@ -87,11 +87,21 @@ function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
     window.onbeforeunload = function (event) {
-        if (participantCount === 1) {
-            Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-                meetingid: infoConf.getMeetingId(),
-            });
+        var message = "You are about to close the browser window";
+        if (typeof event == "undefined") {
+            event = window.event;
         }
+        if (event) {
+            event.returnValue = message;
+        }
+        console.log("eventRe: ", event);
+        console.log("messageRe: ", message);
+        return message;
+        // if (participantCount === 1) {
+        //     Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+        //         meetingid: infoConf.getMeetingId(),
+        //     });
+        // }
     };
 
     return {
