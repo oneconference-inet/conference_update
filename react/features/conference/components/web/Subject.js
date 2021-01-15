@@ -87,25 +87,20 @@ function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
     window.onbeforeunload = function (event) {
-        event = event || window.event;
-
-        var y = event.pageY || event.clientY;
-
-        if (y < 0) alert("Window closed");
-        else alert("Window refreshed");
-
-        // if (window.performance) {
-        //     console.info("window.performance works fine on this browser");
-        // }
-        // console.log("TYPE_RESERVED: ",performance.navigation.TYPE_RESERVED);
-        // if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-        //     console.info("This page is reloaded");
-        // } else {
-        //     if (participantCount === 1 && window.close()) {
-        //         Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-        //             meetingid: infoConf.getMeetingId(),
-        //         });
-        //     }
+        var message = "You are about to close the browser window";
+        if (typeof event == "undefined") {
+            event = window.event;
+        }
+        if (event) {
+            event.returnValue = message;
+        }
+        console.log("eventRe: ", event);
+        console.log("messageRe: ", message);
+        return message;
+        // if (participantCount === 1) {
+        //     Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+        //         meetingid: infoConf.getMeetingId(),
+        //     });
         // }
     };
 
