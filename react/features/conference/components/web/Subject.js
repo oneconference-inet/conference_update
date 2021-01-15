@@ -87,19 +87,26 @@ function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
     window.onbeforeunload = function (event) {
-        if (window.performance) {
-            console.info("window.performance works fine on this browser");
-        }
-        console.log("TYPE_RESERVED: ",performance.navigation.TYPE_RESERVED);
-        if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-            console.info("This page is reloaded");
-        } else {
-            if (participantCount === 1 && window.close()) {
-                Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-                    meetingid: infoConf.getMeetingId(),
-                });
-            }
-        }
+        event = event || window.event;
+
+        var y = event.pageY || event.clientY;
+
+        if (y < 0) alert("Window closed");
+        else alert("Window refreshed");
+
+        // if (window.performance) {
+        //     console.info("window.performance works fine on this browser");
+        // }
+        // console.log("TYPE_RESERVED: ",performance.navigation.TYPE_RESERVED);
+        // if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+        //     console.info("This page is reloaded");
+        // } else {
+        //     if (participantCount === 1 && window.close()) {
+        //         Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+        //             meetingid: infoConf.getMeetingId(),
+        //         });
+        //     }
+        // }
     };
 
     return {
