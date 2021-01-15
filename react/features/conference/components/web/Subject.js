@@ -89,13 +89,11 @@ function _mapStateToProps(state) {
     window.onbeforeunload = function (event) {
         if (window.performance) {
             console.info("window.performance works fine on this browser");
-            console.log("WWFF: ", window.performance);
         }
         if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-            console.log("TYPE_RELOAD: ",performance.navigation.TYPE_RELOAD);
             console.info("This page is reloaded");
         } else {
-            if (participantCount === 1 && !window.performance) {
+            if (participantCount === 1 && window.close()) {
                 Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
                     meetingid: infoConf.getMeetingId(),
                 });
