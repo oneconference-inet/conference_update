@@ -92,6 +92,7 @@ function _mapStateToProps(state) {
             console.log("WWFF: ", window.performance);
         }
         if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+            console.log("TYPE_RELOAD: ",performance.navigation.TYPE_RELOAD);
             console.info("This page is reloaded");
         } else {
             if (participantCount === 1 && !window.performance) {
