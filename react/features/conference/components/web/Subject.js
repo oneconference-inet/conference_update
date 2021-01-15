@@ -90,7 +90,7 @@ function _mapStateToProps(state) {
         if (window.performance) {
             console.info("window.performance works fine on this browser");
         }
-        console.info(performance.navigation.type);
+        console.info("perforType: ",performance.navigation.type);
         if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
             console.info("This page is reloaded");
         } else {
