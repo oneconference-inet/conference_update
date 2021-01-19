@@ -234,6 +234,7 @@ function authenticate(room, lockPassword) {
         const user = toJid(authXmpp.getUserXmpp(), config.hosts);
         const password = authXmpp.getPassXmpp();
         console.log("5555555555: ", user);
+        console.log("888888888: ", password);
         room.authenticateAndUpgradeRole({
             id: user,
             password: password,
