@@ -1976,7 +1976,6 @@ export default {
     });
 
     room.on(JitsiConferenceEvents.USER_STATUS_CHANGED, (id, status) => {
-      console.log("USER_STATUS_CHANGED: ",id);
       APP.store.dispatch(participantPresenceChanged(id, status));
 
       const user = room.getParticipantById(id);
@@ -1987,7 +1986,6 @@ export default {
     });
 
     room.on(JitsiConferenceEvents.USER_ROLE_CHANGED, (id, role) => {
-      console.log("USER_ROLE_CHANGED: ",id);
       if (this.isLocalId(id) && infoConf.getIsModerator()) {
         // console.info("Role: Moderator")
         logger.info(`My role changed, new role: ${role}`);
