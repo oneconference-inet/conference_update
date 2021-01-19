@@ -2246,7 +2246,7 @@ export default {
     });
 
     if (infoConf.getIsModerator() && !config.iAmRecorder) {
-      console.log("8888888888888888888888");
+      console.log("8888888888888888888888", room);
       AuthHandler.authenticate(room);
     }
 
