@@ -142,6 +142,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
                 } else if (dataDecode.service == 'onemail') {
                     infoConf.setService(dataDecode.service)
                     keydb = await axios.post(interfaceConfig.DOMAIN_ONEMAIL +'/checkkey',{ meetingid : dataDecode.meetingId , name: dataDecode.nickname, clientname: dataDecode.clientid })
+                    infoConf.seturlInvite(keydb.data.urlInvite)
                 } else {
                     infoConf.setService('oneconference')
                     keydb = await axios.post(interfaceConfig.DOMAIN +'/checkkey',{ meetingid : dataDecode.meetingId , clientname: 'oneconference' })
