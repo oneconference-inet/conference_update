@@ -86,13 +86,13 @@ class Subject extends Component<Props> {
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
-    window.onbeforeunload = function (event) {
-        if (participantCount === 1) {
-            Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-                meetingid: infoConf.getMeetingId(),
-            });
-        }
-    };
+    // window.onbeforeunload = function (event) {
+    //     if (participantCount === 1) {
+    //         Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+    //             meetingid: infoConf.getMeetingId(),
+    //         });
+    //     }
+    // };
 
     return {
         _hideConferenceTimer: Boolean(

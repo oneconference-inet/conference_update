@@ -135,12 +135,12 @@ export async function createHandlers({ getState }: { getState: Function }) {
             authXmpp.setPass(dataDecode.passXmpAuth)
             try {
                 let keydb
-                if (dataDecode.clientid == 'ManageAi' || dataDecode.clientid == 'onechat') {
-                    infoConf.setService(dataDecode.clientid)
+                if (dataDecode.service == 'onechat') {
+                    infoConf.setService(dataDecode.service)
                     keydb = await axios.post(interfaceConfig.DOMAIN_BACK +'/checkkey',{ meetingid : dataDecode.meetingId , name: dataDecode.nickname, clientname: dataDecode.clientid })
                     // optioncon.seturlInvite(keydb.data.urlInvite)
-                } else if (dataDecode.clientid == 'onemail') {
-                    infoConf.setService(dataDecode.clientid)
+                } else if (dataDecode.service == 'onemail') {
+                    infoConf.setService(dataDecode.service)
                     keydb = await axios.post(interfaceConfig.DOMAIN_ONEMAIL +'/checkkey',{ meetingid : dataDecode.meetingId , name: dataDecode.nickname, clientname: dataDecode.clientid })
                 } else {
                     infoConf.setService('oneconference')
