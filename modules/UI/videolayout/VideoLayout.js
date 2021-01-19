@@ -357,6 +357,13 @@ const VideoLayout = {
     onDominantSpeakerChanged(id) {
         getAllThumbnails().forEach(thumbnail =>
             thumbnail.showDominantSpeakerIndicator(id === thumbnail.getId()));
+            if (!this.getPinnedId() && !this.getCurrentlyOnLargeContainer().stayOnStage()) {
+                this.updateLargeVideo(id);
+                logger.info("ID Speaker: ", id);
+            }
+            if (!remoteVideos[id]) {
+                return;
+            }
     },
 
     /**
