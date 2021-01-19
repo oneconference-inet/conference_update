@@ -224,17 +224,12 @@ function doXmppAuth(room, lockPassword) {
  * @param {string} [lockPassword] password to use if the conference is locked
  */
 function authenticate(room, lockPassword) {
-    console.log("6666666: ", room);
-    console.log("777777: ", lockPassword);
-
     const isModerator = infoConf.getIsModerator();
     if (isTokenAuthEnabled || room.isExternalAuthEnabled()) {
         doExternalAuth(room, lockPassword);
     } else if (isModerator) {
         const user = toJid(authXmpp.getUserXmpp(), config.hosts);
         const password = authXmpp.getPassXmpp();
-        console.log("5555555555: ", user);
-        console.log("888888888: ", password);
         room.authenticateAndUpgradeRole({
             id: user,
             password: password,
