@@ -1028,7 +1028,6 @@ export default {
    * @return {boolean} whether the participant is moderator
    */
   isParticipantModerator(id) {
-    console.log("data decode id: ", id);
     const isModerator = infoConf.getIsModerator();
     if (isModerator) {
       const user = room.getParticipantById(id);
@@ -2247,6 +2246,7 @@ export default {
     });
 
     if (infoConf.getIsModerator() && !config.iAmRecorder) {
+      console.log("8888888888888888888888");
       AuthHandler.authenticate(room);
     }
 
