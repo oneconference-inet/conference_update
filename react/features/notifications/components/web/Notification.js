@@ -58,9 +58,8 @@ class Notification extends AbstractNotification<Props> {
             setTimeout(function () {
                 window.location.href = interfaceConfig.DOMAIN + "/main";
             }, 2000);
-        } else {
-            console.log("titleKeypROP: ",this.props);
-            // APP.UI.emitEvent(UIEvents.HANGUP);
+        } else if (!isDismissAllowed) {
+            APP.UI.emitEvent(UIEvents.HANGUP);
         }
 
         return (
