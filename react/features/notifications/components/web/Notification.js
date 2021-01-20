@@ -59,7 +59,8 @@ class Notification extends AbstractNotification<Props> {
                 window.location.href = interfaceConfig.DOMAIN + "/main";
             }, 2000);
         } else {
-            APP.UI.emitEvent(UIEvents.HANGUP);
+            console.log("titleKey: ",titleKey);
+            // APP.UI.emitEvent(UIEvents.HANGUP);
         }
 
         return (
