@@ -5,10 +5,6 @@ import type { Dispatch } from "redux";
 import { getParticipantDisplayName } from "../base/participants";
 import { NOTIFICATION_TYPE, showNotification } from "../notifications";
 
-import UIEvents from "../../../service/UI/UIEvents";
-
-declare var APP: Object;
-
 /**
  * Notify that we've been kicked out of the conference.
  *
@@ -37,7 +33,5 @@ export function notifyKickedOut(participant: Object, _: ?Function) {
                 titleArguments: args,
             })
         )
-        
-        // APP.UI.emitEvent(UIEvents.HANGUP)
     };
 }

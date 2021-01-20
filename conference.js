@@ -2851,7 +2851,7 @@ export default {
     let requestFeedbackPromise;
 
     if (requestFeedback) {
-      console.log("requestFeedback: ",requestFeedback);
+
       requestFeedbackPromise = APP.store
         .dispatch(maybeOpenFeedbackDialog(room))
 
