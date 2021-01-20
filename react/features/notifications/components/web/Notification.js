@@ -58,7 +58,7 @@ class Notification extends AbstractNotification<Props> {
             setTimeout(function () {
                 window.location.href = interfaceConfig.DOMAIN + "/main";
             }, 2000);
-        } else if (!isDismissAllowed) {
+        } else if (!isDismissAllowed && descriptionKey === "notify.disconnected") {
             APP.UI.emitEvent(UIEvents.HANGUP);
         }
 
