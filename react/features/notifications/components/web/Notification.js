@@ -59,7 +59,7 @@ class Notification extends AbstractNotification<Props> {
                 window.location.href = interfaceConfig.DOMAIN + "/main";
             }, 2000);
         } else if (titleKey === "dialog.kickTitle") {
-            APP.UI.emitEvent(UIEvents.HANGUP);
+            APP.UI.emitEvent(UIEvents.HANGUP(false));
         }
 
         return (
