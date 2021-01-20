@@ -79,7 +79,6 @@ export function grantModerator(id) {
  * }}
  */
 export function kickParticipant(id) {
-    APP.UI.emitEvent(UIEvents.HANGUP);
     return {
         type: KICK_PARTICIPANT,
         id,
