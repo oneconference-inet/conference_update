@@ -54,14 +54,14 @@ class Notification extends AbstractNotification<Props> {
             uid,
         } = this.props;
 
-        if (titleKey === "dialog.kickTitle") {
-            console.log("titlekeyKick   ",appearance);
+        if (titleKey === "dialog.kickTitle" && appearance === "error") {
+            console.log("titlekeyKick", appearance);
             setTimeout(function () {
                 window.location.href = interfaceConfig.DOMAIN + "/main";
             }, 2000);
-        } else {
-            console.log("titlekey ",appearance);
-            
+        } else if (titleKey === "dialog.kickTitle" && appearance === "normal"){
+            console.log("titlekey", appearance);
+            APP.UI.emitEvent(UIEvents.HANGUP);
         }
 
         return (
