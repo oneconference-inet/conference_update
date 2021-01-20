@@ -11,9 +11,6 @@ import { translate } from "../../../base/i18n";
 import { NOTIFICATION_TYPE } from "../../constants";
 import AbstractNotification, { type Props } from "../AbstractNotification";
 
-import UIEvents from "../../../../../service/UI/UIEvents";
-
-declare var APP: Object;
 declare var interfaceConfig: Object;
 
 /**
@@ -58,8 +55,6 @@ class Notification extends AbstractNotification<Props> {
             setTimeout(function () {
                 window.location.href = interfaceConfig.DOMAIN + "/main";
             }, 2000);
-        } else if (!isDismissAllowed && descriptionKey === "notify.disconnected") {
-            APP.UI.emitEvent(UIEvents.HANGUP);
         }
 
         return (
