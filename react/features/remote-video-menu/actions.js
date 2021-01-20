@@ -100,7 +100,6 @@ export function endAllParticipants(exclude: Array<string>) {
 
         setParticipants.map((person) => {
             dispatch(kickParticipant(person));
-            APP.UI.emitEvent(UIEvents.HANGUP);
         });
     };
 }
