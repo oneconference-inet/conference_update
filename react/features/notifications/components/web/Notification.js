@@ -51,11 +51,11 @@ class Notification extends AbstractNotification<Props> {
             uid,
         } = this.props;
 
-        if (titleKey === "dialog.kickTitle") {
-            setTimeout(function () {
-                window.location.href = interfaceConfig.DOMAIN + "/main";
-            }, 2000);
-        }
+        // if (titleKey === "dialog.kickTitle") {
+        //     setTimeout(function () {
+        //         window.location.href = interfaceConfig.DOMAIN + "/main";
+        //     }, 2000);
+        // }
 
         return (
             <Flag
