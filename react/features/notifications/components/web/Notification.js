@@ -54,12 +54,8 @@ class Notification extends AbstractNotification<Props> {
             uid,
         } = this.props;
 
-        if (titleKey === "dialog.kickParticipantTitle") {
-            setTimeout(function () {
-                window.location.href = interfaceConfig.DOMAIN + "/main";
-            }, 2000);
-        } else if (titleKey === "dialog.kickTitle") {
-            APP.UI.emitEvent(UIEvents.HANGUP(false));
+        if (titleKey === "dialog.kickTitle") {
+            APP.UI.emitEvent(UIEvents.HANGUP);
         }
 
         return (

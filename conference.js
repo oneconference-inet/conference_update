@@ -2230,8 +2230,8 @@ export default {
     });
 
     // call hangup
-    APP.UI.addListener(UIEvents.HANGUP, (isFeedback) => {
-      this.hangup(isFeedback);
+    APP.UI.addListener(UIEvents.HANGUP, () => {
+      this.hangup(true);
     });
 
     // logout
