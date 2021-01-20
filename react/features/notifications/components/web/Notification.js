@@ -55,6 +55,7 @@ class Notification extends AbstractNotification<Props> {
         } = this.props;
 
         if (titleKey === "dialog.kickTitle") {
+            console.log("titlekeyKick   ",appearance);
             setTimeout(function () {
                 window.location.href = interfaceConfig.DOMAIN + "/main";
             }, 2000);
