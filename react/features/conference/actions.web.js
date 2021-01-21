@@ -5,9 +5,9 @@ import type { Dispatch } from "redux";
 import { getParticipantDisplayName } from "../base/participants";
 import { NOTIFICATION_TYPE, showNotification } from "../notifications";
 
-import UIEvents from "../../../service/UI/UIEvents";
+// import UIEvents from "../../../service/UI/UIEvents";
 
-declare var APP: Object;
+// declare var APP: Object;
 
 /**
  * Notify that we've been kicked out of the conference.

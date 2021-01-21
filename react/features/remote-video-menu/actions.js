@@ -1,23 +1,23 @@
 // @flow
-import type { Dispatch } from 'redux';
+import type { Dispatch } from "redux";
 
-import UIEvents from '../../../service/UI/UIEvents';
+import UIEvents from "../../../service/UI/UIEvents";
 import {
     AUDIO_MUTE,
     createRemoteMuteConfirmedEvent,
     createToolbarEvent,
-    sendAnalytics
-} from '../analytics';
-import { hideDialog } from '../base/dialog';
-import { setAudioMuted } from '../base/media';
+    sendAnalytics,
+} from "../analytics";
+import { hideDialog } from "../base/dialog";
+import { setAudioMuted } from "../base/media";
 import {
     getLocalParticipant,
-    muteRemoteParticipant
-} from '../base/participants';
+    muteRemoteParticipant,
+} from "../base/participants";
 
-import { RemoteVideoMenu } from './components';
+import { RemoteVideoMenu } from "./components";
 
-import { kickParticipant } from '../base/participants';
+import { kickParticipant } from "../base/participants";
 
 declare var APP: Object;
 
@@ -43,8 +43,8 @@ export function muteLocal(enable: boolean) {
 
         // FIXME: The old conference logic as well as the shared video feature
         // still rely on this event being emitted.
-        typeof APP === 'undefined'
-            || APP.UI.emitEvent(UIEvents.AUDIO_MUTED, enable, true);
+        typeof APP === "undefined" ||
+            APP.UI.emitEvent(UIEvents.AUDIO_MUTED, enable, true);
     };
 }
 
@@ -71,13 +71,14 @@ export function muteAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
         const localId = getLocalParticipant(state).id;
-        const participantIds = state['features/base/participants']
-            .map(p => p.id);
+        const participantIds = state["features/base/participants"].map(
+            (p) => p.id
+        );
 
         /* eslint-disable no-confusing-arrow */
         participantIds
-            .filter(id => !exclude.includes(id))
-            .map(id => id === localId ? muteLocal(true) : muteRemote(id))
+            .filter((id) => !exclude.includes(id))
+            .map((id) => (id === localId ? muteLocal(true) : muteRemote(id)))
             .map(dispatch);
         /* eslint-enable no-confusing-arrow */
     };
@@ -88,12 +89,16 @@ export function muteAllParticipants(exclude: Array<string>) {
 export function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
-        const participantIds = state['features/base/participants'].map(p => p.id);
+        const participantIds = state["features/base/participants"].map(
+            (p) => p.id
+        );
 
         /* eslint-disable no-confusing-arrow */
-        const setParticipants = participantIds.filter(id => !exclude.includes(id));
+        const setParticipants = participantIds.filter(
+            (id) => !exclude.includes(id)
+        );
 
-        setParticipants.map(person => {
+        setParticipants.map((person) => {
             dispatch(kickParticipant(person));
         });
     };
