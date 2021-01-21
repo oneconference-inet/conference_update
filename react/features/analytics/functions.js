@@ -158,7 +158,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
                         {
                             meetingid: dataDecode.meetingId,
                             name: dataDecode.nickname,
-                            clientname: dataDecode.clientid,
+                            clientname: dataDecode.service,
                         }
                     );
                     // optioncon.seturlInvite(keydb.data.urlInvite)
@@ -169,7 +169,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
                         {
                             meetingid: dataDecode.meetingId,
                             name: dataDecode.nickname,
-                            clientname: dataDecode.clientid,
+                            clientname: dataDecode.service,
                         }
                     );
                 } else {
