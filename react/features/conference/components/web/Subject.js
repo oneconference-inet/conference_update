@@ -55,10 +55,7 @@ class Subject extends Component<Props> {
      */
 
     doSomethingBeforeUnload = () => {
-        if (
-            this.props.count === 1 &&
-            performance.navigation.type !== performance.navigation.TYPE_RELOAD
-        ) {
+        if (this.props.count === 1) {
             Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
                 meetingid: infoConf.getMeetingId(),
             });
@@ -73,15 +70,15 @@ class Subject extends Component<Props> {
         });
     };
 
-    componentDidMount() {
-        console.log("this.props.count: ", this.props.count);
-        // Activate the event listener
-        window.addEventListener(
-            "beforeunload",
-            this.setupBeforeUnloadListener(),
-            false
-        );
-    }
+    // componentDidMount() {
+    //     console.log("this.props.count: ", this.props.count);
+    //     // Activate the event listener
+    //     window.addEventListener(
+    //         "beforeunload",
+    //         this.setupBeforeUnloadListener(),
+    //         false
+    //     );
+    // }
 
     componentWillUnmount() {
         window.removeEventListener(
@@ -91,6 +88,7 @@ class Subject extends Component<Props> {
         );
         this.setupBeforeUnloadListener();
     }
+
     render() {
         const {
             _hideConferenceTimer,
