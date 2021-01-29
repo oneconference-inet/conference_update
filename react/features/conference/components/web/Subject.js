@@ -9,8 +9,7 @@ import { isToolboxVisible } from "../../../toolbox/functions.web";
 import ConferenceTimer from "../ConferenceTimer";
 
 import ParticipantsCount from "./ParticipantsCount";
-import Axios from "axios";
-import infoConf from "../../../../../infoConference";
+
 /**
  * The type of the React {@code Component} props of {@link Subject}.
  */
@@ -42,8 +41,6 @@ type Props = {
  *
  * @class Subject
  */
-
-declare var interfaceConfig: Object;
 
 class Subject extends Component<Props> {
     /**
@@ -85,14 +82,6 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
-
-    // window.onbeforeunload = function (event) {
-    //     if (participantCount === 1) {
-    //         Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-    //             meetingid: infoConf.getMeetingId(),
-    //         });
-    //     }
-    // };
 
     return {
         _hideConferenceTimer: Boolean(

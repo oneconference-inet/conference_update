@@ -7,7 +7,8 @@ import { openDialog } from "../../../base/dialog";
 import { getParticipantCount } from "../../../base/participants";
 import { connect } from "../../../base/redux";
 import { SpeakerStats } from "../../../speaker-stats";
-
+import Axios from "axios";
+import infoConf from "../../../../../infoConference";
 /**
  * The type of the React {@code Component} props of {@link ParticipantsCount}.
  */
@@ -28,6 +29,8 @@ type Props = {
     dispatch: Dispatch<any>,
 };
 
+declare var interfaceConfig: Object;
+
 /**
  * ParticipantsCount react component.
  * Displays the number of participants and opens Speaker stats on click.
@@ -45,6 +48,42 @@ class ParticipantsCount extends PureComponent<Props> {
         super(props);
 
         this._onClick = this._onClick.bind(this);
+    }
+
+    doSomethingBeforeUnload = async () => {
+        if (this.props.count === 1) {
+            Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+                meetingid: infoConf.getMeetingId(),
+            });
+        }
+    };
+
+    // Setup the `beforeunload` event listener
+    setupBeforeUnloadListener = () => {
+        window.addEventListener("beforeunload", (ev) => {
+            ev.preventDefault();
+            //   this.checkReload();
+
+            return this.doSomethingBeforeUnload();
+        });
+    };
+
+    componentDidMount() {
+        // Activate the event listener
+        window.addEventListener(
+            "beforeunload",
+            this.setupBeforeUnloadListener(),
+            false
+        );
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener(
+            "beforeunload",
+            this.setupBeforeUnloadListener(),
+            false
+        );
+        this.setupBeforeUnloadListener();
     }
 
     _onClick: () => void;

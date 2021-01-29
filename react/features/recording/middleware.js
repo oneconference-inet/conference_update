@@ -112,7 +112,6 @@ MiddlewareRegistry.register(({ dispatch, getState }) => next => action => {
             recorderSession => {
 
                 if (recorderSession) {
-                    console.log("recorderSession: ",recorderSession.getID());
                     recorderSession.getID()
                         && dispatch(
                             updateRecordingSessionData(recorderSession));
