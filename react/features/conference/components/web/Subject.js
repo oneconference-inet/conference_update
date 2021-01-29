@@ -70,18 +70,18 @@ class Subject extends Component<Props> {
         });
     };
 
-    // componentDidMount() {
-    //     console.log("this.props.count: ", this.props.count);
-    //     // Activate the event listener
-    //     window.addEventListener(
-    //         "beforeunload",
-    //         this.setupBeforeUnloadListener(),
-    //         false
-    //     );
-    // }
+    componentDidMount() {
+        console.log("this.props.count: ", this.props.count);
+        // Activate the event listener
+        window.addEventListener(
+            "beforeunload",
+            this.setupBeforeUnloadListener(),
+            false
+        );
+    }
 
     componentWillUnmount() {
-        window.addEventListener(
+        window.removeEventListener(
             "beforeunload",
             this.setupBeforeUnloadListener(),
             false
