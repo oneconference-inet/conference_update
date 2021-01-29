@@ -81,7 +81,7 @@ class Subject extends Component<Props> {
     // }
 
     componentWillUnmount() {
-        window.removeEventListener(
+        window.addEventListener(
             "beforeunload",
             this.setupBeforeUnloadListener(),
             false
