@@ -69,6 +69,7 @@ class ParticipantsCount extends PureComponent<Props> {
     };
 
     componentDidMount() {
+        console.log("this.props.count: ",this.props.count);
         // Activate the event listener
         window.addEventListener(
             "beforeunload",
