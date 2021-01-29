@@ -54,8 +54,11 @@ class Subject extends Component<Props> {
      * @returns {ReactElement}
      */
 
-    doSomethingBeforeUnload = async () => {
-        if (this.props.count === 1) {
+    doSomethingBeforeUnload = () => {
+        if (
+            this.props.count === 1 &&
+            performance.navigation.type !== performance.navigation.TYPE_RELOAD
+        ) {
             Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
                 meetingid: infoConf.getMeetingId(),
             });
@@ -66,8 +69,6 @@ class Subject extends Component<Props> {
     setupBeforeUnloadListener = () => {
         window.addEventListener("beforeunload", (ev) => {
             ev.preventDefault();
-            //   this.checkReload();
-
             return this.doSomethingBeforeUnload();
         });
     };
