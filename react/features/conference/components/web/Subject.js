@@ -10,6 +10,8 @@ import ConferenceTimer from "../ConferenceTimer";
 
 import ParticipantsCount from "./ParticipantsCount";
 
+import Axios from "axios";
+import infoConf from "../../../../../infoConference";
 /**
  * The type of the React {@code Component} props of {@link Subject}.
  */
@@ -42,6 +44,8 @@ type Props = {
  * @class Subject
  */
 
+declare var interfaceConfig: Object;
+
 class Subject extends Component<Props> {
     /**
      * Implements React's {@link Component#render()}.
@@ -49,6 +53,43 @@ class Subject extends Component<Props> {
      * @inheritdoc
      * @returns {ReactElement}
      */
+
+    doSomethingBeforeUnload = async () => {
+        if (this.props.count === 1) {
+            Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+                meetingid: infoConf.getMeetingId(),
+            });
+        }
+    };
+
+    // Setup the `beforeunload` event listener
+    setupBeforeUnloadListener = () => {
+        window.addEventListener("beforeunload", (ev) => {
+            ev.preventDefault();
+            //   this.checkReload();
+
+            return this.doSomethingBeforeUnload();
+        });
+    };
+
+    componentDidMount() {
+        console.log("this.props.count: ", this.props.count);
+        // Activate the event listener
+        window.addEventListener(
+            "beforeunload",
+            this.setupBeforeUnloadListener(),
+            false
+        );
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener(
+            "beforeunload",
+            this.setupBeforeUnloadListener(),
+            false
+        );
+        this.setupBeforeUnloadListener();
+    }
     render() {
         const {
             _hideConferenceTimer,
@@ -90,6 +131,7 @@ function _mapStateToProps(state) {
         _showParticipantCount: participantCount > 2,
         _subject: getConferenceName(state),
         _visible: isToolboxVisible(state) && participantCount > 1,
+        count: participantCount,
     };
 }
 
