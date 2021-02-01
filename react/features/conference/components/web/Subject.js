@@ -80,6 +80,11 @@ class Subject extends Component<Props> {
 
     componentDidMount() {
         // Activate the event listener
+        const socket = socketIOClient(interfaceConfig.DOMAIN);
+        socket.emit("status", {
+            status: "Created",
+            meeting_id: infoConf.getMeetingId(),
+        });
         window.addEventListener(
             "beforeunload",
             this.setupBeforeUnloadListener(),
