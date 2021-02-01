@@ -67,7 +67,7 @@ class Subject extends Component<Props> {
     setupBeforeUnloadListener = () => {
         window.addEventListener("beforeunload", (ev) => {
             ev.preventDefault();
-            const socket = socketIOClient(interfaceConfig.DOMAIN);
+            const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
             socket.emit("status", "pending");
             // return this.doSomethingBeforeUnload();
         });
@@ -91,7 +91,7 @@ class Subject extends Component<Props> {
         } = this.props;
 
         if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-            const socket = socketIOClient(interfaceConfig.DOMAIN);
+            const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
             socket.emit("status", {
                 status: "refresh",
                 meetingid: infoConf.getMeetingId(),
