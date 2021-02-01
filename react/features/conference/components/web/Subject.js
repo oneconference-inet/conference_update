@@ -70,7 +70,7 @@ class Subject extends Component<Props> {
             const socket = socketIOClient(interfaceConfig.DOMAIN);
             socket.emit("status", {
                 status: "pending",
-                meetingid: infoConf.getMeetingId(),
+                meeting_id: infoConf.getMeetingId(),
             });
             // return this.doSomethingBeforeUnload();
         });
@@ -97,7 +97,7 @@ class Subject extends Component<Props> {
             const socket = socketIOClient(interfaceConfig.DOMAIN);
             socket.emit("status", {
                 status: "refresh",
-                meetingid: infoConf.getMeetingId(),
+                meeting_id: infoConf.getMeetingId(),
             });
             console.info("This page is reloaded");
         } else {
