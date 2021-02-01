@@ -10,6 +10,7 @@ import ConferenceTimer from "../ConferenceTimer";
 
 import ParticipantsCount from "./ParticipantsCount";
 
+import socketIOClient from "socket.io-client";
 import Axios from "axios";
 import infoConf from "../../../../../infoConference";
 /**
