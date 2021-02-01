@@ -67,11 +67,13 @@ class Subject extends Component<Props> {
     setupBeforeUnloadListener = () => {
         window.addEventListener("beforeunload", (ev) => {
             ev.preventDefault();
-            const socket = socketIOClient(interfaceConfig.DOMAIN);
-            socket.emit("status", {
-                status: "pending",
-                meeting_id: infoConf.getMeetingId(),
-            });
+            if (this.props.count === 1) {
+                const socket = socketIOClient(interfaceConfig.DOMAIN);
+                socket.emit("status", {
+                    status: "pending",
+                    meeting_id: infoConf.getMeetingId(),
+                });
+            }
             // return this.doSomethingBeforeUnload();
         });
     };
@@ -101,6 +103,11 @@ class Subject extends Component<Props> {
             });
             console.info("This page is reloaded");
         } else {
+            const socket = socketIOClient(interfaceConfig.DOMAIN);
+            socket.emit("open session", {
+                status: "Created",
+                meeting_id: infoConf.getMeetingId(),
+            });
             console.info("This page is not reloaded");
         }
 
