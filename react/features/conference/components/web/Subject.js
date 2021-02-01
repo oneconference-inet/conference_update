@@ -54,39 +54,31 @@ class Subject extends Component<Props> {
      * @returns {ReactElement}
      */
 
-    doSomethingBeforeUnload = () => {
-        if (this.props.count === 1) {
-            Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-                meetingid: infoConf.getMeetingId(),
-            });
-        }
-    };
+    // doSomethingBeforeUnload = () => {
+    //     if (this.props.count === 1) {
+    //         Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
+    //             meetingid: infoConf.getMeetingId(),
+    //         });
+    //     }
+    // };
 
     // Setup the `beforeunload` event listener
     setupBeforeUnloadListener = () => {
         window.addEventListener("beforeunload", (ev) => {
             ev.preventDefault();
-            return this.doSomethingBeforeUnload();
+            const socket = socketIOClient(interfaceConfig.DOMAIN);
+            socket.emit("status", "pending");
+            // return this.doSomethingBeforeUnload();
         });
     };
 
     componentDidMount() {
-        console.log("this.props.count: ", this.props.count);
         // Activate the event listener
         window.addEventListener(
             "beforeunload",
             this.setupBeforeUnloadListener(),
             false
         );
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener(
-            "beforeunload",
-            this.setupBeforeUnloadListener(),
-            false
-        );
-        this.setupBeforeUnloadListener();
     }
 
     render() {
@@ -96,6 +88,17 @@ class Subject extends Component<Props> {
             _subject,
             _visible,
         } = this.props;
+
+        if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+            const socket = socketIOClient(interfaceConfig.DOMAIN);
+            socket.emit("status", {
+                status: "refresh",
+                meetingid: infoConf.getMeetingId(),
+            });
+            console.info("This page is reloaded");
+        } else {
+            console.info("This page is not reloaded");
+        }
 
         return (
             <div className={`subject ${_visible ? "visible" : ""}`}>
