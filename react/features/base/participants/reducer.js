@@ -12,6 +12,8 @@ import {
     SET_LOADABLE_AVATAR_URL,
 } from "./actionTypes";
 import { LOCAL_PARTICIPANT_DEFAULT_ID, PARTICIPANT_ROLE } from "./constants";
+import socketIOClient from "socket.io-client";
+import infoConf from "../../../../infoConference";
 
 /**
  * Participant object.
@@ -30,6 +32,7 @@ import { LOCAL_PARTICIPANT_DEFAULT_ID, PARTICIPANT_ROLE } from "./constants";
  */
 
 declare var APP: Object;
+declare var interfaceConfig: Object;
 
 /**
  * The participant properties which cannot be updated through
@@ -72,6 +75,16 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
 
         case PARTICIPANT_JOINED:
             console.log("case PARTICIPANT_JOINED: ", state);
+
+            console.log("participantJoined: ", participant);
+
+            const socket = socketIOClient(interfaceConfig.DOMAIN);
+            socket.emit("status", {
+                status: "join",
+                meeting_id: infoConf.getMeetingId(),
+                count: state.length + 1,
+            });
+
             return [...state, _participantJoined(action)];
 
         case PARTICIPANT_LEFT: {
