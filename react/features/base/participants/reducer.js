@@ -91,7 +91,7 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             socket.emit("status", {
                 status: "left",
                 meeting_id: infoConf.getMeetingId(),
-                count: state.length + 1,
+                count: state.length - 1,
             });
             // XXX A remote participant is uniquely identified by their id in a
             // specific JitsiConference instance. The local participant is uniquely
