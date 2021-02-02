@@ -74,8 +74,6 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             return state.map((p) => _participant(p, action));
 
         case PARTICIPANT_JOINED:
-            console.log("case PARTICIPANT_JOINED: ", state);
-
             const socket = socketIOClient(interfaceConfig.DOMAIN);
             socket.emit("status", {
                 status: "join",
