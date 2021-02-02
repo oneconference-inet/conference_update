@@ -248,7 +248,7 @@ export function participantConnectionStatusChanged(id, connectionStatus) {
  * }}
  */
 export function participantJoined(participant) {
-    console.log("participantJoined: ", participant);
+    console.log("participantJoinedTLE: ", participant);
 
     const socket = socketIOClient(interfaceConfig.DOMAIN);
     socket.emit("join", {
