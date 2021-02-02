@@ -91,6 +91,14 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             // the app and "leaves" at the end of the app).
             const { conference, id } = action.participant;
 
+            console.log("PARTICIPANT_LEFT: ", state);
+            const socket = socketIOClient(interfaceConfig.DOMAIN);
+            socket.emit("left", {
+                status: "left",
+                meeting_id: infoConf.getMeetingId(),
+                count: state.length + 1,
+            });
+
             return state.filter(
                 (p) =>
                     !(
