@@ -67,13 +67,13 @@ class Subject extends Component<Props> {
     setupBeforeUnloadListener = () => {
         window.addEventListener("beforeunload", (ev) => {
             ev.preventDefault();
-            // if (this.props.count === 1) {
-            const socket = socketIOClient(interfaceConfig.DOMAIN);
-            socket.emit("status", {
-                status: "pending",
-                meeting_id: infoConf.getMeetingId(),
-            });
-            // }
+            if (this.props.count === 1) {
+                const socket = socketIOClient(interfaceConfig.DOMAIN);
+                socket.emit("status", {
+                    status: "pending",
+                    meeting_id: infoConf.getMeetingId(),
+                });
+            }
             // return this.doSomethingBeforeUnload();
         });
     };
