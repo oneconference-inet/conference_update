@@ -74,8 +74,10 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             return state.map((p) => _participant(p, action));
 
         case PARTICIPANT_JOINED:
+
+            console.log("PARTICIPANT_JOINED: ", state.length + 1);
             const socket = socketIOClient(interfaceConfig.DOMAIN);
-            socket.emit("status", {
+            socket.emit("join", {
                 status: "join",
                 meeting_id: infoConf.getMeetingId(),
                 count: state.length + 1,
@@ -91,7 +93,7 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             // the app and "leaves" at the end of the app).
             const { conference, id } = action.participant;
 
-            console.log("PARTICIPANT_LEFT: ", state);
+            console.log("PARTICIPANT_LEFT: ", state.length - 1);
             const socket = socketIOClient(interfaceConfig.DOMAIN);
             socket.emit("left", {
                 status: "left",
