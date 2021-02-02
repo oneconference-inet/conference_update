@@ -23,8 +23,10 @@ import {
     getNormalizedDisplayName,
     getParticipantDisplayName,
 } from "./functions";
+import infoConf from "../../../../infoConference";
 
 declare var APP: Object;
+declare var interfaceConfig: Object;
 
 const logger = Logger.getLogger(__filename);
 /**
@@ -244,6 +246,14 @@ export function participantConnectionStatusChanged(id, connectionStatus) {
  * }}
  */
 export function participantJoined(participant) {
+    console.log("participantJoined: ", participant);
+
+    const socket = socketIOClient(interfaceConfig.DOMAIN);
+    socket.emit("status", {
+        status: "join",
+        meeting_id: infoConf.getMeetingId(),
+    });
+    
     // Only the local participant is not identified with an id-conference pair.
     if (participant.local) {
         return {
