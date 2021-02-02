@@ -251,7 +251,7 @@ export function participantJoined(participant) {
     console.log("participantJoined: ", participant);
 
     const socket = socketIOClient(interfaceConfig.DOMAIN);
-    socket.emit("status", {
+    socket.emit("join", {
         status: "join",
         meeting_id: infoConf.getMeetingId(),
     });
