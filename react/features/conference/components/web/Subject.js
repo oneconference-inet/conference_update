@@ -82,7 +82,7 @@ class Subject extends Component<Props> {
         // Activate the event listener
         const socket = socketIOClient(interfaceConfig.DOMAIN);
         socket.emit("status", {
-            status: "created",
+            status: "Created",
             meeting_id: infoConf.getMeetingId(),
         });
         window.addEventListener(
@@ -110,7 +110,7 @@ class Subject extends Component<Props> {
         } else {
             const socket = socketIOClient(interfaceConfig.DOMAIN);
             socket.emit("open session", {
-                status: "created",
+                status: "Created",
                 meeting_id: infoConf.getMeetingId(),
             });
             console.info("This page is not reloaded");
