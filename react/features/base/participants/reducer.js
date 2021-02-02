@@ -96,7 +96,7 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             socket.emit("left", {
                 status: "left",
                 meeting_id: infoConf.getMeetingId(),
-                count: state.length + 1,
+                count: state.length - 1,
             });
 
             return state.filter(
