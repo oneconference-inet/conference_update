@@ -24,7 +24,11 @@ import {
     getParticipantDisplayName,
 } from "./functions";
 
+import socketIOClient from "socket.io-client";
+import infoConf from "../../../../infoConference";
+
 declare var APP: Object;
+declare var interfaceConfig: Object;
 
 const logger = Logger.getLogger(__filename);
 /**
@@ -338,6 +342,15 @@ export function hiddenParticipantLeft(id) {
  * }}
  */
 export function participantLeft(id, conference) {
+
+    console.log("PARTICIPANT_LEFT: ", id);
+    const socket = socketIOClient(interfaceConfig.DOMAIN);
+    socket.emit("left", {
+        status: "left",
+        meeting_id: infoConf.getMeetingId(),
+        // count: state.length - 1,
+    });
+
     return {
         type: PARTICIPANT_LEFT,
         participant: {
