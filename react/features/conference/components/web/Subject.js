@@ -105,6 +105,7 @@ class Subject extends Component<Props> {
             socket.emit("status", {
                 status: "refresh",
                 meeting_id: infoConf.getMeetingId(),
+                count: this.props.count,
             });
             console.info("This page is reloaded");
         } else {
