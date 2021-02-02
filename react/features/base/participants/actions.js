@@ -23,6 +23,8 @@ import {
     getNormalizedDisplayName,
     getParticipantDisplayName,
 } from "./functions";
+
+import socketIOClient from "socket.io-client";
 import infoConf from "../../../../infoConference";
 
 declare var APP: Object;
@@ -253,7 +255,7 @@ export function participantJoined(participant) {
         status: "join",
         meeting_id: infoConf.getMeetingId(),
     });
-    
+
     // Only the local participant is not identified with an id-conference pair.
     if (participant.local) {
         return {
