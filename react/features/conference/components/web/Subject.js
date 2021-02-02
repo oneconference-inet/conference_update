@@ -85,6 +85,13 @@ class Subject extends Component<Props> {
             status: "created",
             meeting_id: infoConf.getMeetingId(),
         });
+
+        socket.emit("join", {
+            status: "join",
+            meeting_id: infoConf.getMeetingId(),
+            count: this.props.count,
+        });
+
         window.addEventListener(
             "beforeunload",
             this.setupBeforeUnloadListener(),

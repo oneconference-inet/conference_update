@@ -75,13 +75,13 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
 
         case PARTICIPANT_JOINED:
 
-            console.log("PARTICIPANT_JOINED: ", state.length + 1);
-            const socket = socketIOClient(interfaceConfig.DOMAIN);
-            socket.emit("join", {
-                status: "join",
-                meeting_id: infoConf.getMeetingId(),
-                count: state.length + 1,
-            });
+            // console.log("PARTICIPANT_JOINED: ", state.length + 1);
+            // const socket = socketIOClient(interfaceConfig.DOMAIN);
+            // socket.emit("join", {
+            //     status: "join",
+            //     meeting_id: infoConf.getMeetingId(),
+            //     count: state.length + 1,
+            // });
 
             return [...state, _participantJoined(action)];
 
