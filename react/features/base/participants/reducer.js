@@ -85,6 +85,7 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             // the app and "leaves" at the end of the app).
             const { conference, id } = action.participant;
 
+            console.log("infoUser.getUserId(): ",infoUser.getUserId());
             const socket = socketIOClient(interfaceConfig.DOMAIN);
             socket.emit("left", {
                 status: "left",
