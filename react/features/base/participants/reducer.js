@@ -13,6 +13,9 @@ import {
 } from "./actionTypes";
 import { LOCAL_PARTICIPANT_DEFAULT_ID, PARTICIPANT_ROLE } from "./constants";
 
+import socketIOClient from "socket.io-client";
+import infoConf from "../../../../infoConference";
+
 /**
  * Participant object.
  * @typedef {Object} Participant
@@ -30,6 +33,7 @@ import { LOCAL_PARTICIPANT_DEFAULT_ID, PARTICIPANT_ROLE } from "./constants";
  */
 
 declare var APP: Object;
+declare var interfaceConfig: Object;
 
 /**
  * The participant properties which cannot be updated through
@@ -71,15 +75,6 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             return state.map((p) => _participant(p, action));
 
         case PARTICIPANT_JOINED:
-
-            // console.log("PARTICIPANT_JOINED: ", state.length + 1);
-            // const socket = socketIOClient(interfaceConfig.DOMAIN);
-            // socket.emit("join", {
-            //     status: "join",
-            //     meeting_id: infoConf.getMeetingId(),
-            //     count: state.length + 1,
-            // });
-
             return [...state, _participantJoined(action)];
 
         case PARTICIPANT_LEFT: {
@@ -89,6 +84,14 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             // (and the fact that the local participant "joins" at the beginning of
             // the app and "leaves" at the end of the app).
             const { conference, id } = action.participant;
+
+            console.log("PARTICIPANT_LEFT: ", state.length - 1);
+            const socket = socketIOClient(interfaceConfig.DOMAIN);
+            socket.emit("left", {
+                status: "left",
+                meeting_id: infoConf.getMeetingId(),
+                count: state.length - 1,
+            });
 
             return state.filter(
                 (p) =>
