@@ -89,12 +89,12 @@ class Subject extends Component<Props> {
             host_id: infoUser.getUserId(),
         });
 
-        // socket.emit("join", {
-        //     status: "join",
-        //     meeting_id: infoConf.getMeetingId(),
-        //     count: this.props.count,
-        //     user_id: infoUser.getUserId(),
-        // });
+        socket.emit("join", {
+            status: "join",
+            meeting_id: infoConf.getMeetingId(),
+            count: this.props.count,
+            user_id: infoUser.getUserId(),
+        });
 
         window.addEventListener(
             "beforeunload",
