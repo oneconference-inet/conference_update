@@ -13,6 +13,8 @@ import ParticipantsCount from "./ParticipantsCount";
 import socketIOClient from "socket.io-client";
 import Axios from "axios";
 import infoConf from "../../../../../infoConference";
+import infoUser from "../../../../../infoUser";
+
 /**
  * The type of the React {@code Component} props of {@link Subject}.
  */
@@ -85,6 +87,7 @@ class Subject extends Component<Props> {
         socket.emit("status", {
             status: "created",
             meeting_id: infoConf.getMeetingId(),
+            host_id: infoUser.getUserId(),
         });
 
         socket.emit("join", {
