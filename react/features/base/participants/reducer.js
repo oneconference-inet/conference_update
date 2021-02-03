@@ -15,7 +15,7 @@ import { LOCAL_PARTICIPANT_DEFAULT_ID, PARTICIPANT_ROLE } from "./constants";
 
 import socketIOClient from "socket.io-client";
 import infoConf from "../../../../infoConference";
-
+import infoUser from "../../../../../infoUser";
 /**
  * Participant object.
  * @typedef {Object} Participant
@@ -91,6 +91,7 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
                 status: "left",
                 meeting_id: infoConf.getMeetingId(),
                 count: state.length - 1,
+                user_id: infoUser.getUserId(),
             });
 
             return state.filter(
