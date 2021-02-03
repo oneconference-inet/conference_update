@@ -15,7 +15,7 @@ import { LOCAL_PARTICIPANT_DEFAULT_ID, PARTICIPANT_ROLE } from "./constants";
 
 import socketIOClient from "socket.io-client";
 import infoConf from "../../../../infoConference";
-import infoUser from "../../../../../infoUser";
+import infoUser from "../../../../infoUser";
 /**
  * Participant object.
  * @typedef {Object} Participant
