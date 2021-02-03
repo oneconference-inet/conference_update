@@ -94,6 +94,7 @@ class Subject extends Component<Props> {
             status: "join",
             meeting_id: infoConf.getMeetingId(),
             count: this.props.count,
+            user_id: infoUser.getUserId(),
         });
 
         window.addEventListener(
