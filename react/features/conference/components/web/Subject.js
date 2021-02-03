@@ -70,7 +70,6 @@ class Subject extends Component<Props> {
         window.addEventListener("beforeunload", (ev) => {
             ev.preventDefault();
             if (this.props.count === 1) {
-                console.log("88888888888888888888888888");
                 const socket = socketIOClient(interfaceConfig.DOMAIN);
                 socket.emit("status", {
                     status: "pending",
@@ -120,14 +119,12 @@ class Subject extends Component<Props> {
                 count: this.props.count,
                 user_id: infoUser.getUserId(),
             });
-            console.info("This page is reloaded");
         } else {
             const socket = socketIOClient(interfaceConfig.DOMAIN);
             socket.emit("open session", {
                 status: "created",
                 meeting_id: infoConf.getMeetingId(),
             });
-            console.info("This page is not reloaded");
         }
 
         return (

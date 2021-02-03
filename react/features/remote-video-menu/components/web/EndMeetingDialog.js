@@ -112,7 +112,6 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
 
             return true;
         } catch (error) {
-            console.log(error)
             return false;
         }
         
