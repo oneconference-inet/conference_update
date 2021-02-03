@@ -117,6 +117,7 @@ class Subject extends Component<Props> {
                 status: "refresh",
                 meeting_id: infoConf.getMeetingId(),
                 count: this.props.count,
+                user_id: infoUser.getUserId(),
             });
             console.info("This page is reloaded");
         } else {
