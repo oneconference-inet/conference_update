@@ -198,20 +198,43 @@ class Conference extends AbstractConference<Props, *> {
                 <div id="videospace">
                     <LargeVideo />
                     <KnockingParticipantList />
-                    {infoConf.getIsSecretRoom() ? (
-                        <div
-                            id="conference type"
-                            style={{ position: "absolute", top: "50%" }}
-                        >
-                            <FaUserSecret
+
+                    <div
+                        id="conference type"
+                        style={{ position: "absolute", top: "50%" }}
+                    >
+                        {infoConf.getIsSecretRoom() ? (
+                            <div>
+                                <p
+                                    style={{
+                                        color: "white",
+                                        fontWeight: "bold",
+                                        fontSize: "larger",
+                                    }}
+                                >
+                                    Secret Room
+                                </p>
+                                <FaUserSecret
+                                    style={{
+                                        color: "white",
+                                        width: 48,
+                                        height: 48,
+                                    }}
+                                />
+                            </div>
+                        ) : (
+                            <p
                                 style={{
                                     color: "white",
-                                    width: 48,
-                                    height: 48,
+                                    fontWeight: "bold",
+                                    fontSize: "larger",
                                 }}
-                            />
-                        </div>
-                    ) : null}
+                            >
+                                Normal Room
+                            </p>
+                        )}
+                    </div>
+
                     <Filmstrip />
                     {hideLabels || <Labels />}
                 </div>
