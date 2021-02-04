@@ -84,8 +84,7 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             // (and the fact that the local participant "joins" at the beginning of
             // the app and "leaves" at the end of the app).
             const { conference, id } = action.participant;
-
-            console.log("HAVE PARTI LEFT", state.length - 1);
+            
             const socket = socketIOClient(interfaceConfig.DOMAIN);
             socket.emit("left", {
                 status: "left",
