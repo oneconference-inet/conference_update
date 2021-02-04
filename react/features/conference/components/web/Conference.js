@@ -201,7 +201,7 @@ class Conference extends AbstractConference<Props, *> {
 
                     <div
                         id="conference type"
-                        style={{ position: "absolute", top: "50%" }}
+                        style={{ position: "absolute", top: "5%", left: "2%" }}
                     >
                         {infoConf.getIsSecretRoom() ? (
                             <div
@@ -211,25 +211,23 @@ class Conference extends AbstractConference<Props, *> {
                                     alignItems: "center",
                                 }}
                             >
+                                <FaUserSecret
+                                    style={{
+                                        color: "white",
+                                        width: 48,
+                                        height: 48,
+                                    }}
+                                />
+                                &nbsp;
                                 <p
                                     style={{
                                         color: "white",
                                         fontWeight: "bold",
                                         fontSize: "larger",
-                                        fontFamily: "cursive",
                                     }}
                                 >
                                     Secret Room
                                 </p>
-                                <div>
-                                    <FaUserSecret
-                                        style={{
-                                            color: "white",
-                                            width: 48,
-                                            height: 48,
-                                        }}
-                                    />
-                                </div>
                             </div>
                         ) : (
                             <p
@@ -237,7 +235,6 @@ class Conference extends AbstractConference<Props, *> {
                                     color: "white",
                                     fontWeight: "bold",
                                     fontSize: "larger",
-                                    fontFamily: "cursive",
                                 }}
                             >
                                 Normal Room
