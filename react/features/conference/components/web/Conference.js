@@ -27,6 +27,7 @@ import type { AbstractProps } from "../AbstractConference";
 
 import Labels from "./Labels";
 import { default as Notice } from "./Notice";
+import { FaUserSecret } from "react-icons/fa";
 
 declare var APP: Object;
 declare var interfaceConfig: Object;
@@ -196,7 +197,12 @@ class Conference extends AbstractConference<Props, *> {
                 <div id="videospace">
                     <LargeVideo />
                     <KnockingParticipantList />
-                    <div id="conference type"> TYPE CONFERENCE </div>
+                    <div
+                        id="conference type"
+                        style={{ position: "absolute", top: "50%" }}
+                    >
+                        <FaUserSecret style={{ color: "white" }} />
+                    </div>
                     <Filmstrip />
                     {hideLabels || <Labels />}
                 </div>

@@ -72,6 +72,7 @@
     "react-dom": "16.9",
     "react-emoji-render": "1.2.4",
     "react-i18next": "10.11.4",
+    "react-icons": "^4.1.0",
     "react-iframe": "^1.8.0",
     "react-linkify": "1.0.0-alpha",
     "react-native": "github:jitsi/react-native#891986ec5ecaef65d1c8a7fe472f86cf84fe7551",
