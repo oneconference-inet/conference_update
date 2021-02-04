@@ -10,6 +10,12 @@ import { connect } from '../../base/redux';
 import { AbstractHangupButton } from '../../base/toolbox/components';
 import type { AbstractButtonProps } from '../../base/toolbox/components';
 
+import axios from 'axios';
+import infoConf from '../../../../infoConference';
+import infoUser from '../../../../infoUser';
+
+declare var interfaceConfig: Object;
+
 /**
  * The type of the React {@code Component} props of {@link HangupButton}.
  */
@@ -44,7 +50,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
 
         this._hangup = _.once(() => {
             sendAnalytics(createToolbarEvent('hangup'));
-
+            this._endJoin()
             // FIXME: these should be unified.
             if (navigator.product === 'ReactNative') {
                 this.props.dispatch(appNavigate(undefined));
@@ -52,6 +58,29 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                 this.props.dispatch(disconnect(true));
             }
         });
+
+        this._endJoin = async () => {
+            const domainEnd = interfaceConfig.DOMAIN_BACK;
+            const service = infoConf.getService();
+            const meetingId = infoConf.getMeetingId();
+            const isModerator = infoConf.getIsModerator();
+            const nameJoin = infoUser.getName();
+            const userId = infoUser.getUserId();
+
+            if (service == 'onechat') {
+                await axios.post(domainEnd + '/service/endjoin', { meetingid: meetingId, name: nameJoin, clientname: 'onechat'})
+            } else if (service == 'ManageAi') {
+                await axios.post(domainEnd + '/service/endjoin', { meetingid: meetingId, name: nameJoin, clientname: 'ManageAi'})
+            } else if (service == 'onemail') {
+                if (isModerator) {
+                    await axios.post(interfaceConfig.DOMAIN_ONEMAIL + '/api/v1/oneconf/service/hangup', { meeting_id: meetingId, user_id: userId, clientname: 'onemail'})
+                } else {
+                    await axios.post(interfaceConfig.DOMAIN_ONEMAIL + '/api/v1/oneconf/service/hangup', { meeting_id: meetingId, user_id: userId, clientname: 'onemail'})
+                }
+            } else {
+                await axios.post(interfaceConfig.DOMAIN + '/endJoin' , { user_id: userId ,meeting_id: meetingId })
+            }
+        }
     }
 
     /**
