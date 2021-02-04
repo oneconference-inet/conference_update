@@ -91,6 +91,7 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
                 status: "left",
                 meeting_id: infoConf.getMeetingId(),
                 count: state.length - 1,
+                user_id: infoUser.getUserId(),
             });
 
             return state.filter(
