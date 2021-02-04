@@ -69,13 +69,13 @@ class Subject extends Component<Props> {
     setupBeforeUnloadListener = () => {
         window.addEventListener("beforeunload", (ev) => {
             ev.preventDefault();
-            const socket = socketIOClient(interfaceConfig.DOMAIN);
-            socket.emit("left", {
-                status: "left",
-                meeting_id: infoConf.getMeetingId(),
-                count: this.props.count,
-                user_id: infoUser.getUserId(),
-            });
+            // const socket = socketIOClient(interfaceConfig.DOMAIN);
+            // socket.emit("left", {
+            //     status: "left",
+            //     meeting_id: infoConf.getMeetingId(),
+            //     count: this.props.count,
+            //     user_id: infoUser.getUserId(),
+            // });
             // return this.doSomethingBeforeUnload();
         });
     };
@@ -86,7 +86,7 @@ class Subject extends Component<Props> {
         socket.emit("status", {
             status: "created",
             meeting_id: infoConf.getMeetingId(),
-            host_id: infoUser.getUserId(),
+            user_id: infoUser.getUserId(),
         });
 
         socket.emit("join", {
@@ -122,7 +122,7 @@ class Subject extends Component<Props> {
         } else {
             const socket = socketIOClient(interfaceConfig.DOMAIN);
             socket.emit("open session", {
-                status: "created",
+                status: "open session",
                 meeting_id: infoConf.getMeetingId(),
             });
         }

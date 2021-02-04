@@ -23,7 +23,6 @@ import {
     getNormalizedDisplayName,
     getParticipantDisplayName,
 } from "./functions";
-import infoUser from "../../../../infoUser";
 
 declare var APP: Object;
 
@@ -340,15 +339,13 @@ export function hiddenParticipantLeft(id) {
  */
 export function participantLeft(
     id,
-    conference,
-    client_id = infoUser.getUserId()
+    conference
 ) {
     return {
         type: PARTICIPANT_LEFT,
         participant: {
             conference,
-            id,
-            client_id
+            id
         },
     };
 }
