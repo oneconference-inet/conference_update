@@ -1,92 +1,101 @@
 var listUrl = {
-    nameJoin: '',
-    roomname: '',
-    urlInvite: '',
+    nameJoin: "",
+    roomname: "",
+    urlInvite: "",
     confirm: false,
-    meetingId: '',
-    service: '',
+    meetingId: "",
+    service: "",
     isModerator: false,
     isApprove: false,
-    muteAllState: false
-  }
+    muteAllState: false,
+    isSecretRoom: false,
+};
 
-  function setRoomName(roomname) {
-    listUrl.roomname = roomname
-  }
+function setRoomName(roomname) {
+    listUrl.roomname = roomname;
+}
 
-  function setService (service) {
-    listUrl.service = service
-  }
+function setService(service) {
+    listUrl.service = service;
+}
 
-  function setConfirm () {
-    listUrl.confirm = true
-  }
-  
-  function setMuteAllState (mute) {
-    listUrl.muteAllState = mute
-  }
-  
-  function setNameJoin (nameJoin) {
-    listUrl.nameJoin = nameJoin
-  }
-  
-  function setMeetingId (meetingId) {
-    listUrl.meetingId = meetingId
-  }
-  
-  function seturlInvite (urlInvite){
-    listUrl.urlInvite = urlInvite
-  }
-  
-  function setIsModerator () {
+function setConfirm() {
+    listUrl.confirm = true;
+}
+
+function setMuteAllState(mute) {
+    listUrl.muteAllState = mute;
+}
+
+function setNameJoin(nameJoin) {
+    listUrl.nameJoin = nameJoin;
+}
+
+function setMeetingId(meetingId) {
+    listUrl.meetingId = meetingId;
+}
+
+function seturlInvite(urlInvite) {
+    listUrl.urlInvite = urlInvite;
+}
+
+function setIsModerator() {
     listUrl.isModerator = true;
-  }
-  
-  function setApprove (set) {
-    listUrl.isApprove = set
-  }
+}
 
-  function getRoomName() {
+function setIsSecretRoom(secretroom) {
+    listUrl.isSecretRoom = secretroom;
+}
+
+function setApprove(set) {
+    listUrl.isApprove = set;
+}
+
+function getRoomName() {
     return listUrl.roomname;
-  }
+}
 
-  function getService () {
+function getService() {
     return listUrl.service;
-  }
+}
 
-  function getConfirm () {
+function getConfirm() {
     return listUrl.confirm;
-  }
-  
-  function getNameJoin () {
+}
+
+function getNameJoin() {
     return listUrl.nameJoin;
-  }
-  
-  function getMeetingId () {
+}
+
+function getMeetingId() {
     return listUrl.meetingId;
-  }
-  
-  function geturlInvite () {
+}
+
+function geturlInvite() {
     return listUrl.urlInvite;
-  }
-  
-  function getIsModerator () {
+}
+
+function getIsModerator() {
     return listUrl.isModerator;
-  }
-  
-  function getApprove () {
+}
+
+function getIsSecretRoom() {
+    return listUrl.isSecretRoom;
+}
+
+function getApprove() {
     return listUrl.isApprove;
-  }
-  
-  function getMuteAllState () {
+}
+
+function getMuteAllState() {
     return listUrl.muteAllState;
-  }
-  
-  function getListInfo () {
+}
+
+function getListInfo() {
     return listUrl;
-  }
-  
-  export default{
+}
+
+export default {
     getRoomName,
     getService,
     getConfirm,
@@ -105,5 +114,7 @@ var listUrl = {
     setMeetingId,
     setIsModerator,
     setApprove,
-    setMuteAllState
-  }
+    setMuteAllState,
+    setIsSecretRoom,
+    getIsSecretRoom,
+};

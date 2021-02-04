@@ -28,6 +28,7 @@ import type { AbstractProps } from "../AbstractConference";
 import Labels from "./Labels";
 import { default as Notice } from "./Notice";
 import { FaUserSecret } from "react-icons/fa";
+import infoConf from "../../../../../infoConference";
 
 declare var APP: Object;
 declare var interfaceConfig: Object;
@@ -197,12 +198,20 @@ class Conference extends AbstractConference<Props, *> {
                 <div id="videospace">
                     <LargeVideo />
                     <KnockingParticipantList />
-                    <div
-                        id="conference type"
-                        style={{ position: "absolute", top: "50%" }}
-                    >
-                        <FaUserSecret style={{ color: "white" }} />
-                    </div>
+                    {infoConf.getIsSecretRoom() ? (
+                        <div
+                            id="conference type"
+                            style={{ position: "absolute", top: "50%" }}
+                        >
+                            <FaUserSecret
+                                style={{
+                                    color: "white",
+                                    width: 48,
+                                    height: 48,
+                                }}
+                            />
+                        </div>
+                    ) : null}
                     <Filmstrip />
                     {hideLabels || <Labels />}
                 </div>
