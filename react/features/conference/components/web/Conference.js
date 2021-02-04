@@ -204,23 +204,32 @@ class Conference extends AbstractConference<Props, *> {
                         style={{ position: "absolute", top: "50%" }}
                     >
                         {infoConf.getIsSecretRoom() ? (
-                            <div>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                }}
+                            >
                                 <p
                                     style={{
                                         color: "white",
                                         fontWeight: "bold",
                                         fontSize: "larger",
+                                        fontFamily: "cursive",
                                     }}
                                 >
                                     Secret Room
                                 </p>
-                                <FaUserSecret
-                                    style={{
-                                        color: "white",
-                                        width: 48,
-                                        height: 48,
-                                    }}
-                                />
+                                <div>
+                                    <FaUserSecret
+                                        style={{
+                                            color: "white",
+                                            width: 48,
+                                            height: 48,
+                                        }}
+                                    />
+                                </div>
                             </div>
                         ) : (
                             <p
@@ -228,6 +237,7 @@ class Conference extends AbstractConference<Props, *> {
                                     color: "white",
                                     fontWeight: "bold",
                                     fontSize: "larger",
+                                    fontFamily: "cursive",
                                 }}
                             >
                                 Normal Room
