@@ -1,6 +1,8 @@
 // @flow
 
 import React from "react";
+import Tooltip from "@atlaskit/tooltip";
+import { CircularLabel } from "../../../base/label";
 
 import { JitsiRecordingConstants } from "../../../base/lib-jitsi-meet";
 import { connect } from "../../../base/redux";
@@ -76,35 +78,15 @@ class Labels extends AbstractLabels<Props, State> {
 
         return (
             <div className={className}>
-                <div
-                    id="conference type"
-                    style={{
-                        position: "absolute",
-                        top: "5%",
-                        left: "2%",
-                        zIndex: 1,
-                    }}
-                >
+                <div id="conference type">
                     {infoConf.getIsSecretRoom() ? (
-                        <p
-                            style={{
-                                color: "white",
-                                fontWeight: "bold",
-                                fontSize: "larger",
-                            }}
-                        >
-                            Secret Room
-                        </p>
+                        <Tooltip content={"Secret Room"} position={"left"}>
+                            <CircularLabel id="type_secret" label={"SC"} />
+                        </Tooltip>
                     ) : (
-                        <p
-                            style={{
-                                color: "white",
-                                fontWeight: "bold",
-                                fontSize: "larger",
-                            }}
-                        >
-                            Normal Room
-                        </p>
+                        <Tooltip content={"Normal Room"} position={"left"}>
+                            <CircularLabel id="type_normal" label={"NM"} />
+                        </Tooltip>
                     )}
                 </div>
                 {this._renderE2EELabel()}
