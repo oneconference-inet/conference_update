@@ -83,7 +83,7 @@ class Labels extends AbstractLabels<Props, State> {
                 {infoConf.getIsSecretRoom() ? (
                     <div id="conference type">
                         <Tooltip
-                            className={".secret"}
+                            className={"secret"}
                             content={"Secret Room"}
                             position={"left"}
                         >
