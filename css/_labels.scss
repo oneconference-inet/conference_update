@@ -6,6 +6,11 @@
     transition: right 0.5s;
     z-index: $filmstripVideosZ + 1;
 
+    .type_secret.circular-label {
+        background: #1d4987;
+        border: "1px solid white";
+    }
+
     .circular-label {
         align-items: center;
         color: white;
@@ -17,26 +22,26 @@
     }
 
     .circular-label {
-        background: #B8C7E0;
+        background: #b8c7e0;
     }
 
     .circular-label.e2ee {
         align-items: center;
-        background: #76CF9C;
+        background: #76cf9c;
         display: flex;
         justify-content: center;
     }
 
     .circular-label.file {
-        background: #FF5630;
+        background: #ff5630;
     }
 
     .circular-label.local-rec {
-        background: #FF5630;
+        background: #ff5630;
     }
 
     .circular-label.stream {
-        background: #0065FF;
+        background: #0065ff;
     }
 
     .circular-label.insecure {
