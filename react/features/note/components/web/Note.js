@@ -64,7 +64,7 @@ class Note extends AbstractNote<Props> {
         if (infoUser.getiAmRecord()) {
             meetingId_noNum = 'botNote' //for Bot iAmRecord
         } else {
-            meetingId_noNum = infoConf.getMeetingId().split('-')[0];
+            meetingId_noNum = infoConf.getMeetingId()
         }
 
         const etherpad_base = config.etherpad_base
