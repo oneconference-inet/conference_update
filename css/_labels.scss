@@ -6,11 +6,6 @@
     transition: right 0.5s;
     z-index: $filmstripVideosZ + 1;
 
-    #type_secret.circular-label {
-        background: #1d4987;
-        border: "1px solid white";
-    }
-
     .circular-label {
         align-items: center;
         color: white;
@@ -23,6 +18,11 @@
 
     .circular-label {
         background: #b8c7e0;
+    }
+
+    .circular-label.secret {
+        background: #1d4987;
+        border: "1px solid white";
     }
 
     .circular-label.e2ee {
