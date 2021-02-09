@@ -201,35 +201,40 @@ class Conference extends AbstractConference<Props, *> {
 
                     <div
                         id="conference type"
-                        style={{ position: "absolute", top: "5%", left: "2%" }}
+                        style={{
+                            position: "absolute",
+                            top: "5%",
+                            left: "2%",
+                            zIndex: 1,
+                        }}
                     >
                         {infoConf.getIsSecretRoom() ? (
-                            <div
+                            // <div
+                            //     style={{
+                            //         display: "flex",
+                            //         justifyContent: "center",
+                            //         alignItems: "center",
+                            //     }}
+                            // >
+                            //     <FaUserSecret
+                            //         style={{
+                            //             color: "white",
+                            //             width: 48,
+                            //             height: 48,
+                            //         }}
+                            //     />
+                            //     &nbsp;
+                            <p
                                 style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
+                                    color: "white",
+                                    fontWeight: "bold",
+                                    fontSize: "larger",
                                 }}
                             >
-                                <FaUserSecret
-                                    style={{
-                                        color: "white",
-                                        width: 48,
-                                        height: 48,
-                                    }}
-                                />
-                                &nbsp;
-                                <p
-                                    style={{
-                                        color: "white",
-                                        fontWeight: "bold",
-                                        fontSize: "larger",
-                                    }}
-                                >
-                                    Secret Room
-                                </p>
-                            </div>
+                                Secret Room
+                            </p>
                         ) : (
+                            // </div>
                             <p
                                 style={{
                                     color: "white",
