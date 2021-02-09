@@ -78,17 +78,21 @@ class Labels extends AbstractLabels<Props, State> {
 
         return (
             <div className={className}>
-                <div id="conference type">
-                    {infoConf.getIsSecretRoom() ? (
+                {infoConf.getIsSecretRoom() ? (
+                    <div id="conference type">
                         <Tooltip content={"Secret Room"} position={"left"}>
-                            <CircularLabel id="type_secret" label={"SC"} />
+                            <CircularLabel
+                                style={{
+                                    background: "#1d4987",
+                                    border: "1px solid white",
+                                }}
+                                id="type_secret"
+                                label={"SC"}
+                            />
                         </Tooltip>
-                    ) : (
-                        <Tooltip content={"Normal Room"} position={"left"}>
-                            <CircularLabel id="type_normal" label={"NM"} />
-                        </Tooltip>
-                    )}
-                </div>
+                    </div>
+                ) : null}
+
                 {this._renderE2EELabel()}
                 {this._renderRecordingLabel(JitsiRecordingConstants.mode.FILE)}
                 {this._renderRecordingLabel(
