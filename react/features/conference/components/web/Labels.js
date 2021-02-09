@@ -81,15 +81,13 @@ class Labels extends AbstractLabels<Props, State> {
         return (
             <div className={className}>
                 {infoConf.getIsSecretRoom() ? (
-                    <div id="conference type">
-                        <Tooltip content={"Secret Room"} position={"left"}>
-                            <CircularLabel
-                                className={"secret"}
-                                // id="type_secret"
-                                label={"SC"}
-                            />
-                        </Tooltip>
-                    </div>
+                    <Tooltip content={"Secret Room"} position={"left"}>
+                        <CircularLabel
+                            className={"secret"}
+                            // id="type_secret"
+                            label={"SC"}
+                        />
+                    </Tooltip>
                 ) : null}
 
                 {this._renderE2EELabel()}
