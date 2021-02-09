@@ -1,13 +1,15 @@
 // @flow
 
-import { createStyleSheet } from "../../../base/styles";
+import { ColorPalette, createStyleSheet } from "../../../base/styles";
+
+export const SECRET_COLOR = ColorPalette.secret;
 
 export default createStyleSheet({
     /**
      * Style for the recording indicator.
      */
     secretCircleLabel: {
-        backgroundColor: "#1d4987",
+        backgroundColor: SECRET_COLOR,
         border: "1px solid white",
     },
 });

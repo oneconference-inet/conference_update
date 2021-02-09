@@ -80,6 +80,10 @@ class Labels extends AbstractLabels<Props, State> {
 
         return (
             <div className={className}>
+                {console.log(
+                    "styles.secretCircleLabel",
+                    styles.secretCircleLabel
+                )}
                 {infoConf.getIsSecretRoom() ? (
                     <div id="conference type">
                         <Tooltip content={"Secret Room"} position={"left"}>
