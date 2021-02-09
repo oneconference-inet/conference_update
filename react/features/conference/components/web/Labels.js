@@ -10,6 +10,8 @@ import AbstractLabels, {
     _abstractMapStateToProps as _mapStateToProps,
     type Props,
 } from "../AbstractLabels";
+
+import styles from "./styles";
 import infoConf from "../../../../../infoConference";
 
 declare var interfaceConfig: Object;
@@ -82,10 +84,7 @@ class Labels extends AbstractLabels<Props, State> {
                     <div id="conference type">
                         <Tooltip content={"Secret Room"} position={"left"}>
                             <CircularLabel
-                                style={{
-                                    background: "#1d4987",
-                                    border: "1px solid white",
-                                }}
+                                style={styles.secretCircleLabel}
                                 id="type_secret"
                                 label={"SC"}
                             />
