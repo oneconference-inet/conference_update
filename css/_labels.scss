@@ -6,7 +6,7 @@
     transition: right 0.5s;
     z-index: $filmstripVideosZ + 1;
 
-    .type_secret.circular-label {
+    #type_secret.circular-label {
         background: #1d4987;
         border: "1px solid white";
     }
