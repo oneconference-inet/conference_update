@@ -80,7 +80,7 @@ export default class AbstractMuteEveryoneDialog<
     _onSubmit() {
         const { dispatch, exclude } = this.props;
 
-        const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
+        const socket = socketIOClient(interfaceConfig.DOMAIN);
         const { track } = this._trackAudioMute(this.props);
         const data = {
             eventName: "trackMute",
