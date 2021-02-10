@@ -234,12 +234,6 @@ export async function createHandlers({ getState }: { getState: Function }) {
                 if (dataDecode.keyroom == keydb.data.key) {
                     infoConf.setConfirm();
                 }
-                // if (infoConf.getMuteAllState()) {
-                    console.log(
-                        "infoConf.getMuteAllState(): ",
-                        infoConf.getMuteAllState()
-                    );
-                // }
             } catch (error) {
                 console.error(
                     "Warring MeetingID Time out!! or Server is not defined ERROR: ",

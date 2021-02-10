@@ -88,7 +88,6 @@ export default class AbstractMuteEveryoneDialog<
             mute: track,
         };
 
-        console.log("track: ", track);
         if (track) {
             dispatch(muteAllParticipants(exclude));
             socket.emit("trackMute", data);

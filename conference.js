@@ -757,7 +757,6 @@ export default {
         var initialOptions = {};
         var media = infoUser.getOption();
         var hostMuteEveryone = false;
-        console.log("interfaceConfig.DOMAIN: ", interfaceConfig.DOMAIN);
 
         const socket = socketIOClient(interfaceConfig.DOMAIN);
         socket.emit("trackMute", {
@@ -767,10 +766,8 @@ export default {
 
         socket.on(infoConf.getMeetingId(), (mute) => {
             hostMuteEveryone = mute;
-            console.log("media.audio: ", hostMuteEveryone);
         });
 
-        console.log("!config.iAmRecorder: ", !config.iAmRecorder);
         if (!config.iAmRecorder) {
             // Only Voice
             if (hostMuteEveryone) {
