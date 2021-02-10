@@ -765,7 +765,7 @@ export default {
         });
 
         socket.on(infoConf.getMeetingId(), (mute) => {
-            media.audio = mute;
+            media.audio = !mute;
             console.log("media.audio: ", media.audio);
         });
         if (!config.iAmRecorder) {
