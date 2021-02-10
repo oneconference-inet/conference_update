@@ -768,6 +768,8 @@ export default {
             media.audio = !mute;
             console.log("media.audio: ", media.audio);
         });
+
+        console.log("!config.iAmRecorder: ", !config.iAmRecorder);
         if (!config.iAmRecorder) {
             // Only Voice
             initialOptions = {
