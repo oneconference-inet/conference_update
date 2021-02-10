@@ -756,6 +756,7 @@ export default {
     async init({ roomName }) {
         var initialOptions = {};
         var media = infoUser.getOption();
+        var hostMuteEveryone = false;
         console.log("interfaceConfig.DOMAIN: ", interfaceConfig.DOMAIN);
 
         const socket = socketIOClient(interfaceConfig.DOMAIN);
@@ -765,19 +766,28 @@ export default {
         });
 
         socket.on(infoConf.getMeetingId(), (mute) => {
-            media.audio = !mute;
-            console.log("media.audio: ", media.audio);
+            hostMuteEveryone = mute;
+            console.log("media.audio: ", hostMuteEveryone);
         });
 
         console.log("!config.iAmRecorder: ", !config.iAmRecorder);
         if (!config.iAmRecorder) {
             // Only Voice
-            initialOptions = {
-                startAudioOnly: config.startAudioOnly,
-                startScreenSharing: config.startScreenSharing,
-                startWithAudioMuted: media.audio ? false : true,
-                startWithVideoMuted: media.video ? false : true,
-            };
+            if (hostMuteEveryone) {
+                initialOptions = {
+                    startAudioOnly: config.startAudioOnly,
+                    startScreenSharing: config.startScreenSharing,
+                    startWithAudioMuted: true,
+                    startWithVideoMuted: media.video ? false : true,
+                };
+            } else {
+                initialOptions = {
+                    startAudioOnly: config.startAudioOnly,
+                    startScreenSharing: config.startScreenSharing,
+                    startWithAudioMuted: media.audio ? false : true,
+                    startWithVideoMuted: media.video ? false : true,
+                };
+            }
         } else {
             initialOptions = {
                 // Bot Setting
