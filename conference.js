@@ -744,6 +744,7 @@ export default {
   async init({ roomName }) {
     var initialOptions = {};
     var media = infoUser.getOption()
+    console.log("INITROOM: ",infoConf.getListInfo());
     if (!config.iAmRecorder) {
       // Only Voice
       initialOptions = {
