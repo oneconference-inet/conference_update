@@ -770,6 +770,7 @@ export default {
 
         if (!config.iAmRecorder) {
             // Only Voice
+            console.log("555555555555555555555: ", hostMuteEveryone);
             if (hostMuteEveryone) {
                 initialOptions = {
                     startAudioOnly: config.startAudioOnly,
