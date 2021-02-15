@@ -765,36 +765,37 @@ export default {
         });
 
         socket.on(infoConf.getMeetingId(), (mute) => {
+            console.log("555555555555555555555 mute: ", mute);
             hostMuteEveryone = mute;
-        });
 
-        if (!config.iAmRecorder) {
-            // Only Voice
-            console.log("555555555555555555555: ", hostMuteEveryone);
-            if (hostMuteEveryone) {
-                initialOptions = {
-                    startAudioOnly: config.startAudioOnly,
-                    startScreenSharing: config.startScreenSharing,
-                    startWithAudioMuted: true,
-                    startWithVideoMuted: media.video ? false : true,
-                };
+            if (!config.iAmRecorder) {
+                // Only Voice
+                console.log("555555555555555555555: ", hostMuteEveryone);
+                if (hostMuteEveryone) {
+                    initialOptions = {
+                        startAudioOnly: config.startAudioOnly,
+                        startScreenSharing: config.startScreenSharing,
+                        startWithAudioMuted: true,
+                        startWithVideoMuted: media.video ? false : true,
+                    };
+                } else {
+                    initialOptions = {
+                        startAudioOnly: config.startAudioOnly,
+                        startScreenSharing: config.startScreenSharing,
+                        startWithAudioMuted: media.audio ? false : true,
+                        startWithVideoMuted: media.video ? false : true,
+                    };
+                }
             } else {
                 initialOptions = {
-                    startAudioOnly: config.startAudioOnly,
-                    startScreenSharing: config.startScreenSharing,
-                    startWithAudioMuted: media.audio ? false : true,
-                    startWithVideoMuted: media.video ? false : true,
+                    // Bot Setting
+                    startAudioOnly: true,
+                    startScreenSharing: false,
+                    startWithAudioMuted: false,
+                    startWithVideoMuted: true,
                 };
             }
-        } else {
-            initialOptions = {
-                // Bot Setting
-                startAudioOnly: true,
-                startScreenSharing: false,
-                startWithAudioMuted: false,
-                startWithVideoMuted: true,
-            };
-        }
+        });
 
         this.roomName = roomName;
 
