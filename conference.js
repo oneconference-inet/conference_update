@@ -765,12 +765,10 @@ export default {
         });
 
         socket.on(infoConf.getMeetingId(), (mute) => {
-            console.log("555555555555555555555 mute: ", mute);
             hostMuteEveryone = mute;
 
             if (!config.iAmRecorder) {
                 // Only Voice
-                console.log("555555555555555555555: ", hostMuteEveryone);
                 if (hostMuteEveryone) {
                     initialOptions = {
                         startAudioOnly: config.startAudioOnly,
