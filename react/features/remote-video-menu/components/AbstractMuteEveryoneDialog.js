@@ -97,11 +97,11 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
             dispatch(muteAllParticipants(exclude));
             socket.emit('trackMute', data)
             infoConf.setMuteAllState(true)
-            _apiTrackmute(true)
+            this._apiTrackmute(true)
         } else {
             socket.emit('trackMute', data)
             infoConf.setMuteAllState(false)
-            _apiTrackmute(false)
+            this._apiTrackmute(false)
         }
 
         logger.info("trackMute state: ", track)
