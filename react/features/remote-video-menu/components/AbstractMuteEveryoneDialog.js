@@ -1,36 +1,40 @@
 // @flow
 
-import React from "react";
+import React from 'react';
 
-import { Dialog } from "../../base/dialog";
-import {
-    getLocalParticipant,
-    getParticipantDisplayName,
-} from "../../base/participants";
-import { muteAllParticipants } from "../actions";
+import { Dialog } from '../../base/dialog';
+import { getLocalParticipant, getParticipantDisplayName } from '../../base/participants';
+import { muteAllParticipants } from '../actions';
 
 import AbstractMuteRemoteParticipantDialog, {
-    type Props as AbstractProps,
-} from "./AbstractMuteRemoteParticipantDialog";
+    type Props as AbstractProps
+} from './AbstractMuteRemoteParticipantDialog';
 
-import infoConf from "../../../../infoConference";
-import socketIOClient from "socket.io-client";
+import axios from 'axios';
+import infoConf from '../../../../infoConference';
+import socketIOClient from 'socket.io-client';
+import Logger from 'jitsi-meet-logger';
+
+declare var interfaceConfig: Object;
+const logger = Logger.getLogger(__filename);
 
 /**
  * The type of the React {@code Component} props of
  * {@link AbstractMuteEveryoneDialog}.
  */
 export type Props = AbstractProps & {
+
     content: string,
     exclude: Array<string>,
-    title: string,
+    title: string
 };
 
 export type PropsTrack = {
+
     dialog: String,
 
-    track: boolean,
-};
+    track: boolean
+}
 
 /**
  *
@@ -39,12 +43,10 @@ export type PropsTrack = {
  *
  * @extends AbstractMuteRemoteParticipantDialog
  */
-export default class AbstractMuteEveryoneDialog<
-    P: Props
-> extends AbstractMuteRemoteParticipantDialog<P> {
+export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRemoteParticipantDialog<P> {
     static defaultProps = {
         exclude: [],
-        muteLocal: false,
+        muteLocal: false
     };
 
     /**
@@ -77,48 +79,61 @@ export default class AbstractMuteEveryoneDialog<
      *
      * @returns {boolean}
      */
-    _onSubmit() {
-        const { dispatch, exclude } = this.props;
+    async _onSubmit() {
+        const {
+            dispatch,
+            exclude
+        } = this.props;
 
-        const socket = socketIOClient(interfaceConfig.DOMAIN);
+        const socket = socketIOClient(interfaceConfig.SOCKET_NODE)
         const { track } = this._trackAudioMute(this.props);
         const data = {
-            eventName: "trackMute",
+            eventName: 'trackMute',
             meetingId: infoConf.getMeetingId(),
-            mute: track,
-        };
+            mute: track
+        }
 
         if (track) {
             dispatch(muteAllParticipants(exclude));
-            socket.emit("trackMute", data);
-            infoConf.setMuteAllState(true);
+            socket.emit('trackMute', data)
+            infoConf.setMuteAllState(true)
+            _apiTrackmute(true)
         } else {
-            socket.emit("trackMute", data);
-            infoConf.setMuteAllState(false);
+            socket.emit('trackMute', data)
+            infoConf.setMuteAllState(false)
+            _apiTrackmute(false)
         }
 
-        // dispatch(muteAllParticipants(exclude));
+        logger.info("trackMute state: ", track)
+        // dispatch(muteAllParticipants(exclude)); 
 
         return true;
     }
 
     _trackAudioMute(props): PropsTrack {
-        const { t } = props;
+        const { t } = props 
         const trackMuteAll = infoConf.getMuteAllState();
 
-        return !trackMuteAll
-            ? {
-                  dialog: t("dialog.muteParticipantButton"),
-                  _title: t("dialog.muteEveryoneTitle"),
-                  _content: t("dialog.muteEveryoneDialog"),
-                  track: true,
-              }
-            : {
-                  dialog: t("dialog.unMuteParticipantButton"),
-                  _title: t("dialog.trackUnmuteTitle"),
-                  _content: t("dialog.trackUnmuteContent"),
-                  track: false,
-              };
+        return !trackMuteAll ? {
+            dialog: t('dialog.muteParticipantButton'),
+            _title: t('dialog.muteEveryoneTitle'),
+            _content: t('dialog.muteEveryoneDialog'),
+            track: true
+        } : {
+            dialog: t('dialog.unMuteParticipantButton'),
+            _title: t('dialog.trackUnmuteTitle'),
+            _content: t('dialog.trackUnmuteContent'),
+            track: false
+        };
+    }
+
+    _apiTrackmute(mute) {
+        const meetingId = infoConf.getMeetingId()
+        try {
+            await axios.post(interfaceConfig.DOMAIN + '/trackMuteAll', { 'meetingId': meetingId , 'muteAll': mute })
+        } catch (error) {
+            logger.error('Error api track mute: ', error)
+        }
     }
 }
 
@@ -134,20 +149,16 @@ export function abstractMapStateToProps(state: Object, ownProps: Props) {
 
     const whom = exclude
         // eslint-disable-next-line no-confusing-arrow
-        .map((id) =>
-            id === getLocalParticipant(state).id
-                ? t("dialog.muteEveryoneSelf")
-                : getParticipantDisplayName(state, id)
-        )
-        .join(", ");
+        .map(id => id === getLocalParticipant(state).id
+            ? t('dialog.muteEveryoneSelf')
+            : getParticipantDisplayName(state, id))
+        .join(', ');
 
-    return whom.length
-        ? {
-              content: t("dialog.muteEveryoneElseDialog"),
-              title: t("dialog.muteEveryoneElseTitle", { whom }),
-          }
-        : {
-              content: t("dialog.muteEveryoneDialog"),
-              title: t("dialog.muteEveryoneTitle"),
-          };
+    return whom.length ? {
+        content: t('dialog.muteEveryoneElseDialog'),
+        title: t('dialog.muteEveryoneElseTitle', { whom })
+    } : {
+        content: t('dialog.muteEveryoneDialog'),
+        title: t('dialog.muteEveryoneTitle')
+    };
 }

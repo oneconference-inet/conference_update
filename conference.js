@@ -130,11 +130,13 @@ import { createPresenterEffect } from "./react/features/stream-effects/presenter
 import { endpointMessageReceived } from "./react/features/subtitles";
 import UIEvents from "./service/UI/UIEvents";
 import * as RemoteControlEvents from "./service/remotecontrol/RemoteControlEvents";
-import socketIOClient from "socket.io-client";
 
+import { setAudioMutedAll } from './react/features/base/media';
 import infoConf from "./infoConference";
 import infoUser from "./infoUser";
-import authXmpp from "./authXmpp";
+
+// import socketIOClient from "socket.io-client";
+// import authXmpp from "./authXmpp";
 
 const logger = Logger.getLogger(__filename);
 
@@ -755,46 +757,29 @@ export default {
     // };
     async init({ roomName }) {
         var initialOptions = {};
-        var media = infoUser.getOption();
-        var hostMuteEveryone = false;
-
-        const socket = socketIOClient(interfaceConfig.DOMAIN);
-        socket.emit("trackMute", {
-            eventName: "chkMute",
-            meetingId: infoConf.getMeetingId(),
-        });
-
-        socket.on(infoConf.getMeetingId(), (mute) => {
-            hostMuteEveryone = mute;
-
-            if (!config.iAmRecorder) {
-                // Only Voice
-                logger.info("hostMuteEveryone: ", hostMuteEveryone);
-                if (hostMuteEveryone) {
-                    initialOptions = {
-                        startAudioOnly: config.startAudioOnly,
-                        startScreenSharing: config.startScreenSharing,
-                        startWithAudioMuted: true,
-                        startWithVideoMuted: media.video ? false : true,
-                    };
-                } else {
-                    initialOptions = {
-                        startAudioOnly: config.startAudioOnly,
-                        startScreenSharing: config.startScreenSharing,
-                        startWithAudioMuted: media.audio ? false : true,
-                        startWithVideoMuted: media.video ? false : true,
-                    };
-                }
-            } else {
-                initialOptions = {
-                    // Bot Setting
-                    startAudioOnly: true,
-                    startScreenSharing: false,
-                    startWithAudioMuted: false,
-                    startWithVideoMuted: true,
-                };
-            }
-        });
+        // Check and Action trackMuteAll
+        var option = infoUser.getOption()
+        if (!config.iAmRecorder) {
+            initialOptions = {
+            startAudioOnly: config.startAudioOnly,
+            startScreenSharing: config.startScreenSharing,
+            startWithAudioMuted: option.audio && option.muteall ? false : true, // false = open , true = close
+            startWithVideoMuted: option.video ? false : true, // false = open , true = close
+            };
+        } else {
+            initialOptions = {
+            // Bot Setting
+            startAudioOnly: true,
+            startScreenSharing: false,
+            startWithAudioMuted: false,
+            startWithVideoMuted: true,
+            };
+        }
+        
+        if (option.muteall) {
+            APP.store.dispatch(setAudioMutedAll(option.muteall))
+        }
+        logger.info("Mute All State: ", option.muteall)
 
         this.roomName = roomName;
 

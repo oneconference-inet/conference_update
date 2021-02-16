@@ -306,7 +306,6 @@ class Toolbox extends Component<Props, State> {
         // On socket for Host
         logger.log('Moderator ONE-Conference On Socket-for-Feature')
         socket.emit('createRoom', { meetingId: meetingid, roomname: roomname, name: name });
-        // console.log(APP.store.getState())
         socket.on(meetingid, (payload) => {
             switch(payload.eventName) {
                 case 'pollResponse':
