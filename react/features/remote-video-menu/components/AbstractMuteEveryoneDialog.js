@@ -79,7 +79,7 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
      *
      * @returns {boolean}
      */
-    async _onSubmit() {
+    _onSubmit() {
         const {
             dispatch,
             exclude
@@ -127,7 +127,7 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
         };
     }
 
-    _apiTrackmute(mute) {
+    async _apiTrackmute(mute) {
         const meetingId = infoConf.getMeetingId()
         try {
             await axios.post(interfaceConfig.DOMAIN + '/trackMuteAll', { 'meetingId': meetingId , 'muteAll': mute })
