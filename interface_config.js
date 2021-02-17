@@ -16,6 +16,7 @@ var interfaceConfig = {
     // 'https://oneconf-dev3.cloudns.asia/images/watermark.png',
     EDIT_NAME: false,
     DECODE_TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvbmVjb25mZXJlbmNlIiwibmFtZSI6Im9uZWNvbmZlcmVuY2VAaW5ldCEiLCJpYXQiOjE1MTYyMzkwMjJ9.76dYYbFS1Hlv9vfu2hZ31a3qwA4p_5jYuLqYiBiHPmw',
+    SERVICE_IMP: ['onechat', 'ManageAi', 'onebinar', 'Emeeting'],
     // service Intregate ['oneconference','onechat','ManageAi','onemail']
     SERVICE_INVITE_FEATURE: ['oneconference'],
     SERVICE_RECORD_FEATURE: ['oneconference'],
