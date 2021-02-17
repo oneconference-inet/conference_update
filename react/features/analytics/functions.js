@@ -210,7 +210,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
                         {
                             meetingid: dataDecode.meetingId,
                             name: dataDecode.nickname,
-                            clientname: "onechat",
+                            clientname: dataDecode.service,
                         }
                     );
                 } else if (dataDecode.service == "onemail") {
