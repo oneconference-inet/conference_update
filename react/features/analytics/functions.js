@@ -203,7 +203,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             infoUser.setUserId(dataDecode.clientid);
             try {
                 let keydb;
-                if (dataDecode.service == "onechat") {
+                if (service_imp.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
