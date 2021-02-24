@@ -149,6 +149,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             infoConf.setIsSecretRoom(dataDecode.secretroom);
             infoUser.setOption(dataDecode.option);
             infoUser.setName(dataDecode.nickname);
+            infoUser.setRedirect(dataDecode.redirect);
             infoUser.setUserId(dataDecode.clientid);
             authXmpp.setUser(dataDecode.userXmpAuth);
             authXmpp.setPass(dataDecode.passXmpAuth);

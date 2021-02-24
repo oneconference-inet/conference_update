@@ -1,49 +1,60 @@
 var userInfo = {
-    name: '',
-    userId: '',
+    name: "",
+    userId: "",
     option: {},
-    iAmRecorder: false
-  }
+    iAmRecorder: false,
+    redirect: "",
+};
 
-  function setName(name) {
-      userInfo.name = name
-  }
+function setName(name) {
+    userInfo.name = name;
+}
 
-  function setUserId(id) {
-      userInfo.userId = id
-  }
+function setUserId(id) {
+    userInfo.userId = id;
+}
 
-  function setOption(option) {
-      userInfo.option = option
-  }
+function setOption(option) {
+    userInfo.option = option;
+}
 
-  function setiAmRecord () {
-      userInfo.iAmRecorder = true
-  }
+function setiAmRecord() {
+    userInfo.iAmRecorder = true;
+}
 
-  function getName () {
+function setRedirect(link) {
+    userInfo.redirect = link;
+}
+
+function getName() {
     return userInfo.name;
-  }
-  
-  function getUserId () {
+}
+
+function getUserId() {
     return userInfo.userId;
-  }
+}
 
-  function getOption () {
+function getOption() {
     return userInfo.option;
-  }
+}
 
-  function getiAmRecord () {
+function getiAmRecord() {
     return userInfo.iAmRecorder;
-  }
+}
 
-  export default {
+function getRedirect(link) {
+    return userInfo.redirect;
+}
+
+export default {
     setName,
     setUserId,
     setOption,
     setiAmRecord,
+    setRedirect,
     getName,
     getUserId,
     getOption,
-    getiAmRecord
-  }
+    getiAmRecord,
+    getRedirect,
+};

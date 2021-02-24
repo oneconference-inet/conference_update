@@ -12,6 +12,8 @@ import {
 } from "./actionTypes";
 import { FeedbackDialog } from "./components";
 
+import infoUser from "../../../infoUser";
+
 declare var config: Object;
 declare var interfaceConfig: Object;
 
@@ -138,7 +140,7 @@ export function submitFeedback(
       message: message,
       room: room,
     })
-    .then((res) => (window.location.href = interfaceConfig.DOMAIN + "/main"));
+    .then((res) => (window.location.href = infoUser.getRedirect()));
 
   // return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)
   //     .then(
