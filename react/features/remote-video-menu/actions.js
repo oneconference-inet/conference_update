@@ -63,13 +63,14 @@ export function muteRemote(participantId: string) {
 
 export function muteLocalDisabled(enable: boolean) {
     return (dispatch: Dispatch<any>) => {
-        sendAnalytics(createToolbarEvent(AUDIO_MUTE, { enable }));
+        // sendAnalytics(createToolbarEvent(AUDIO_MUTE, { enable }));
+        console.log("enableenable ",enable);
         dispatch(setAudioMutedAll(enable));
 
         // FIXME: The old conference logic as well as the shared video feature
         // still rely on this event being emitted.
-        typeof APP === "undefined" ||
-            APP.UI.emitEvent(UIEvents.AUDIO_MUTED, enable, true);
+        // typeof APP === "undefined" ||
+        //     APP.UI.emitEvent(UIEvents.AUDIO_MUTED, enable, true);
     };
 }
 
