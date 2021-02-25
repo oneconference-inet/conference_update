@@ -153,6 +153,7 @@ function _mapStateToProps(state): Object {
     const _audioMuted = isLocalTrackMuted(state['features/base/tracks'], MEDIA_TYPE.AUDIO);
     const _disabled = state['features/base/config'].startSilent || trackMuteAll;
 
+    console.log("trackMuteAll: ",trackMuteAll);
     return {
         _audioMuted,
         _disabled
