@@ -37,6 +37,7 @@ export function hideRemoteVideoMenu() {
  * @returns {Function}
  */
 export function muteLocal(enable: boolean) {
+    console.log("muteLocalmuteLocal");
     return (dispatch: Dispatch<any>) => {
         sendAnalytics(createToolbarEvent(AUDIO_MUTE, { enable }));
         dispatch(setAudioMuted(enable, /* ensureTrack */ true));
