@@ -87,6 +87,7 @@ export function muteAllParticipants(exclude: Array<string>,mute) {
             (p) => p.id
         );
 
+        console.log("mutemute: ", mute);
         /* eslint-disable no-confusing-arrow */
         participantIds
             .filter((id) => !exclude.includes(id))
