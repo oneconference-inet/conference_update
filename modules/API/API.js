@@ -85,7 +85,7 @@ function initCommands() {
                 .filter(participant => participant.role === 'moderator')
                 .map(participant => participant.id);
 
-            APP.store.dispatch(muteAllParticipants(localIds,true));
+            APP.store.dispatch(muteAllParticipants(localIds));
         },
         'toggle-lobby': isLobbyEnabled => {
             APP.store.dispatch(toggleLobbyMode(isLobbyEnabled));

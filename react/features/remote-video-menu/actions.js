@@ -37,10 +37,10 @@ export function hideRemoteVideoMenu() {
  * @returns {Function}
  */
 export function muteLocal(enable: boolean) {
-    console.log("muteLocalmuteLocal");
     return (dispatch: Dispatch<any>) => {
         sendAnalytics(createToolbarEvent(AUDIO_MUTE, { enable }));
-        dispatch(setAudioMuted(enable, /* ensureTrack */ true));
+        console.log("setAudioMutedAllsetAudioMutedAll");
+        dispatch(setAudioMutedAll(enable));
 
         // FIXME: The old conference logic as well as the shared video feature
         // still rely on this event being emitted.
@@ -68,7 +68,7 @@ export function muteRemote(participantId: string) {
  * @param {Array<string>} exclude - Array of participant IDs to not mute.
  * @returns {Function}
  */
-export function muteAllParticipants(exclude: Array<string>,mute) {
+export function muteAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
         const localId = getLocalParticipant(state).id;
@@ -76,11 +76,10 @@ export function muteAllParticipants(exclude: Array<string>,mute) {
             (p) => p.id
         );
 
-        console.log("mutemute: ", mute);
         /* eslint-disable no-confusing-arrow */
         participantIds
             .filter((id) => !exclude.includes(id))
-            .map((id) => (id === localId ? muteLocal(mute) : muteRemote(id)))
+            .map((id) => (id === localId ? muteLocal(true) : muteRemote(id)))
             .map(dispatch);
         /* eslint-enable no-confusing-arrow */
     };
