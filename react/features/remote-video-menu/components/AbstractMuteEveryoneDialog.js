@@ -98,12 +98,10 @@ export default class AbstractMuteEveryoneDialog<
             socket.emit("trackMute", data);
             infoConf.setMuteAllState(true);
             this._apiTrackmute(true);
-            APP.store.dispatch(setAudioMutedAll(true));
         } else {
             socket.emit("trackMute", data);
             infoConf.setMuteAllState(false);
             this._apiTrackmute(false);
-            APP.store.dispatch(setAudioMutedAll(false));
         }
 
         logger.info("trackMute state: ", track);
