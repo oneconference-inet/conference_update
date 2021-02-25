@@ -96,8 +96,9 @@ export default class AbstractMuteEveryoneDialog<
         };
 
         logger.info("exclude: ", exclude, " Track: ", track);
+        dispatch(muteAllParticipants(exclude,track));
+
         if (track) {
-            dispatch(muteAllParticipants(exclude));
             socket.emit("trackMute", data);
             infoConf.setMuteAllState(true);
             this._apiTrackmute(true);

@@ -79,7 +79,7 @@ export function muteLocalDisabled(enable: boolean) {
  * @param {Array<string>} exclude - Array of participant IDs to not mute.
  * @returns {Function}
  */
-export function muteAllParticipants(exclude: Array<string>) {
+export function muteAllParticipants(exclude: Array<string>,mute) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
         const localId = getLocalParticipant(state).id;
@@ -90,7 +90,7 @@ export function muteAllParticipants(exclude: Array<string>) {
         /* eslint-disable no-confusing-arrow */
         participantIds
             .filter((id) => !exclude.includes(id))
-            .map((id) => (id === localId ? muteLocalDisabled(true) : muteRemote(id)))
+            .map((id) => (id === localId ? muteLocalDisabled(mute) : muteRemote(id)))
             .map(dispatch);
         /* eslint-enable no-confusing-arrow */
     };
