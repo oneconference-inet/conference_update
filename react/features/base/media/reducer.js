@@ -58,8 +58,7 @@ function _audio(state = _AUDIO_INITIAL_MEDIA_STATE, action) {
     case SET_AUDIO_MUTED:
         return {
             ...state,
-            muted: action.muted,
-            stateMuteAll: action.stateMuteAll
+            muted: action.muted
         };
     case SET_AUDIO_MUTED_ALL:
         return {

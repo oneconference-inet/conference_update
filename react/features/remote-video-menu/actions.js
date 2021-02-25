@@ -9,7 +9,7 @@ import {
     sendAnalytics,
 } from "../analytics";
 import { hideDialog } from "../base/dialog";
-import { setAudioMuted } from "../base/media";
+import { setAudioMuted, setAudioMutedAll } from "../base/media";
 import {
     getLocalParticipant,
     muteRemoteParticipant,
@@ -39,7 +39,7 @@ export function hideRemoteVideoMenu() {
 export function muteLocal(enable: boolean) {
     return (dispatch: Dispatch<any>) => {
         sendAnalytics(createToolbarEvent(AUDIO_MUTE, { enable }));
-        dispatch(setAudioMuted(enable, /* ensureTrack */ true,enable));
+        dispatch(setAudioMuted(enable, /* ensureTrack */ true));
 
         // FIXME: The old conference logic as well as the shared video feature
         // still rely on this event being emitted.
@@ -61,13 +61,25 @@ export function muteRemote(participantId: string) {
     };
 }
 
+export function muteLocalDisabled(enable: boolean) {
+    return (dispatch: Dispatch<any>) => {
+        sendAnalytics(createToolbarEvent(AUDIO_MUTE, { enable }));
+        dispatch(setAudioMutedAll(enable));
+
+        // FIXME: The old conference logic as well as the shared video feature
+        // still rely on this event being emitted.
+        typeof APP === "undefined" ||
+            APP.UI.emitEvent(UIEvents.AUDIO_MUTED, enable, true);
+    };
+}
+
 /**
  * Mutes all participants.
  *
  * @param {Array<string>} exclude - Array of participant IDs to not mute.
  * @returns {Function}
  */
-export function muteAllParticipants(exclude: Array<string>,mute) {
+export function muteAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
         const localId = getLocalParticipant(state).id;
@@ -78,7 +90,7 @@ export function muteAllParticipants(exclude: Array<string>,mute) {
         /* eslint-disable no-confusing-arrow */
         participantIds
             .filter((id) => !exclude.includes(id))
-            .map((id) => (id === localId ? muteLocal(mute) : muteRemote(id)))
+            .map((id) => (id === localId ? muteLocalDisabled(true) : muteRemote(id)))
             .map(dispatch);
         /* eslint-enable no-confusing-arrow */
     };
