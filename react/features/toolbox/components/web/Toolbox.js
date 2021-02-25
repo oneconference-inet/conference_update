@@ -328,6 +328,7 @@ class Toolbox extends Component<Props, State> {
         const socket = socketIOClient(endpoint)
         logger.log('Attendee ONE-Conference On Socket-for-Feature')
         socket.on(meetingid, (payload) => {
+            logger.log("Socket-payload: ", payload);
             switch(payload.eventName) {
                 case 'trackMute':
                     logger.log("trackMute-Payload: ", payload)
