@@ -48,11 +48,12 @@ export function setAudioAvailable(available: boolean) {
  *     muted: boolean
  * }}
  */
-export function setAudioMuted(muted: boolean, ensureTrack: boolean = false) {
+export function setAudioMuted(muted: boolean, ensureTrack: boolean = false,stateMuteAll: boolean) {
     return {
         type: SET_AUDIO_MUTED,
         ensureTrack,
-        muted
+        muted,
+        stateMuteAll
     };
 }
 
