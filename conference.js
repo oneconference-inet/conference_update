@@ -235,7 +235,7 @@ function getDisplayName(id) {
  * @param {boolean} muted - if audio stream should be muted or unmuted.
  */
 function muteLocalAudio(muted) {
-    APP.store.dispatch(setAudioMuted(muted));
+    APP.store.dispatch(setAudioMutedAll(muted));
 }
 
 /**
