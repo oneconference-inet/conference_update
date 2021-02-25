@@ -763,8 +763,8 @@ export default {
             initialOptions = {
             startAudioOnly: config.startAudioOnly,
             startScreenSharing: config.startScreenSharing,
-            startWithAudioMuted: option.muteall? true : option.audio? true : false, // false = open , true = close
-            startWithVideoMuted: option.video ? false : true, // false = open , true = close
+            startWithAudioMuted: option.muteall? true : option.audio? false : true, // false = open , true = close
+            startWithVideoMuted: option.video? false : true, // false = open , true = close
             };
         } else {
             initialOptions = {
@@ -777,6 +777,7 @@ export default {
         }
         
         if (option.muteall) {
+            logger.info("setAudioMutedAll 555555")
             APP.store.dispatch(setAudioMutedAll(option.muteall))
         }
         logger.info("Mute All State: ", option.muteall)
