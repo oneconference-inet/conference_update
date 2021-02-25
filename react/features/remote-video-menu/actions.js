@@ -62,19 +62,6 @@ export function muteRemote(participantId: string) {
     };
 }
 
-export function muteLocalDisabled(enable: boolean) {
-    return (dispatch: Dispatch<any>) => {
-        // sendAnalytics(createToolbarEvent(AUDIO_MUTE, { enable }));
-        console.log("enableenable ",enable);
-        dispatch(setAudioMutedAll(enable));
-
-        // FIXME: The old conference logic as well as the shared video feature
-        // still rely on this event being emitted.
-        // typeof APP === "undefined" ||
-        //     APP.UI.emitEvent(UIEvents.AUDIO_MUTED, enable, true);
-    };
-}
-
 /**
  * Mutes all participants.
  *
@@ -93,7 +80,7 @@ export function muteAllParticipants(exclude: Array<string>,mute) {
         /* eslint-disable no-confusing-arrow */
         participantIds
             .filter((id) => !exclude.includes(id))
-            .map((id) => (id === localId ? muteLocalDisabled(mute) : muteRemote(id)))
+            .map((id) => (id === localId ? muteLocal(mute) : muteRemote(id)))
             .map(dispatch);
         /* eslint-enable no-confusing-arrow */
     };
