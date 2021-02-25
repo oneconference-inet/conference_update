@@ -9,7 +9,7 @@ import {
     sendAnalytics,
 } from "../analytics";
 import { hideDialog } from "../base/dialog";
-import { setAudioMuted,setAudioMutedAll } from "../base/media";
+import { setAudioMuted } from "../base/media";
 import {
     getLocalParticipant,
     muteRemoteParticipant,
@@ -18,7 +18,6 @@ import {
 import { RemoteVideoMenu } from "./components";
 
 import { kickParticipant } from "../base/participants";
-import logger from "../base/redux/logger";
 
 declare var APP: Object;
 
@@ -68,19 +67,6 @@ export function muteRemote(participantId: string) {
  * @param {Array<string>} exclude - Array of participant IDs to not mute.
  * @returns {Function}
  */
-
-export function muteLocalDisabled(enable: boolean) {
-    logger.info("muteLocalDisabled")
-    return (dispatch: Dispatch<any>) => {
-        dispatch(setAudioMutedAll(enable));
-
-        // FIXME: The old conference logic as well as the shared video feature
-        // still rely on this event being emitted.
-        // typeof APP === "undefined" ||
-        //     APP.UI.emitEvent(UIEvents.AUDIO_MUTED, enable, true);
-    };
-}
-
 export function muteAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
@@ -92,7 +78,7 @@ export function muteAllParticipants(exclude: Array<string>) {
         /* eslint-disable no-confusing-arrow */
         participantIds
             .filter((id) => !exclude.includes(id))
-            .map((id) => (id === localId ? muteLocalDisabled(true) : muteRemote(id)))
+            .map((id) => (id === localId ? muteLocal(true) : muteRemote(id)))
             .map(dispatch);
         /* eslint-enable no-confusing-arrow */
     };
