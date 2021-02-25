@@ -777,7 +777,6 @@ export default {
         }
         
         if (option.muteall) {
-            logger.info("setAudioMutedAll 555555")
             APP.store.dispatch(setAudioMutedAll(option.muteall))
         }
         logger.info("Mute All State: ", option.muteall)

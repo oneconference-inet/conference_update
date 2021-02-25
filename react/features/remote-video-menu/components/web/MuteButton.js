@@ -50,7 +50,6 @@ class MuteButton extends AbstractMuteButton {
             muteClassName: 'mutelink'
         };
 
-        console.log("muteConfig: ",muteConfig);
         return (
             <RemoteVideoMenuButton
                 buttonText = { t(muteConfig.translationKey) }

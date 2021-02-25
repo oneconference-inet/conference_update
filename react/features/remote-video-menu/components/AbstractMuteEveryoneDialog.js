@@ -18,6 +18,8 @@ import infoConf from "../../../../infoConference";
 import socketIOClient from "socket.io-client";
 import Logger from "jitsi-meet-logger";
 
+import { setAudioMutedAll } from '../../../../react/features/base/media';
+
 declare var interfaceConfig: Object;
 const logger = Logger.getLogger(__filename);
 
@@ -99,10 +101,12 @@ export default class AbstractMuteEveryoneDialog<
             socket.emit("trackMute", data);
             infoConf.setMuteAllState(true);
             this._apiTrackmute(true);
+            dispatch(setAudioMutedAll(true))
         } else {
             socket.emit("trackMute", data);
             infoConf.setMuteAllState(false);
             this._apiTrackmute(false);
+            dispatch(setAudioMutedAll(false))
         }
 
         logger.info("trackMute state: ", track);
