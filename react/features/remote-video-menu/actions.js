@@ -9,7 +9,7 @@ import {
     sendAnalytics,
 } from "../analytics";
 import { hideDialog } from "../base/dialog";
-import { setAudioMuted, setAudioMutedAll } from "../base/media";
+import { setAudioMuted,setAudioMutedAll } from "../base/media";
 import {
     getLocalParticipant,
     muteRemoteParticipant,
@@ -37,9 +37,9 @@ export function hideRemoteVideoMenu() {
  * @returns {Function}
  */
 export function muteLocal(enable: boolean) {
+    console.log("setAudioMutedAllsetAudioMutedAll");
     return (dispatch: Dispatch<any>) => {
         sendAnalytics(createToolbarEvent(AUDIO_MUTE, { enable }));
-        console.log("setAudioMutedAllsetAudioMutedAll");
         dispatch(setAudioMutedAll(enable));
 
         // FIXME: The old conference logic as well as the shared video feature
