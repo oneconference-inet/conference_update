@@ -1397,8 +1397,7 @@ class Toolbox extends Component<Props, State> {
         if (this._shouldShowButton('note')) {
             buttonsLeft.push('note');
         }
-        if (this._shouldShowButton('desktop')
-                && this._isDesktopSharingButtonVisible()) {
+        if (this._shouldShowButton('desktop')) {
             buttonsLeft.push('desktop');
         }
         if (this._shouldShowButton('raisehand')) {
