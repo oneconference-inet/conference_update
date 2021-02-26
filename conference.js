@@ -743,14 +743,14 @@ export default {
   // };
   async init({ roomName }) {
     var initialOptions = {};
-    var media = infoUser.getOption()
+    var option = infoUser.getOption()
     if (!config.iAmRecorder) {
       // Only Voice
       initialOptions = {
         startAudioOnly: config.startAudioOnly,
         startScreenSharing: config.startScreenSharing,
-        startWithAudioMuted: media.audio ? false : true,
-        startWithVideoMuted: media.video ? false : true,
+        startWithAudioMuted: option.muteall? true : option.audio? false : true, // false = open , true = close
+        startWithVideoMuted: option.video? false : true, // false = open , true = close
       };
     } else {
       initialOptions = {
