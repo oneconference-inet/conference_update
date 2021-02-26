@@ -10,9 +10,8 @@ import { connect } from '../../base/redux';
 import { AbstractHangupButton } from '../../base/toolbox/components';
 import type { AbstractButtonProps } from '../../base/toolbox/components';
 
-import axios from 'axios';
-import infoConf from '../../../../infoConference';
-import infoUser from '../../../../infoUser';
+import infoConf from '../../../../infoConference'
+import infoUser from '../../../../infoUser'
 
 declare var interfaceConfig: Object;
 
