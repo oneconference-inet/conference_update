@@ -1057,7 +1057,7 @@ class Toolbox extends Component<Props, State> {
      * overflow menu.
      * @returns {ReactElement|null}
      */
-    _renderDesktopSharingButton(isInOverflowMenu = true) {
+    _renderDesktopSharingButton(isInOverflowMenu = false) {
         const {
             _desktopSharingEnabled,
             _desktopSharingDisabledTooltipKey,
