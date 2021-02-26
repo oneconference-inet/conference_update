@@ -10,8 +10,13 @@ import AbstractMuteRemoteParticipantDialog, {
     type Props as AbstractProps
 } from './AbstractMuteRemoteParticipantDialog';
 
+import axios from "axios";
 import infoConf from '../../../../infoConference';
 import socketIOClient from 'socket.io-client';
+import Logger from "jitsi-meet-logger";
+
+declare var interfaceConfig: Object;
+const logger = Logger.getLogger(__filename);
 
 /**
  * The type of the React {@code Component} props of
@@ -92,11 +97,14 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
             dispatch(muteAllParticipants(exclude));
             socket.emit('trackMute', data)
             infoConf.setMuteAllState(true)
+            this._apiTrackmute(true);
         } else {
             socket.emit('trackMute', data)
             infoConf.setMuteAllState(false)
+            this._apiTrackmute(false);
         }
 
+        logger.info("trackMute state: ", track);
         // dispatch(muteAllParticipants(exclude)); 
 
         return true;
@@ -117,6 +125,18 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
             _content: t('dialog.trackUnmuteContent'),
             track: false
         };
+    }
+
+    async _apiTrackmute(mute) {
+        const meetingId = infoConf.getMeetingId();
+        try {
+            await axios.post(interfaceConfig.DOMAIN + "/trackMuteAll", {
+                meetingId: meetingId,
+                muteAll: mute,
+            });
+        } catch (error) {
+            logger.error("Error api track mute: ", error);
+        }
     }
 }
 
