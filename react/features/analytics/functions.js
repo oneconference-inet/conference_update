@@ -135,7 +135,6 @@ export async function createHandlers({ getState }: { getState: Function }) {
     if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);
         infoConf.setRoomName(dataDecode.roomname);
-        infoConf.setIsSecretRoom(dataDecode.secretroom);
         sessionStorage.setItem(
             "token_Access",
             tokenDecode || sessionStorage.getItem("token_Access")
@@ -147,6 +146,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             // Moderator
             infoConf.setNameJoin(dataDecode.nickname);
             infoConf.setIsModerator();
+            infoConf.setIsSecretRoom(dataDecode.secretroom);
             infoUser.setOption(dataDecode.option);
             infoUser.setName(dataDecode.nickname);
             infoUser.setUserId(dataDecode.clientid);
@@ -197,6 +197,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             meetingIdForCheck == dataDecode.meetingId
         ) {
             // Attendee
+            infoConf.setIsSecretRoom(dataDecode.secretroom);
             infoConf.setNameJoin(dataDecode.nickname);
             infoUser.setOption(dataDecode.option);
             infoUser.setName(dataDecode.nickname);
