@@ -1,6 +1,8 @@
 // @flow
 
 import React from 'react';
+import Tooltip from "@atlaskit/tooltip";
+import { CircularLabel } from "../../../base/label";
 
 import { JitsiRecordingConstants } from '../../../base/lib-jitsi-meet';
 import { connect } from '../../../base/redux';
@@ -9,8 +11,9 @@ import AbstractLabels, {
     type Props
 } from '../AbstractLabels';
 
-declare var interfaceConfig: Object;
+import infoConf from "../../../../../infoConference";
 
+declare var interfaceConfig: Object;
 /**
  * The type of the React {@code Component} state of {@link Labels}.
  */
@@ -75,6 +78,16 @@ class Labels extends AbstractLabels<Props, State> {
 
         return (
             <div className = { className } >
+                {infoConf.getIsSecretRoom() ? (
+                    <Tooltip content={"Secret Room"} position={"left"}>
+                        <CircularLabel
+                            className={"secret"}
+                            // id="type_secret"
+                            label={"SC"}
+                        />
+                    </Tooltip>
+                ) : null}
+                
                 {
                     this._renderE2EELabel()
                 }

@@ -146,6 +146,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             // Moderator
             infoConf.setNameJoin(dataDecode.nickname);
             infoConf.setIsModerator();
+            infoConf.setIsSecretRoom(dataDecode.secretroom);
             infoUser.setOption(dataDecode.option);
             infoUser.setName(dataDecode.nickname);
             infoUser.setUserId(dataDecode.clientid);

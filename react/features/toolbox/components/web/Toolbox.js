@@ -306,7 +306,6 @@ class Toolbox extends Component<Props, State> {
         // On socket for Host
         logger.log('Moderator ONE-Conference On Socket-for-Feature')
         socket.emit('createRoom', { meetingId: meetingid, roomname: roomname, name: name });
-        // console.log(APP.store.getState())
         socket.on(meetingid, (payload) => {
             switch(payload.eventName) {
                 case 'pollResponse':
@@ -329,6 +328,7 @@ class Toolbox extends Component<Props, State> {
         const socket = socketIOClient(endpoint)
         logger.log('Attendee ONE-Conference On Socket-for-Feature')
         socket.on(meetingid, (payload) => {
+            logger.log("Socket-payload: ", payload);
             switch(payload.eventName) {
                 case 'trackMute':
                     logger.log("trackMute-Payload: ", payload)
@@ -1397,12 +1397,8 @@ class Toolbox extends Component<Props, State> {
         if (this._shouldShowButton('note')) {
             buttonsLeft.push('note');
         }
-        if (this._shouldShowButton('desktop')
-                && this._isDesktopSharingButtonVisible()) {
-            const isModerator = infoConf.getIsModerator();
-            if (isModerator) {
-                buttonsLeft.push('desktop');
-            }
+        if (this._shouldShowButton('desktop')) {
+            buttonsLeft.push('desktop');
         }
         if (this._shouldShowButton('raisehand')) {
             buttonsLeft.push('raisehand');
