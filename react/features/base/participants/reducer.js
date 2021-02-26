@@ -85,13 +85,13 @@ ReducerRegistry.register("features/base/participants", (state = [], action) => {
             // the app and "leaves" at the end of the app).
             const { conference, id } = action.participant;
             
-            const socket = socketIOClient(interfaceConfig.DOMAIN);
-            socket.emit("left", {
-                status: "left",
-                meeting_id: infoConf.getMeetingId(),
-                count: state.length - 1,
-                user_id: infoUser.getUserId(),
-            });
+            // const socket = socketIOClient(interfaceConfig.DOMAIN);
+            // socket.emit("left", {
+            //     status: "left",
+            //     meeting_id: infoConf.getMeetingId(),
+            //     count: state.length - 1,
+            //     user_id: infoUser.getUserId(),
+            // });
 
             return state.filter(
                 (p) =>

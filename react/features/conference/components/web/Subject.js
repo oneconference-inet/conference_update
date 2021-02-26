@@ -82,19 +82,19 @@ class Subject extends Component<Props> {
 
     componentDidMount() {
         // Activate the event listener
-        const socket = socketIOClient(interfaceConfig.DOMAIN);
-        socket.emit("status", {
-            status: "created",
-            meeting_id: infoConf.getMeetingId(),
-            user_id: infoUser.getUserId(),
-        });
+        // const socket = socketIOClient(interfaceConfig.DOMAIN);
+        // socket.emit("status", {
+        //     status: "created",
+        //     meeting_id: infoConf.getMeetingId(),
+        //     user_id: infoUser.getUserId(),
+        // });
 
-        socket.emit("join", {
-            status: "join",
-            meeting_id: infoConf.getMeetingId(),
-            count: this.props.count,
-            user_id: infoUser.getUserId(),
-        });
+        // socket.emit("join", {
+        //     status: "join",
+        //     meeting_id: infoConf.getMeetingId(),
+        //     count: this.props.count,
+        //     user_id: infoUser.getUserId(),
+        // });
 
         window.addEventListener(
             "beforeunload",
@@ -112,19 +112,19 @@ class Subject extends Component<Props> {
         } = this.props;
 
         if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-            const socket = socketIOClient(interfaceConfig.DOMAIN);
-            socket.emit("status", {
-                status: "refresh",
-                meeting_id: infoConf.getMeetingId(),
-                count: this.props.count,
-                user_id: infoUser.getUserId(),
-            });
+            // const socket = socketIOClient(interfaceConfig.DOMAIN);
+            // socket.emit("status", {
+            //     status: "refresh",
+            //     meeting_id: infoConf.getMeetingId(),
+            //     count: this.props.count,
+            //     user_id: infoUser.getUserId(),
+            // });
         } else {
-            const socket = socketIOClient(interfaceConfig.DOMAIN);
-            socket.emit("open session", {
-                status: "open session",
-                meeting_id: infoConf.getMeetingId(),
-            });
+            // const socket = socketIOClient(interfaceConfig.DOMAIN);
+            // socket.emit("open session", {
+            //     status: "open session",
+            //     meeting_id: infoConf.getMeetingId(),
+            // });
         }
 
         return (
