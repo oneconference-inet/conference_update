@@ -25,7 +25,6 @@ import type { AbstractProps } from "../AbstractConference";
 
 import Labels from "./Labels";
 import { default as Notice } from "./Notice";
-import { FaUserSecret } from "react-icons/fa";
 
 declare var APP: Object;
 declare var interfaceConfig: Object;
