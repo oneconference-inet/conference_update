@@ -131,6 +131,8 @@ import { endpointMessageReceived } from "./react/features/subtitles";
 import UIEvents from "./service/UI/UIEvents";
 import * as RemoteControlEvents from "./service/remotecontrol/RemoteControlEvents";
 
+import { setAudioMutedAll } from './react/features/base/media';
+
 import infoConf from "./infoConference";
 import infoUser from "./infoUser";
 import authXmpp from "./authXmpp";
@@ -745,22 +747,25 @@ export default {
     var initialOptions = {};
     var media = infoUser.getOption()
     if (!config.iAmRecorder) {
-      // Only Voice
       initialOptions = {
-        startAudioOnly: config.startAudioOnly,
-        startScreenSharing: config.startScreenSharing,
-        startWithAudioMuted: media.audio ? false : true,
-        startWithVideoMuted: media.video ? false : true,
+      startAudioOnly: config.startAudioOnly,
+      startScreenSharing: config.startScreenSharing,
+      startWithAudioMuted: option.muteall? true : option.audio? false : true, // false = open , true = close
+      startWithVideoMuted: option.video? false : true, // false = open , true = close
       };
-    } else {
+  } else {
       initialOptions = {
-        // Bot Setting
-        startAudioOnly: true,
-        startScreenSharing: false,
-        startWithAudioMuted: false,
-        startWithVideoMuted: true,
+      // Bot Setting
+      startAudioOnly: true,
+      startScreenSharing: false,
+      startWithAudioMuted: false,
+      startWithVideoMuted: true,
       };
-    }
+  }
+  
+  if (option.muteall) {
+      APP.store.dispatch(setAudioMutedAll(option.muteall))
+  }
 
     this.roomName = roomName;
 

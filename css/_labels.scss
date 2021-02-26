@@ -17,26 +17,31 @@
     }
 
     .circular-label {
-        background: #B8C7E0;
+        background: #b8c7e0;
+    }
+
+    .circular-label.secret {
+        background: #1d4987;
+        border: 2px solid white;
     }
 
     .circular-label.e2ee {
         align-items: center;
-        background: #76CF9C;
+        background: #76cf9c;
         display: flex;
         justify-content: center;
     }
 
     .circular-label.file {
-        background: #FF5630;
+        background: #ff5630;
     }
 
     .circular-label.local-rec {
-        background: #FF5630;
+        background: #ff5630;
     }
 
     .circular-label.stream {
-        background: #0065FF;
+        background: #0065ff;
     }
 
     .circular-label.insecure {
