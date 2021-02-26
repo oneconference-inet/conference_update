@@ -25,6 +25,7 @@ import CryptoJS from "crypto-js";
 import axios from "axios";
 
 declare var APP: Object;
+declare var interfaceConfig: Object;
 
 /**
  * Sends an event through the lib-jitsi-meet AnalyticsAdapter interface.
@@ -128,6 +129,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
     const tokenDecode = locationURL.href.split("?")[1];
     const dataDecode = decode(tokenDecode, repeatAccess);
     const tokenAccess = Boolean(tokenDecode != undefined || repeatAccess);
+    const int_service = interfaceConfig.SERVICE_INT;
     logger.log("Data Decode: ", dataDecode);
     // console.log("token Access: ", tokenAccess);
     if (dataDecode != undefined && tokenAccess) {
@@ -151,7 +153,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             authXmpp.setPass(dataDecode.passXmpAuth);
             try {
                 let keydb;
-                if (dataDecode.service == "onechat") {
+                if (int_service.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
@@ -200,7 +202,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             infoUser.setUserId(dataDecode.clientid);
             try {
                 let keydb;
-                if (dataDecode.service == "onechat") {
+                if (int_service.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
