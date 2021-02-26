@@ -74,6 +74,7 @@ import {
   setAudioMuted,
   setVideoAvailable,
   setVideoMuted,
+  setAudioMutedAll
 } from "./react/features/base/media";
 import {
   dominantSpeakerChanged,
