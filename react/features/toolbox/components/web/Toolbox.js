@@ -1399,10 +1399,7 @@ class Toolbox extends Component<Props, State> {
         }
         if (this._shouldShowButton('desktop')
                 && this._isDesktopSharingButtonVisible()) {
-            const isModerator = infoConf.getIsModerator();
-            if (isModerator) {
-                buttonsLeft.push('desktop');
-            }
+            buttonsLeft.push('desktop');
         }
         if (this._shouldShowButton('raisehand')) {
             buttonsLeft.push('raisehand');
