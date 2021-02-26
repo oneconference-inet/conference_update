@@ -28,10 +28,6 @@ import type { AbstractProps } from '../AbstractConference';
 import Labels from './Labels';
 import { default as Notice } from './Notice';
 
-import Tooltip from "@atlaskit/tooltip";
-import { CircularLabel } from "../../../base/label";
-import infoConf from "../../../../../infoConference";
-
 declare var APP: Object;
 declare var interfaceConfig: Object;
 
@@ -199,16 +195,6 @@ class Conference extends AbstractConference<Props, *> {
                     <KnockingParticipantList />
                     <Filmstrip />
                     { hideLabels || <Labels /> }
-                    {infoConf.getIsSecretRoom() ? (
-                            <Tooltip content={"Secret Room"} position={"left"}>
-                                <CircularLabel
-                                    className={"secret"}
-                                    // id="type_secret"
-                                    label={"SC"}
-                                />
-                            </Tooltip>
-                        ) : null
-                    }
                 </div>
 
                 { _showPrejoin || _isLobbyScreenVisible || <Toolbox /> }
