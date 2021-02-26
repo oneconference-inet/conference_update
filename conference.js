@@ -762,6 +762,11 @@ export default {
       };
     }
 
+    if (option.muteall) {
+      APP.store.dispatch(setAudioMutedAll(option.muteall))
+    }
+    logger.info("Mute All State: ", option.muteall)
+  
     this.roomName = roomName;
 
     try {
