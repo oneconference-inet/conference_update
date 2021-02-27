@@ -763,8 +763,8 @@ export default {
             initialOptions = {
             startAudioOnly: config.startAudioOnly,
             startScreenSharing: config.startScreenSharing,
-            startWithAudioMuted: option.audio && option.muteall ? false : true, // false = open , true = close
-            startWithVideoMuted: option.video ? false : true, // false = open , true = close
+            startWithAudioMuted: option.muteall? true : option.audio? false : true, // false = open , true = close
+            startWithVideoMuted: option.video? false : true, // false = open , true = close
             };
         } else {
             initialOptions = {
