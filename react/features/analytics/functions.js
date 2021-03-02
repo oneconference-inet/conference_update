@@ -131,7 +131,10 @@ export async function createHandlers({ getState }: { getState: Function }) {
     const tokenAccess = Boolean(tokenDecode != undefined || repeatAccess);
     const int_service = interfaceConfig.SERVICE_INT;
     logger.log("Data Decode: ", dataDecode);
+
     // console.log("token Access: ", tokenAccess);
+    logger.log('XXXXX YYYYY ZZZZZ');
+
     if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);
         infoConf.setRoomName(dataDecode.roomname);
