@@ -133,7 +133,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
     logger.log("Data Decode: ", dataDecode);
 
     // console.log("token Access: ", tokenAccess);
-    logger.log('XXXXX YYYYY ZZZZZ');
+    logger.log('XYZXYZXYZXYZXYZ');
 
     if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);
