@@ -205,6 +205,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             infoUser.setOption(dataDecode.option);
             infoUser.setName(dataDecode.nickname);
             infoUser.setUserId(dataDecode.clientid);
+            infoUser.setRedirect(dataDecode.redirect);
             try {
                 let keydb;
                 if (int_service.includes(dataDecode.service)) {
