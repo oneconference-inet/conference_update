@@ -32,9 +32,10 @@ import axios from "axios";
  * }}
  */
 export function cancelFeedback(score: number, message: string) {
-  window.location.href = infoConf.getIsHostHangup()
-    ? interfaceConfig.DOMAIN + "/main"
-    : infoUser.getRedirect();
+  console.log("infoConf.getIsHostHangup(): ",infoConf.getIsHostHangup());
+  // window.location.href = infoConf.getIsHostHangup()
+  //   ? interfaceConfig.DOMAIN + "/main"
+  //   : infoUser.getRedirect();
   return {
     type: CANCEL_FEEDBACK,
     message,
