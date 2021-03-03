@@ -12,6 +12,9 @@ import {
 } from "./actionTypes";
 import { FeedbackDialog } from "./components";
 
+import infoUser from "../../../infoUser";
+import infoConf from "../../../infoConference";
+
 declare var config: Object;
 declare var interfaceConfig: Object;
 
@@ -29,7 +32,9 @@ import axios from "axios";
  * }}
  */
 export function cancelFeedback(score: number, message: string) {
-  window.location.href = interfaceConfig.DOMAIN + "/main";
+  window.location.href = infoConf.getIsHostHangup()
+    ? interfaceConfig.DOMAIN + "/main"
+    : infoUser.getRedirect();
   return {
     type: CANCEL_FEEDBACK,
     message,
@@ -138,7 +143,12 @@ export function submitFeedback(
       message: message,
       room: room,
     })
-    .then((res) => (window.location.href = interfaceConfig.DOMAIN + "/main"));
+    .then(
+      (res) =>
+      (window.location.href = infoConf.getIsHostHangup()
+        ? interfaceConfig.DOMAIN + "/main"
+        : infoUser.getRedirect())
+    );
 
   // return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)
   //     .then(

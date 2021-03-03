@@ -129,11 +129,10 @@ export async function createHandlers({ getState }: { getState: Function }) {
     const tokenDecode = locationURL.href.split("?")[1];
     const dataDecode = decode(tokenDecode, repeatAccess);
     const tokenAccess = Boolean(tokenDecode != undefined || repeatAccess);
-    const int_service = interfaceConfig.SERVICE_INT;
+    var service_imp = interfaceConfig.SERVICE_IMP
     logger.log("Data Decode: ", dataDecode);
 
-    // console.log("token Access: ", tokenAccess);
-    logger.log('XYZXYZXYZXYZXYZ');
+    // console.log("token Access: ", tokenAccess);    
 
     if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);
@@ -152,12 +151,13 @@ export async function createHandlers({ getState }: { getState: Function }) {
             infoConf.setIsSecretRoom(dataDecode.secretRoom);
             infoUser.setOption(dataDecode.option);
             infoUser.setName(dataDecode.nickname);
+            infoUser.setRedirect(dataDecode.redirect);
             infoUser.setUserId(dataDecode.clientid);
             authXmpp.setUser(dataDecode.userXmpAuth);
             authXmpp.setPass(dataDecode.passXmpAuth);
             try {
                 let keydb;
-                if (int_service.includes(dataDecode.service)) {
+                if (service_imp.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
@@ -207,14 +207,14 @@ export async function createHandlers({ getState }: { getState: Function }) {
             infoUser.setUserId(dataDecode.clientid);
             try {
                 let keydb;
-                if (int_service.includes(dataDecode.service)) {
+                if (service_imp.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
                         {
                             meetingid: dataDecode.meetingId,
                             name: dataDecode.nickname,
-                            clientname: "onechat",
+                            clientname: dataDecode.service,
                         }
                     );
                 } else if (dataDecode.service == "onemail") {

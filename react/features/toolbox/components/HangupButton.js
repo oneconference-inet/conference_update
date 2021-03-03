@@ -1,18 +1,18 @@
 // @flow
 
-import _ from 'lodash';
+import _ from "lodash";
 
-import { createToolbarEvent, sendAnalytics } from '../../analytics';
-import { appNavigate } from '../../app/actions';
-import { disconnect } from '../../base/connection';
-import { translate } from '../../base/i18n';
-import { connect } from '../../base/redux';
-import { AbstractHangupButton } from '../../base/toolbox/components';
-import type { AbstractButtonProps } from '../../base/toolbox/components';
+import { createToolbarEvent, sendAnalytics } from "../../analytics";
+import { appNavigate } from "../../app/actions";
+import { disconnect } from "../../base/connection";
+import { translate } from "../../base/i18n";
+import { connect } from "../../base/redux";
+import { AbstractHangupButton } from "../../base/toolbox/components";
+import type { AbstractButtonProps } from "../../base/toolbox/components";
 
-import axios from 'axios';
-import infoConf from '../../../../infoConference';
-import infoUser from '../../../../infoUser';
+import axios from "axios";
+import infoConf from "../../../../infoConference";
+import infoUser from "../../../../infoUser";
 
 declare var interfaceConfig: Object;
 
@@ -20,11 +20,10 @@ declare var interfaceConfig: Object;
  * The type of the React {@code Component} props of {@link HangupButton}.
  */
 type Props = AbstractButtonProps & {
-
     /**
      * The redux {@code dispatch} function.
      */
-    dispatch: Function
+    dispatch: Function,
 };
 
 /**
@@ -35,9 +34,9 @@ type Props = AbstractButtonProps & {
 class HangupButton extends AbstractHangupButton<Props, *> {
     _hangup: Function;
 
-    accessibilityLabel = 'toolbar.accessibilityLabel.hangup';
-    label = 'toolbar.hangup';
-    tooltip = 'toolbar.hangup';
+    accessibilityLabel = "toolbar.accessibilityLabel.hangup";
+    label = "toolbar.hangup";
+    tooltip = "toolbar.hangup";
 
     /**
      * Initializes a new HangupButton instance.
@@ -49,10 +48,10 @@ class HangupButton extends AbstractHangupButton<Props, *> {
         super(props);
 
         this._hangup = _.once(() => {
-            sendAnalytics(createToolbarEvent('hangup'));
-            this._endJoin()
+            sendAnalytics(createToolbarEvent("hangup"));
+            this._endJoin();
             // FIXME: these should be unified.
-            if (navigator.product === 'ReactNative') {
+            if (navigator.product === "ReactNative") {
                 this.props.dispatch(appNavigate(undefined));
             } else {
                 this.props.dispatch(disconnect(true));
@@ -67,20 +66,51 @@ class HangupButton extends AbstractHangupButton<Props, *> {
             const nameJoin = infoUser.getName();
             const userId = infoUser.getUserId();
 
-            if (service == 'onechat') {
-                await axios.post(domainEnd + '/service/endjoin', { meetingid: meetingId, name: nameJoin, clientname: 'onechat'})
-            } else if (service == 'ManageAi') {
-                await axios.post(domainEnd + '/service/endjoin', { meetingid: meetingId, name: nameJoin, clientname: 'ManageAi'})
-            } else if (service == 'onemail') {
+            if (isModerator) {
+                infoConf.setIsHostHangup();
+            }
+
+            if (service == "onechat") {
+                await axios.post(domainEnd + "/service/endjoin", {
+                    meetingid: meetingId,
+                    name: nameJoin,
+                    clientname: "onechat",
+                });
+            } else if (service == "ManageAi") {
+                await axios.post(domainEnd + "/service/endjoin", {
+                    meetingid: meetingId,
+                    name: nameJoin,
+                    clientname: "ManageAi",
+                });
+            } else if (service == "onemail") {
                 if (isModerator) {
-                    await axios.post(interfaceConfig.DOMAIN_ONEMAIL + '/api/v1/oneconf/service/hangup', { meeting_id: meetingId, user_id: userId, clientname: 'onemail'})
+                    await axios.post(
+                        interfaceConfig.DOMAIN_ONEMAIL +
+                        "/api/v1/oneconf/service/hangup",
+                        {
+                            meeting_id: meetingId,
+                            user_id: userId,
+                            clientname: "onemail",
+                        }
+                    );
                 } else {
-                    await axios.post(interfaceConfig.DOMAIN_ONEMAIL + '/api/v1/oneconf/service/hangup', { meeting_id: meetingId, user_id: userId, clientname: 'onemail'})
+                    await axios.post(
+                        interfaceConfig.DOMAIN_ONEMAIL +
+                        "/api/v1/oneconf/service/hangup",
+                        {
+                            meeting_id: meetingId,
+                            user_id: userId,
+                            clientname: "onemail",
+                        }
+                    );
                 }
             } else {
-                await axios.post(interfaceConfig.DOMAIN + '/endJoin' , { user_id: userId ,meeting_id: meetingId })
+                await axios.post(interfaceConfig.DOMAIN + "/endJoin", {
+                    user_id: userId,
+                    meeting_id: meetingId,
+                });
             }
-        }
+        };
     }
 
     /**
