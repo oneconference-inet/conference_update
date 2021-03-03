@@ -129,7 +129,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
     const tokenDecode = locationURL.href.split("?")[1];
     const dataDecode = decode(tokenDecode, repeatAccess);
     const tokenAccess = Boolean(tokenDecode != undefined || repeatAccess);
-    var service_imp = interfaceConfig.SERVICE_IMP
+    const int_service = interfaceConfig.SERVICE_INT;
     logger.log("Data Decode: ", dataDecode);
 
     // console.log("token Access: ", tokenAccess);    
@@ -157,7 +157,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             authXmpp.setPass(dataDecode.passXmpAuth);
             try {
                 let keydb;
-                if (service_imp.includes(dataDecode.service)) {
+                if (int_service.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
@@ -207,7 +207,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             infoUser.setUserId(dataDecode.clientid);
             try {
                 let keydb;
-                if (service_imp.includes(dataDecode.service)) {
+                if (int_service.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
