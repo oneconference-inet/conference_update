@@ -1153,19 +1153,19 @@ class Toolbox extends Component<Props, State> {
                     key = 'fullscreen'
                     onClick = { this._onToolbarToggleFullScreen }
                     text = { _fullScreen ? t('toolbar.exitFullScreen') : t('toolbar.enterFullScreen') } />,
-            <LiveStreamButton
-                key = 'livestreaming'
-                showLabel = { true } />,
+            // <LiveStreamButton
+            //     key = 'livestreaming'
+            //     showLabel = { true } />,
             <RecordButton
                 key = 'record'
                 showLabel = { true } />,
-            this._shouldShowButton('sharedvideo')
-                && <OverflowMenuItem
-                    accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
-                    icon = { IconShareVideo }
-                    key = 'sharedvideo'
-                    onClick = { this._onToolbarToggleSharedVideo }
-                    text = { _sharingVideo ? t('toolbar.stopSharedVideo') : t('toolbar.sharedvideo') } />,
+            // this._shouldShowButton('sharedvideo')
+            //     && <OverflowMenuItem
+            //         accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
+            //         icon = { IconShareVideo }
+            //         key = 'sharedvideo'
+            //         onClick = { this._onToolbarToggleSharedVideo }
+            //         text = { _sharingVideo ? t('toolbar.stopSharedVideo') : t('toolbar.sharedvideo') } />,
             // this._shouldShowButton('etherpad')
             //     && <SharedDocumentButton
             //         key = 'etherpad'
@@ -1418,9 +1418,9 @@ class Toolbox extends Component<Props, State> {
                 buttonsRight.push('invite');
             }
         }
-        if (this._shouldShowButton('security') || this._shouldShowButton('info')) {
-            buttonsRight.push('security');
-        }
+        // if (this._shouldShowButton('security') || this._shouldShowButton('info')) {
+        //     buttonsRight.push('security');
+        // }
 
         if (this._shouldShowButton('tileview')) {
             buttonsRight.push('tileview');
