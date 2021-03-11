@@ -76,7 +76,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     name: nameJoin,
                     clientname: "onechat",
                 });
-            } else if (service == "ManageAi") {
+            } else if (service == "manageAi") {
                 await axios.post(domainEnd + "/service/endjoin", {
                     meetingid: meetingId,
                     name: nameJoin,
