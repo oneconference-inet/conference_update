@@ -99,7 +99,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             if (service == "onechat") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
                 await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), clientname: service })
-            } else if (service == "ManageAi") {
+            } else if (service == "manageAi") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
                 await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), clientname: service })
             } else if (service == "onemail") {
