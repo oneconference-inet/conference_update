@@ -1156,7 +1156,7 @@ class Toolbox extends Component<Props, State> {
             // <LiveStreamButton
             //     key = 'livestreaming'
             //     showLabel = { true } />,
-            infoConf.getService() === "" ? <RecordButton
+            infoConf.getService() === "oneconference" ? <RecordButton
                 key = 'record'
                 showLabel = { true } />
                 :
