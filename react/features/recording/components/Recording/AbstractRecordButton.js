@@ -147,15 +147,15 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
 
         visible = isModerator && fileRecordingsEnabled;
 
-        if (enableFeaturesBasedOnToken) {
-            visible = visible && String(features.recording) === 'true';
-            _disabled = String(features.recording) === 'disabled';
-            if (!visible && !_disabled) {
-                _disabled = true;
-                visible = true;
-                _tooltip = 'dialog.recordingDisabledTooltip';
-            }
-        }
+        // if (enableFeaturesBasedOnToken) {
+        //     visible = visible && String(features.recording) === 'true';
+        //     _disabled = String(features.recording) === 'disabled';
+        //     if (!visible && !_disabled) {
+        //         _disabled = true;
+        //         visible = true;
+        //         _tooltip = 'dialog.recordingDisabledTooltip';
+        //     }
+        // }
     }
 
     // disable the button if the livestreaming is running.

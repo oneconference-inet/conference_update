@@ -193,10 +193,10 @@ class StartRecordingDialogContent extends Component<Props> {
                     controlDisabled ? styles.controlDisabled : null
                 ] }>
                 <Container className = 'recording-icon-container'>
-                    {/* <Image
+                    <Image
                         className = 'recording-icon'
                         src = { ONECON_LOGO }
-                        style = { styles.recordingIcon } /> */}
+                        style = { styles.recordingIcon } />
                 </Container>
                 <Text
                     className = 'recording-title'
