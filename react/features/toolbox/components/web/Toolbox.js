@@ -413,14 +413,17 @@ class Toolbox extends Component<Props, State> {
         window.addEventListener('resize', this._onResize);
 
         //Recording when start conference
-        this.props._conference.startRecording({
-            mode: JitsiRecordingConstants.mode.FILE,
-            appData: {
-                'file_recording_metadata': {
-                    'share': true
+        setTimeout(() => {
+            this.props._conference.startRecording({
+                mode: JitsiRecordingConstants.mode.FILE,
+                appData: {
+                    'file_recording_metadata': {
+                        'share': true
+                    }
                 }
-            }
-        });
+            });
+        }, 5000);
+      
     }
 
     /**
