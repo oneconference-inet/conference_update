@@ -97,7 +97,13 @@ import { onSocketReqJoin, setLobbyModeEnabled } from '../../../lobby';
 import infoConf from '../../../../../infoConference';
 import socketIOClient from 'socket.io-client';
 import axios from 'axios';
+
 import { JitsiRecordingConstants } from '../../../base/lib-jitsi-meet';
+import {
+    createRecordingDialogEvent,
+    sendAnalytics
+} from '../../../analytics';
+import { RECORDING_TYPES } from '../../../recording/constants';
 
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
@@ -366,6 +372,10 @@ class Toolbox extends Component<Props, State> {
 
                 //Recording when start conference
                 setTimeout(() => {
+                    sendAnalytics(
+                        createRecordingDialogEvent('start', 'confirm.button', {type: RECORDING_TYPES.JITSI_REC_SERVICE})
+                    );
+
                     this.props._conference.startRecording({
                         mode: JitsiRecordingConstants.mode.FILE,
                         appData: {

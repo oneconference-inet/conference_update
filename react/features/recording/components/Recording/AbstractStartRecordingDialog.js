@@ -282,7 +282,6 @@ class AbstractStartRecordingDialog extends Component<Props, State> {
             appData
         });
 
-        console.log("_autoCaptionOnRecord: ",_autoCaptionOnRecord);
         if (_autoCaptionOnRecord) {
             dispatch(toggleRequestingSubtitles());
         }
