@@ -369,10 +369,6 @@ class Toolbox extends Component<Props, State> {
 
                 //Recording when start conference
                 setTimeout(() => {
-                    sendAnalytics(
-                        createRecordingDialogEvent('start', 'confirm.button', {type: RECORDING_TYPES.JITSI_REC_SERVICE})
-                    );
-
                     this.props._conference.startRecording({
                         mode: JitsiRecordingConstants.mode.FILE,
                         appData: {
@@ -381,7 +377,7 @@ class Toolbox extends Component<Props, State> {
                             }
                         }
                     });
-                }, 10000);
+                }, 5000);
             } else {
                 this.onAttendee(this.state);
             }
