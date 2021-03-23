@@ -368,8 +368,6 @@ class Toolbox extends Component<Props, State> {
                 this.onSocketHost(this.state);
 
                 //Recording when start conference
-                sendAnalytics(createRecordingEvent('start', "file"));
-
                 setTimeout(() => {
                     this.props._conference.startRecording({
                         mode: JitsiRecordingConstants.mode.FILE,

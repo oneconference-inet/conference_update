@@ -9,7 +9,7 @@ import {
 
 const DEFAULT_STATE = {
     pendingNotificationUids: {},
-    sessionDatas: []
+    sessionDatas: [{id: "nadokhvdcraxomzm"}]
 };
 
 /**
