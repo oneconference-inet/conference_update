@@ -368,7 +368,7 @@ class Toolbox extends Component<Props, State> {
                 this.onSocketHost(this.state);
 
                 //Recording when start conference
-                appData = JSON.stringify({
+                let appData = JSON.stringify({
                     'file_recording_metadata': {
                         'share': this.state.sharingEnabled
                     }
