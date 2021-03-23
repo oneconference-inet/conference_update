@@ -15,7 +15,7 @@ import { RECORDING_STATUS_PRIORITIES } from './constants';
 export function getActiveSession(state: Object, mode: string) {
     const { sessionDatas } = state['features/recording'];
     const { status: statusConstants } = JitsiRecordingConstants;
-    console.log("getActiveSession: ",mode);
+
     return sessionDatas.find(sessionData => sessionData.mode === mode
         && (sessionData.status === statusConstants.ON
             || sessionData.status === statusConstants.PENDING));
@@ -42,7 +42,6 @@ export function getRecordingDurationEstimation(size: ?number) {
  * @returns {Object|undefined}
  */
 export function getSessionById(state: Object, id: string) {
-    console.log("getSessionById: ", id);
     return state['features/recording'].sessionDatas.find(
         sessionData => sessionData.id === id);
 }

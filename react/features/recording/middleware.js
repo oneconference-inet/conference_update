@@ -69,6 +69,7 @@ StateListenerRegistry.register(
 MiddlewareRegistry.register(({ dispatch, getState }) => next => action => {
     let oldSessionData;
 
+    console.log("getState()",getState());
     if (action.type === RECORDING_SESSION_UPDATED) {
         oldSessionData
             = getSessionById(getState(), action.sessionData.id);
