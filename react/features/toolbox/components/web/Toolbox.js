@@ -6,7 +6,8 @@ import {
     ACTION_SHORTCUT_TRIGGERED,
     createShortcutEvent,
     createToolbarEvent,
-    sendAnalytics
+    sendAnalytics,
+    createRecordingDialogEvent
 } from '../../../analytics';
 import { openDialog, toggleDialog } from '../../../base/dialog';
 import { isMobileBrowser } from '../../../base/environment/utils';
@@ -99,10 +100,6 @@ import socketIOClient from 'socket.io-client';
 import axios from 'axios';
 
 import { JitsiRecordingConstants } from '../../../base/lib-jitsi-meet';
-import {
-    createRecordingDialogEvent,
-    sendAnalytics
-} from '../../../analytics';
 import { RECORDING_TYPES } from '../../../recording/constants';
 
 /**
