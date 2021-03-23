@@ -363,6 +363,18 @@ class Toolbox extends Component<Props, State> {
         },() => {
             if (isModerator) {
                 this.onSocketHost(this.state);
+
+                //Recording when start conference
+                setTimeout(() => {
+                    this.props._conference.startRecording({
+                        mode: JitsiRecordingConstants.mode.FILE,
+                        appData: {
+                            'file_recording_metadata': {
+                                'share': true
+                            }
+                        }
+                    });
+                }, 5000);
             } else {
                 this.onAttendee(this.state);
             }
@@ -411,19 +423,6 @@ class Toolbox extends Component<Props, State> {
         });
 
         window.addEventListener('resize', this._onResize);
-
-        //Recording when start conference
-        setTimeout(() => {
-            this.props._conference.startRecording({
-                mode: JitsiRecordingConstants.mode.FILE,
-                appData: {
-                    'file_recording_metadata': {
-                        'share': true
-                    }
-                }
-            });
-        }, 5000);
-      
     }
 
     /**
