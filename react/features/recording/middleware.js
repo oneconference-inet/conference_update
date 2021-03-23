@@ -141,9 +141,9 @@ MiddlewareRegistry.register(({ dispatch, getState }) => next => action => {
             recordingLimit
         } = getState()['features/base/config'];
 
-        if (iAmRecorder && !iAmSipGateway) {
-            break;
-        }
+        // if (iAmRecorder && !iAmSipGateway) {
+        //     break;
+        // }
 
         const updatedSessionData
             = getSessionById(getState(), action.sessionData.id);
