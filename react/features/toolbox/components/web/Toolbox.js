@@ -1156,7 +1156,7 @@ class Toolbox extends Component<Props, State> {
             // <LiveStreamButton
             //     key = 'livestreaming'
             //     showLabel = { true } />,
-            infoConf.getService() === "" ? <RecordButton
+            infoConf.getService() === "oneconference" ? <RecordButton
                 key = 'record'
                 showLabel = { true } />
                 :
@@ -1176,10 +1176,10 @@ class Toolbox extends Component<Props, State> {
                 key = 'videobackgroundblur'
                 showLabel = { true }
                 visible = { this._shouldShowButton('videobackgroundblur') && !_screensharing } />,
-            <SettingsButton
-                key = 'settings'
-                showLabel = { true }
-                visible = { this._shouldShowButton('settings') } />,
+            // <SettingsButton
+            //     key = 'settings'
+            //     showLabel = { true }
+            //     visible = { this._shouldShowButton('settings') } />,
             <MuteEveryoneButton
                 key = 'mute-everyone'
                 showLabel = { true }
