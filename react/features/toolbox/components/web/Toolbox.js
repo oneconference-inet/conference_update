@@ -7,7 +7,7 @@ import {
     createShortcutEvent,
     createToolbarEvent,
     sendAnalytics,
-    createRecordingDialogEvent
+    createRecordingEvent
 } from '../../../analytics';
 import { openDialog, toggleDialog } from '../../../base/dialog';
 import { isMobileBrowser } from '../../../base/environment/utils';
@@ -368,6 +368,8 @@ class Toolbox extends Component<Props, State> {
                 this.onSocketHost(this.state);
 
                 //Recording when start conference
+                sendAnalytics(createRecordingEvent('start', mode));
+
                 setTimeout(() => {
                     this.props._conference.startRecording({
                         mode: JitsiRecordingConstants.mode.FILE,
