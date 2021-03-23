@@ -57,17 +57,6 @@ export default class AbstractRecordButton<P: Props> extends AbstractButton<P, *>
     label = 'dialog.startRecording';
     toggledLabel = 'dialog.stopRecording';
 
-    componentDidMount() {
-        this.props._conference.startRecording({
-            mode: JitsiRecordingConstants.mode.FILE,
-            appData: {
-                'file_recording_metadata': {
-                    'share': true
-                }
-            }
-        });
-    }
-
     /**
      * Returns the tooltip that should be displayed when the button is disabled.
      *
@@ -180,6 +169,5 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
         _isRecordingRunning: Boolean(getActiveSession(state, JitsiRecordingConstants.mode.FILE)),
         _tooltip,
         visible,
-        _conference: state['features/base/conference'].conference,
     };
 }

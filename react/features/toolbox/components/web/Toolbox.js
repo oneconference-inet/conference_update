@@ -97,6 +97,7 @@ import { onSocketReqJoin, setLobbyModeEnabled } from '../../../lobby';
 import infoConf from '../../../../../infoConference';
 import socketIOClient from 'socket.io-client';
 import axios from 'axios';
+import { JitsiRecordingConstants } from '../../../base/lib-jitsi-meet';
 
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
@@ -410,6 +411,16 @@ class Toolbox extends Component<Props, State> {
         });
 
         window.addEventListener('resize', this._onResize);
+
+        //Recording when start conference
+        this.props._conference.startRecording({
+            mode: JitsiRecordingConstants.mode.FILE,
+            appData: {
+                'file_recording_metadata': {
+                    'share': true
+                }
+            }
+        });
     }
 
     /**
@@ -1614,7 +1625,8 @@ function _mapStateToProps(state) {
             || sharedVideoStatus === 'start'
             || sharedVideoStatus === 'pause',
         _visible: isToolboxVisible(state),
-        _visibleButtons: equals(visibleButtons, buttons) ? visibleButtons : buttons
+        _visibleButtons: equals(visibleButtons, buttons) ? visibleButtons : buttons,
+        _conference: state['features/base/conference'].conference,
     };
 }
 
