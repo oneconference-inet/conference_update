@@ -273,9 +273,9 @@ class AbstractStartRecordingDialog extends Component<Props, State> {
             attributes.type = RECORDING_TYPES.JITSI_REC_SERVICE;
         }
 
-        // sendAnalytics(
-        //     createRecordingDialogEvent('start', 'confirm.button', attributes)
-        // );
+        sendAnalytics(
+            createRecordingDialogEvent('start', 'confirm.button', attributes)
+        );
 
         _conference.startRecording({
             mode: JitsiRecordingConstants.mode.FILE,
