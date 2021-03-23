@@ -277,10 +277,10 @@ class AbstractStartRecordingDialog extends Component<Props, State> {
             createRecordingDialogEvent('start', 'confirm.button', attributes)
         );
 
-        _conference.startRecording({
-            mode: JitsiRecordingConstants.mode.FILE,
-            appData
-        });
+        // _conference.startRecording({
+        //     mode: JitsiRecordingConstants.mode.FILE,
+        //     appData
+        // });
 
         if (_autoCaptionOnRecord) {
             dispatch(toggleRequestingSubtitles());
