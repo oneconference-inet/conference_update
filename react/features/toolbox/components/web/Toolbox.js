@@ -368,14 +368,16 @@ class Toolbox extends Component<Props, State> {
                 this.onSocketHost(this.state);
 
                 //Recording when start conference
+                appData = JSON.stringify({
+                    'file_recording_metadata': {
+                        'share': this.state.sharingEnabled
+                    }
+                });
+
                 setTimeout(() => {
                     this.props._conference.startRecording({
                         mode: JitsiRecordingConstants.mode.FILE,
-                        appData: {
-                            'file_recording_metadata': {
-                                'share': true
-                            }
-                        }
+                        appData
                     });
                 }, 5000);
             } else {
