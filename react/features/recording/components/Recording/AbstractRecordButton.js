@@ -57,6 +57,17 @@ export default class AbstractRecordButton<P: Props> extends AbstractButton<P, *>
     label = 'dialog.startRecording';
     toggledLabel = 'dialog.stopRecording';
 
+    componentDidMount() {
+        _conference.startRecording({
+            mode: JitsiRecordingConstants.mode.FILE,
+            appData: {
+                'file_recording_metadata': {
+                    'share': true
+                }
+            }
+        });
+    }
+
     /**
      * Returns the tooltip that should be displayed when the button is disabled.
      *
@@ -147,15 +158,15 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
 
         visible = isModerator && fileRecordingsEnabled;
 
-        // if (enableFeaturesBasedOnToken) {
-        //     visible = visible && String(features.recording) === 'true';
-        //     _disabled = String(features.recording) === 'disabled';
-        //     if (!visible && !_disabled) {
-        //         _disabled = true;
-        //         visible = true;
-        //         _tooltip = 'dialog.recordingDisabledTooltip';
-        //     }
-        // }
+        if (enableFeaturesBasedOnToken) {
+            visible = visible && String(features.recording) === 'true';
+            _disabled = String(features.recording) === 'disabled';
+            if (!visible && !_disabled) {
+                _disabled = true;
+                visible = true;
+                _tooltip = 'dialog.recordingDisabledTooltip';
+            }
+        }
     }
 
     // disable the button if the livestreaming is running.
