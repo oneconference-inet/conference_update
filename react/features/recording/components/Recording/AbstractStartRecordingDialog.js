@@ -281,6 +281,8 @@ class AbstractStartRecordingDialog extends Component<Props, State> {
         //     mode: JitsiRecordingConstants.mode.FILE,
         //     appData
         // });
+        console.log("JitsiRecordingConstants.mode.FILE: ", JitsiRecordingConstants.mode.FILE);
+        console.log("appData: ", appData);
 
         if (_autoCaptionOnRecord) {
             dispatch(toggleRequestingSubtitles());
