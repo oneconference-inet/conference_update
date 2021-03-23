@@ -381,7 +381,7 @@ class Toolbox extends Component<Props, State> {
                             }
                         }
                     });
-                }, 5000);
+                }, 10000);
             } else {
                 this.onAttendee(this.state);
             }
