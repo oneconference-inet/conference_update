@@ -364,7 +364,7 @@ class Toolbox extends Component<Props, State> {
             name: infoConf.getNameJoin(),
             checkPlatform: infoConf.getService(),
         },() => {
-            console.log("service: ", checkPlatform)
+            console.log("service: ", checkPlatform);
             if (isModerator || checkPlatform == "manageAi") {
                 this.onSocketHost(this.state);
 
