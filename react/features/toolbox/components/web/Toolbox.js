@@ -358,13 +358,14 @@ class Toolbox extends Component<Props, State> {
      */
     componentDidMount() {
         const isModerator = infoConf.getIsModerator();
+        const checkPlatform = infoConf.getService();
+        console.log("service: ", checkPlatform);
         this.setState({
             meetingid: infoConf.getMeetingId(),
             roomname: infoConf.getRoomName(),
             name: infoConf.getNameJoin(),
             checkPlatform: infoConf.getService(),
         },() => {
-            console.log("service: ", checkPlatform);
             if (isModerator || checkPlatform == "manageAi") {
                 this.onSocketHost(this.state);
 
