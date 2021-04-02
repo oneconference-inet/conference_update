@@ -31,11 +31,11 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
     const service = infoConf.getService();
     const role = infoUser.getUserId().split('-')[1];
     const visibleByService = checkService(service);
-    const visibleByRole = role == 'host' ? true : false ;
+    const visibleByRole = role === 'host' ? true : false ;
     let { visible } = ownProps;
 
     if (typeof visible === 'undefined') {
-        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible && visibleByRole;
+        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible && visibleByService && visibleByRole;
     }
 
     return {
