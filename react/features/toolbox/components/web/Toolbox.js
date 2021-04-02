@@ -365,7 +365,7 @@ class Toolbox extends Component<Props, State> {
             name: infoConf.getNameJoin(),
             checkPlatform: infoConf.getService(),
         },() => {
-            if (isModerator || checkPlatform == "manageAi") {
+            if (isModerator && checkPlatform == "manageAi") {
                 this.onSocketHost(this.state);
 
                 //Recording when start conference
