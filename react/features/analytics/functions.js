@@ -135,7 +135,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
     logger.log("-----------------------> ", dataDecode.service);
 
     // console.log("token Access: ", tokenAccess);    
-\    if (dataDecode != undefined && tokenAccess) {
+     if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);
         infoConf.setRoomName(dataDecode.roomname);
         sessionStorage.setItem(
