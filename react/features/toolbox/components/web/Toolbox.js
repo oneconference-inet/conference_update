@@ -1175,23 +1175,27 @@ class Toolbox extends Component<Props, State> {
             // <LiveStreamButton
             //     key = 'livestreaming'
             //     showLabel = { true } />,
-            console.log('-----------------Service---------------------', infoConf.getService()),
-            infoConf.getService() === "oneconference" ? <RecordButton
+            // ปุ่ม record อันเก่า
+            // console.log('-----------------Service---------------------', infoConf.getService()),
+            // infoConf.getService() === "oneconference" ? <RecordButton
+            //     key = 'record'
+            //     showLabel = { true } />
+            //     :
+            // null,
+            <RecordButton
                 key = 'record'
-                showLabel = { true } />
-                :
-            null,
-            this._shouldShowButton('sharedvideo')
-                && <OverflowMenuItem
-                    accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
-                    icon = { IconShareVideo }
-                    key = 'sharedvideo'
-                    onClick = { this._onToolbarToggleSharedVideo }
-                    text = { _sharingVideo ? t('toolbar.stopSharedVideo') : t('toolbar.sharedvideo') } />,
-            this._shouldShowButton('etherpad')
-                && <SharedDocumentButton
-                    key = 'etherpad'
-                    showLabel = { true } />, //ตรงนี้
+                showLabel = { true } />,
+            // this._shouldShowButton('sharedvideo')
+            //     && <OverflowMenuItem
+            //         accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
+            //         icon = { IconShareVideo }
+            //         key = 'sharedvideo'
+            //         onClick = { this._onToolbarToggleSharedVideo }
+            //         text = { _sharingVideo ? t('toolbar.stopSharedVideo') : t('toolbar.sharedvideo') } />,
+            // this._shouldShowButton('etherpad')
+            //     && <SharedDocumentButton
+            //         key = 'etherpad'
+            //         showLabel = { true } />,
             <VideoBlurButton
                 key = 'videobackgroundblur'
                 showLabel = { true }
