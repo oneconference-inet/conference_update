@@ -1176,22 +1176,22 @@ class Toolbox extends Component<Props, State> {
             //     key = 'livestreaming'
             //     showLabel = { true } />,
             // ปุ่ม record อันเก่า
-            // console.log('-----------------Service---------------------', infoConf.getService()),
-            // infoConf.getService() !== "manageAi" ? <RecordButton
-            //     key = 'record'
-            //     showLabel = { true } />
-            //     :
-            // null,
-            <RecordButton
+            console.log('-----------------Service---------------------', infoConf.getService()),
+            infoConf.getService() !== "manageAi" ? <RecordButton
                 key = 'record'
-                showLabel = { true } />,
-            this._shouldShowButton('sharedvideo')
-                && <OverflowMenuItem
-                    accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
-                    icon = { IconShareVideo }
-                    key = 'sharedvideo'
-                    onClick = { this._onToolbarToggleSharedVideo }
-                    text = { _sharingVideo ? t('toolbar.stopSharedVideo') : t('toolbar.sharedvideo') } />,
+                showLabel = { true } />
+                :
+            null,
+            // <RecordButton
+            //     key = 'record'
+            //     showLabel = { true } />,
+            // this._shouldShowButton('sharedvideo')
+            //     && <OverflowMenuItem
+            //         accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
+            //         icon = { IconShareVideo }
+            //         key = 'sharedvideo'
+            //         onClick = { this._onToolbarToggleSharedVideo }
+            //         text = { _sharingVideo ? t('toolbar.stopSharedVideo') : t('toolbar.sharedvideo') } />,
             // this._shouldShowButton('etherpad')
             //     && <SharedDocumentButton
             //         key = 'etherpad'
