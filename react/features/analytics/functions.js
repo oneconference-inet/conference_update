@@ -158,6 +158,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
             authXmpp.setPass(dataDecode.passXmpAuth);
             try {
                 let keydb;
+                console.log('-------------------------------->>>>>>', dataDecode.service);
                 if (int_service.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
