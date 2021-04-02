@@ -18,7 +18,7 @@ var interfaceConfig = {
     EDIT_NAME: false,
     DECODE_TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvbmVjb25mZXJlbmNlIiwibmFtZSI6Im9uZWNvbmZlcmVuY2VAaW5ldCEiLCJpYXQiOjE1MTYyMzkwMjJ9.76dYYbFS1Hlv9vfu2hZ31a3qwA4p_5jYuLqYiBiHPmw',
     // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
-    SERVICE_INT: ['onechat', 'manageAi','onebinar'],
+    SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onemail_dga'],
     SERVICE_INVITE_FEATURE: ['oneconference'],
     SERVICE_RECORD_FEATURE: ['oneconference'],
     SERVICE_LIVE_FEATURE: ['oneconference'],
