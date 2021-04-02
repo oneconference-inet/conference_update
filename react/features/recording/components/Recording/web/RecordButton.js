@@ -47,9 +47,9 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
 function checkService(service) {
     const services_check = interfaceConfig.SERVICE_RECORD_FEATURE || []
     if (!services_check.includes(service)) {
-        return true
-    } else {
         return false
+    } else {
+        return true
     }
 }
 
