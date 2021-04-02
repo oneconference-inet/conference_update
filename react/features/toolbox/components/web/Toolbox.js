@@ -1175,10 +1175,10 @@ class Toolbox extends Component<Props, State> {
             // <LiveStreamButton
             //     key = 'livestreaming'
             //     showLabel = { true } />,
-            console.log('------------------------11', infoConf.getService()),
-            infoConf.getService() === "manageAi" ? <RecordButton
+            // console.log('------------------------11', infoConf.getService()),
+            infoConf.getService() === "oneconference" ? <RecordButton
                 key = 'record'
-                showLabel = { false } />
+                showLabel = { true } />
                 :
             null,
             // this._shouldShowButton('sharedvideo')
