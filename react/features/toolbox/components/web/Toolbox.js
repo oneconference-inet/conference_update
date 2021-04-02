@@ -1176,7 +1176,8 @@ class Toolbox extends Component<Props, State> {
             //     key = 'livestreaming'
             //     showLabel = { true } />,
             // console.log('------------------------11', infoConf.getService()),
-            infoConf.getService() === "oneconference" ? <RecordButton
+            infoConf.getService() === "oneconference" ? 
+            <RecordButton
                 key = 'record'
                 showLabel = { true } />
                 :
