@@ -106,6 +106,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     );
                 }
             } else if (service == "onemail_dga") {
+                console.log('----------11-------------------------', userId);
                 await axios.post(interfaceConfig.DOMAIN_ONEMAIL_DGA + "/endJoin", {
                     user_id: userId,
                     meeting_id: meetingId,
