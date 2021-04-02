@@ -93,7 +93,8 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                             clientname: "onemail",
                         }
                     );
-                } else {
+                } 
+                else {
                     await axios.post(
                         interfaceConfig.DOMAIN_ONEMAIL +
                         "/api/v1/oneconf/service/hangup",
@@ -104,6 +105,11 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         }
                     );
                 }
+            } else if (service == "onemail_dga") {
+                await axios.post(interfaceConfig.DOMAIN_ONEMAIL_DGA + "/endJoin", {
+                    user_id: userId,
+                    meeting_id: meetingId,
+                });
             } else {
                 await axios.post(interfaceConfig.DOMAIN + "/endJoin", {
                     user_id: userId,

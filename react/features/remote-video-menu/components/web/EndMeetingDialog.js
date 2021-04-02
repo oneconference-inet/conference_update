@@ -105,7 +105,11 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             } else if (service == "onemail") {
                 domainEnd = interfaceConfig.DOMAIN_ONEMAIL + '/api/v1/oneconf/service/endmeeting'
                 await axios.post(domainEnd, { meeting_id : infoConf.getMeetingId(), clientname: service })
-            } else {
+            } else if (service == "onemail_dga") {
+                domainEnd = interfaceConfig.DOMAIN_ONEMAIL_DGA + '/endmeeting'
+                await axios.post(domainEnd, { meeting_id : infoConf.getMeetingId(), clientname: service })
+            } 
+            else {
                 await axios.post(interfaceConfig.DOMAIN + '/endmeeting' , { meetingid : infoConf.getMeetingId() })
             }
             conference.UI.emitEvent(UIEvents.LOGOUT)

@@ -179,6 +179,15 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: dataDecode.service,
                         }
                     );
+                } else if (dataDecode.service == "onemail_dga") {
+                    infoConf.setService(dataDecode.service);
+                    keydb = await axios.post(
+                        interfaceConfig.DOMAIN_ONEMAIL_DGA + "/checkkey",
+                        {
+                            meetingid: dataDecode.meetingId,
+                            clientname: dataDecode.service,
+                        }
+                    );
                 } else {
                     infoConf.setService("oneconference");
                     keydb = await axios.post(
@@ -228,7 +237,17 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: "onemail",
                         }
                     );
-                } else {
+                } else if (dataDecode.service == "onemail_dga") {
+                    infoConf.setService(dataDecode.service);
+                    keydb = await axios.post(
+                        interfaceConfig.DOMAIN_ONEMAIL_DGA + "/checkkey",
+                        {
+                            meetingid: dataDecode.meetingId,
+                            clientname: "onemail_dga",
+                        }
+                    );
+                } 
+                else {
                     infoConf.setService("oneconference");
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN + "/checkkey",
