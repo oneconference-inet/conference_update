@@ -134,7 +134,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
     logger.log("TR: 12345");
 
     // console.log("token Access: ", tokenAccess);    
-
+    console.log('-------------------------------->>>>>>', dataDecode);
     if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);
         infoConf.setRoomName(dataDecode.roomname);
@@ -158,7 +158,6 @@ export async function createHandlers({ getState }: { getState: Function }) {
             authXmpp.setPass(dataDecode.passXmpAuth);
             try {
                 let keydb;
-                console.log('-------------------------------->>>>>>', dataDecode.service);
                 if (int_service.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
