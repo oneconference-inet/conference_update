@@ -34,7 +34,6 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
     const visibleByRole = role == 'host' ? true : false ;
     let { visible } = ownProps;
 
-    console.log('-------------------------role--------------------', visibleByRole);
     if (typeof visible === 'undefined') {
         visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible && visibleByService && visibleByRole;
     }

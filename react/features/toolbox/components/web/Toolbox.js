@@ -1177,7 +1177,7 @@ class Toolbox extends Component<Props, State> {
             //     showLabel = { true } />,
             // ปุ่ม record อันเก่า
             console.log('-----------------Service---------------------', infoConf.getService()),
-            infoConf.getService() === "oneconference" ? <RecordButton
+            infoConf.getService() === "oneconference" && "onemail_dga" ? <RecordButton
                 key = 'record'
                 showLabel = { true } />
                 :
