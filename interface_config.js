@@ -20,7 +20,7 @@ var interfaceConfig = {
     // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
     SERVICE_INT: ['onechat', 'manageAi','onebinar'],
     SERVICE_INVITE_FEATURE: ['oneconference'],
-    SERVICE_RECORD_FEATURE: ['oneconference'],
+    SERVICE_RECORD_FEATURE: ['oneconference','onemail_dga'],
     SERVICE_LIVE_FEATURE: ['oneconference'],
     SERVICE_APPROVE_FEATURE: ['oneconference'],
 
