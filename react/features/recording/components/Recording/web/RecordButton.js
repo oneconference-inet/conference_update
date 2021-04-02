@@ -35,7 +35,7 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
     let { visible } = ownProps;
 
     if (typeof visible === 'undefined') {
-        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible && visibleByService ;
+        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible && visibleByRole;
     }
 
     return {
