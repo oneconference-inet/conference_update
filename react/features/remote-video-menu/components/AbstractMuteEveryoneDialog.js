@@ -129,11 +129,20 @@ export default class AbstractMuteEveryoneDialog<P: Props> extends AbstractMuteRe
 
     async _apiTrackmute(mute) {
         const meetingId = infoConf.getMeetingId();
+        const service = infoConf.getService();
+        console.log('------------service mute', service);
         try {
-            await axios.post(interfaceConfig.DOMAIN + "/trackMuteAll", {
-                meetingId: meetingId,
-                muteAll: mute,
-            });
+            if(service === 'onemail_dga') {
+                await axios.post(interfaceConfig.DOMAIN_ONEMAIL_DGA + "/trackMuteAll", {
+                    meetingId: meetingId,
+                    muteAll: mute,
+                });
+            } else {
+                await axios.post(interfaceConfig.DOMAIN + "/trackMuteAll", {
+                    meetingId: meetingId,
+                    muteAll: mute,
+                });
+            }
         } catch (error) {
             logger.error("Error api track mute: ", error);
         }
