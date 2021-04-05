@@ -294,10 +294,15 @@ class Toolbox extends Component<Props, State> {
         const { meetingid, roomname, name, checkPlatform, endpoint } = state
         const services_check = interfaceConfig.SERVICE_APPROVE_FEATURE || []
         const socket = socketIOClient(endpoint)
+        console.log('------------ service approve', services_check.includes(checkPlatform));
         // Get approve incomming conference
         let getApprove
         if (services_check.includes(checkPlatform)) {
-            getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
+            if(services_check.includes(checkPlatform === 'onemail_dga')) {
+                getApprove = await axios.post(interfaceConfig.DOMAIN_ONEMAIL_DGA + '/getApprove' , { meeting_id: meetingid })
+            } else {
+                getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
+            }
             // console.log("Approve: ", getApprove)
             if (getApprove.data.approve) {
                 logger.log('Room is require approve to join.')
