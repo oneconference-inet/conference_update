@@ -146,7 +146,7 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
         const { features = {} } = getLocalParticipant(state);
 
         visible = isModerator && fileRecordingsEnabled;
-        console.log("ABSTRACT: ",visible);
+        // console.log("ABSTRACT: ",visible);
         if (enableFeaturesBasedOnToken) {
             visible = visible && String(features.recording) === 'true';
             _disabled = String(features.recording) === 'disabled';

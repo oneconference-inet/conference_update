@@ -1176,15 +1176,15 @@ class Toolbox extends Component<Props, State> {
             //     key = 'livestreaming'
             //     showLabel = { true } />,
             // ปุ่ม record อันเก่า
-            console.log('-----------------Service---------------------', infoConf.getService()),
-            infoConf.getService() === "onemail_dga" ? <RecordButton
-                key = 'record'
-                showLabel = { true } />
-                :
-            null,
-            // <RecordButton
+            // console.log('-----------------Service---------------------', infoConf.getService()),
+            // infoConf.getService() === "onemail_dga" ? <RecordButton
             //     key = 'record'
-            //     showLabel = { true } />,
+            //     showLabel = { true } />
+            //     :
+            // null,
+            <RecordButton
+                key = 'record'
+                showLabel = { true } />,
             // this._shouldShowButton('sharedvideo')
             //     && <OverflowMenuItem
             //         accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
