@@ -18,7 +18,8 @@ var interfaceConfig = {
     EDIT_NAME: false,
     DECODE_TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvbmVjb25mZXJlbmNlIiwibmFtZSI6Im9uZWNvbmZlcmVuY2VAaW5ldCEiLCJpYXQiOjE1MTYyMzkwMjJ9.76dYYbFS1Hlv9vfu2hZ31a3qwA4p_5jYuLqYiBiHPmw',
 
-    // secret key เอาไว้แนบ header ตอน endmeeting hangup
+    // secret key เอาไว้แนบ header ตอน endmeeting hangup 
+    // test
     SECRET_KEY_MANAGE_AI: 'GAMhV1WeAfQtwhQYbMoaZU5UYCA18Y5ittoWZKxCZ1IWYhAYGQ0RKfGFA1Pe5Qw1E78AwqACIGo5A01yKWaAxZ8QQjWftAVK0bVP',
     SECRET_KEY_ONECHAT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJWaWRlb2NhbGwiLCJuYW1lIjoiT05FQ0hBVFNFUlZJQ0UiLCJpYXQiOjIyMDF9.-llQuCLFEUdv4BdJ1pf0-4KwrfwnXz7ybqS10DFLuBs',
     SECRET_KEY_ONE_DENTRAL: 'R1P0TIzFKTdr5YSmQ0gcRt6U6xfs0W3OyHxKG52YlSfY4mkf140pWt6K1xoGb71n2mmYGdAeEoWMcAU5BcjbHeXjaLQeryg1zj2d',
