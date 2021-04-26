@@ -102,22 +102,22 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
 
             if (service == "onechat") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
-                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), clientname: service }, { Authorization: "Bearer " + secretKeyOnechat })
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, { Authorization: "Bearer " + secretKeyOnechat })
             } else if (service == "manageAi") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
-                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), clientname: service }, { Authorization: "Bearer " + secretKeyManageAi })
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, { Authorization: "Bearer " + secretKeyManageAi })
             } else if (service == "onemail") {
                 domainEnd = interfaceConfig.DOMAIN_ONEMAIL + '/api/v1/oneconf/service/endmeeting'
-                await axios.post(domainEnd, { meeting_id : infoConf.getMeetingId(), clientname: service })
+                await axios.post(domainEnd, { meeting_id : infoConf.getMeetingId(), tag: service })
             } else if (service == "onemail_dga") {
                 domainEnd = interfaceConfig.DOMAIN_ONEMAIL_DGA + '/endmeeting'
-                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), clientname: service })
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service })
             } else if (service == "onedentral") {
-                domainEnd = interfaceConfig.DOMAIN_BACK + '/endmeeting'
-                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), clientname: service }, { Authorization: "Bearer " + secretKeyOneDentral })
+                domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, { Authorization: "Bearer " + secretKeyOneDentral })
             } else if (service == "onebinar") {
-                domainEnd = interfaceConfig.DOMAIN_BACK + '/endmeeting'
-                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), clientname: service }, { Authorization: "Bearer " + secretKeyOneBinar })
+                domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, { Authorization: "Bearer " + secretKeyOneBinar })
             }
             else {
                 await axios.post(interfaceConfig.DOMAIN + '/endmeeting' , { meetingid : infoConf.getMeetingId() })

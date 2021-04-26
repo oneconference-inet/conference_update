@@ -78,7 +78,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     {
                         meetingid: meetingId,
                         name: nameJoin,
-                        clientname: "onechat",
+                        tag: "onechat",
                     },
                     {
                         Authorization: "Bearer " + secretKeyOnechat 
@@ -89,7 +89,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     {
                         meetingid: meetingId,
                         name: nameJoin,
-                        clientname: "ManageAi",
+                        tag: "ManageAi",
                     },
                     {
                         Authorization: "Bearer " + secretKeyManageAi 
@@ -103,7 +103,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         {
                             meeting_id: meetingId,
                             user_id: userId,
-                            clientname: "onemail",
+                            tag: "onemail",
                         }
                     );
                 } 
@@ -114,7 +114,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         {
                             meeting_id: meetingId,
                             user_id: userId,
-                            clientname: "onemail",
+                            tag: "onemail",
                         }
                     );
                 }
@@ -130,7 +130,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     {
                         meetingid: meetingId,
                         name: nameJoin,
-                        clientname: "onedentral",
+                        tag: "onedentral",
                     },
                     {
                         Authorization: "Bearer " + secretKeyOneDentral 
@@ -141,7 +141,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     {
                         meetingid: meetingId,
                         name: nameJoin,
-                        clientname: "onebinar",
+                        tag: "onebinar",
                     },
                     {
                         Authorization: "Bearer " + secretKeyOneBinar 
