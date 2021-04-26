@@ -65,23 +65,36 @@ class HangupButton extends AbstractHangupButton<Props, *> {
             const isModerator = infoConf.getIsModerator();
             const nameJoin = infoUser.getName();
             const userId = infoUser.getUserId();
-
+            const secretKeyManageAi = interfaceConfig.SECRET_KEY_MANAGE_AI;
+            const secretKeyOnechat = interfaceConfig.SECRET_KEY_ONECHAT;
+            const secretKeyOneDentral = interfaceConfig.SECRET_KEY_ONE_DENTRAL;
+            const secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR;
             if (isModerator) {
                 infoConf.setIsHostHangup();
             }
 
             if (service == "onechat") {
-                await axios.post(domainEnd + "/service/endjoin", {
-                    meetingid: meetingId,
-                    name: nameJoin,
-                    clientname: "onechat",
-                });
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        clientname: "onechat",
+                    },
+                    {
+                        Authorization: "Bearer " + secretKeyOnechat 
+                    }
+                );
             } else if (service == "manageAi") {
-                await axios.post(domainEnd + "/service/endjoin", {
-                    meetingid: meetingId,
-                    name: nameJoin,
-                    clientname: "ManageAi",
-                });
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        clientname: "ManageAi",
+                    },
+                    {
+                        Authorization: "Bearer " + secretKeyManageAi 
+                    }
+                );
             } else if (service == "onemail") {
                 if (isModerator) {
                     await axios.post(
@@ -106,10 +119,34 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     );
                 }
             } else if (service == "onemail_dga") {
-                await axios.post(interfaceConfig.DOMAIN_ONEMAIL_DGA + "/endJoin", {
-                    user_id: userId.split('-')[0],
-                    meeting_id: meetingId,
-                });
+                await axios.post(interfaceConfig.DOMAIN_ONEMAIL_DGA + "/endJoin", 
+                    {
+                        user_id: userId.split('-')[0],
+                        meeting_id: meetingId,
+                    }
+                );
+            }  else if (service == "onedentral") {
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        clientname: "onedentral",
+                    },
+                    {
+                        Authorization: "Bearer " + secretKeyOneDentral 
+                    }
+                );
+            }  else if (service == "onebinar") {
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        clientname: "onebinar",
+                    },
+                    {
+                        Authorization: "Bearer " + secretKeyOneBinar 
+                    }
+                );
             } else {
                 await axios.post(interfaceConfig.DOMAIN + "/endJoin", {
                     user_id: userId,
