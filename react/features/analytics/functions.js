@@ -263,15 +263,6 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: "onemail_dga",
                         }
                     );
-                } else if (dataDecode.service == "onedental") {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_BACK + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            clientname: "onedental",
-                        }
-                    );
                 } else if (dataDecode.service == "onebinar") {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
