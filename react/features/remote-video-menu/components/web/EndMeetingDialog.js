@@ -96,6 +96,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const secretKeyOnechat = interfaceConfig.SECRET_KEY_ONECHAT;
             const secretKeyOneDental = interfaceConfig.SECRET_KEY_ONE_DENTAL;
             const secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR;
+            console.log('------------------secretKeyManageAi------------------------', secretKeyManageAi);
             let domainEnd
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference))
             dispatch(endAllParticipants(exclude))
@@ -106,7 +107,6 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             } else if (service == "manageAi") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
                 await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyManageAi }})
-                console.log('------------------secretKeyManageAi------------------------', secretKeyManageAi);
             } else if (service == "onemail") {
                 domainEnd = interfaceConfig.DOMAIN_ONEMAIL + '/api/v1/oneconf/service/endmeeting'
                 await axios.post(domainEnd, { meeting_id : infoConf.getMeetingId(), tag: service })
