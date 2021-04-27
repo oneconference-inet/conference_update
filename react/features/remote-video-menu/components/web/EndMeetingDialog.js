@@ -95,9 +95,9 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const secretKeyManageAi = interfaceConfig.SECRET_KEY_MANAGE_AI;
             const secretKeyOnechat = interfaceConfig.SECRET_KEY_ONECHAT;
             const secretKeyOneDental = interfaceConfig.SECRET_KEY_ONE_DENTAL;
-            // const secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR;
+            const secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR;
+            console.log('------------------secretKeyOneBinar------------------------', secretKeyOneBinar);
             let domainEnd
-            let secretKeyOneBinar
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference))
             dispatch(endAllParticipants(exclude))
 
@@ -117,8 +117,8 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
                 await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyOneDental }})
             } else if (service == "onebinar") {
+                console.log('------------------secretKeyOneBinar------------------------', secretKeyOneBinar);
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
-                secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR
                 await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyOneBinar }})
             }
             else {
