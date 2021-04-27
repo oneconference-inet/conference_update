@@ -102,10 +102,10 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
 
             if (service == "onechat") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
-                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer "+ secretKeyOnechat }})
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyOnechat }})
             } else if (service == "manageAi") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
-                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer "+ secretKeyManageAi }})
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyManageAi }})
                 console.log('------------------secretKeyManageAi------------------------', secretKeyManageAi);
             } else if (service == "onemail") {
                 domainEnd = interfaceConfig.DOMAIN_ONEMAIL + '/api/v1/oneconf/service/endmeeting'
