@@ -26,7 +26,7 @@ var interfaceConfig = {
     SECRET_KEY_ONE_BINAR: 'ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnpkV0lpT2lKV2FXUmxiMk5oYkd3aUxDSnVZVzFsSWpvaVQyNWxZbWx1WVhJaUxDSnBZWFFpT2pJeU1ERjkuSGgzNzVQUU9uMHN0cXhXSU9ESmI1M1RGWlRXOXhvRXlOaXJaaWZ0bVVsWQ==',
 
     // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
-    SERVICE_INT: ['onechat', 'manageAi','onebinar'],
+    SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onedental'],
     SERVICE_INVITE_FEATURE: ['oneconference'],
     SERVICE_RECORD_FEATURE: ['oneconference'],
     SERVICE_LIVE_FEATURE: ['oneconference'],
