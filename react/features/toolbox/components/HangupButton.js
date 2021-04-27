@@ -80,8 +80,10 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         name: nameJoin,
                         tag: "onechat",
                     },
-                    {
+                    { headers:
+                        {
                         Authorization: "Bearer " + secretKeyOnechat 
+                        }
                     }
                 );
             } else if (service == "manageAi") {
@@ -91,8 +93,10 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         name: nameJoin,
                         tag: "ManageAi",
                     },
-                    {
+                    { headers:
+                        {
                         Authorization: "Bearer " + secretKeyManageAi 
+                        }
                     }
                 );
             } else if (service == "onemail") {
@@ -132,8 +136,10 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         name: nameJoin,
                         tag: "onedental",
                     },
-                    {
+                    { headers:
+                        {
                         Authorization: "Bearer " + secretKeyOneDental 
+                        }
                     }
                 );
             }  else if (service == "onebinar") {
@@ -143,8 +149,10 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         name: nameJoin,
                         tag: "onebinar",
                     },
-                    {
+                    { headers:
+                        {
                         Authorization: "Bearer " + secretKeyOneBinar 
+                        }
                     }
                 );
             } else {
