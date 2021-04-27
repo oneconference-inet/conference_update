@@ -187,7 +187,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: dataDecode.service,
                         }
                     );
-                } else if (dataDecode.service == "onedentral") {
+                } else if (dataDecode.service == "onedental") {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
@@ -263,13 +263,13 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: "onemail_dga",
                         }
                     );
-                } else if (dataDecode.service == "onedentral") {
+                } else if (dataDecode.service == "onedental") {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
                         {
                             meetingid: dataDecode.meetingId,
-                            clientname: "onedentral",
+                            clientname: "onedental",
                         }
                     );
                 } else if (dataDecode.service == "onebinar") {

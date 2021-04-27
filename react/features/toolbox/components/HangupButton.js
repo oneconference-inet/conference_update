@@ -67,7 +67,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
             const userId = infoUser.getUserId();
             const secretKeyManageAi = interfaceConfig.SECRET_KEY_MANAGE_AI;
             const secretKeyOnechat = interfaceConfig.SECRET_KEY_ONECHAT;
-            const secretKeyOneDentral = interfaceConfig.SECRET_KEY_ONE_DENTRAL;
+            const secretKeyOneDental = interfaceConfig.SECRET_KEY_ONE_DENTAL;
             const secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR;
             if (isModerator) {
                 infoConf.setIsHostHangup();
@@ -125,15 +125,15 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         meeting_id: meetingId,
                     }
                 );
-            }  else if (service == "onedentral") {
+            }  else if (service == "onedental") {
                 await axios.post(domainEnd + "/service/endjoin", 
                     {
                         meetingid: meetingId,
                         name: nameJoin,
-                        tag: "onedentral",
+                        tag: "onedental",
                     },
                     {
-                        Authorization: "Bearer " + secretKeyOneDentral 
+                        Authorization: "Bearer " + secretKeyOneDental 
                     }
                 );
             }  else if (service == "onebinar") {
