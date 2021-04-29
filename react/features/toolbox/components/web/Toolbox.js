@@ -364,6 +364,7 @@ class Toolbox extends Component<Props, State> {
     componentDidMount() {
         const isModerator = infoConf.getIsModerator();
         const checkPlatform = infoConf.getService();
+        console.log('Service:', checkPlatform);
         this.setState({
             meetingid: infoConf.getMeetingId(),
             roomname: infoConf.getRoomName(),
