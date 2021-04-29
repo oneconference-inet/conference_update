@@ -372,7 +372,7 @@ class Toolbox extends Component<Props, State> {
         },() => {
             if (isModerator && checkPlatform == "manageAi" || checkPlatform == "onedental") {
                 this.onSocketHost(this.state);
-                console.log('Service:', checkPlatform);
+                // console.log('Service:', checkPlatform);
 
                 //Recording when start conference
                 let appData = JSON.stringify({
