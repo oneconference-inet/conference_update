@@ -364,7 +364,6 @@ class Toolbox extends Component<Props, State> {
     componentDidMount() {
         const isModerator = infoConf.getIsModerator();
         const checkPlatform = infoConf.getService();
-        console.log('Service:', checkPlatform);
         this.setState({
             meetingid: infoConf.getMeetingId(),
             roomname: infoConf.getRoomName(),
@@ -373,6 +372,7 @@ class Toolbox extends Component<Props, State> {
         },() => {
             if (isModerator && checkPlatform == "manageAi" || "onedental") {
                 this.onSocketHost(this.state);
+                console.log('Service:', checkPlatform);
 
                 //Recording when start conference
                 let appData = JSON.stringify({
