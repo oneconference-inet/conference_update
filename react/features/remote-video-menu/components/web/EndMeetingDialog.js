@@ -116,11 +116,12 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
                 await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyOneDental }})
             } else if (service == "onebinar") {
-                // console.log('------------------secretKeyOneBinar------------------------', secretKeyOneBinar);
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
                 await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyOneBinar }})
-            }
-            else {
+            } else if (service == "jmc") {
+                domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyOneBinar }})
+            } else {
                 await axios.post(interfaceConfig.DOMAIN + '/endmeeting' , { meetingid : infoConf.getMeetingId() })
             }
             conference.UI.emitEvent(UIEvents.LOGOUT)

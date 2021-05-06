@@ -155,6 +155,19 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         }
                     }
                 );
+            } else if (service == "jmc") {
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        tag: "jmc",
+                    },
+                    { headers:
+                        {
+                        Authorization: "Bearer " + secretKeyOneBinar 
+                        }
+                    }
+                );
             } else {
                 await axios.post(interfaceConfig.DOMAIN + "/endJoin", {
                     user_id: userId,

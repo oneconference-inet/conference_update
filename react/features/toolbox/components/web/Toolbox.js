@@ -298,10 +298,10 @@ class Toolbox extends Component<Props, State> {
         // Get approve incomming conference
         let getApprove
         if (services_check.includes(checkPlatform)) {
-            if(services_check.includes(checkPlatform === 'onemail_dga')) {
-                getApprove = await axios.post(interfaceConfig.DOMAIN_ONEMAIL_DGA + '/getApprove' , { meeting_id: meetingid })
-            } else {
+            if(services_check.includes(checkPlatform !== 'onemail_dga')) {
                 getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
+            } else {
+                'Room is not defined function approve!!!'
             }
             // console.log("Approve: ", getApprove)
             if (getApprove.data.approve) {
@@ -370,7 +370,7 @@ class Toolbox extends Component<Props, State> {
             name: infoConf.getNameJoin(),
             checkPlatform: infoConf.getService(),
         },() => {
-            if (isModerator && checkPlatform == "manageAi" || checkPlatform == "onedental") {
+            if (isModerator && checkPlatform == "manageAi" || checkPlatform == "onedental" || checkPlatform == "jmc") {
                 this.onSocketHost(this.state);
                 // console.log('Service:', checkPlatform);
 

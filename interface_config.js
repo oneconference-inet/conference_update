@@ -24,6 +24,7 @@ var interfaceConfig = {
     SECRET_KEY_ONECHAT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJWaWRlb2NhbGwiLCJuYW1lIjoiT05FQ0hBVFNFUlZJQ0UiLCJpYXQiOjIyMDF9.-llQuCLFEUdv4BdJ1pf0-4KwrfwnXz7ybqS10DFLuBs',
     SECRET_KEY_ONE_DENTAL: 'R1P0TIzFKTdr5YSmQ0gcRt6U6xfs0W3OyHxKG52YlSfY4mkf140pWt6K1xoGb71n2mmYGdAeEoWMcAU5BcjbHeXjaLQeryg1zj2d',
     SECRET_KEY_ONE_BINAR: 'ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnpkV0lpT2lKV2FXUmxiMk5oYkd3aUxDSnVZVzFsSWpvaVQyNWxZbWx1WVhJaUxDSnBZWFFpT2pJeU1ERjkuSGgzNzVQUU9uMHN0cXhXSU9ESmI1M1RGWlRXOXhvRXlOaXJaaWZ0bVVsWQ==',
+    SECRET_KEY_JMC: '1YRvZyjd8vZsa1u3dKx1GlNYjersxv6WTS0gXeflVbyXKC6M4zHEsybpOfoYAJqVv4wdaMoqMkoYheBEPhFdgmK4Gxfhx3v8XlMo',
 
     // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
     SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onedental'],
