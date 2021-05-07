@@ -27,7 +27,7 @@ var interfaceConfig = {
     SECRET_KEY_JMC: '1YRvZyjd8vZsa1u3dKx1GlNYjersxv6WTS0gXeflVbyXKC6M4zHEsybpOfoYAJqVv4wdaMoqMkoYheBEPhFdgmK4Gxfhx3v8XlMo',
 
     // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
-    SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onedental'],
+    SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onedental', 'jmc'],
     SERVICE_INVITE_FEATURE: ['oneconference'],
     SERVICE_RECORD_FEATURE: ['oneconference'],
     SERVICE_LIVE_FEATURE: ['oneconference'],
