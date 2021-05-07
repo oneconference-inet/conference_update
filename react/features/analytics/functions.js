@@ -159,7 +159,6 @@ export async function createHandlers({ getState }: { getState: Function }) {
                 let keydb;
                 if (int_service.includes(dataDecode.service)) {
                     infoConf.setService(dataDecode.service);
-                    console.log('----Service Checkkey----', infoConf.setService(dataDecode.service));
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
                         {
@@ -206,9 +205,8 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: dataDecode.service,
                         }
                     );
-                } else if (dataDecode.service == "่jmc") {
+                } else if (infoConf.setService(dataDecode.service) == "jmc") {
                     infoConf.setService(dataDecode.service);
-                    console.log('----Meeting ID----', meetingid);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
                         {
