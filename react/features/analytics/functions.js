@@ -205,7 +205,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: dataDecode.service,
                         }
                     );
-                } else if (infoConf.setService(dataDecode.service) == "jmc") {
+                } else if (infoConf.setService("jmc")) {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_BACK + "/checkkey",
