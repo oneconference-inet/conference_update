@@ -69,6 +69,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
             const secretKeyOnechat = interfaceConfig.SECRET_KEY_ONECHAT;
             const secretKeyOneDental = interfaceConfig.SECRET_KEY_ONE_DENTAL;
             const secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR;
+            const secretKeyJmc = interfaceConfig.SECRET_KEY_JMC;
             if (isModerator) {
                 infoConf.setIsHostHangup();
             }
@@ -164,7 +165,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     },
                     { headers:
                         {
-                        Authorization: "Bearer " + secretKeyOneBinar 
+                        Authorization: "Bearer " + secretKeyJmc 
                         }
                     }
                 );
