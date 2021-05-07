@@ -205,15 +205,6 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: dataDecode.service,
                         }
                     );
-                } else if (dataDecode.service == "่jmc") {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_BACK + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            clientname: dataDecode.service,
-                        }
-                    );
                 } else {
                     infoConf.setService("oneconference");
                     keydb = await axios.post(
