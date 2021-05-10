@@ -25,9 +25,10 @@ var interfaceConfig = {
     SECRET_KEY_ONE_DENTAL: 'R1P0TIzFKTdr5YSmQ0gcRt6U6xfs0W3OyHxKG52YlSfY4mkf140pWt6K1xoGb71n2mmYGdAeEoWMcAU5BcjbHeXjaLQeryg1zj2d',
     SECRET_KEY_ONE_BINAR: 'ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnpkV0lpT2lKV2FXUmxiMk5oYkd3aUxDSnVZVzFsSWpvaVQyNWxZbWx1WVhJaUxDSnBZWFFpT2pJeU1ERjkuSGgzNzVQUU9uMHN0cXhXSU9ESmI1M1RGWlRXOXhvRXlOaXJaaWZ0bVVsWQ==',
     SECRET_KEY_JMC: '1YRvZyjd8vZsa1u3dKx1GlNYjersxv6WTS0gXeflVbyXKC6M4zHEsybpOfoYAJqVv4wdaMoqMkoYheBEPhFdgmK4Gxfhx3v8XlMo',
+    SECRET_KEY_TELEMEDICINE: 'P1v59giDigTxczqz8azhRouzvzzeHDt1HuPPdywGXCwjAA42C2Owb6OIl5HH8lC8sXwMSJ7Q9ZKeUwCkvnYif094OkaEz7tKuMyV',
 
     // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
-    SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onedental', 'jmc'],
+    SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onedental', 'jmc', 'telemedicine'],
     SERVICE_INVITE_FEATURE: ['oneconference'],
     SERVICE_RECORD_FEATURE: ['oneconference'],
     SERVICE_LIVE_FEATURE: ['oneconference'],

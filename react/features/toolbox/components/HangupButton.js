@@ -70,6 +70,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
             const secretKeyOneDental = interfaceConfig.SECRET_KEY_ONE_DENTAL;
             const secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR;
             const secretKeyJmc = interfaceConfig.SECRET_KEY_JMC;
+            const secretKeyTelemedicine = interfaceConfig.SECRET_KEY_TELEMEDICINE;
             if (isModerator) {
                 infoConf.setIsHostHangup();
             }
@@ -130,7 +131,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         meeting_id: meetingId,
                     }
                 );
-            }  else if (service == "onedental") {
+            } else if (service == "onedental") {
                 await axios.post(domainEnd + "/service/endjoin", 
                     {
                         meetingid: meetingId,
@@ -143,7 +144,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         }
                     }
                 );
-            }  else if (service == "onebinar") {
+            } else if (service == "onebinar") {
                 await axios.post(domainEnd + "/service/endjoin", 
                     {
                         meetingid: meetingId,
@@ -166,6 +167,19 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     { headers:
                         {
                         Authorization: "Bearer " + secretKeyJmc 
+                        }
+                    }
+                );
+            } else if (service == "telemedicine") {
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        tag: "telemedicine",
+                    },
+                    { headers:
+                        {
+                        Authorization: "Bearer " + secretKeyTelemedicine 
                         }
                     }
                 );

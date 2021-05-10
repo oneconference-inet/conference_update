@@ -294,7 +294,6 @@ class Toolbox extends Component<Props, State> {
         const { meetingid, roomname, name, checkPlatform, endpoint } = state
         const services_check = interfaceConfig.SERVICE_APPROVE_FEATURE || []
         const socket = socketIOClient(endpoint)
-        console.log('------------ service approve', services_check.includes(checkPlatform));
         // Get approve incomming conference
         let getApprove
         if (services_check.includes(checkPlatform)) {
@@ -370,9 +369,9 @@ class Toolbox extends Component<Props, State> {
             name: infoConf.getNameJoin(),
             checkPlatform: infoConf.getService(),
         },() => {
-            if (isModerator && checkPlatform == "manageAi" || checkPlatform == "onedental" || checkPlatform == "jmc") {
+            if (isModerator && checkPlatform == "manageAi" || checkPlatform == "onedental" || checkPlatform == "jmc" || checkPlatform == "telemedicine") {
                 this.onSocketHost(this.state);
-                // console.log('Service:', checkPlatform);
+                console.log('Service:', checkPlatform);
 
                 //Recording when start conference
                 let appData = JSON.stringify({
