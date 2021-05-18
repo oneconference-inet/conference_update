@@ -92,19 +92,40 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 exclude
             } = this.props;
             const service = infoConf.getService();
+            const secretKeyManageAi = interfaceConfig.SECRET_KEY_MANAGE_AI;
+            const secretKeyOnechat = interfaceConfig.SECRET_KEY_ONECHAT;
+            const secretKeyOneDental = interfaceConfig.SECRET_KEY_ONE_DENTAL;
+            const secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR;
+            const secretKeyJmc = interfaceConfig.SECRET_KEY_JMC;
+            const secretKeyTelemedicine = interfaceConfig.SECRET_KEY_TELEMEDICINE;
             let domainEnd
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference))
             dispatch(endAllParticipants(exclude))
 
             if (service == "onechat") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
-                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), clientname: service })
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyOnechat }})
             } else if (service == "manageAi") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
-                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), clientname: service })
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyManageAi }})
             } else if (service == "onemail") {
                 domainEnd = interfaceConfig.DOMAIN_ONEMAIL + '/api/v1/oneconf/service/endmeeting'
-                await axios.post(domainEnd, { meeting_id : infoConf.getMeetingId(), clientname: service })
+                await axios.post(domainEnd, { meeting_id : infoConf.getMeetingId(), tag: service })
+            } else if (service == "onemail_dga") {
+                domainEnd = interfaceConfig.DOMAIN_ONEMAIL_DGA + '/endmeeting'
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service })
+            } else if (service == "onedental") {
+                domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyOneDental }})
+            } else if (service == "onebinar") {
+                domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyOneBinar }})
+            } else if (service == "jmc") {
+                domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyJmc }})
+            } else if (service == "telemedicine") {
+                domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyTelemedicine }})
             } else {
                 await axios.post(interfaceConfig.DOMAIN + '/endmeeting' , { meetingid : infoConf.getMeetingId() })
             }

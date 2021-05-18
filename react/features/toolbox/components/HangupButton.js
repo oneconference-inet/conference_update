@@ -65,23 +65,42 @@ class HangupButton extends AbstractHangupButton<Props, *> {
             const isModerator = infoConf.getIsModerator();
             const nameJoin = infoUser.getName();
             const userId = infoUser.getUserId();
-
+            const secretKeyManageAi = interfaceConfig.SECRET_KEY_MANAGE_AI;
+            const secretKeyOnechat = interfaceConfig.SECRET_KEY_ONECHAT;
+            const secretKeyOneDental = interfaceConfig.SECRET_KEY_ONE_DENTAL;
+            const secretKeyOneBinar = interfaceConfig.SECRET_KEY_ONE_BINAR;
+            const secretKeyJmc = interfaceConfig.SECRET_KEY_JMC;
+            const secretKeyTelemedicine = interfaceConfig.SECRET_KEY_TELEMEDICINE;
             if (isModerator) {
                 infoConf.setIsHostHangup();
             }
 
             if (service == "onechat") {
-                await axios.post(domainEnd + "/service/endjoin", {
-                    meetingid: meetingId,
-                    name: nameJoin,
-                    clientname: "onechat",
-                });
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        tag: "onechat",
+                    },
+                    { headers:
+                        {
+                        Authorization: "Bearer " + secretKeyOnechat 
+                        }
+                    }
+                );
             } else if (service == "manageAi") {
-                await axios.post(domainEnd + "/service/endjoin", {
-                    meetingid: meetingId,
-                    name: nameJoin,
-                    clientname: "ManageAi",
-                });
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        tag: "ManageAi",
+                    },
+                    { headers:
+                        {
+                        Authorization: "Bearer " + secretKeyManageAi 
+                        }
+                    }
+                );
             } else if (service == "onemail") {
                 if (isModerator) {
                     await axios.post(
@@ -90,20 +109,80 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         {
                             meeting_id: meetingId,
                             user_id: userId,
-                            clientname: "onemail",
+                            tag: "onemail",
                         }
                     );
-                } else {
+                } 
+                else {
                     await axios.post(
                         interfaceConfig.DOMAIN_ONEMAIL +
                         "/api/v1/oneconf/service/hangup",
                         {
                             meeting_id: meetingId,
                             user_id: userId,
-                            clientname: "onemail",
+                            tag: "onemail",
                         }
                     );
                 }
+            } else if (service == "onemail_dga") {
+                await axios.post(interfaceConfig.DOMAIN_ONEMAIL_DGA + "/endJoin", 
+                    {
+                        user_id: userId.split('-')[0],
+                        meeting_id: meetingId,
+                    }
+                );
+            } else if (service == "onedental") {
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        tag: "onedental",
+                    },
+                    { headers:
+                        {
+                        Authorization: "Bearer " + secretKeyOneDental 
+                        }
+                    }
+                );
+            } else if (service == "onebinar") {
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        tag: "onebinar",
+                    },
+                    { headers:
+                        {
+                        Authorization: "Bearer " + secretKeyOneBinar 
+                        }
+                    }
+                );
+            } else if (service == "jmc") {
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        tag: "jmc",
+                    },
+                    { headers:
+                        {
+                        Authorization: "Bearer " + secretKeyJmc 
+                        }
+                    }
+                );
+            } else if (service == "telemedicine") {
+                await axios.post(domainEnd + "/service/endjoin", 
+                    {
+                        meetingid: meetingId,
+                        name: nameJoin,
+                        tag: "telemedicine",
+                    },
+                    { headers:
+                        {
+                        Authorization: "Bearer " + secretKeyTelemedicine 
+                        }
+                    }
+                );
             } else {
                 await axios.post(interfaceConfig.DOMAIN + "/endJoin", {
                     user_id: userId,

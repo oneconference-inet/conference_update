@@ -7,35 +7,35 @@ var interfaceConfig = {
     AUDIO_LEVEL_SECONDARY_COLOR: "rgba(255,255,255,0.2)",
 
     // ONE Conference
-    DOMAIN_ONEMAIL: "https://oneconference-mail.inet.co.th", //backend Onemail Service
-    DOMAIN_BACK: "https://oneconference-vc.inet.co.th", // backend for MC
-    DOMAIN: "https://oneconference-new.inet.co.th", // frontend Redirect
+    DOMAIN_ONEMAIL: 'https://oneconference-mail.inet.co.th', //backend Onemail Service
+    DOMAIN_BACK: 'https://oneconference-vc.inet.co.th', // backend for MC
+    DOMAIN_ONEMAIL_DGA: 'https://meetgov.one.th',
+    DOMAIN: 'https://oneconference-new.inet.co.th', // frontend Redirect
     // MC_IP: '192.168.92.1:27017',
     SOCKET_NODE: "https://oneconf-dev3.cloudns.asia", // Socket io node
     // DEFAULT_LOGO_URL: '/images/inetlogo.png',
     // 'https://oneconf-dev3.cloudns.asia/images/watermark.png',
     EDIT_NAME: false,
-    DECODE_TOKEN:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvbmVjb25mZXJlbmNlIiwibmFtZSI6Im9uZWNvbmZlcmVuY2VAaW5ldCEiLCJpYXQiOjE1MTYyMzkwMjJ9.76dYYbFS1Hlv9vfu2hZ31a3qwA4p_5jYuLqYiBiHPmw",
-    // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
-    SERVICE_INT: ["onechat", "manageAi", "onebinar"],
-    SERVICE_INVITE_FEATURE: ["oneconference"],
-    SERVICE_RECORD_FEATURE: ["oneconference"],
-    SERVICE_LIVE_FEATURE: ["oneconference"],
-    SERVICE_APPROVE_FEATURE: ["oneconference"],
-    SERVICE_TOKEN: {
-        onemail:
-            "93M0JSa285clTunrA6P0MZRxPIJjcE0r9JqNFQG5uiZEgrFTbggIgnzOYgb3FpcWXRgkPhervaoMXd94EetKDvcB4Ud8MhLgzZNH",
-        oneconf:
-            "eWOc09z0O8ByMETErNPbZRWaNBRf0EMZrZROLLWFQF6OyRBLFZZvLWG0yLEpWEpOymEEjNWL9DiLZZOWNNNLeR4m9bbZLbLN0P4f",
-        manageAi:
-            "GAMhV1WeAfQtwhQYbMoaZU5UYCA18Y5ittoWZKxCZ1IWYhAYGQ0RKfGFA1Pe5Qw1E78AwqACIGo5A01yKWaAxZ8QQjWftAVK0bVP",
-        onebinar:
-            "ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnpkV0lpT2lKV2FXUmxiMk5oYkd3aUxDSnVZVzFsSWpvaVQyNWxZbWx1WVhJaUxDSnBZWFFpT2pJeU1ERjkuSGgzNzVQUU9uMHN0cXhXSU9ESmI1M1RGWlRXOXhvRXlOaXJaaWZ0bVVsWQ==",
-    },
+    DECODE_TOKEN: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJvbmVjb25mZXJlbmNlIiwibmFtZSI6Im9uZWNvbmZlcmVuY2VAaW5ldCEiLCJpYXQiOjE1MTYyMzkwMjJ9.76dYYbFS1Hlv9vfu2hZ31a3qwA4p_5jYuLqYiBiHPmw',
 
-    AUTO_PIN_LATEST_SCREEN_SHARE: "remote-only",
-    BRAND_WATERMARK_LINK: "",
+    // secret key เอาไว้แนบ header ตอน endmeeting hangup 
+    // test
+    SECRET_KEY_MANAGE_AI: 'GAMhV1WeAfQtwhQYbMoaZU5UYCA18Y5ittoWZKxCZ1IWYhAYGQ0RKfGFA1Pe5Qw1E78AwqACIGo5A01yKWaAxZ8QQjWftAVK0bVP',
+    SECRET_KEY_ONECHAT: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJWaWRlb2NhbGwiLCJuYW1lIjoiT05FQ0hBVFNFUlZJQ0UiLCJpYXQiOjIyMDF9.-llQuCLFEUdv4BdJ1pf0-4KwrfwnXz7ybqS10DFLuBs',
+    SECRET_KEY_ONE_DENTAL: 'R1P0TIzFKTdr5YSmQ0gcRt6U6xfs0W3OyHxKG52YlSfY4mkf140pWt6K1xoGb71n2mmYGdAeEoWMcAU5BcjbHeXjaLQeryg1zj2d',
+    SECRET_KEY_ONE_BINAR: 'ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnpkV0lpT2lKV2FXUmxiMk5oYkd3aUxDSnVZVzFsSWpvaVQyNWxZbWx1WVhJaUxDSnBZWFFpT2pJeU1ERjkuSGgzNzVQUU9uMHN0cXhXSU9ESmI1M1RGWlRXOXhvRXlOaXJaaWZ0bVVsWQ==',
+    SECRET_KEY_JMC: '1YRvZyjd8vZsa1u3dKx1GlNYjersxv6WTS0gXeflVbyXKC6M4zHEsybpOfoYAJqVv4wdaMoqMkoYheBEPhFdgmK4Gxfhx3v8XlMo',
+    SECRET_KEY_TELEMEDICINE: 'P1v59giDigTxczqz8azhRouzvzzeHDt1HuPPdywGXCwjAA42C2Owb6OIl5HH8lC8sXwMSJ7Q9ZKeUwCkvnYif094OkaEz7tKuMyV',
+
+    // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
+    SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onedental', 'jmc', 'telemedicine'],
+    SERVICE_INVITE_FEATURE: ['oneconference'],
+    SERVICE_RECORD_FEATURE: ['oneconference'],
+    SERVICE_LIVE_FEATURE: ['oneconference'],
+    SERVICE_APPROVE_FEATURE: ['oneconference'],
+
+    AUTO_PIN_LATEST_SCREEN_SHARE: 'remote-only',
+    BRAND_WATERMARK_LINK: '',
 
     CLOSE_PAGE_GUEST_HINT: false, // A html text to be shown to guests on the close page, false disables it
     /**

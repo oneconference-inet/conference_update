@@ -297,7 +297,11 @@ class Toolbox extends Component<Props, State> {
         // Get approve incomming conference
         let getApprove
         if (services_check.includes(checkPlatform)) {
-            getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
+            if(services_check.includes(checkPlatform !== 'onemail_dga')) {
+                getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
+            } else {
+                'Room is not defined function approve!!!'
+            }
             // console.log("Approve: ", getApprove)
             if (getApprove.data.approve) {
                 logger.log('Room is require approve to join.')
@@ -358,14 +362,16 @@ class Toolbox extends Component<Props, State> {
      */
     componentDidMount() {
         const isModerator = infoConf.getIsModerator();
+        const checkPlatform = infoConf.getService();
         this.setState({
             meetingid: infoConf.getMeetingId(),
             roomname: infoConf.getRoomName(),
             name: infoConf.getNameJoin(),
             checkPlatform: infoConf.getService(),
         },() => {
-            if (isModerator) {
+            if (isModerator && checkPlatform == "manageAi" || checkPlatform == "onedental" || checkPlatform == "jmc" || checkPlatform == "telemedicine") {
                 this.onSocketHost(this.state);
+                console.log('Service:', checkPlatform);
 
                 //Recording when start conference
                 let appData = JSON.stringify({
@@ -1174,11 +1180,16 @@ class Toolbox extends Component<Props, State> {
             // <LiveStreamButton
             //     key = 'livestreaming'
             //     showLabel = { true } />,
-            infoConf.getService() === "oneconference" ? <RecordButton
+            // ปุ่ม record อันเก่า
+            // console.log('-----------------Service---------------------', infoConf.getService()),
+            // infoConf.getService() === "onemail_dga" ? <RecordButton
+            //     key = 'record'
+            //     showLabel = { true } />
+            //     :
+            // null,
+            <RecordButton
                 key = 'record'
-                showLabel = { true } />
-                :
-            null,
+                showLabel = { true } />,
             // this._shouldShowButton('sharedvideo')
             //     && <OverflowMenuItem
             //         accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }

@@ -35,7 +35,7 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
     let { visible } = ownProps;
 
     if (typeof visible === 'undefined') {
-        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording') && abstractProps.visible && visibleByService && visibleByRole;
+        visible = interfaceConfig.TOOLBAR_BUTTONS.includes('recording');
     }
 
     return {
@@ -46,6 +46,8 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
 
 function checkService(service) {
     const services_check = interfaceConfig.SERVICE_RECORD_FEATURE || []
+    // console.log("SERVICE_CHKK: ",service);
+    // console.log("SERVICE_CHK: ",services_check.includes(service));
     if (!services_check.includes(service)) {
         return false
     } else {

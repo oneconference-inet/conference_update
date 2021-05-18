@@ -132,10 +132,9 @@ export async function createHandlers({ getState }: { getState: Function }) {
     const int_service = interfaceConfig.SERVICE_INT;
     logger.log("Data Decode: ", dataDecode);
     logger.log("TR: 12345");
-
+    
     // console.log("token Access: ", tokenAccess);    
-
-    if (dataDecode != undefined && tokenAccess) {
+     if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);
         infoConf.setRoomName(dataDecode.roomname);
         sessionStorage.setItem(
@@ -176,6 +175,15 @@ export async function createHandlers({ getState }: { getState: Function }) {
                         {
                             meetingid: dataDecode.meetingId,
                             name: dataDecode.nickname,
+                            clientname: dataDecode.service,
+                        }
+                    );
+                } else if (dataDecode.service == "onemail_dga") {
+                    infoConf.setService(dataDecode.service);
+                    keydb = await axios.post(
+                        interfaceConfig.DOMAIN_ONEMAIL_DGA + "/checkkey",
+                        {
+                            meetingid: dataDecode.meetingId,
                             clientname: dataDecode.service,
                         }
                     );
@@ -228,7 +236,35 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: "onemail",
                         }
                     );
-                } else {
+                } else if (dataDecode.service == "onemail_dga") {
+                    infoConf.setService(dataDecode.service);
+                    keydb = await axios.post(
+                        interfaceConfig.DOMAIN_ONEMAIL_DGA + "/checkkey",
+                        {
+                            meetingid: dataDecode.meetingId,
+                            clientname: "onemail_dga",
+                        }
+                    );
+                } else if (dataDecode.service == "onedental") {
+                    infoConf.setService(dataDecode.service);
+                    keydb = await axios.post(
+                        interfaceConfig.DOMAIN_BACK + "/checkkey",
+                        {
+                            meetingid: dataDecode.meetingId,
+                            clientname: "onedental",
+                        }
+                    );
+                } else if (dataDecode.service == "onebinar") {
+                    infoConf.setService(dataDecode.service);
+                    keydb = await axios.post(
+                        interfaceConfig.DOMAIN_BACK + "/checkkey",
+                        {
+                            meetingid: dataDecode.meetingId,
+                            clientname: "onebinar",
+                        }
+                    );
+                }
+                else {
                     infoConf.setService("oneconference");
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN + "/checkkey",
