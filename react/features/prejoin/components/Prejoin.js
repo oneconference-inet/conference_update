@@ -4,6 +4,7 @@ import InlineDialog from '@atlaskit/inline-dialog';
 import React, { Component } from 'react';
 
 import { getRoomName } from '../../base/conference';
+import { getToolbarButtons } from '../../base/config';
 import { translate } from '../../base/i18n';
 import { Icon, IconArrowDown, IconArrowUp, IconPhone, IconVolumeOff } from '../../base/icons';
 import { isVideoMutedByUser } from '../../base/media';
@@ -127,6 +128,11 @@ type Props = {
      * The JitsiLocalTrack to display.
      */
     videoTrack: ?Object,
+
+    /**
+     * Array with the buttons which this Toolbox should display.
+     */
+    visibleButtons: Array<string>
 };
 
 type State = {
@@ -295,7 +301,8 @@ class Prejoin extends Component<Props, State> {
             showConferenceInfo,
             showJoinActions,
             t,
-            videoTrack
+            videoTrack,
+            visibleButtons
         } = this.props;
 
         const { _closeDialog, _onDropdownClose, _onJoinButtonClick, _onOptionsClick, _setName, _showDialog } = this;
@@ -310,7 +317,8 @@ class Prejoin extends Component<Props, State> {
                 skipPrejoinButton = { this._renderSkipPrejoinButton() }
                 title = { t('prejoin.joinMeeting') }
                 videoMuted = { !showCameraPreview }
-                videoTrack = { videoTrack }>
+                videoTrack = { videoTrack }
+                visibleButtons = { visibleButtons }>
                 {showJoinActions && (
                     <div className = 'prejoin-input-area-container'>
                         <div className = 'prejoin-input-area'>
@@ -420,11 +428,11 @@ function mapStateToProps(state, ownProps): Object {
     const name = getDisplayName(state);
     const showErrorOnJoin = isDisplayNameRequired(state) && !name;
     const { showJoinActions } = ownProps;
-    const isInviteButtonEnabled = isButtonEnabled('invite');
+    const isInviteButtonEnabled = isButtonEnabled('invite', state);
 
     // Hide conference info when interfaceConfig is available and the invite button is disabled.
     // In all other cases we want to preserve the behaviour and control the the conference info
-    // visibility trough showJoinActions.
+    // visibility through showJoinActions.
     const showConferenceInfo
         = typeof isInviteButtonEnabled === 'undefined' || isInviteButtonEnabled === true
             ? showJoinActions
@@ -440,7 +448,8 @@ function mapStateToProps(state, ownProps): Object {
         hasJoinByPhoneButton: isJoinByPhoneButtonVisible(state),
         showCameraPreview: !isVideoMutedByUser(state),
         showConferenceInfo,
-        videoTrack: getLocalJitsiVideoTrack(state)
+        videoTrack: getLocalJitsiVideoTrack(state),
+        visibleButtons: getToolbarButtons(state)
     };
 }
 

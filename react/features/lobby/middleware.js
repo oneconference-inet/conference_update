@@ -6,7 +6,7 @@ import { getFirstLoadableAvatarUrl, getParticipantDisplayName } from '../base/pa
 import { MiddlewareRegistry, StateListenerRegistry } from '../base/redux';
 import { isTestModeEnabled } from '../base/testing';
 import { NOTIFICATION_TYPE, showNotification } from '../notifications';
-import { isPrejoinPageEnabled } from '../prejoin/functions';
+import { shouldAutoKnock } from '../prejoin/functions';
 
 import { KNOCKING_PARTICIPANT_ARRIVED_OR_UPDATED } from './actionTypes';
 import {
@@ -29,7 +29,7 @@ MiddlewareRegistry.register(store => next => action => {
         // We need the full update result to be in the store already
         const result = next(action);
 
-        // _findLoadableAvatarForKnockingParticipant(store, action.participant);
+        _findLoadableAvatarForKnockingParticipant(store, action.participant);
 
         return result;
     }
@@ -100,8 +100,7 @@ function _conferenceFailed({ dispatch, getState }, next, action) {
 
         dispatch(openLobbyScreen());
 
-        if (isPrejoinPageEnabled(state) && !state['features/lobby'].knocking) {
-            // prejoin is enabled, so we knock automatically
+        if (shouldAutoKnock(state)) {
             dispatch(startKnocking());
         }
 

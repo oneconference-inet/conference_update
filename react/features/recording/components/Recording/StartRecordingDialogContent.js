@@ -26,7 +26,7 @@ import { authorizeDropbox, updateDropboxToken } from '../../../dropbox';
 import { RECORDING_TYPES } from '../../constants';
 import { getRecordingDurationEstimation } from '../../functions';
 
-import { DROPBOX_LOGO, ICON_SHARE, JITSI_LOGO, ONECON_LOGO } from './styles';
+import { DROPBOX_LOGO, ICON_SHARE, JITSI_LOGO } from './styles';
 
 
 type Props = {
@@ -162,7 +162,9 @@ class StartRecordingDialogContent extends Component<Props> {
      * @returns {React$Component}
      */
     _renderFileSharingContent() {
-        if (!this.props.fileRecordingsServiceSharingEnabled) {
+        const { fileRecordingsServiceSharingEnabled, isVpaas } = this.props;
+
+        if (!fileRecordingsServiceSharingEnabled || isVpaas) {
             return null;
         }
 
@@ -195,7 +197,7 @@ class StartRecordingDialogContent extends Component<Props> {
                 <Container className = 'recording-icon-container'>
                     <Image
                         className = 'recording-icon'
-                        src = { ONECON_LOGO }
+                        src = { ICON_SHARE }
                         style = { styles.recordingIcon } />
                 </Container>
                 <Text
@@ -246,7 +248,8 @@ class StartRecordingDialogContent extends Component<Props> {
                         value = { this.props.selectedRecordingService === RECORDING_TYPES.JITSI_REC_SERVICE } />
                 ) : null;
 
-        const icon = isVpaas ? ICON_SHARE : ONECON_LOGO;
+        const icon = isVpaas ? ICON_SHARE : JITSI_LOGO;
+        const label = isVpaas ? t('recording.serviceDescriptionCloud') : t('recording.serviceDescription');
 
         return (
             <Container
@@ -265,7 +268,7 @@ class StartRecordingDialogContent extends Component<Props> {
                         ..._dialogStyles.text,
                         ...styles.title
                     }}>
-                    { t('recording.serviceDescription') }
+                    { label }
                 </Text>
                 { switchContent }
             </Container>

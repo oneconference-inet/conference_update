@@ -3,7 +3,10 @@
 import React, { PureComponent } from 'react';
 
 import { AudioSettingsButton, VideoSettingsButton } from '../../../../toolbox/components/web';
+import { VideoBackgroundButton } from '../../../../virtual-background';
+import { checkBlurSupport } from '../../../../virtual-background/functions';
 import { Avatar } from '../../../avatar';
+import { allowUrlSharing } from '../../functions';
 
 import ConnectionStatus from './ConnectionStatus';
 import CopyMeetingUrl from './CopyMeetingUrl';
@@ -54,7 +57,12 @@ type Props = {
     /**
      * The video track to render as preview (if omitted, the default local track will be rendered).
      */
-    videoTrack?: Object
+    videoTrack?: Object,
+
+    /**
+     * Array with the buttons which this Toolbox should display.
+     */
+    visibleButtons?: Array<string>
 }
 
 /**
@@ -78,7 +86,8 @@ export default class PreMeetingScreen extends PureComponent<Props> {
      * @inheritdoc
      */
     render() {
-        const { name, showAvatar, showConferenceInfo, title, videoMuted, videoTrack } = this.props;
+        const { name, showAvatar, showConferenceInfo, title, videoMuted, videoTrack, visibleButtons } = this.props;
+        const showSharingButton = allowUrlSharing();
 
         return (
             <div
@@ -88,7 +97,6 @@ export default class PreMeetingScreen extends PureComponent<Props> {
                 <Preview
                     videoMuted = { videoMuted }
                     videoTrack = { videoTrack } />
-                {!videoMuted && <div className = 'preview-overlay' />}
                 <div className = 'content'>
                     {showAvatar && videoMuted && (
                         <Avatar
@@ -103,13 +111,20 @@ export default class PreMeetingScreen extends PureComponent<Props> {
                             <div className = 'title'>
                                 { title }
                             </div>
-                            <CopyMeetingUrl />
+                            {showSharingButton ? <CopyMeetingUrl /> : null}
                         </>
                     )}
                     { this.props.children }
                     <div className = 'media-btn-container'>
-                        <AudioSettingsButton visible = { true } />
-                        <VideoSettingsButton visible = { true } />
+                        <div className = 'toolbox-content'>
+                            <div className = 'toolbox-content-items'>
+                                <AudioSettingsButton visible = { true } />
+                                <VideoSettingsButton visible = { true } />
+                                { ((visibleButtons && visibleButtons.includes('select-background'))
+                                   || (visibleButtons && visibleButtons.includes('videobackgroundblur')))
+                                   && <VideoBackgroundButton visible = { checkBlurSupport() } /> }
+                            </div>
+                        </div>
                     </div>
                     { this.props.skipPrejoinButton }
                     { this.props.footer }

@@ -6,7 +6,6 @@ import { TRACK_REMOVED } from '../tracks/actionTypes';
 
 import {
     SET_AUDIO_AVAILABLE,
-    SET_AUDIO_MUTED_ALL,
     SET_AUDIO_MUTED,
     SET_CAMERA_FACING_MODE,
     SET_VIDEO_AVAILABLE,
@@ -34,8 +33,7 @@ import { CAMERA_FACING_MODE } from './constants';
  */
 export const _AUDIO_INITIAL_MEDIA_STATE = {
     available: true,
-    muted: false,
-    stateMuteAll: false
+    muted: false
 };
 
 /**
@@ -59,11 +57,6 @@ function _audio(state = _AUDIO_INITIAL_MEDIA_STATE, action) {
         return {
             ...state,
             muted: action.muted
-        };
-    case SET_AUDIO_MUTED_ALL:
-        return {
-            ...state,
-            stateMuteAll: action.stateMuteAll
         };
 
     default:

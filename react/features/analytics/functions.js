@@ -1,31 +1,20 @@
 // @flow
 
-import { API_ID } from "../../../modules/API/constants";
-import { getName as getAppName } from "../app/functions";
+import { API_ID } from '../../../modules/API/constants';
+import { getName as getAppName } from '../app/functions';
 import {
     checkChromeExtensionsInstalled,
-    isMobileBrowser,
-} from "../base/environment/utils";
+    isMobileBrowser
+} from '../base/environment/utils';
 import JitsiMeetJS, {
     analytics,
     browser,
-    isAnalyticsEnabled,
-} from "../base/lib-jitsi-meet";
-import { getJitsiMeetGlobalNS, loadScript, parseURIString } from "../base/util";
+    isAnalyticsEnabled
+} from '../base/lib-jitsi-meet';
+import { getJitsiMeetGlobalNS, loadScript, parseURIString } from '../base/util';
 
-import { AmplitudeHandler, MatomoHandler } from "./handlers";
-import logger from "./logger";
-
-import infoConf from "../../../infoConference";
-import infoUser from "../../../infoUser";
-import authXmpp from "../../../authXmpp";
-
-import { redirectToStaticPage } from "../app/actions";
-import CryptoJS from "crypto-js";
-import axios from "axios";
-
-declare var APP: Object;
-declare var interfaceConfig: Object;
+import { AmplitudeHandler, MatomoHandler } from './handlers';
+import logger from './logger';
 
 /**
  * Sends an event through the lib-jitsi-meet AnalyticsAdapter interface.
@@ -62,45 +51,6 @@ export function resetAnalytics() {
     analytics.reset();
 }
 
-// Reload Page With Parameter (Token)
-
-function reloadPage() {
-    if (
-        performance.navigation.type == 1 &&
-        Boolean(sessionStorage.getItem("token_Access"))
-    ) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function decode(data, checkReload) {
-    try {
-        var resultData;
-        if (checkReload) {
-            var dataReload = sessionStorage.getItem("token_Access");
-            var bytesForReload = CryptoJS.AES.decrypt(
-                dataReload,
-                interfaceConfig.DECODE_TOKEN
-            );
-            resultData = bytesForReload.toString(CryptoJS.enc.Utf8);
-        } else {
-            var bytes = CryptoJS.AES.decrypt(
-                data,
-                interfaceConfig.DECODE_TOKEN
-            );
-            resultData = bytes.toString(CryptoJS.enc.Utf8);
-        }
-        return JSON.parse(resultData);
-    } catch (error) {
-        console.error(error);
-        // sendAnalytics(createToolbarEvent('not_defind'));
-        // console.error("Warring MeetingID is not defind!!")
-        return undefined;
-    }
-}
-
 /**
  * Creates the analytics handlers.
  *
@@ -117,187 +67,15 @@ export async function createHandlers({ getState }: { getState: Function }) {
 
         return [];
     }
-    // Test data Encrypto JS
-    // var data = [{id: 1}, {id: 2}]
-    // var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), interfaceConfig.DECODE_TOKEN).toString();
 
     const state = getState();
-    const config = state["features/base/config"];
-    const { locationURL } = state["features/base/connection"];
-    const repeatAccess = reloadPage();
-    const meetingIdForCheck = locationURL.href.split("/")[3].split("?")[0];
-    const tokenDecode = locationURL.href.split("?")[1];
-    const dataDecode = decode(tokenDecode, repeatAccess);
-    const tokenAccess = Boolean(tokenDecode != undefined || repeatAccess);
-    const int_service = interfaceConfig.SERVICE_INT;
-    logger.log("Data Decode: ", dataDecode);
-    logger.log("TR: 12345");
-    
-    // console.log("token Access: ", tokenAccess);    
-     if (dataDecode != undefined && tokenAccess) {
-        infoConf.setMeetingId(dataDecode.meetingId);
-        infoConf.setRoomName(dataDecode.roomname);
-        sessionStorage.setItem(
-            "token_Access",
-            tokenDecode || sessionStorage.getItem("token_Access")
-        ); // Set token for Reload page
-        if (
-            dataDecode.role == "moderator" &&
-            meetingIdForCheck == dataDecode.meetingId
-        ) {
-            // Moderator
-            infoConf.setNameJoin(dataDecode.nickname);
-            infoConf.setIsModerator();
-            infoConf.setIsSecretRoom(dataDecode.secretRoom);
-            infoUser.setOption(dataDecode.option);
-            infoUser.setName(dataDecode.nickname);
-            infoUser.setRedirect(dataDecode.redirect);
-            infoUser.setUserId(dataDecode.clientid);
-            authXmpp.setUser(dataDecode.userXmpAuth);
-            authXmpp.setPass(dataDecode.passXmpAuth);
-            try {
-                let keydb;
-                if (int_service.includes(dataDecode.service)) {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_BACK + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            name: dataDecode.nickname,
-                            clientname: dataDecode.service,
-                        }
-                    );
-                    // optioncon.seturlInvite(keydb.data.urlInvite)
-                } else if (dataDecode.service == "onemail") {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_ONEMAIL + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            name: dataDecode.nickname,
-                            clientname: dataDecode.service,
-                        }
-                    );
-                } else if (dataDecode.service == "onemail_dga") {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_ONEMAIL_DGA + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            clientname: dataDecode.service,
-                        }
-                    );
-                } else {
-                    infoConf.setService("oneconference");
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            clientname: "oneconference",
-                        }
-                    );
-                    infoConf.seturlInvite(keydb.data.urlInvite);
-                }
-            } catch (error) {
-                console.error("Server is not defined ERROR: ", error);
-                APP.store.dispatch(
-                    redirectToStaticPage("static/errorServer.html")
-                );
-            }
-        } else if (
-            dataDecode.role == "attendee" &&
-            meetingIdForCheck == dataDecode.meetingId
-        ) {
-            // Attendee
-            infoConf.setIsSecretRoom(dataDecode.secretRoom);
-            infoConf.setNameJoin(dataDecode.nickname);
-            infoUser.setOption(dataDecode.option);
-            infoUser.setName(dataDecode.nickname);
-            infoUser.setUserId(dataDecode.clientid);
-            infoUser.setRedirect(dataDecode.redirect);
-            try {
-                let keydb;
-                if (int_service.includes(dataDecode.service)) {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_BACK + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            name: dataDecode.nickname,
-                            clientname: dataDecode.service,
-                        }
-                    );
-                } else if (dataDecode.service == "onemail") {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_ONEMAIL + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            clientname: "onemail",
-                        }
-                    );
-                } else if (dataDecode.service == "onemail_dga") {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_ONEMAIL_DGA + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            clientname: "onemail_dga",
-                        }
-                    );
-                } else if (dataDecode.service == "onedental") {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_BACK + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            clientname: "onedental",
-                        }
-                    );
-                } else if (dataDecode.service == "onebinar") {
-                    infoConf.setService(dataDecode.service);
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN_BACK + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            clientname: "onebinar",
-                        }
-                    );
-                }
-                else {
-                    infoConf.setService("oneconference");
-                    keydb = await axios.post(
-                        interfaceConfig.DOMAIN + "/checkkey",
-                        {
-                            meetingid: dataDecode.meetingId,
-                            clientname: "oneconference",
-                        }
-                    );
-                    infoConf.seturlInvite(keydb.data.urlInvite);
-                }
-                if (dataDecode.keyroom == keydb.data.key) {
-                    infoConf.setConfirm();
-                }
-            } catch (error) {
-                console.error(
-                    "Warring MeetingID Time out!! or Server is not defined ERROR: ",
-                    error
-                );
-                APP.store.dispatch(
-                    redirectToStaticPage("static/errorMeetingID.html")
-                );
-            }
-        } else {
-            console.error("Warring MeetingID or Token is not defind!!");
-            APP.store.dispatch(redirectToStaticPage("static/errorToken.html"));
-        }
-    } else {
-        console.error("Error URL is not defind!!");
-        APP.store.dispatch(redirectToStaticPage("static/errorURL.html"));
-    }
-    document.title = "ONECONFERENCE-MEET";
-    const host = locationURL ? locationURL.host : "";
-    const { analytics: analyticsConfig = {}, deploymentInfo } = config;
+    const config = state['features/base/config'];
+    const { locationURL } = state['features/base/connection'];
+    const host = locationURL ? locationURL.host : '';
+    const {
+        analytics: analyticsConfig = {},
+        deploymentInfo
+    } = config;
     const {
         amplitudeAPPKey,
         blackListedEvents,
@@ -305,13 +83,13 @@ export async function createHandlers({ getState }: { getState: Function }) {
         googleAnalyticsTrackingId,
         matomoEndpoint,
         matomoSiteID,
-        whiteListedEvents,
+        whiteListedEvents
     } = analyticsConfig;
-    const { group, user } = state["features/base/jwt"];
+    const { group, user } = state['features/base/jwt'];
     const handlerConstructorOptions = {
         amplitudeAPPKey,
         blackListedEvents,
-        envType: (deploymentInfo && deploymentInfo.envType) || "dev",
+        envType: (deploymentInfo && deploymentInfo.envType) || 'dev',
         googleAnalyticsTrackingId,
         matomoEndpoint,
         matomoSiteID,
@@ -321,7 +99,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
         subproduct: deploymentInfo && deploymentInfo.environment,
         user: user && user.id,
         version: JitsiMeetJS.version,
-        whiteListedEvents,
+        whiteListedEvents
     };
     const handlers = [];
 
@@ -333,7 +111,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
 
             handlers.push(amplitude);
         } catch (e) {
-            logger.error("Failed to initialize Amplitude handler", e);
+            logger.error('Failed to initialize Amplitude handler', e);
         }
     }
 
@@ -343,7 +121,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
 
             handlers.push(matomo);
         } catch (e) {
-            logger.error("Failed to initialize Matomo handler", e);
+            logger.error('Failed to initialize Matomo handler', e);
         }
     }
 
@@ -351,13 +129,10 @@ export async function createHandlers({ getState }: { getState: Function }) {
         let externalHandlers;
 
         try {
-            externalHandlers = await _loadHandlers(
-                scriptURLs,
-                handlerConstructorOptions
-            );
+            externalHandlers = await _loadHandlers(scriptURLs, handlerConstructorOptions);
             handlers.push(...externalHandlers);
         } catch (e) {
-            logger.error("Failed to initialize external analytics handlers", e);
+            logger.error('Failed to initialize external analytics handlers', e);
         }
     }
 
@@ -379,20 +154,19 @@ export async function createHandlers({ getState }: { getState: Function }) {
  * @param {Array<Object>} handlers - The analytics handlers.
  * @returns {void}
  */
-export function initAnalytics(
-    { getState }: { getState: Function },
-    handlers: Array<Object>
-) {
+export function initAnalytics({ getState }: { getState: Function }, handlers: Array<Object>) {
     if (!isAnalyticsEnabled(getState) || handlers.length === 0) {
         return;
     }
 
     const state = getState();
-    const config = state["features/base/config"];
-    const { deploymentInfo } = config;
-    const { group, server } = state["features/base/jwt"];
-    const roomName = state["features/base/conference"].room;
-    const { locationURL = {} } = state["features/base/connection"];
+    const config = state['features/base/config'];
+    const {
+        deploymentInfo
+    } = config;
+    const { group, server } = state['features/base/jwt'];
+    const roomName = state['features/base/conference'].room;
+    const { locationURL = {} } = state['features/base/connection'];
     const { tenant } = parseURIString(locationURL.href) || {};
     const permanentProperties = {};
 
@@ -407,18 +181,16 @@ export function initAnalytics(
     permanentProperties.appName = getAppName();
 
     // Report if user is using websocket
-    permanentProperties.websocket =
-        navigator.product !== "ReactNative" &&
-        typeof config.websocket === "string";
+    permanentProperties.websocket = navigator.product !== 'ReactNative' && typeof config.websocket === 'string';
 
     // Report if user is using the external API
-    permanentProperties.externalApi = typeof API_ID === "number";
+    permanentProperties.externalApi = typeof API_ID === 'number';
 
     // Report if we are loaded in iframe
     permanentProperties.inIframe = _inIframe();
 
     // Report the tenant from the URL.
-    permanentProperties.tenant = tenant || "/";
+    permanentProperties.tenant = tenant || '/';
 
     // Optionally, include local deployment information based on the
     // contents of window.config.deploymentInfo.
@@ -437,19 +209,15 @@ export function initAnalytics(
     analytics.setAnalyticsHandlers(handlers);
 
     if (!isMobileBrowser() && browser.isChrome()) {
-        const bannerCfg = state["features/base/config"].chromeExtensionBanner;
+        const bannerCfg = state['features/base/config'].chromeExtensionBanner;
 
-        checkChromeExtensionsInstalled(bannerCfg).then(
-            (extensionsInstalled) => {
-                if (extensionsInstalled?.length) {
-                    analytics.addPermanentProperties({
-                        hasChromeExtension: extensionsInstalled.some(
-                            (ext) => ext
-                        ),
-                    });
-                }
+        checkChromeExtensionsInstalled(bannerCfg).then(extensionsInstalled => {
+            if (extensionsInstalled?.length) {
+                analytics.addPermanentProperties({
+                    hasChromeExtension: extensionsInstalled.some(ext => ext)
+                });
             }
-        );
+        });
     }
 }
 
@@ -460,7 +228,7 @@ export function initAnalytics(
  * @private
  */
 function _inIframe() {
-    if (navigator.product === "ReactNative") {
+    if (navigator.product === 'ReactNative') {
         return false;
     }
 
@@ -487,22 +255,20 @@ function _loadHandlers(scriptURLs = [], handlerConstructorOptions) {
         promises.push(
             loadScript(url).then(
                 () => {
-                    return { type: "success" };
+                    return { type: 'success' };
                 },
-                (error) => {
+                error => {
                     return {
-                        type: "error",
+                        type: 'error',
                         error,
-                        url,
+                        url
                     };
-                }
-            )
-        );
+                }));
     }
 
-    return Promise.all(promises).then((values) => {
+    return Promise.all(promises).then(values => {
         for (const el of values) {
-            if (el.type === "error") {
+            if (el.type === 'error') {
                 logger.warn(`Failed to load ${el.url}: ${el.error}`);
             }
         }
@@ -512,7 +278,7 @@ function _loadHandlers(scriptURLs = [], handlerConstructorOptions) {
         // check the old location to provide legacy support
         const analyticsHandlers = [
             ...getJitsiMeetGlobalNS().analyticsHandlers,
-            ...window.analyticsHandlers,
+            ...window.analyticsHandlers
         ];
         const handlers = [];
 

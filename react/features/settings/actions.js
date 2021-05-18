@@ -10,10 +10,21 @@ import {
     SET_AUDIO_SETTINGS_VISIBILITY,
     SET_VIDEO_SETTINGS_VISIBILITY
 } from './actionTypes';
-import { SettingsDialog } from './components';
+import { LogoutDialog, SettingsDialog } from './components';
 import { getMoreTabProps, getProfileTabProps } from './functions';
 
 declare var APP: Object;
+
+/**
+ * Opens {@code LogoutDialog}.
+ *
+ * @param {Function} onLogout - The event in {@code LogoutDialog} that should be
+ *  enabled on click.
+ * @returns {Function}
+ */
+export function openLogoutDialog(onLogout: Function) {
+    return openDialog(LogoutDialog, { onLogout });
+}
 
 /**
  * Opens {@code SettingsDialog}.
@@ -27,7 +38,7 @@ export function openSettingsDialog(defaultTab: string) {
 }
 
 /**
- * Sets the visiblity of the audio settings.
+ * Sets the visibility of the audio settings.
  *
  * @param {boolean} value - The new value.
  * @returns {Function}
@@ -40,7 +51,7 @@ function setAudioSettingsVisibility(value: boolean) {
 }
 
 /**
- * Sets the visiblity of the video settings.
+ * Sets the visibility of the video settings.
  *
  * @param {boolean} value - The new value.
  * @returns {Function}
@@ -112,7 +123,7 @@ export function submitProfileTab(newState: Object): Function {
 }
 
 /**
- * Toggles the visiblity of the audio settings.
+ * Toggles the visibility of the audio settings.
  *
  * @returns {void}
  */
@@ -125,7 +136,7 @@ export function toggleAudioSettings() {
 }
 
 /**
- * Toggles the visiblity of the video settings.
+ * Toggles the visibility of the video settings.
  *
  * @returns {void}
  */

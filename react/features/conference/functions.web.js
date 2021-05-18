@@ -4,13 +4,11 @@ import { translateToHTML } from '../base/i18n';
 import { getLocalParticipant } from '../base/participants';
 import { toState } from '../base/redux';
 import { getBackendSafePath, getJitsiMeetGlobalNS } from '../base/util';
+import { getVpaasBillingId } from '../billing-counter/functions';
 import { showWarningNotification } from '../notifications';
-import { createRnnoiseProcessorPromise } from '../rnnoise';
-import UIEvents from '../../../service/UI/UIEvents';
+import { createRnnoiseProcessor } from '../stream-effects/rnnoise';
 
 export * from './functions.any';
-
-declare var APP: Object;
 
 /**
  * Returns the result of getWiFiStats from the global NS or does nothing
@@ -60,7 +58,6 @@ export function maybeShowSuboptimalExperienceNotification(dispatch, t) {
  * @returns {Object} - Options object.
  */
 export function getConferenceOptions(stateful) {
-
     const state = toState(stateful);
 
     const options = state['features/base/config'];
@@ -87,7 +84,8 @@ export function getConferenceOptions(stateful) {
 
     options.applicationName = getName();
     options.getWiFiStatsMethod = getWiFiStatsMethod;
-    options.createVADProcessor = createRnnoiseProcessorPromise;
+    options.createVADProcessor = createRnnoiseProcessor;
+    options.billingId = getVpaasBillingId(state);
 
     // Disable CallStats, if requessted.
     if (options.disableThirdPartyRequests) {

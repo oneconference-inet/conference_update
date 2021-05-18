@@ -7,7 +7,7 @@ import { StateListenerRegistry, equals } from '../base/redux';
 import { isFollowMeActive } from '../follow-me';
 import { selectParticipant } from '../large-video/actions';
 
-import { setParticipantsWithScreenShare } from './actions';
+import { setRemoteParticipantsWithScreenShare } from './actions';
 
 declare var APP: Object;
 declare var interfaceConfig: Object;
@@ -37,7 +37,7 @@ StateListenerRegistry.register(
             return;
         }
 
-        const oldScreenSharesOrder = store.getState()['features/video-layout'].screenShares || [];
+        const oldScreenSharesOrder = store.getState()['features/video-layout'].remoteScreenShares || [];
         const knownSharingParticipantIds = tracks.reduce((acc, track) => {
             if (track.mediaType === 'video' && track.videoType === 'desktop') {
                 const skipTrack = _getAutoPinSetting() === 'remote-only' && track.local;
@@ -66,9 +66,9 @@ StateListenerRegistry.register(
 
         if (!equals(oldScreenSharesOrder, newScreenSharesOrder)) {
             store.dispatch(
-                setParticipantsWithScreenShare(newScreenSharesOrder));
+                setRemoteParticipantsWithScreenShare(newScreenSharesOrder));
 
-            _updateAutoPinnedParticipant(store);
+            _updateAutoPinnedParticipant(oldScreenSharesOrder, store);
         }
     }, 100));
 
@@ -91,25 +91,32 @@ function _getAutoPinSetting() {
  * Private helper to automatically pin the latest screen share stream or unpin
  * if there are no more screen share streams.
  *
+ * @param {Array<string>} screenShares - Array containing the list of all the screensharing endpoints
+ * before the update was triggered (including the ones that have been removed from redux because of the update).
  * @param {Store} store - The redux store.
  * @returns {void}
  */
-function _updateAutoPinnedParticipant({ dispatch, getState }) {
+function _updateAutoPinnedParticipant(screenShares, { dispatch, getState }) {
     const state = getState();
-    const screenShares = state['features/video-layout'].screenShares;
+    const remoteScreenShares = state['features/video-layout'].remoteScreenShares;
+    const pinned = getPinnedParticipant(getState);
 
-    if (!screenShares) {
+    // Unpin the screenshare when the screensharing participant leaves. Switch to tile view if no other
+    // participant was pinned before screenshare was auto-pinned, pin the previously pinned participant otherwise.
+    if (!remoteScreenShares?.length) {
+        let participantId = null;
+
+        if (pinned && !screenShares.find(share => share === pinned.id)) {
+            participantId = pinned.id;
+        }
+        dispatch(pinParticipant(participantId));
+
         return;
     }
 
-    const latestScreenshareParticipantId
-        = screenShares[screenShares.length - 1];
-
-    const pinned = getPinnedParticipant(getState);
+    const latestScreenshareParticipantId = remoteScreenShares[remoteScreenShares.length - 1];
 
     if (latestScreenshareParticipantId) {
         dispatch(pinParticipant(latestScreenshareParticipantId));
-    } else if (pinned) {
-        dispatch(pinParticipant(null));
     }
 }
