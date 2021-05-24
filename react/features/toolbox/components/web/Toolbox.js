@@ -1173,10 +1173,10 @@ class Toolbox extends Component<Props, State> {
             //     && <SharedDocumentButton
             //         key = 'etherpad'
             //         showLabel = { true } />,
-            this._shouldShowButton('poll')
-            && <PollCreateButton
+            <PollCreateButton
                 key = 'poll'
-                showLabel = { true } />,
+                showLabel = { true }
+                visible = {  this._shouldShowButton('poll') } />,
             <VideoBlurButton
                 key = 'videobackgroundblur'
                 showLabel = { true }
