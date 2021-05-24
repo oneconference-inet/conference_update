@@ -46,7 +46,7 @@ class KnockingParticipantList extends AbstractKnockingParticipantList<Props> {
                 <ul>
                     { _participants.map(p => (
                         <li key = { p.id }>
-                            <img style={{ width: 96 }} src="https://vssmn.org/wp-content/uploads/2018/12/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" />
+                            <img style={{ width: 96 }} src={ p.image } />
                             <div className = 'details'>
                                 <span data-testid = 'knockingParticipant.name'>
                                     { p.name }
