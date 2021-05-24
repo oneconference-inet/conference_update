@@ -510,26 +510,26 @@
   "passwordDigitsOnly": "Up to {{number}} digits",
   "polls": {
     "create": {
-        "dialogTitle": "Créer un sondage",
-        "questionPlaceholder": "Poser une question",
-        "answerPlaceholder": "Option {{index}}",
-        "addAnswer": "Ajouter une réponse",
-        "removeAnswer": "Enlever cette réponse",
-        "send": "Envoyer"
+        "dialogTitle": "สร้างโพล",
+        "questionPlaceholder": "คำถาม?",
+        "answerPlaceholder": "ตัวเลือก {{index}}",
+        "addAnswer": "เพิ่ม",
+        "removeAnswer": "ลบ",
+        "send": "ตกลง"
     },
     "answer": {
-        "title": "Sondage",
-        "skip": "Passer",
-        "submit": "Envoyer",
-        "results" : "Résultats",
-        "close": "Fermer",
-        "empty": "Pas de réponse pour le moment",
+        "title": "หัวข้อ",
+        "skip": "ข้าม",
+        "submit": "ตกลง",
+        "results" : "ผลสรุป",
+        "close": "ปิด",
+        "empty": "ว่าง",
         "vote" : "{{count}} vote",
         "vote_plural" : "{{count}} votes"
     },
     "chat": {
-        "notice": "Sondage",
-        "details": "Détails"
+        "notice": "ประกาศ",
+        "details": "รายละเอียด"
     }
   },
   "poweredby": "powered by",
@@ -721,7 +721,7 @@
       "mute": "สลับไปปิดเสียง",
       "muteEveryone": "ปิดเสียงทุกคน",
       "pip": "Toggle Picture-in-Picture mode",
-      "poll": "Créer un sondage",
+      "poll": "สร้างโพล",
       "privateMessage": "ส่งข้อความส่วนตัว",
       "profile": "แก้ไขข้อมูลส่วนตัว",
       "raiseHand": "สลับไปยกมือขึ้น",
@@ -780,7 +780,7 @@
     "noisyAudioInputDesc": "ฟังดูเหมือนไมโครโฟนของคุณสร้างเสียงรบกวน \nโปรดปิดเสียงหรือเปลี่ยนอุปกรณ์",
     "openChat": "เปิดแชท",
     "pip": "Enter Picture-in-Picture mode",
-    "poll": "Créer un sondage",
+    "poll": "สร้างโพล",
     "privateMessage": "ส่งข้อความส่วนตัว",
     "profile": "แก้ไขข้อมูลส่วนตัว",
     "raiseHand": "ขึ้น / ลง มือของคุณ",
