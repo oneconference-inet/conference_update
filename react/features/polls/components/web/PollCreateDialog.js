@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import { Dialog } from '../../../base/dialog';
 import { Icon, IconAdd, IconClose, IconSmallDragHandle } from '../../../base/icons';
-import { Tooltip } from '../../../base/tooltip';
+import Tooltip from "@atlaskit/tooltip";
 import AbstractPollCreateDialog from '../AbstractPollCreateDialog';
 import type { AbstractProps } from '../AbstractPollCreateDialog';
 
