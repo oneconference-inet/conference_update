@@ -42,14 +42,11 @@ class KnockingParticipantList extends AbstractKnockingParticipantList<Props> {
                 <span className = 'title'>
                     { t('lobby.knockingParticipantList') }
                 </span>
+                {console.log("_participants: ",_participants)}
                 <ul>
                     { _participants.map(p => (
                         <li key = { p.id }>
-                            {/* <Avatar
-                                displayName = { p.name }
-                                size = { 48 }
-                                testId = 'knockingParticipant.avatar'
-                                url = { p.loadableAvatarUrl } /> */}
+                            <img src={ p.loadableAvatarUrl } />
                             <div className = 'details'>
                                 <span data-testid = 'knockingParticipant.name'>
                                     { p.name }
