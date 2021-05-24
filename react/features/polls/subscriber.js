@@ -1,4 +1,4 @@
-/ @flow
+// @flow
 
 import { getCurrentConference } from '../base/conference';
 import { StateListenerRegistry } from '../base/redux';
