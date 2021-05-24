@@ -508,6 +508,30 @@
   },
   "passwordSetRemotely": "ตั้งค่าโดยผู้ร่วมประชุมคนอื่น",
   "passwordDigitsOnly": "Up to {{number}} digits",
+  "polls": {
+    "create": {
+        "dialogTitle": "Créer un sondage",
+        "questionPlaceholder": "Poser une question",
+        "answerPlaceholder": "Option {{index}}",
+        "addAnswer": "Ajouter une réponse",
+        "removeAnswer": "Enlever cette réponse",
+        "send": "Envoyer"
+    },
+    "answer": {
+        "title": "Sondage",
+        "skip": "Passer",
+        "submit": "Envoyer",
+        "results" : "Résultats",
+        "close": "Fermer",
+        "empty": "Pas de réponse pour le moment",
+        "vote" : "{{count}} vote",
+        "vote_plural" : "{{count}} votes"
+    },
+    "chat": {
+        "notice": "Sondage",
+        "details": "Détails"
+    }
+  },
   "poweredby": "powered by",
   "prejoin": {
     "audioAndVideoError": "Audio and video error:",
@@ -697,6 +721,7 @@
       "mute": "สลับไปปิดเสียง",
       "muteEveryone": "ปิดเสียงทุกคน",
       "pip": "Toggle Picture-in-Picture mode",
+      "poll": "Créer un sondage",
       "privateMessage": "ส่งข้อความส่วนตัว",
       "profile": "แก้ไขข้อมูลส่วนตัว",
       "raiseHand": "สลับไปยกมือขึ้น",
@@ -755,6 +780,7 @@
     "noisyAudioInputDesc": "ฟังดูเหมือนไมโครโฟนของคุณสร้างเสียงรบกวน \nโปรดปิดเสียงหรือเปลี่ยนอุปกรณ์",
     "openChat": "เปิดแชท",
     "pip": "Enter Picture-in-Picture mode",
+    "poll": "Créer un sondage",
     "privateMessage": "ส่งข้อความส่วนตัว",
     "profile": "แก้ไขข้อมูลส่วนตัว",
     "raiseHand": "ขึ้น / ลง มือของคุณ",
