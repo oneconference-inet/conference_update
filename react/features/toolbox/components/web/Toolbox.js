@@ -48,6 +48,7 @@ import {
     LocalRecordingButton,
     LocalRecordingInfoDialog
 } from '../../../local-recording';
+import { PollCreateButton } from '../../../polls/components/';
 import {
     LiveStreamButton,
     RecordButton
@@ -1172,6 +1173,10 @@ class Toolbox extends Component<Props, State> {
             //     && <SharedDocumentButton
             //         key = 'etherpad'
             //         showLabel = { true } />,
+            this._shouldShowButton('poll')
+            && <PollCreateButton
+                key = 'poll'
+                showLabel = { true } />,
             <VideoBlurButton
                 key = 'videobackgroundblur'
                 showLabel = { true }

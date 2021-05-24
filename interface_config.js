@@ -224,7 +224,7 @@ var interfaceConfig = {
         'fodeviceselection', 'hangup', 'profile', 'chat', 'recording', 'endmeeting', 'note',
         'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand',
         'videoquality', 'filmstrip', 'invite', 'feedback', 'shortcuts',
-        'tileview', 'download', 'help', 'mute-everyone', 'security'
+        'tileview', 'download', 'help', 'mute-everyone', 'security', 'poll'
     ],
 
     TOOLBAR_TIMEOUT: 4000,

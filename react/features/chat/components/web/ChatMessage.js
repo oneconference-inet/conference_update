@@ -6,6 +6,7 @@ import { toArray } from 'react-emoji-render';
 
 import { translate } from '../../../base/i18n';
 import { Linkify } from '../../../base/react';
+import { PollResultsMessage } from '../../../polls/components';
 import { MESSAGE_TYPE_LOCAL } from '../../constants';
 import AbstractChatMessage, {
     type Props
@@ -43,9 +44,12 @@ class ChatMessage extends AbstractChatMessage<Props> {
                     <div className = 'replywrapper'>
                         <div className = 'messagecontent'>
                             { this.props.showDisplayName && this._renderDisplayName() }
-                            <div className = 'usermessage'>
-                                { processedMessage }
-                            </div>
+                                { message.pollId === undefined
+                                    ? <div className = 'usermessage'>
+                                        { processedMessage }
+                                    </div>
+                                    : <PollResultsMessage pollId = { message.pollId } />
+                                }
                             { message.privateMessage && this._renderPrivateNotice() }
                         </div>
                         { message.privateMessage && message.messageType !== MESSAGE_TYPE_LOCAL

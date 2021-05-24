@@ -51,3 +51,4 @@ import '../transcribing/reducer';
 import '../video-layout/reducer';
 import '../videosipgw/reducer';
 import '../welcome/reducer';
+import '../polls/reducer';
