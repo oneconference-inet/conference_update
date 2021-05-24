@@ -1175,8 +1175,7 @@ class Toolbox extends Component<Props, State> {
             //         showLabel = { true } />,
             <PollCreateButton
                 key = 'poll'
-                showLabel = { true }
-                visible = {  this._shouldShowButton('poll') } />,
+                showLabel = { true } />,
             <VideoBlurButton
                 key = 'videobackgroundblur'
                 showLabel = { true }
