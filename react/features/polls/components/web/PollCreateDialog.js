@@ -135,7 +135,7 @@ const PollCreateDialog = (props: AbstractProps) => {
                 type = 'text'
                 value = { question } />
         </div>
-        <ul className = 'poll-answer-field-list' style={{ listStyleType: "none" }}>
+        <ul className = 'poll-answer-field-list' style={{ listStyleType: "none", display: "inline-block" }}>
             {answers.map((answer, i) =>
                 (<li
                     className = { `poll-answer-field${grabbing === i ? ' poll-dragged' : ''}` }
