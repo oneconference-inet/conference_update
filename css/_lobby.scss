@@ -68,7 +68,7 @@
 
         li {
             align-items: center;
-            // display: flex;
+            display: flex;
             flex-direction: row;
             margin: 8px 0;
 
@@ -82,7 +82,7 @@
 
             button {
                 align-self: unset;
-                margin: 5 5px;
+                margin: 0 5px;
             }
         }
     }
