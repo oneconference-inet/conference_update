@@ -297,7 +297,7 @@ class Toolbox extends Component<Props, State> {
         // Get approve incomming conference
         let getApprove
         if (services_check.includes(checkPlatform)) {
-            if(services_check.includes(checkPlatform !== 'onemail_dga')) {
+            if(checkPlatform !== 'onemail_dga') {
                 getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
             } else {
                 'Room is not defined function approve!!!'
