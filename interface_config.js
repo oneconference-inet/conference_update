@@ -2,9 +2,9 @@
 /* eslint sort-keys: ["error", "asc", {"caseSensitive": false}] */
 
 var interfaceConfig = {
-    APP_NAME: 'ONECONFERENCE',
-    AUDIO_LEVEL_PRIMARY_COLOR: 'rgba(255,255,255,0.4)',
-    AUDIO_LEVEL_SECONDARY_COLOR: 'rgba(255,255,255,0.2)',
+    APP_NAME: "ONECONFERENCE",
+    AUDIO_LEVEL_PRIMARY_COLOR: "rgba(255,255,255,0.4)",
+    AUDIO_LEVEL_SECONDARY_COLOR: "rgba(255,255,255,0.2)",
 
     // ONE Conference
     DOMAIN_ONEMAIL: 'https://oneconference-mail.inet.co.th', //backend Onemail Service
@@ -12,7 +12,12 @@ var interfaceConfig = {
     DOMAIN_ONEMAIL_DGA: 'https://meetgov.one.th',
     DOMAIN: 'https://oneconference-new.inet.co.th', // frontend Redirect
     // MC_IP: '192.168.92.1:27017',
+<<<<<<< HEAD
     SOCKET_NODE: 'https://oneconference-new.inet.co.th', // Socket io node
+=======
+    SOCKET_NODE: "https://oneconference-new.inet.co.th", // Socket io node
+    // SOCKET_NODE: "https://oneconf-dev3.cloudns.asia", // Socket io node
+>>>>>>> f7798d68118a1d05dfa722dba9dbe59918d72a2e
     // DEFAULT_LOGO_URL: '/images/inetlogo.png',
     // 'https://oneconf-dev3.cloudns.asia/images/watermark.png',
     EDIT_NAME: false,
@@ -64,11 +69,11 @@ var interfaceConfig = {
      */
     CONNECTION_INDICATOR_DISABLED: false,
 
-    DEFAULT_BACKGROUND: '#474747',
-    DEFAULT_LOCAL_DISPLAY_NAME: 'me',
-    DEFAULT_LOGO_URL: 'https://meet-room.one.th/images/logo_inet.png', // DEL
-    DEFAULT_REMOTE_DISPLAY_NAME: 'OneConference',
-    DEFAULT_WELCOME_PAGE_LOGO_URL: 'images/watermark.svg',
+    DEFAULT_BACKGROUND: "#474747",
+    DEFAULT_LOCAL_DISPLAY_NAME: "me",
+    DEFAULT_LOGO_URL: "https://meet-room.one.th/images/logo_inet.png", // DEL
+    DEFAULT_REMOTE_DISPLAY_NAME: "OneConference",
+    DEFAULT_WELCOME_PAGE_LOGO_URL: "images/watermark.svg",
 
     DISABLE_DOMINANT_SPEAKER_INDICATOR: false,
 
@@ -130,10 +135,10 @@ var interfaceConfig = {
     HIDE_INVITE_MORE_HEADER: true,
 
     INITIAL_TOOLBAR_TIMEOUT: 20000,
-    JITSI_WATERMARK_LINK: 'https://inet.co.th',
+    JITSI_WATERMARK_LINK: "https://inet.co.th",
 
     LANG_DETECTION: true, // Allow i18n to detect the system language
-    LIVE_STREAMING_HELP_LINK: 'https://jitsi.org/live', // Documentation reference for the live streaming feature.
+    LIVE_STREAMING_HELP_LINK: "https://jitsi.org/live", // Documentation reference for the live streaming feature.
     LOCAL_THUMBNAIL_RATIO: 16 / 9, // 16:9
 
     /**
@@ -168,16 +173,23 @@ var interfaceConfig = {
      */
     //MOBILE_DOWNLOAD_LINK_IOS: 'https://itunes.apple.com/us/app/jitsi-meet/id1165103905',
 
-    NATIVE_APP_NAME: 'ONECONFERENCE',
+    NATIVE_APP_NAME: "ONECONFERENCE",
 
     // Names of browsers which should show a warning stating the current browser
     // has a suboptimal experience. Browsers which are not listed as optimal or
     // unsupported are considered suboptimal. Valid values are:
     // chrome, chromium, edge, electron, firefox, nwjs, opera, safari
-    OPTIMAL_BROWSERS: [ 'chrome', 'chromium', 'firefox', 'nwjs', 'electron', 'safari' ],
+    OPTIMAL_BROWSERS: [
+        "chrome",
+        "chromium",
+        "firefox",
+        "nwjs",
+        "electron",
+        "safari",
+    ],
 
     POLICY_LOGO: null,
-    PROVIDER_NAME: 'ONECONFERENC',
+    PROVIDER_NAME: "ONECONFERENC",
 
     /**
      * If true, will display recent list
@@ -188,14 +200,14 @@ var interfaceConfig = {
     REMOTE_THUMBNAIL_RATIO: 1, // 1:1
 
     // SETTINGS_SECTIONS: [ 'devices', 'language', 'moderator', 'profile', 'calendar' ],
-    SETTINGS_SECTIONS: [ 'devices', 'language', 'moderator' ],
+    SETTINGS_SECTIONS: ["devices", "language", "moderator"],
     SHOW_BRAND_WATERMARK: false,
 
     /**
-    * Decides whether the chrome extension banner should be rendered on the landing page and during the meeting.
-    * If this is set to false, the banner will not be rendered at all. If set to true, the check for extension(s)
-    * being already installed is done before rendering.
-    */
+     * Decides whether the chrome extension banner should be rendered on the landing page and during the meeting.
+     * If this is set to false, the banner will not be rendered at all. If set to true, the check for extension(s)
+     * being already installed is done before rendering.
+     */
     SHOW_CHROME_EXTENSION_BANNER: false,
 
     SHOW_DEEP_LINKING_IMAGE: false,
@@ -207,7 +219,7 @@ var interfaceConfig = {
      * If indicated some of the error dialogs may point to the support URL for
      * help.
      */
-    SUPPORT_URL: 'https://inet.co.th',
+    SUPPORT_URL: "https://inet.co.th",
 
     TOOLBAR_ALWAYS_VISIBLE: true, //DEV for Toolbar
 
@@ -231,11 +243,41 @@ var interfaceConfig = {
     // ],
 
     TOOLBAR_BUTTONS: [
+<<<<<<< HEAD
         'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
         'fodeviceselection', 'hangup', 'profile', 'chat', 'recording', 'endmeeting', 'note',
         'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand',
         'videoquality', 'filmstrip', 'invite', 'feedback', 'shortcuts',
          'download', 'help', 'mute-everyone', 'security'
+=======
+        "microphone",
+        "camera",
+        "closedcaptions",
+        "desktop",
+        "fullscreen",
+        "fodeviceselection",
+        "hangup",
+        "profile",
+        "chat",
+        "recording",
+        "endmeeting",
+        "note",
+        "livestreaming",
+        "etherpad",
+        "sharedvideo",
+        "settings",
+        "raisehand",
+        "videoquality",
+        "filmstrip",
+        "invite",
+        "feedback",
+        "shortcuts",
+        "tileview",
+        "download",
+        "help",
+        "mute-everyone",
+        "security",
+>>>>>>> f7798d68118a1d05dfa722dba9dbe59918d72a2e
     ],
 
     TOOLBAR_TIMEOUT: 4000,
@@ -253,7 +295,7 @@ var interfaceConfig = {
     // screen, 'height' would fit the original video height to the height of the
     // screen, 'width' would fit the original video width to the width of the
     // screen respecting ratio.
-    VIDEO_LAYOUT_FIT: 'both',
+    VIDEO_LAYOUT_FIT: "both",
 
     /**
      * If true, hides the video quality label indicating the resolution status
@@ -306,7 +348,7 @@ var interfaceConfig = {
     // Allow all above example options to include a trailing comma and
     // prevent fear when commenting out the last value.
     // eslint-disable-next-line sort-keys
-    makeJsonParserHappy: 'even if last key had a trailing comma'
+    makeJsonParserHappy: "even if last key had a trailing comma",
 
     // No configuration value should follow this line.
 };
