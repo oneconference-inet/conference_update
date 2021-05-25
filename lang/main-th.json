@@ -508,6 +508,30 @@
   },
   "passwordSetRemotely": "ตั้งค่าโดยผู้ร่วมประชุมคนอื่น",
   "passwordDigitsOnly": "Up to {{number}} digits",
+  "polls": {
+    "create": {
+        "dialogTitle": "สร้างโพล",
+        "questionPlaceholder": "คำถาม?",
+        "answerPlaceholder": "ตัวเลือก {{index}}",
+        "addAnswer": "เพิ่ม",
+        "removeAnswer": "ลบ",
+        "send": "ตกลง"
+    },
+    "answer": {
+        "title": "หัวข้อ",
+        "skip": "ข้าม",
+        "submit": "ตกลง",
+        "results" : "ผลสรุป",
+        "close": "ปิด",
+        "empty": "ว่าง",
+        "vote" : "{{count}} vote",
+        "vote_plural" : "{{count}} votes"
+    },
+    "chat": {
+        "notice": "ประกาศ",
+        "details": "รายละเอียด"
+    }
+  },
   "poweredby": "powered by",
   "prejoin": {
     "audioAndVideoError": "Audio and video error:",
@@ -697,6 +721,7 @@
       "mute": "สลับไปปิดเสียง",
       "muteEveryone": "ปิดเสียงทุกคน",
       "pip": "Toggle Picture-in-Picture mode",
+      "poll": "สร้างโพล",
       "privateMessage": "ส่งข้อความส่วนตัว",
       "profile": "แก้ไขข้อมูลส่วนตัว",
       "raiseHand": "สลับไปยกมือขึ้น",
@@ -755,6 +780,7 @@
     "noisyAudioInputDesc": "ฟังดูเหมือนไมโครโฟนของคุณสร้างเสียงรบกวน \nโปรดปิดเสียงหรือเปลี่ยนอุปกรณ์",
     "openChat": "เปิดแชท",
     "pip": "Enter Picture-in-Picture mode",
+    "poll": "สร้างโพล",
     "privateMessage": "ส่งข้อความส่วนตัว",
     "profile": "แก้ไขข้อมูลส่วนตัว",
     "raiseHand": "ขึ้น / ลง มือของคุณ",
