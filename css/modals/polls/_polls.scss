@@ -20,8 +20,9 @@
 .poll-answer-field-list, .poll-answer-list {
     list-style-type: none;
     padding: 0;
-    padding-top: 5;
-    padding-left: 5;
+    padding-top: 15;
+    padding-left: 15;
+    display: inline-block;
 }
 
 .poll-answer-field-list.ul, .poll-answer-list.ul {
