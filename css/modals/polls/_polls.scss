@@ -18,8 +18,12 @@
 }
 
 .poll-answer-field-list, .poll-answer-list {
-    list-style-type: none !important;
+    list-style-type: none;
     padding: 0;
+}
+
+.poll-answer-field-list > ul, .poll-answer-list > ul {
+    list-style-type: none !important;
 }
 
 .poll-answer-list > li {
