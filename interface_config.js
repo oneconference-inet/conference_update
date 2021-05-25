@@ -266,6 +266,7 @@ var interfaceConfig = {
         "help",
         "mute-everyone",
         "security",
+        "poll"
     ],
 
     TOOLBAR_TIMEOUT: 4000,
