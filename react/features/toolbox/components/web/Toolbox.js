@@ -372,7 +372,7 @@ class Toolbox extends Component<Props, State> {
             if (isModerator) {
                 console.log('Service:', checkPlatform);
                 
-                if (checkPlatform == "manageAi" || checkPlatform == "followup" || checkPlatform == "onedental" || checkPlatform == "jmc" || checkPlatform == "telemedicine") {
+                if (checkPlatform === "manageAi" || checkPlatform === "followup" || checkPlatform === "onedental" || checkPlatform === "jmc" || checkPlatform === "telemedicine") {
                     //Recording when start conference
                     let appData = JSON.stringify({
                         'file_recording_metadata': {
