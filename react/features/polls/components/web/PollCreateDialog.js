@@ -137,7 +137,7 @@ const PollCreateDialog = (props: AbstractProps) => {
         </div>
         <div className = 'poll-answer-field-list'>
             {answers.map((answer, i) =>
-                (<div
+                (<li
                     className = { `poll-answer-field${grabbing === i ? ' poll-dragged' : ''}` }
                     key = { i }
                     onMouseOver = { () => onMouseOver(i) }>
@@ -166,7 +166,7 @@ const PollCreateDialog = (props: AbstractProps) => {
                             <Icon src = { IconClose } />
                         </button>
                     </Tooltip>
-                </div>)
+                </li>)
             )}
         </div>
         <div className = 'poll-add-button'>
