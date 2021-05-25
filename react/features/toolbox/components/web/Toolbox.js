@@ -369,23 +369,27 @@ class Toolbox extends Component<Props, State> {
             name: infoConf.getNameJoin(),
             checkPlatform: infoConf.getService(),
         },() => {
-            if (isModerator && checkPlatform == "manageAi" || checkPlatform == "onedental" || checkPlatform == "jmc" || checkPlatform == "telemedicine") {
-                this.onSocketHost(this.state);
+            if (isModerator) {
                 console.log('Service:', checkPlatform);
-
-                //Recording when start conference
-                let appData = JSON.stringify({
-                    'file_recording_metadata': {
-                        'share': this.state.sharingEnabled
-                    }
-                });
-
-                setTimeout(() => {
-                    this.props._conference.startRecording({
-                        mode: JitsiRecordingConstants.mode.FILE,
-                        appData
+                
+                if (checkPlatform == "manageAi" || checkPlatform == "followup" || checkPlatform == "onedental" || checkPlatform == "jmc" || checkPlatform == "telemedicine") {
+                    //Recording when start conference
+                    let appData = JSON.stringify({
+                        'file_recording_metadata': {
+                            'share': this.state.sharingEnabled
+                        }
                     });
-                }, 5000);
+
+                    setTimeout(() => {
+                        this.props._conference.startRecording({
+                            mode: JitsiRecordingConstants.mode.FILE,
+                            appData
+                        });
+                    }, 5000);
+                }
+                else{
+                    this.onSocketHost(this.state);
+                }
             } else {
                 this.onAttendee(this.state);
             }
