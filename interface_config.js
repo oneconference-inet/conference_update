@@ -12,7 +12,8 @@ var interfaceConfig = {
     DOMAIN_ONEMAIL_DGA: 'https://meetgov.one.th',
     DOMAIN: 'https://oneconference-new.inet.co.th', // frontend Redirect
     // MC_IP: '192.168.92.1:27017',
-    SOCKET_NODE: "https://oneconf-dev3.cloudns.asia", // Socket io node
+    SOCKET_NODE: "https://oneconference-new.inet.co.th", // Socket io node
+    // SOCKET_NODE: "https://oneconf-dev3.cloudns.asia", // Socket io node
     // DEFAULT_LOGO_URL: '/images/inetlogo.png',
     // 'https://oneconf-dev3.cloudns.asia/images/watermark.png',
     EDIT_NAME: false,
