@@ -21,6 +21,10 @@
     }
 }
 
+div#wrapper ul {
+    list-style-type: none;
+}
+
 .poll-answer-field-list, .poll-answer-list {
     list-style-type: none !important;
     padding: 0;

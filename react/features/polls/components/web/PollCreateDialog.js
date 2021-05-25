@@ -135,6 +135,7 @@ const PollCreateDialog = (props: AbstractProps) => {
                 type = 'text'
                 value = { question } />
         </div>
+        <div id='wrapper'>
         <ul className = 'poll-answer-field-list'>
             {answers.map((answer, i) =>
                 (<li
@@ -169,6 +170,7 @@ const PollCreateDialog = (props: AbstractProps) => {
                 </li>)
             )}
         </ul>
+        </div>
         <div className = 'poll-add-button'>
             <Tooltip content = { t('polls.create.addAnswer') }>
                 <button
