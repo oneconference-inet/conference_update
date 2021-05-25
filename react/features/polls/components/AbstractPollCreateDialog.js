@@ -41,7 +41,7 @@ const AbstractPollCreateDialog = (Component: AbstractComponent<AbstractProps>) =
 
     const addAnswer = useCallback(i => {
         const newAnswers = [ ...answers ];
-
+        console.log("addAnswer: ",i, " answers.length: ",answers.length);
         newAnswers.splice(i === undefined ? answers.length : i, 0, '');
         setAnswers(newAnswers);
     });
