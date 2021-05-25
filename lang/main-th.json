@@ -528,7 +528,7 @@
         "vote_plural" : "{{count}} votes"
     },
     "chat": {
-        "notice": "ประกาศ",
+        "notice": "โพล",
         "details": "รายละเอียด"
     }
   },
