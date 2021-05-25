@@ -36,9 +36,9 @@ const PollCreateDialog = (props: AbstractProps) => {
     }, [ answerInputs ]);
 
     useEffect(() => {
-        console.log("BEFORE: ",answerInputs);
+        console.log("answerInputs BEFORE: ",answerInputs);
         answerInputs.current = answerInputs.current.slice(0, answers.length);
-        console.log("AFTER: ",answerInputs);
+        console.log("answerInputs AFTER: ",answerInputs);
 
     }, [ answers ]);
 
