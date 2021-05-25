@@ -239,13 +239,6 @@ var interfaceConfig = {
     // ],
 
     TOOLBAR_BUTTONS: [
-<<<<<<< HEAD
-        'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
-        'fodeviceselection', 'hangup', 'profile', 'chat', 'recording', 'endmeeting', 'note',
-        'livestreaming', 'etherpad', 'sharedvideo', 'settings', 'raisehand',
-        'videoquality', 'filmstrip', 'invite', 'feedback', 'shortcuts',
-         'download', 'help', 'mute-everyone', 'security'
-=======
         "microphone",
         "camera",
         "closedcaptions",
@@ -273,7 +266,6 @@ var interfaceConfig = {
         "help",
         "mute-everyone",
         "security",
->>>>>>> f7798d68118a1d05dfa722dba9dbe59918d72a2e
     ],
 
     TOOLBAR_TIMEOUT: 4000,
