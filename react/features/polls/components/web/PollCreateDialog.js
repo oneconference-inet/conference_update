@@ -139,7 +139,7 @@ const PollCreateDialog = (props: AbstractProps) => {
             {answers.map((answer, i) =>
                 (<li
                     className = { `poll-answer-field${grabbing === i ? ' poll-dragged' : ''}` }
-                    style={{ display: "inline-flex" }}
+                    style={{ display: "inline-flex", width: "100%" }}
                     key = { i }
                     onMouseOver = { () => onMouseOver(i) }>
                     <button
