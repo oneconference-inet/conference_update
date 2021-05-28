@@ -7,17 +7,17 @@
 }
 
 ul.poll-answer-field-list {
-    list-style-type: "none";
-    padding: "0 0 0 0";
+    list-style-type: none;
+    padding: 0 0 0 0;
 }
 
-.poll-answer-field-list > li {
-    display: "inline-flex";
-    width: "100%";
+li.poll-answer-field-list {
+    display: inline-flex;
+    width: 100%;
 }
 
-.poll-answer-list > ul {
-    list-style-type: "none";
+ul.poll-answer-list {
+    list-style-type: none;
 }
 
 .poll-question {
