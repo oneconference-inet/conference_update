@@ -31,7 +31,7 @@ const PollResults = (props: AbstractProps) => {
         <div>
             <div className = 'poll-header'>
                 <div className = 'poll-question'>
-                    { question }
+                    <strong>{ question }</strong>
                 </div>
             </div>
             <ol className = 'poll-answer-list'>

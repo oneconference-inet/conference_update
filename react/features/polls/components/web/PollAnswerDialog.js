@@ -38,7 +38,7 @@ const PollAnswerDialog = (props: AbstractProps): React.Node => {
                 width = 'small'>
 
                 <div className = 'poll-dialog'>
-                    <div className = 'poll-question'>{poll.question}</div>
+                    <div className = 'poll-question'><strong>{poll.question}</strong></div>
                     <ul className = 'poll-answer-list' style={{ listStyleType: "none" }}>
                         {
                             poll.answers.map((answer, index) => (
