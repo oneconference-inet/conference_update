@@ -6,7 +6,7 @@
     margin: 5 5px;
 }
 
-.poll-answer-field-list > ul {
+ul.poll-answer-field-list {
     list-style-type: "none";
     padding: "0 0 0 0";
 }
