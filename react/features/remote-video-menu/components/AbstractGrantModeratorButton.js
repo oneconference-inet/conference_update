@@ -47,6 +47,8 @@ export default class AbstractGrantModeratorButton extends AbstractButton<Props, 
   _handleClick() {
       const { dispatch, participantID } = this.props;
 
+      console.log("GRANT MODERATOR: ", participantID);
+
       dispatch(openDialog(GrantModeratorDialog, { participantID }));
   }
 }
