@@ -6,7 +6,8 @@ import {
     ACTION_SHORTCUT_TRIGGERED,
     createShortcutEvent,
     createToolbarEvent,
-    sendAnalytics
+    sendAnalytics,
+    createRecordingEvent
 } from '../../../analytics';
 import { openDialog, toggleDialog } from '../../../base/dialog';
 import { isMobileBrowser } from '../../../base/environment/utils';
@@ -98,6 +99,9 @@ import { onSocketReqJoin, setLobbyModeEnabled } from '../../../lobby';
 import infoConf from '../../../../../infoConference';
 import socketIOClient from 'socket.io-client';
 import axios from 'axios';
+
+import { JitsiRecordingConstants } from '../../../base/lib-jitsi-meet';
+import { RECORDING_TYPES } from '../../../recording/constants';
 
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
@@ -294,7 +298,11 @@ class Toolbox extends Component<Props, State> {
         // Get approve incomming conference
         let getApprove
         if (services_check.includes(checkPlatform)) {
-            getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
+            if(checkPlatform !== 'onemail_dga') {
+                getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
+            } else {
+                'Room is not defined function approve!!!'
+            }
             // console.log("Approve: ", getApprove)
             if (getApprove.data.approve) {
                 logger.log('Room is require approve to join.')
@@ -355,6 +363,7 @@ class Toolbox extends Component<Props, State> {
      */
     componentDidMount() {
         const isModerator = infoConf.getIsModerator();
+        const checkPlatform = infoConf.getService();
         this.setState({
             meetingid: infoConf.getMeetingId(),
             roomname: infoConf.getRoomName(),
@@ -362,7 +371,26 @@ class Toolbox extends Component<Props, State> {
             checkPlatform: infoConf.getService(),
         },() => {
             if (isModerator) {
-                this.onSocketHost(this.state);
+                console.log('Service:', checkPlatform);
+                
+                if (checkPlatform === "manageAi" || checkPlatform === "followup" || checkPlatform === "onedental" || checkPlatform === "jmc" || checkPlatform === "telemedicine") {
+                    //Recording when start conference
+                    let appData = JSON.stringify({
+                        'file_recording_metadata': {
+                            'share': this.state.sharingEnabled
+                        }
+                    });
+
+                    setTimeout(() => {
+                        this.props._conference.startRecording({
+                            mode: JitsiRecordingConstants.mode.FILE,
+                            appData
+                        });
+                    }, 5000);
+                }
+                else{
+                    this.onSocketHost(this.state);
+                }
             } else {
                 this.onAttendee(this.state);
             }
@@ -1157,11 +1185,16 @@ class Toolbox extends Component<Props, State> {
             // <LiveStreamButton
             //     key = 'livestreaming'
             //     showLabel = { true } />,
-            infoConf.getService() === "oneconference" ? <RecordButton
+            // ปุ่ม record อันเก่า
+            // console.log('-----------------Service---------------------', infoConf.getService()),
+            // infoConf.getService() === "onemail_dga" ? <RecordButton
+            //     key = 'record'
+            //     showLabel = { true } />
+            //     :
+            // null,
+            <RecordButton
                 key = 'record'
-                showLabel = { true } />
-                :
-            null,
+                showLabel = { true } />,
             // this._shouldShowButton('sharedvideo')
             //     && <OverflowMenuItem
             //         accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
@@ -1618,7 +1651,8 @@ function _mapStateToProps(state) {
             || sharedVideoStatus === 'start'
             || sharedVideoStatus === 'pause',
         _visible: isToolboxVisible(state),
-        _visibleButtons: equals(visibleButtons, buttons) ? visibleButtons : buttons
+        _visibleButtons: equals(visibleButtons, buttons) ? visibleButtons : buttons,
+        _conference: state['features/base/conference'].conference,
     };
 }
 

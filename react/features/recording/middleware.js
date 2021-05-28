@@ -110,6 +110,8 @@ MiddlewareRegistry.register(({ dispatch, getState }) => next => action => {
         conference.on(
             JitsiConferenceEvents.RECORDER_STATE_CHANGED,
             recorderSession => {
+                // console.log("recorderSession: ",recorderSession.getID());
+                // console.log("recorderSession Error: ",recorderSession.getError());
 
                 if (recorderSession) {
                     recorderSession.getID()

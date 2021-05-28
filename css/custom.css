@@ -1,0 +1,7 @@
+#knocking-participant-list ul li {
+    display: block; 
+}
+
+#knocking-participant-list ul li button{
+    margin: 5 5px;
+}

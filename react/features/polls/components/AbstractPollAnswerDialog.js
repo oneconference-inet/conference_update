@@ -109,15 +109,15 @@ const AbstractPollAnswerDialog = (Component: AbstractComponent<AbstractProps>) =
 
         return false;
     }, []);
-    // const cancelAnswer = useCallback(() => {
-    //     displayInChat();
+    const cancelAnswer = useCallback(() => {
+        displayInChat();
 
-    //     return true;
-    // }, []);
+        return true;
+    }, []);
 
     return (<Component
         { ...props }
-        // cancelAnswer = { cancelAnswer }
+        cancelAnswer = { cancelAnswer }
         checkBoxStates = { checkBoxStates }
         poll = { poll }
         setCheckbox = { setCheckbox }

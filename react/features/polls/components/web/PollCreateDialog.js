@@ -36,8 +36,7 @@ const PollCreateDialog = (props: AbstractProps) => {
     }, [ answerInputs ]);
 
     useEffect(() => {
-         answerInputs.current = answerInputs.current.slice(0, answers.length);
-
+        answerInputs.current = answerInputs.current.slice(0, answers.length);
     }, [ answers ]);
 
     /*
