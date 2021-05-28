@@ -45,24 +45,24 @@ const AbstractPollAnswerDialog = (Component: AbstractComponent<AbstractProps>) =
 
     const localId: string = useSelector(state => getLocalParticipant(state).id);
 
-    const [ checkBoxStates, setCheckBoxState ] = useState(new Array(poll.answers.length).fill(false));
+    const [checkBoxStates, setCheckBoxState] = useState(new Array(poll.answers.length).fill(false));
 
     const setCheckbox = useCallback((index, state) => {
-        // const newCheckBoxStates = [ ...checkBoxStates ];
+        if (String(poll.oneChoice) === 'true') {
+            const newOneCheckBoxStates = checkBoxStates.map((checkBox, ind) => {
+                checkBox = ind === index ? state : false
+                return checkBox
+            })
+            setCheckBoxState(newOneCheckBoxStates);
+        } else {
+            const newCheckBoxStates = [...checkBoxStates];
 
-        // newCheckBoxStates[index] = state;
-        // setCheckBoxState(newCheckBoxStates);
-        console.log('poll:', poll, poll.oneChoice);
-        console.log('poll1:', poll.oneChoice);
-        console.log('poll2:', typeof(poll.oneChoice)); 
-        const newOneCheckBoxStates = checkBoxStates.map((checkBox, ind ) => {
-            checkBox = ind === index ? state : false
-            return checkBox
-        })
-        setCheckBoxState(newOneCheckBoxStates);
-    }, [ checkBoxStates ]);
+            newCheckBoxStates[index] = state;
+            setCheckBoxState(newCheckBoxStates);
+        }
+    }, [checkBoxStates]);
 
-    const [ shouldDisplayResult, setShouldDisplayResult ] = useState(false);
+    const [shouldDisplayResult, setShouldDisplayResult] = useState(false);
 
     const dispatch = useDispatch();
     const localName: string = useSelector(state => getParticipantDisplayName(state, localId));
@@ -82,7 +82,7 @@ const AbstractPollAnswerDialog = (Component: AbstractComponent<AbstractProps>) =
             recipient: localName,
             timestamp: Date.now()
         }));
-    }, [ localName, localId, poll, pollId, senderName, isChatOpen ]);
+    }, [localName, localId, poll, pollId, senderName, isChatOpen]);
 
     const submitAnswer = useCallback(() => {
         const answerData = {
@@ -109,7 +109,7 @@ const AbstractPollAnswerDialog = (Component: AbstractComponent<AbstractProps>) =
         setShouldDisplayResult(true);
 
         return false;
-    }, [ pollId, localId, checkBoxStates, conference ]);
+    }, [pollId, localId, checkBoxStates, conference]);
 
     const skipAnswer = useCallback(() => {
         displayInChat();
@@ -124,14 +124,14 @@ const AbstractPollAnswerDialog = (Component: AbstractComponent<AbstractProps>) =
     }, []);
 
     return (<Component
-        { ...props }
-        cancelAnswer = { cancelAnswer }
-        checkBoxStates = { checkBoxStates }
-        poll = { poll }
-        setCheckbox = { setCheckbox }
-        shouldDisplayResult = { shouldDisplayResult }
-        skipAnswer = { skipAnswer }
-        submitAnswer = { submitAnswer } />);
+        {...props}
+        cancelAnswer={cancelAnswer}
+        checkBoxStates={checkBoxStates}
+        poll={poll}
+        setCheckbox={setCheckbox}
+        shouldDisplayResult={shouldDisplayResult}
+        skipAnswer={skipAnswer}
+        submitAnswer={submitAnswer} />);
 };
 
 export default AbstractPollAnswerDialog;
