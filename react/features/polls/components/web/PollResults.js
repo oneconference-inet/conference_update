@@ -40,12 +40,12 @@ const PollResults = (props: AbstractProps) => {
                         (<li key = { index }>
                             { renderRow(name, percentage, voterCount) }
                             {/* show name of voters */}
-                            { voters && voterCount > 0
+                            {/* { voters && voterCount > 0
                             && <ul className = 'poll-answer-voters'>
                                 {voters.map(voter =>
                                     <li key = { voter.id }>{ voter.name }</li>
                                 )}
-                            </ul>}
+                            </ul>} */}
                         </li>)
                     )
                     : answers.map(({ name, percentage, voterCount }, index) =>
