@@ -1996,7 +1996,7 @@ export default {
         // console.info("Role: Moderator")
         logger.info(`My role changed, new role: ${role}`);
 
-        APP.store.dispatch(localParticipantRoleChanged(role));
+        // APP.store.dispatch(localParticipantRoleChanged(role));
         APP.API.notifyUserRoleChanged(id, role);
       } else {
         // console.info("Role: Participant")
