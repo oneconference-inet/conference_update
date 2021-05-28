@@ -17,6 +17,7 @@ StateListenerRegistry.register(
                 const poll = {
                     senderId: attributes.senderId,
                     question: attributes.question,
+                    oneChoice: attributes.oneChoice,
                     answers: children.map(answerData => {
                         return {
                             name: answerData.value,

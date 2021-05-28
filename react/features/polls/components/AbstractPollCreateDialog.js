@@ -79,7 +79,8 @@ const AbstractPollCreateDialog = (Component: AbstractComponent<AbstractProps>) =
             attributes: {
                 pollId: Math.floor(Math.random() * Number.MAX_SAFE_INTEGER),
                 senderId: conference.myUserId(),
-                question
+                question,
+                oneChoice: true
             },
             children: filteredAnswers.map(answer => {
                 return {
