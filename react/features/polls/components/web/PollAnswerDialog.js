@@ -39,7 +39,7 @@ const PollAnswerDialog = (props: AbstractProps): React.Node => {
 
                 <div className = 'poll-dialog'>
                     <div className = 'poll-question'><strong>{poll.question}</strong></div>
-                    <ul className = 'poll-answer-list' style={{ listStyleType: "none" }}>
+                    <ul className = 'poll-answer-list' >
                         {
                             poll.answers.map((answer, index) => (
                                 <li key = { index }>

@@ -5,3 +5,31 @@
 #knocking-participant-list ul li button{
     margin: 5 5px;
 }
+
+.poll-answer-field-list ul {
+    list-style-type: "none";
+    padding: "0 0 0 0";
+}
+
+.poll-answer-field-list li {
+    display: "inline-flex";
+    width: "100%";
+}
+
+.poll-answer-list ul {
+    list-style-type: "none";
+}
+
+.poll-question {
+    font-size: 1.8em !important;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    color: #b8c7e0 !important;
+}
+
+.poll-add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
