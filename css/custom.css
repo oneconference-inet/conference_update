@@ -6,17 +6,17 @@
     margin: 5 5px;
 }
 
-.poll-answer-field-list ul {
+.poll-answer-field-list > ul {
     list-style-type: "none";
     padding: "0 0 0 0";
 }
 
-.poll-answer-field-list li {
+.poll-answer-field-list > li {
     display: "inline-flex";
     width: "100%";
 }
 
-.poll-answer-list ul {
+.poll-answer-list > ul {
     list-style-type: "none";
 }
 
