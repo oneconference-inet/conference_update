@@ -51,9 +51,10 @@ const AbstractPollAnswerDialog = (Component: AbstractComponent<AbstractProps>) =
         // const newCheckBoxStates = [ ...checkBoxStates ];
 
         // newCheckBoxStates[index] = state;
+        console.log('checkBoxStates:', checkBoxStates);
         const newCheckBoxStates = checkBoxStates.map((checkBox, ind ) => {
+            console.log('checkbox : ', checkBox, ind, state);
             checkBox = ind === index ? state : false
-            console.log('checkbox = ', checkBox, ind, state);
             return checkBox
         })
         setCheckBoxState(newCheckBoxStates);
