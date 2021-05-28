@@ -50,15 +50,15 @@ const AbstractPollAnswerDialog = (Component: AbstractComponent<AbstractProps>) =
     const setCheckbox = useCallback((index, state) => {
         const newCheckBoxStates = [ ...checkBoxStates ];
 
-        // newCheckBoxStates[index] = state;
-        // setCheckBoxState(newCheckBoxStates);
-        console.log('checkBoxStates:', checkBoxStates);
-        const newOneCheckBoxStates = newCheckBoxStates.map((checkBox, ind ) => {
-            console.log('checkbox : ', checkBox, ind, state);
-            checkBox = ind === index ? state : false
-            return checkBox
-        })
-        setCheckBoxState(newOneCheckBoxStates);
+        newCheckBoxStates[index] = state;
+        setCheckBoxState(newCheckBoxStates);
+        console.log('checkBoxStates:', checkBoxStates, index, state);
+        // const newOneCheckBoxStates = newCheckBoxStates.map((checkBox, ind ) => {
+        //     console.log('checkbox : ', checkBox, ind, state);
+        //     checkBox = ind === index ? state : false
+        //     return checkBox
+        // })
+        // setCheckBoxState(newOneCheckBoxStates);
     }, [ checkBoxStates ]);
 
     const [ shouldDisplayResult, setShouldDisplayResult ] = useState(false);
