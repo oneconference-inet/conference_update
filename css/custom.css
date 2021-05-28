@@ -11,7 +11,7 @@ ul.poll-answer-field-list {
     padding: 0 0 0 0;
 }
 
-li.poll-answer-field-list {
+li.poll-answer-field {
     display: inline-flex;
     width: 100%;
 }
