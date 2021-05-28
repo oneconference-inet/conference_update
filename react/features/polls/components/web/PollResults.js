@@ -31,7 +31,7 @@ const PollResults = (props: AbstractProps) => {
         <div>
             <div className = 'poll-header'>
                 <div className = 'poll-question'>
-                    <strong>{ question }</strong>
+                    { question }
                 </div>
             </div>
             <ol className = 'poll-answer-list'>
@@ -39,6 +39,7 @@ const PollResults = (props: AbstractProps) => {
                     ? answers.map(({ name, percentage, voters, voterCount }, index) =>
                         (<li key = { index }>
                             { renderRow(name, percentage, voterCount) }
+                            {/* show name of voters */}
                             { voters && voterCount > 0
                             && <ul className = 'poll-answer-voters'>
                                 {voters.map(voter =>
