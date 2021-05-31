@@ -66,13 +66,11 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
             }
         }
 
-        console.log('voterSet:', voterSet);
-        // const totalVoters = voterSet.size;
-        const totalVoters = 4;
+        console.log('voterSet: ', voterSet);
+        const totalVoters = voterSet.size;
 
         return pollDetails.answers.map(answer => {
-            // const percentage = totalVoters === 0 ? 0 : Math.round(answer.voters.size / totalVoters * 100);
-            const percentage = totalVoters === 0 ? 0 : Math.round(1 / totalVoters * 100);
+            const percentage = totalVoters === 0 ? 0 : Math.round(answer.voters.size / totalVoters * 100);
 
             let voters = null;
 

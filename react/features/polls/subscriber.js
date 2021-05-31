@@ -21,9 +21,10 @@ StateListenerRegistry.register(
                     answers: children.map(answerData => {
                         return {
                             name: answerData.value,
-                            voters: []
+                            voters: new Set()
                         };
-                    })
+                    }),
+                    senderWeights: []
                 };
 
                 store.dispatch(receivePoll(attributes.pollId, poll));
