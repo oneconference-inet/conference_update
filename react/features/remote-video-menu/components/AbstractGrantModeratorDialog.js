@@ -69,7 +69,7 @@ export default class AbstractGrantModeratorDialog
                 'participant_id': participantID
             }));
 
-        socket.emit(meetingId, { eventName:"coHost", participantID: participantID });
+        socket.emit("coHost", { meetingId: meetingId, participantID: participantID });
         // dispatch(grantModerator(participantID));
 
         return true;
