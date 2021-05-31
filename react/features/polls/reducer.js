@@ -38,6 +38,7 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
         }
 
         // if the poll exists, we update it with the incoming answer
+        console.log('poll1:', state.polls[pollId].answers);
         const newAnswers = state.polls[pollId].answers
             .map(_answer => {
                 return {
@@ -49,6 +50,10 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
         for (let i = 0; i < newAnswers.length; i++) {
             // if the answer was chosen, we add the senderID to the set of voters of this answer
             if (answer.answers[i] === true) {
+                console.log('poll2:', {
+                    senderId: answer.senderId,
+                    weight: answer.weight
+                });
                 newAnswers[i].voters.push({
                     senderId: answer.senderId,
                     weight: answer.weight
