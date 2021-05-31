@@ -23,8 +23,7 @@ StateListenerRegistry.register(
                             name: answerData.value,
                             voters: new Set()
                         };
-                    }),
-                    senderWeights: []
+                    })
                 };
 
                 store.dispatch(receivePoll(attributes.pollId, poll));
@@ -38,7 +37,6 @@ StateListenerRegistry.register(
                 const receivedAnswer: Answer = {
                     senderId,
                     pollId,
-                    weight,
                     answers: children.map(
 
                             // Boolean are converted to text through XMPP
