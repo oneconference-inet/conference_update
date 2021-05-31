@@ -49,7 +49,7 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
         for (let i = 0; i < newAnswers.length; i++) {
             // if the answer was chosen, we add the senderID to the set of voters of this answer
             if (answer.answers[i] === true) {
-                newAnswers[i].voters.add({
+                newAnswers[i].voters.push({
                     senderId: answer.senderId,
                     weight: answer.weight
                 });
