@@ -93,9 +93,9 @@ export default class AbstractKnockingParticipantList<P: Props = Props> extends P
  */
 export function mapStateToProps(state: Object): $Shape<Props> {
     const { knockingParticipants } = state['features/lobby'];
-    console.log("isLocalParticipantModerator: ",isLocalParticipantModerator(state));
+    
     return {
         _participants: knockingParticipants,
-        _visible: Boolean(knockingParticipants.length)
+        _visible: isLocalParticipantModerator(state) && Boolean(knockingParticipants.length)
     };
 }
