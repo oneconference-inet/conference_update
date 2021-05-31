@@ -31,7 +31,8 @@ import JitsiMeetJS from '../../../base/lib-jitsi-meet';
 import {
     getLocalParticipant,
     getParticipants,
-    participantUpdated
+    participantUpdated,
+    localParticipantRoleChanged
 } from '../../../base/participants';
 import { connect, equals } from '../../../base/redux';
 import { OverflowMenuItem } from '../../../base/toolbox/components';
@@ -344,11 +345,9 @@ class Toolbox extends Component<Props, State> {
                     // attendee.setLockMute(payload.mute) //true or false
                     this.props.dispatch(setAudioMutedAll(payload.mute)) // Lock is button Audio
                     break;
-                // case 'invitedOut':
-                //     logger.log("invitedOut-ID: ", payload.toId)
-                //     if (payload.toId == ) {
-                //         APP.UI.emitEvent(UIEvents.HANGUP)
-                //     }
+                case 'coHost':
+                    logger.log("coHost Payload: ", payload)
+                    APP.store.dispatch(localParticipantRoleChanged('moderator'));
                 default:
                     logger.warn('Event coming is not defined!!')
                 }
@@ -371,7 +370,6 @@ class Toolbox extends Component<Props, State> {
             checkPlatform: infoConf.getService(),
         },() => {
             if (isModerator) {
-                console.log('Service:', checkPlatform);
                 
                 if (checkPlatform === "manageAi" || checkPlatform === "followup" || checkPlatform === "onedental" || checkPlatform === "jmc" || checkPlatform === "telemedicine") {
                     //Recording when start conference
