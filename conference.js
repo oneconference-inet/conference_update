@@ -1992,7 +1992,7 @@ export default {
     });
 
     room.on(JitsiConferenceEvents.USER_ROLE_CHANGED, (id, role) => {
-      if (this.isLocalId(id) && infoConf.getIsModerator()) {
+      if (this.isLocalId(id)) {
         // console.info("Role: Moderator")
         logger.info(`My role changed, new role: ${role}`);
 
