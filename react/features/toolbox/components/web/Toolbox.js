@@ -349,7 +349,11 @@ class Toolbox extends Component<Props, State> {
                     logger.log("coHost Payload: ", payload)
                     APP.store.dispatch(localParticipantRoleChanged('moderator'));
                     APP.API.notifyUserRoleChanged(payload.participantID, 'moderator');
-                    infoConf.setIsModerator()
+                    
+                    let getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
+                    if (getApprove.data.approve) {
+                        onSocketReqJoin(meetingid, endpoint, this.props);
+                    }
                 default:
                     logger.warn('Event coming is not defined!!')
                 }

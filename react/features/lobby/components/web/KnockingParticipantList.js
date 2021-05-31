@@ -31,7 +31,6 @@ class KnockingParticipantList extends AbstractKnockingParticipantList<Props> {
      */
     render() {
         const { _participants, _toolboxVisible, _visible, t } = this.props;
-        console.log("Knocking visible _visible: ",_visible);
 
         if (!_visible) {
             return null;
