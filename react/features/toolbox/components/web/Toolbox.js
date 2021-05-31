@@ -337,7 +337,7 @@ class Toolbox extends Component<Props, State> {
         const { meetingid, roomname, name, checkPlatform, endpoint } = state
         const socket = socketIOClient(endpoint)
         logger.log('Attendee ONE-Conference On Socket-for-Feature')
-        socket.on(meetingid, (payload) => {
+        socket.on(meetingid, async(payload) => {
             logger.log("Socket-payload: ", payload);
             switch(payload.eventName) {
                 case 'trackMute':
@@ -349,11 +349,12 @@ class Toolbox extends Component<Props, State> {
                     logger.log("coHost Payload: ", payload)
                     APP.store.dispatch(localParticipantRoleChanged('moderator'));
                     APP.API.notifyUserRoleChanged(payload.participantID, 'moderator');
-                    
+
                     let getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
                     if (getApprove.data.approve) {
                         onSocketReqJoin(meetingid, endpoint, this.props);
                     }
+                    break;
                 default:
                     logger.warn('Event coming is not defined!!')
                 }
