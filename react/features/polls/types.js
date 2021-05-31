@@ -13,6 +13,11 @@ export type Answer = {
     pollId: number,
 
     /**
+     * Weight of sender
+     */
+     weight: number,
+
+    /**
      * An array of boolean: true if the answer was chosen by the responder, else false
      */
     answers: Array<boolean>

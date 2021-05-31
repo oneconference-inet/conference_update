@@ -37,6 +37,7 @@ StateListenerRegistry.register(
                 const receivedAnswer: Answer = {
                     senderId,
                     pollId,
+                    weight,
                     answers: children.map(
 
                             // Boolean are converted to text through XMPP
