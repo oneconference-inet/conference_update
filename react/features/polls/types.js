@@ -44,5 +44,5 @@ export type Poll = {
      * An array of answers:
      * the name of the answer name and a set of ids of voters voting for this option
      */
-    answers: Array<{ name: string, voters: Set<string> }>,
+    answers: Array<{ name: string, voters: Array<{ senderId: string, weight: number }> }>,
 };

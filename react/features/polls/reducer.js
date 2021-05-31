@@ -42,7 +42,7 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
             .map(_answer => {
                 return {
                     name: _answer.name,
-                    voters: new Set(_answer.voters)
+                    voters: [ ..._answer.voters ]
                 };
             });
 
