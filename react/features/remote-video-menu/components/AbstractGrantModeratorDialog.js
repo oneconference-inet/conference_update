@@ -60,7 +60,7 @@ export default class AbstractGrantModeratorDialog
      */
     _onSubmit() {
         const { dispatch, participantID } = this.props;
-        const socket = socketIOClient(endpoint)
+        const socket = socketIOClient(this.state.endpoint)
         const meetingId = infoConf.getMeetingId()
 
         sendAnalytics(createRemoteVideoMenuButtonEvent(
