@@ -53,14 +53,14 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
             }
         }
 
-        const newSenderWeights = state.polls[pollId].newSenderWeight
+        // const newSenderWeights = state.polls[pollId].newSenderWeight
 
-        if ((newSenderWeights.filter(senderWeight => senderWeight.senderId === answer.senderId)).length < 1) {
-            newSenderWeights.push({
-                senderId: answer.senderId,
-                weight: answer.weight
-            })
-        }
+        // if ((newSenderWeights.filter(senderWeight => senderWeight.senderId === answer.senderId)).length < 1) {
+        //     newSenderWeights.push({
+        //         senderId: answer.senderId,
+        //         weight: answer.weight
+        //     })
+        // }
 
         // finally we update the state by returning the updated poll
         return {
@@ -70,7 +70,7 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
                 [pollId]: {
                     ...state.polls[pollId],
                     answers: newAnswers,
-                    senderWeights: newSenderWeights
+                    senderWeights: []
                 }
             }
         };
