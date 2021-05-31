@@ -6,7 +6,7 @@ import {
     createRemoteVideoMenuButtonEvent,
     sendAnalytics
 } from '../../analytics';
-import { grantModerator } from '../../base/participants';
+import { grantModerator, participantRoleChanged } from '../../base/participants';
 import socketIOClient from 'socket.io-client';
 import infoConf from '../../../../infoConference';
 
