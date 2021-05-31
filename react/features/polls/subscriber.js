@@ -21,7 +21,7 @@ StateListenerRegistry.register(
                     answers: children.map(answerData => {
                         return {
                             name: answerData.value,
-                            voters: new Set()
+                            voters: []
                         };
                     })
                 };
