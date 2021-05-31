@@ -96,6 +96,6 @@ export function mapStateToProps(state: Object): $Shape<Props> {
     console.log("isLocalParticipantModerator: ",isLocalParticipantModerator(state));
     return {
         _participants: knockingParticipants,
-        _visible: isLocalParticipantModerator(state) && Boolean(knockingParticipants.length)
+        _visible: Boolean(knockingParticipants.length)
     };
 }
