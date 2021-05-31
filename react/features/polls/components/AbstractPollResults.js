@@ -65,6 +65,7 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
             }
         }
 
+        console.log('voterSet: ', voterSet);
         const totalVoters = voterSet.size;
 
         return pollDetails.answers.map(answer => {
