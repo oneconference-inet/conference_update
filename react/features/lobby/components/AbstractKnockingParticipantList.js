@@ -96,6 +96,6 @@ export function mapStateToProps(state: Object): $Shape<Props> {
 
     return {
         _participants: knockingParticipants,
-        _visible: isLocalParticipantModerator(state) && Boolean(knockingParticipants.length)
+        _visible: infoConf.getIsModerator() && Boolean(knockingParticipants.length)
     };
 }

@@ -349,6 +349,7 @@ class Toolbox extends Component<Props, State> {
                     logger.log("coHost Payload: ", payload)
                     APP.store.dispatch(localParticipantRoleChanged('moderator'));
                     APP.API.notifyUserRoleChanged(payload.participantID, 'moderator');
+                    infoConf.setIsModerator()
                 default:
                     logger.warn('Event coming is not defined!!')
                 }
