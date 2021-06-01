@@ -30,6 +30,8 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
 
         const { pollId, answer }: { pollId: string; answer: Answer } = action;
 
+        console.log('weight:', answer.weight);
+
         // if the poll doesn't exist
         if (!(pollId in state.polls)) {
             console.warn('requested poll does not exist: pollId ', pollId);

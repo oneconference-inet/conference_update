@@ -88,7 +88,8 @@ const AbstractPollAnswerDialog = (Component: AbstractComponent<AbstractProps>) =
         const answerData = {
             attributes: {
                 pollId,
-                senderId: localId
+                senderId: localId,
+                weight: isLocal ? 3 : 1
             },
             children: checkBoxStates.map(checkBoxState => {
                 return {
