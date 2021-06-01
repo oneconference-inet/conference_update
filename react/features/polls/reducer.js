@@ -55,13 +55,16 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
             }
         }
 
-        const newSenderWeights = state.polls[pollId].senderWeights
+        const newSenderWeights = (state.polls[pollId].senderWeights).push({
+            senderId: answer.senderId,
+            weight: Number(answer.weight)
+        })
 
         // if ((newSenderWeights.filter(senderWeight => senderWeight.senderId === answer.senderId)).length < 1) {
-            newSenderWeights.push({
-                senderId: answer.senderId,
-                weight: Number(answer.weight)
-            })
+            // newSenderWeights.push({
+            //     senderId: answer.senderId,
+            //     weight: Number(answer.weight)
+            // })
         // }
 
         // finally we update the state by returning the updated poll
