@@ -58,11 +58,15 @@ class Subject extends Component<Props> {
             _showParticipantCount,
             _subject,
             _visible,
-            _count
+            _count,
         } = this.props;
 
         if (_count === 1) {
-        console.log("participantCount FINISH!!");
+            // If participant==1 use set end-meet time API
+            console.log("API End-Meet: Starto!! ", Date.toString().split('')[4]);
+        } else {
+            // If participant!=1 give reset end-meet time API
+            console.log("API End-Meet: Reset ");
         }
 
         return (
@@ -99,7 +103,7 @@ function _mapStateToProps(state) {
     //     }
     // };
 
-    console.log("participantCount: ",participantCount);
+    console.log("participantCount: ", participantCount);
 
     return {
         _hideConferenceTimer: Boolean(
@@ -108,7 +112,7 @@ function _mapStateToProps(state) {
         _showParticipantCount: participantCount > 2,
         _subject: getConferenceName(state),
         _visible: isToolboxVisible(state) && participantCount > 1,
-        _count: participantCount
+        _count: participantCount,
     };
 }
 
