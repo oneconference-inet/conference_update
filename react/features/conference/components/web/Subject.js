@@ -63,7 +63,7 @@ class Subject extends Component<Props> {
 
         if (_count === 1) {
             // If participant==1 use set end-meet time API
-            console.log("API End-Meet: Starto!! ", Date.toString().split('')[4]);
+            console.log("API End-Meet: Starto!! ", Date().toString().split(' ')[4]);
         } else {
             // If participant!=1 give reset end-meet time API
             console.log("API End-Meet: Reset ");
