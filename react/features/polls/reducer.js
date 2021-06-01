@@ -61,6 +61,7 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
 
         console.log('111111senderWeights:', state.polls[pollId].senderWeights);
         let senderWeightsValue = JSON.parse(state.polls[pollId].senderWeights)
+        console.log('111111senderWeights2:', state.polls[pollId].senderWeightsValue);
         let newsenderWeights = senderWeightsValue.push({
             senderId: answer.senderId,
             weight: Number(answer.weight)
