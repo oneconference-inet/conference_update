@@ -50,5 +50,5 @@ export type Poll = {
      * An array of sender's Weight :
      * the id of sender and weight of sender
      */
-    senderWeights: Array<{ senderId: string, weight: number }>,
+    senderWeights: string,
 };
