@@ -81,7 +81,6 @@ export default class AbstractKnockingParticipantList<P: Props = Props> extends P
         logger.log("DATA: ", data);
         socket.emit('handleApprove', data) ;
         // dispatch(setKnockingState(false))
-        dispatch(knockingParticipantLeft(id));
     }
 }
 

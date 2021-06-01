@@ -319,13 +319,12 @@ class Toolbox extends Component<Props, State> {
         socket.on(meetingid, (payload) => {
             switch(payload.eventName) {
                 case 'pollResponse':
-                  console.log("pollResponse-Payload: ", payload)
-                  break;
-                // case 'invitedOut':
-                //     logger.log("invitedOut-ID: ", payload.toId)
-                //     if (payload.toId == ) {
-                //         APP.UI.emitEvent(UIEvents.HANGUP)
-                //     }
+                    console.log("pollResponse-Payload: ", payload)
+                    break;
+                case 'handleApprove':
+                    logger.log("handleApprove-ID: ", payload.knockingParticipantID)
+                    APP.store.dispatch(knockingParticipantLeft(payload.knockingParticipantID));
+                    break;
                 default:
                     logger.warn('Event coming is not defined!!')
               }
@@ -354,6 +353,11 @@ class Toolbox extends Component<Props, State> {
                     if (getApprove.data.approve) {
                         onSocketReqJoin(meetingid, endpoint, this.props);
                     }
+
+                    break;
+                case 'handleApprove':
+                    logger.log("handleApprove-ID: ", payload.knockingParticipantID)
+                    APP.store.dispatch(knockingParticipantLeft(payload.knockingParticipantID));
                     break;
                 default:
                     logger.warn('Event coming is not defined!!')
