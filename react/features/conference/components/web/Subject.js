@@ -93,6 +93,8 @@ function _mapStateToProps(state) {
     //         });
     //     }
     // };
+    
+    console.log("participantCount: ",participantCount);
 
     return {
         _hideConferenceTimer: Boolean(
