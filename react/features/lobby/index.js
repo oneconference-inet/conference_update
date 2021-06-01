@@ -2,4 +2,4 @@
 
 export * from './components';
 export { onSocketReqJoin } from './functions';
-export { setLobbyModeEnabled } from './actions';
+export { setLobbyModeEnabled, knockingParticipantLeft } from './actions';

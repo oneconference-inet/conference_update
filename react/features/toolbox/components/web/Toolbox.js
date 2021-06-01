@@ -96,7 +96,7 @@ import VideoSettingsButton from './VideoSettingsButton';
 import Logger from 'jitsi-meet-logger';
 
 import { setAudioMutedAll } from '../../../base/media';
-import { onSocketReqJoin, setLobbyModeEnabled } from '../../../lobby';
+import { onSocketReqJoin, setLobbyModeEnabled, knockingParticipantLeft } from '../../../lobby';
 import infoConf from '../../../../../infoConference';
 import socketIOClient from 'socket.io-client';
 import axios from 'axios';
