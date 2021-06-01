@@ -38,11 +38,11 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
         }
 
         console.log('111111answer:', answer);
+        console.log('111111weight:', answer.weight);
 
         // if the poll exists, we update it with the incoming answer
         const newAnswers = state.polls[pollId].answers
             .map(_answer => {
-                console.log('111111addanswers', _answer.name);
                 return {
                     name: _answer.name,
                     voters: new Set(_answer.voters)
