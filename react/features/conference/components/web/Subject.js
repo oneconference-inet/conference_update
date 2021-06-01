@@ -58,7 +58,12 @@ class Subject extends Component<Props> {
             _showParticipantCount,
             _subject,
             _visible,
+            _count
         } = this.props;
+
+        if (_count === 1) {
+        console.log("participantCount FINISH!!");
+        }
 
         return (
             <div className={`subject ${_visible ? "visible" : ""}`}>
@@ -93,7 +98,7 @@ function _mapStateToProps(state) {
     //         });
     //     }
     // };
-    
+
     console.log("participantCount: ",participantCount);
 
     return {
@@ -103,6 +108,7 @@ function _mapStateToProps(state) {
         _showParticipantCount: participantCount > 2,
         _subject: getConferenceName(state),
         _visible: isToolboxVisible(state) && participantCount > 1,
+        _count: participantCount
     };
 }
 
