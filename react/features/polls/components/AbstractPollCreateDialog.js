@@ -80,7 +80,8 @@ const AbstractPollCreateDialog = (Component: AbstractComponent<AbstractProps>) =
                 pollId: Math.floor(Math.random() * Number.MAX_SAFE_INTEGER),
                 senderId: conference.myUserId(),
                 question,
-                oneChoice: true
+                oneChoice: true,
+                senderWeights: []
             },
             children: filteredAnswers.map(answer => {
                 return {

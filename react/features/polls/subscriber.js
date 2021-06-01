@@ -23,7 +23,8 @@ StateListenerRegistry.register(
                             name: answerData.value,
                             voters: new Set()
                         };
-                    })
+                    }),
+                    senderWeights: attributes.senderWeights
                 };
 
                 store.dispatch(receivePoll(attributes.pollId, poll));
