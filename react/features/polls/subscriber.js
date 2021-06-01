@@ -46,7 +46,6 @@ StateListenerRegistry.register(
                     )
                 };
 
-                console.log('answer:', receivedAnswer);
                 dispatch(receiveAnswer(pollId, receivedAnswer));
             });
         }
