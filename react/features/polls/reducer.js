@@ -38,7 +38,10 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
         }
 
         console.log('111111answer:', answer);
-        console.log('111111weight:', answer.weight);
+        console.log('111111weight:', {
+            senderId: answer.senderId,
+            weight: Number(answer.weight)
+        });
 
         // if the poll exists, we update it with the incoming answer
         const newAnswers = state.polls[pollId].answers
@@ -57,11 +60,12 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
         }
 
         console.log('111111senderWeights:', state.polls[pollId].senderWeights);
-        // let newSenderWeights = (state.polls[pollId].senderWeights).push({
+        let newSenderWeights = (state.polls[pollId].senderWeights)
+        // .push({
         //     senderId: answer.senderId,
         //     weight: Number(answer.weight)
         // })
-        // console.log('111111senderWeights2:', newSenderWeights);
+        console.log('111111senderWeights2:', newSenderWeights);
 
         // if ((newSenderWeights.filter(senderWeight => senderWeight.senderId === answer.senderId)).length < 1) {
             // newSenderWeights.push({
