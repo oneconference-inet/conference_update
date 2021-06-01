@@ -55,10 +55,11 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
             }
         }
 
-        const newSenderWeights = (state.polls[pollId].senderWeights).push({
-            senderId: answer.senderId,
-            weight: Number(answer.weight)
-        })
+        console.log('111111senderWeights:', state.polls[pollId].senderWeights);
+        // const newSenderWeights = (state.polls[pollId].senderWeights).push({
+        //     senderId: answer.senderId,
+        //     weight: Number(answer.weight)
+        // })
 
         // if ((newSenderWeights.filter(senderWeight => senderWeight.senderId === answer.senderId)).length < 1) {
             // newSenderWeights.push({
@@ -75,7 +76,8 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
                 [pollId]: {
                     ...state.polls[pollId],
                     answers: newAnswers,
-                    senderWeights: newSenderWeights
+                    senderWeights: []
+                    // senderWeights: newSenderWeights
                 }
             }
         };
