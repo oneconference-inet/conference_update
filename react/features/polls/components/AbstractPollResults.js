@@ -58,7 +58,7 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
     const answers: Array<AnswerInfo> = useMemo(() => {
         const voterSet = new Set();
 
-        console.log('1pollDetails:', pollDetails);
+        console.log('111111pollDetails:', pollDetails);
 
         // Getting every voters ID that participates to the poll
         for (const answer of pollDetails.answers) {
