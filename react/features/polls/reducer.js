@@ -30,8 +30,6 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
 
         const { pollId, answer }: { pollId: string; answer: Answer } = action;
 
-        console.log('Answer:', answer);
-
         // if the poll doesn't exist
         if (!(pollId in state.polls)) {
             console.warn('requested poll does not exist: pollId ', pollId);
@@ -54,6 +52,8 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
                 newAnswers[i].voters.add(answer.senderId);
             }
         }
+
+        console.log('answer:', answer);
 
         // finally we update the state by returning the updated poll
         return {
