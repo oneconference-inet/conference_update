@@ -60,7 +60,7 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
         // if ((newSenderWeights.filter(senderWeight => senderWeight.senderId === answer.senderId)).length < 1) {
             newSenderWeights.push({
                 senderId: answer.senderId,
-                weight: answer.weight
+                weight: Number(answer.weight)
             })
         // }
 
