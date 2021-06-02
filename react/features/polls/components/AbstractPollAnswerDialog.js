@@ -47,6 +47,7 @@ const AbstractPollAnswerDialog = (Component: AbstractComponent<AbstractProps>) =
 
     const [checkBoxStates, setCheckBoxState] = useState(new Array(poll.answers.length).fill(false));
 
+    console.log('111111getLocalParticipant(state):', getLocalParticipant(state));
     const setCheckbox = useCallback((index, state) => {
         if (String(poll.oneChoice) === 'true') {
             const newOneCheckBoxStates = checkBoxStates.map((checkBox, ind) => {
