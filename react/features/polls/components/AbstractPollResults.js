@@ -62,7 +62,7 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
         const senderWeights = pollDetails.senderWeights
         console.log('111111senderWeights2:', senderWeights);
 
-        const totalSenderWeight = senderWeights.reduce((previous, current) => previous + Number(current.weight), 0)
+        const totalSenderWeight = senderWeights ? 0 : senderWeights.reduce((previous, current) => previous + Number(current.weight), 0)
         console.log('111111totalSenderWeight:', totalSenderWeight);
 
         // Getting every voters ID that participates to the poll
