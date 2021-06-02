@@ -88,9 +88,8 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
         }
 
         return pollDetails.answers.map(answer => {
-            // const percentage = totalVoters === 0 ? 0 : Math.round(answer.voters.size / totalVoters * 100);
-            const percentage = totalVoters === 0 ? 0 : Math.round(answerWeight(answer.voters) / totalSenderWeight * 100);
-            // console.log('111111pollResult:', percentage1);
+            const percentage = totalVoters === 0 ? 0 : Math.round(answer.voters.size / totalVoters * 100);
+            // const percentage = totalVoters === 0 ? 0 : Math.round(answerWeight(answer.voters) / totalSenderWeight * 100);
 
             let voters = null;
 
