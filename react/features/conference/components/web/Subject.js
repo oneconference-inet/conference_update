@@ -58,7 +58,40 @@ class Subject extends Component<Props> {
             _showParticipantCount,
             _subject,
             _visible,
+            _count,
         } = this.props;
+
+        if (_count === 1) {
+            // If participant==1 use set end-meet time API
+            Axios.post(
+                interfaceConfig.DOMAIN + "/api/rooms/settimelastuser",
+                {
+                    meetingid: infoConf.getMeetingId(),
+                    time: Date.now(),
+                },
+                {
+                    headers: {
+                        Authorization:
+                            "Bearer " + interfaceConfig.SECRET_KEY_ONECONF,
+                    },
+                }
+            );
+        } else if (_count === 2) {
+            // If participant!=1 give reset end-meet time API
+            Axios.post(
+                interfaceConfig.DOMAIN + "/api/rooms/settimelastuser",
+                {
+                    meetingid: infoConf.getMeetingId(),
+                    time: 0,
+                },
+                {
+                    headers: {
+                        Authorization:
+                            "Bearer " + interfaceConfig.SECRET_KEY_ONECONF,
+                    },
+                }
+            );
+        }
 
         return (
             <div className={`subject ${_visible ? "visible" : ""}`}>
@@ -101,6 +134,7 @@ function _mapStateToProps(state) {
         _showParticipantCount: participantCount > 2,
         _subject: getConferenceName(state),
         _visible: isToolboxVisible(state) && participantCount > 1,
+        _count: participantCount,
     };
 }
 

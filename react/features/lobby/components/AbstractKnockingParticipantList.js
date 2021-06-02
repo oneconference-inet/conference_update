@@ -3,7 +3,7 @@
 import { PureComponent } from 'react';
 
 import { isLocalParticipantModerator } from '../../base/participants';
-import { knockingParticipantLeft } from '../actions';
+
 // import { setKnockingParticipantApproval } from '../actions';
 
 import infoConf from '../../../../infoConference';
@@ -81,7 +81,6 @@ export default class AbstractKnockingParticipantList<P: Props = Props> extends P
         logger.log("DATA: ", data);
         socket.emit('handleApprove', data) ;
         // dispatch(setKnockingState(false))
-        dispatch(knockingParticipantLeft(id));
     }
 }
 

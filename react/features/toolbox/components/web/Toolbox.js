@@ -96,7 +96,7 @@ import VideoSettingsButton from './VideoSettingsButton';
 import Logger from 'jitsi-meet-logger';
 
 import { setAudioMutedAll } from '../../../base/media';
-import { onSocketReqJoin, setLobbyModeEnabled } from '../../../lobby';
+import { onSocketReqJoin, setLobbyModeEnabled, knockingParticipantLeft } from '../../../lobby';
 import infoConf from '../../../../../infoConference';
 import socketIOClient from 'socket.io-client';
 import axios from 'axios';
@@ -319,13 +319,12 @@ class Toolbox extends Component<Props, State> {
         socket.on(meetingid, (payload) => {
             switch(payload.eventName) {
                 case 'pollResponse':
-                  console.log("pollResponse-Payload: ", payload)
-                  break;
-                // case 'invitedOut':
-                //     logger.log("invitedOut-ID: ", payload.toId)
-                //     if (payload.toId == ) {
-                //         APP.UI.emitEvent(UIEvents.HANGUP)
-                //     }
+                    console.log("pollResponse-Payload: ", payload)
+                    break;
+                case 'handleApprove':
+                    logger.log("handleApprove-ID: ", payload.knockingParticipantID)
+                    APP.store.dispatch(knockingParticipantLeft(payload.knockingParticipantID));
+                    break;
                 default:
                     logger.warn('Event coming is not defined!!')
               }
@@ -337,7 +336,7 @@ class Toolbox extends Component<Props, State> {
         const { meetingid, roomname, name, checkPlatform, endpoint } = state
         const socket = socketIOClient(endpoint)
         logger.log('Attendee ONE-Conference On Socket-for-Feature')
-        socket.on(meetingid, (payload) => {
+        socket.on(meetingid, async(payload) => {
             logger.log("Socket-payload: ", payload);
             switch(payload.eventName) {
                 case 'trackMute':
@@ -349,6 +348,17 @@ class Toolbox extends Component<Props, State> {
                     logger.log("coHost Payload: ", payload)
                     APP.store.dispatch(localParticipantRoleChanged('moderator'));
                     APP.API.notifyUserRoleChanged(payload.participantID, 'moderator');
+
+                    let getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
+                    if (getApprove.data.approve) {
+                        onSocketReqJoin(meetingid, endpoint, this.props);
+                    }
+
+                    break;
+                case 'handleApprove':
+                    logger.log("handleApprove-ID: ", payload.knockingParticipantID)
+                    APP.store.dispatch(knockingParticipantLeft(payload.knockingParticipantID));
+                    break;
                 default:
                     logger.warn('Event coming is not defined!!')
                 }
@@ -1193,7 +1203,8 @@ class Toolbox extends Component<Props, State> {
             // null,
             <RecordButton
                 key = 'record'
-                showLabel = { true } />,
+                showLabel = { true } 
+                visible={this._shouldShowButton('recording')} />,
             // this._shouldShowButton('sharedvideo')
             //     && <OverflowMenuItem
             //         accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
