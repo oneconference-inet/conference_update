@@ -77,7 +77,7 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
 
         const totalVoters = voterSet.size;
 
-        const answerWeight = (voters) => {
+        const answerWeight = (voters, senderWeights) => {
             let voterWeights = senderWeights.filter(senderWeight => voters.includes(senderWeight.senderId))
             let totalvoterWeights = 0
             for (const voterWeight of voterWeights) {
@@ -88,7 +88,7 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
 
         return pollDetails.answers.map(answer => {
             const percentage = totalVoters === 0 ? 0 : Math.round(answer.voters.size / totalVoters * 100);
-            const percentage1 = totalVoters === 0 ? 0 : Math.round(answerWeight(answer.voters) / totalSenderWeight * 100);
+            const percentage1 = totalVoters === 0 ? 0 : Math.round(answerWeight(answer.voters, senderWeights) / totalSenderWeight * 100);
             console.log('111111pollResult:', percentage1);
 
             let voters = null;
