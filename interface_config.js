@@ -27,6 +27,7 @@ var interfaceConfig = {
     SECRET_KEY_ONE_BINAR: 'ZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnpkV0lpT2lKV2FXUmxiMk5oYkd3aUxDSnVZVzFsSWpvaVQyNWxZbWx1WVhJaUxDSnBZWFFpT2pJeU1ERjkuSGgzNzVQUU9uMHN0cXhXSU9ESmI1M1RGWlRXOXhvRXlOaXJaaWZ0bVVsWQ==',
     SECRET_KEY_JMC: '1YRvZyjd8vZsa1u3dKx1GlNYjersxv6WTS0gXeflVbyXKC6M4zHEsybpOfoYAJqVv4wdaMoqMkoYheBEPhFdgmK4Gxfhx3v8XlMo',
     SECRET_KEY_TELEMEDICINE: 'P1v59giDigTxczqz8azhRouzvzzeHDt1HuPPdywGXCwjAA42C2Owb6OIl5HH8lC8sXwMSJ7Q9ZKeUwCkvnYif094OkaEz7tKuMyV',
+    SECRET_KEY_ONECONF: 'OoLdyF822kaIi28K35qCzXMwAxQP56Mt53p0T3O3VcgofWjbq8Kr9Ajz6WId3ffilkZXm0pWBCgfd8FVqaPBkYAbH4kXbqFph4p7',
 
     // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
     SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onedental', 'jmc', 'telemedicine'],

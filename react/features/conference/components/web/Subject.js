@@ -63,10 +63,34 @@ class Subject extends Component<Props> {
 
         if (_count === 1) {
             // If participant==1 use set end-meet time API
-            console.log("API End-Meet: Starto!! ", Date().toString().split(' ')[4]);
-        } else {
+            Axios.post(
+                interfaceConfig.DOMAIN + "/api/rooms/settimelastuser",
+                {
+                    meetingid: infoConf.getMeetingId(),
+                    time: Date.now(),
+                },
+                {
+                    headers: {
+                        Authorization:
+                            "Bearer " + interfaceConfig.SECRET_KEY_ONECONF,
+                    },
+                }
+            );
+        } else if (_count === 2) {
             // If participant!=1 give reset end-meet time API
-            console.log("API End-Meet: Reset ");
+            Axios.post(
+                interfaceConfig.DOMAIN + "/api/rooms/settimelastuser",
+                {
+                    meetingid: infoConf.getMeetingId(),
+                    time: 0,
+                },
+                {
+                    headers: {
+                        Authorization:
+                            "Bearer " + interfaceConfig.SECRET_KEY_ONECONF,
+                    },
+                }
+            );
         }
 
         return (
@@ -102,8 +126,6 @@ function _mapStateToProps(state) {
     //         });
     //     }
     // };
-
-    console.log("participantCount: ", participantCount);
 
     return {
         _hideConferenceTimer: Boolean(

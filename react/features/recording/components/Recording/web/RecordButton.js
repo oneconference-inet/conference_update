@@ -40,7 +40,7 @@ export function _mapStateToProps(state: Object, ownProps: Props): Object {
 
     return {
         ...abstractProps,
-        visible
+        visible: visible && visibleByRole
     };
 }
 
