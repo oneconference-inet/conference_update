@@ -66,7 +66,7 @@ ReducerRegistry.register('features/polls', (state = INITIAL_STATE, action) => {
         if (!(senderWeightsValue.some(sdWeight => sdWeight.senderId === answer.senderId))) {
             console.log('111111AddsenderWeights:');
             // Add new senderWeight
-            newsenderWeights = [ ...senderWeightsValue, {
+            newsenderWeights = [ ...newsenderWeights, {
                 senderId: answer.senderId,
                 weight: Number(answer.weight)
             }]
