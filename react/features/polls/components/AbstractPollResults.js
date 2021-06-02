@@ -58,15 +58,12 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
     const answers: Array<AnswerInfo> = useMemo(() => {
         const voterSet = new Set();
 
-        console.log('111111pollDetails:', pollDetails);
         const senderWeights = pollDetails.senderWeights
-        console.log('111111senderWeights2:', senderWeights);
 
         let totalSenderWeight = 0
         for (const senderWeight of pollDetails.senderWeights) {
             totalSenderWeight = totalSenderWeight + Number(senderWeight.weight)
         }
-        console.log('111111totalSenderWeight:', totalSenderWeight);
 
         // Getting every voters ID that participates to the poll
         for (const answer of pollDetails.answers) {
