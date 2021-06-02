@@ -61,6 +61,7 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
         console.log('111111pollDetails:', pollDetails);
         const senderWeights = pollDetails.senderWeights
         const totalSenderWeight = senderWeights.reduce((previous, current) => previous + Number(current.weight), 0)
+        console.log('111111totalSenderWeight:', totalSenderWeight);
 
         // Getting every voters ID that participates to the poll
         for (const answer of pollDetails.answers) {
@@ -71,14 +72,15 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
 
         const totalVoters = voterSet.size;
 
-        const answerWeight = (voters) => {
-            let voterWeights = senderWeights.filter(senderWeight => voters.includes(senderWeight.senderId))
-            return voterWeights.reduce((previous, current) => previous + Number(current.weight), 0)
-        }
+        // const answerWeight = (voters) => {
+        //     let voterWeights = senderWeights.filter(senderWeight => voters.includes(senderWeight.senderId))
+        //     return voterWeights.reduce((previous, current) => previous + Number(current.weight), 0)
+        // }
 
         return pollDetails.answers.map(answer => {
-            // const percentage = totalVoters === 0 ? 0 : Math.round(answer.voters.size / totalVoters * 100);
-            const percentage = totalVoters === 0 ? 0 : Math.round(answerWeight(answer.voters) / totalSenderWeight * 100);
+            const percentage = totalVoters === 0 ? 0 : Math.round(answer.voters.size / totalVoters * 100);
+            // const percentage1 = totalVoters === 0 ? 0 : Math.round(answerWeight(answer.voters) / totalSenderWeight * 100);
+            // console.log('111111pollResult:', percentage1);
 
             let voters = null;
 
