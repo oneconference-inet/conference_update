@@ -1203,7 +1203,8 @@ class Toolbox extends Component<Props, State> {
             // null,
             <RecordButton
                 key = 'record'
-                showLabel = { true } />,
+                showLabel = { true } 
+                visible={this._shouldShowButton('recording')} />,
             // this._shouldShowButton('sharedvideo')
             //     && <OverflowMenuItem
             //         accessibilityLabel = { t('toolbar.accessibilityLabel.sharedvideo') }
