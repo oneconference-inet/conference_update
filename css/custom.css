@@ -1,8 +1,8 @@
 #knocking-participant-list ul li {
-    display: block; 
+    display: block;
 }
 
-#knocking-participant-list ul li button{
+#knocking-participant-list ul li button {
     margin: 5 5px;
 }
 
@@ -32,4 +32,24 @@ ul.poll-answer-list {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+}
+
+.display-avatar-with-name {
+    order: 100;
+}
+
+.display-name-on-black {
+    order: 100;
+}
+
+.display-video {
+    order: 1;
+}
+
+.display-name-on-video {
+    order: 1;
+}
+
+.display-avatar-only {
+    order: 100;
 }
