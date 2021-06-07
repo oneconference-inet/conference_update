@@ -35,21 +35,21 @@ ul.poll-answer-list {
 }
 
 .display-avatar-with-name {
-    order: 100;
+    order: 1;
 }
 
 .display-name-on-black {
-    order: 100;
+    order: 1;
 }
 
-.display-video {
+/* .display-video {
     order: 1;
 }
 
 .display-name-on-video {
     order: 1;
-}
+} */
 
 .display-avatar-only {
-    order: 100;
+    order: 1;
 }
