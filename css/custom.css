@@ -34,7 +34,7 @@ ul.poll-answer-list {
     margin-top: 10px;
 }
 
-/* .display-avatar-with-name {
+.display-avatar-with-name {
     order: 100;
 }
 
@@ -52,4 +52,4 @@ ul.poll-answer-list {
 
 .display-avatar-only {
     order: 100;
-} */
+}
