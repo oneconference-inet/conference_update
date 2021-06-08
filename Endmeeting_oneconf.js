@@ -1,6 +1,7 @@
 const https = require("https");
 
-const domain = "oneconference-new.inet.co.th";
+const domain = "meet-test.one.th";
+// const domain = "oneconference-new.inet.co.th";
 
 async function httpsGet(hostname, path, headers) {
   return new Promise(async (resolve, reject) => {
