@@ -46,10 +46,10 @@ ul.poll-answer-list {
     order: 1;
 }
 
-#filmstripRemoteVideos {
+.vertical-filmstrip .filmstrip #filmstripRemoteVideos {
     flex-direction: column;
 }
 
-#filmstripRemoteVideosContainer {
+.vertical-filmstrip .filmstrip #filmstripRemoteVideos #filmstripRemoteVideosContainer {
     flex-direction: column;
 }
