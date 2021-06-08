@@ -42,14 +42,14 @@ ul.poll-answer-list {
     order: 1;
 }
 
-/* .display-video {
+.display-avatar-only {
     order: 1;
 }
 
-.display-name-on-video {
-    order: 1;
-} */
+#filmstripRemoteVideos {
+    flex-direction: column;
+}
 
-.display-avatar-only {
-    order: 1;
+#filmstripRemoteVideosContainer {
+    flex-direction: column;
 }
