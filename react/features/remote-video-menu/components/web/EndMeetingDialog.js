@@ -3,6 +3,8 @@
 import React from 'react';
 import axios from 'axios'
 import infoConf from '../../../../../infoConference'
+import infoUser from '../../../../../infoUser'
+
 import { Dialog } from '../../../base/dialog';
 import { translate } from '../../../base/i18n';
 import { connect } from '../../../base/redux';
