@@ -52,7 +52,8 @@ type Translations = {
 class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
     static defaultProps = {
         exclude: [],
-        muteLocal: false
+        muteLocal: false,
+        _endJoin
     };
 
     /**
@@ -69,7 +70,9 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 okKey = 'dialog.endmeet'
                 onSubmit = { this._onSubmit }
                 titleString = { title }
-                width = 'small'>
+                width = 'small'
+                onLeave={ this.props._endJoin() }
+                >
                 <div>
                     { content }
                 </div>
@@ -89,7 +92,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const conference = APP;
             const {
                 dispatch,
-                exclude
+                exclude,
             } = this.props;
             const service = infoConf.getService();
             const secretKeyManageAi = interfaceConfig.SECRET_KEY_MANAGE_AI;

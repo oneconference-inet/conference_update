@@ -7,6 +7,10 @@ import React, { Component } from "react";
 
 import { translate } from "../../../i18n/functions";
 import type { DialogProps } from "../../constants";
+import { disconnect } from "../../../connection";
+import { createToolbarEvent, sendAnalytics } from "../../../../analytics";
+
+declare var APP: Object;
 
 /**
  * The ID to be used for the cancel button if enabled.
@@ -24,7 +28,7 @@ const OK_BUTTON_ID = "modal-dialog-ok-button";
  * The ID to be used for the ok button if enabled.
  * @type {string}
  */
- const LEAVE_BUTTON_ID = "modal-dialog-leave-button";
+const LEAVE_BUTTON_ID = "modal-dialog-leave-button";
 
 /**
  * The type of the React {@code Component} props of {@link StatelessDialog}.
@@ -217,6 +221,19 @@ class StatelessDialog extends Component<Props> {
         }
     }
 
+    _onLeave: () => void;
+
+    /**
+     * Dispatches action to hide the dialog.
+     *
+     * @returns {void}
+     */
+    _onLeave() {
+        sendAnalytics(createToolbarEvent("hangup"));
+        this.props._endJoin();
+        APP.store.dispatch(disconnect(true));
+    }
+
     _onDialogDismissed: () => void;
 
     /**
@@ -294,10 +311,11 @@ class StatelessDialog extends Component<Props> {
                 appearance="subtle"
                 id={LEAVE_BUTTON_ID}
                 key="leave"
-                onClick={() => console.log("LEAVE!!!!")}
+                onClick={this._onLeave}
                 type="button"
             >
-                {t(this.props.cancelKey || "dialog.Cancel")}
+                {console.log("LEAVE PROPS: ", this.props)}
+                {t("dialog.leave")}
             </Button>
         );
     }

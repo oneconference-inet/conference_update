@@ -182,6 +182,7 @@
     "cameraUnknownError": "Cannot use camera for an unknown reason.",
     "cameraUnsupportedResolutionError": "Your camera does not support required video resolution.",
     "Cancel": "ยกเลิก",
+    "leave": "ออกจากห้องประชุม",
     "close": "ปิด",
     "conferenceDisconnectMsg": "You may want to check your network connection. Reconnecting in {{seconds}} sec...",
     "conferenceDisconnectTitle": "You have been disconnected.",

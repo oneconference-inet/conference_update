@@ -9,11 +9,11 @@ import { translate } from "../../base/i18n";
 import { connect } from "../../base/redux";
 import { AbstractHangupButton } from "../../base/toolbox/components";
 import type { AbstractButtonProps } from "../../base/toolbox/components";
-import { getLocalParticipant, PARTICIPANT_ROLE } from '../../base/participants';
-import { getActiveSession } from '../../recording/functions';
-import { JitsiRecordingConstants } from '../../base/lib-jitsi-meet';
-import { EndMeetingDialog } from '../../remote-video-menu/components';
-import { openDialog } from '../../base/dialog';
+import { getLocalParticipant, PARTICIPANT_ROLE } from "../../base/participants";
+import { getActiveSession } from "../../recording/functions";
+import { JitsiRecordingConstants } from "../../base/lib-jitsi-meet";
+import { EndMeetingDialog } from "../../remote-video-menu/components";
+import { openDialog } from "../../base/dialog";
 
 import axios from "axios";
 import infoConf from "../../../../infoConference";
@@ -82,6 +82,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                 dispatch(
                     openDialog(EndMeetingDialog, {
                         exclude: [localParticipantId],
+                        _endJoin: this._endJoin,
                     })
                 );
             }
@@ -262,16 +263,16 @@ class HangupButton extends AbstractHangupButton<Props, *> {
  * @param {Props} ownProps - The component's own props.
  * @returns {Object}
  */
- function _mapStateToProps(state: Object, ownProps: Props) {
+function _mapStateToProps(state: Object, ownProps: Props) {
     const localParticipant = getLocalParticipant(state);
     const isModerator = localParticipant.role === PARTICIPANT_ROLE.MODERATOR;
     const { visible } = ownProps;
-    const { disableRemoteMute } = state['features/base/config'];
+    const { disableRemoteMute } = state["features/base/config"];
 
     return {
         isModerator,
         localParticipantId: localParticipant.id,
-        visible: visible && isModerator && !disableRemoteMute
+        visible: visible && isModerator && !disableRemoteMute,
     };
 }
 
