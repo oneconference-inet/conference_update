@@ -382,7 +382,7 @@ class Toolbox extends Component<Props, State> {
         },() => {
             if (isModerator) {
                 
-                if (checkPlatform === "manageAi" || checkPlatform === "followup" || checkPlatform === "onedental" || checkPlatform === "jmc" || checkPlatform === "telemedicine") {
+                if (checkPlatform === "manageAi" || checkPlatform === "followup" || checkPlatform === "onedental" || checkPlatform === "jmc" || checkPlatform === "telemedicine" || checkPlatform === "emeeting") {
                     //Recording when start conference
                     let appData = JSON.stringify({
                         'file_recording_metadata': {
@@ -1216,9 +1216,9 @@ class Toolbox extends Component<Props, State> {
             //     && <SharedDocumentButton
             //         key = 'etherpad'
             //         showLabel = { true } />,
-            <PollCreateButton
-                key = 'poll'
-                showLabel = { true } />,
+            // <PollCreateButton
+            //     key = 'poll'
+            //     showLabel = { true } />,
             <VideoBlurButton
                 key = 'videobackgroundblur'
                 showLabel = { true }
@@ -1260,10 +1260,10 @@ class Toolbox extends Component<Props, State> {
                     key = 'shortcuts'
                     onClick = { this._onToolbarOpenKeyboardShortcuts }
                     text = { t('toolbar.shortcuts') } />,
-            <EndMeetingButton
-                    key='endmeeting'
-                    showLabel={true}
-                    visible={this._shouldShowButton('endmeeting')} />,
+            // <EndMeetingButton
+            //         key='endmeeting'
+            //         showLabel={true}
+            //         visible={this._shouldShowButton('endmeeting')} />,
             this._shouldShowButton('download')
                 && <DownloadButton
                     key = 'download'

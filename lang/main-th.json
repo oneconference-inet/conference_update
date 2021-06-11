@@ -166,8 +166,8 @@
       "liveStreaming": "ถ่ายทอดสด"
     },
     "endmeet": "สิ้นสุด",
-    "endMeetingDialog": "การสิ้นสุดการประชุมจะทำให้ผู้ใช้ทุกคนออกจากเซสชันนี้!",
-    "endMeetingTitle": "คุณต้องการสิ้นสุดการประชุมหรือไม่?",
+    "endMeetingDialog": "คุณต้องการสิ้นสุดการประชุมสำหรับผู้เข้าร่วมประชุมทั้งหมด หรือ ออกจากการประชุมโดยที่การประชุมยังไม่สิ้นสุด?",
+    "endMeetingTitle": "การสิ้นสุดการประชุม",
     "add": "เพิ่ม",
     "allow": "อนุญาต",
     "alreadySharedVideoMsg": "Another participant is already sharing a video. This conference allows only one shared video at a time.",

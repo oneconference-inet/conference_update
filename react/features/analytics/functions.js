@@ -132,9 +132,9 @@ export async function createHandlers({ getState }: { getState: Function }) {
     const int_service = interfaceConfig.SERVICE_INT;
     logger.log("Data Decode: ", dataDecode);
     logger.log("TR: 12345");
-    
-    // console.log("token Access: ", tokenAccess);    
-     if (dataDecode != undefined && tokenAccess) {
+
+    // console.log("token Access: ", tokenAccess);
+    if (dataDecode != undefined && tokenAccess) {
         infoConf.setMeetingId(dataDecode.meetingId);
         infoConf.setRoomName(dataDecode.roomname);
         sessionStorage.setItem(
@@ -263,8 +263,16 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: "onebinar",
                         }
                     );
-                }
-                else {
+                } else if (dataDecode.service == "emeeting") {
+                    infoConf.setService(dataDecode.service);
+                    keydb = await axios.post(
+                        interfaceConfig.DOMAIN_BACK + "/checkkey",
+                        {
+                            meetingid: dataDecode.meetingId,
+                            clientname: "emeeting",
+                        }
+                    );
+                } else {
                     infoConf.setService("oneconference");
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN + "/checkkey",
