@@ -7,10 +7,10 @@ import React, { Component } from "react";
 
 import { translate } from "../../../i18n/functions";
 import type { DialogProps } from "../../constants";
-import { disconnect } from "../../../connection";
-import { createToolbarEvent, sendAnalytics } from "../../../../analytics";
+// import { disconnect } from "../../../connection";
+// import { createToolbarEvent, sendAnalytics } from "../../../../analytics";
 
-declare var APP: Object;
+// declare var APP: Object;
 
 /**
  * The ID to be used for the cancel button if enabled.
@@ -221,18 +221,18 @@ class StatelessDialog extends Component<Props> {
         }
     }
 
-    _onLeave: () => void;
+    // _onLeave: () => void;
 
-    /**
-     * Dispatches action to hide the dialog.
-     *
-     * @returns {void}
-     */
-    _onLeave() {
-        sendAnalytics(createToolbarEvent("hangup"));
-        // this.props._endJoin();
-        APP.store.dispatch(disconnect(true));
-    }
+    // /**
+    //  * Dispatches action to hide the dialog.
+    //  *
+    //  * @returns {void}
+    //  */
+    // _onLeave() {
+    //     sendAnalytics(createToolbarEvent("hangup"));
+    //     // this.props._endJoin();
+    //     APP.store.dispatch(disconnect(true));
+    // }
 
     _onDialogDismissed: () => void;
 
@@ -311,7 +311,7 @@ class StatelessDialog extends Component<Props> {
                 appearance="subtle"
                 id={LEAVE_BUTTON_ID}
                 key="leave"
-                onClick={this._onLeave}
+                // onClick={this._onLeave}
                 type="button"
             >
                 {console.log("LEAVE PROPS: ", this.props)}
