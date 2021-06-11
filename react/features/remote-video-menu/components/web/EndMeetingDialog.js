@@ -71,7 +71,10 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 titleString = { title }
                 width = 'small'>
                 <div>
-                    { content }
+                    {/* { content } */}
+                    <button>End</button>
+                    <button>Leave</button>
+                    <button>Cancel</button>
                 </div>
             </Dialog>
         );

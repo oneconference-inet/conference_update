@@ -53,7 +53,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
     constructor(props: Props) {
         super(props);
 
-        this._hangup = _.once(() => {
+        this._hangup = () => {
             // sendAnalytics(createToolbarEvent("hangup"));
             // this._endJoin();
 
@@ -85,7 +85,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                     })
                 );
             }
-        });
+        };
 
         this._endJoin = async () => {
             const domainEnd = interfaceConfig.DOMAIN_BACK;
