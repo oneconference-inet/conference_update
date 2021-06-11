@@ -11,6 +11,7 @@ import UIEvents from '../../../../../service/UI/UIEvents';
 import AbstractEndMeetingParticipantDialog, {
     type Props as AbstractProps
 } from '../AbstractEndMeetingParticipantDialog';
+import { disconnect } from "../../../base/connection";
 
 declare var APP: Object;
 declare var interfaceConfig: Object;
@@ -154,6 +155,9 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
      */
 
     async _endJoin() {
+        const {
+            dispatch
+        } = this.props;
         const domainEnd = interfaceConfig.DOMAIN_BACK;
         const service = infoConf.getService();
         const meetingId = infoConf.getMeetingId();
@@ -306,6 +310,8 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 meeting_id: meetingId,
             });
         }
+
+        dispatch(disconnect(true))
     };
 
 

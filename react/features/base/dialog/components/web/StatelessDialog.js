@@ -7,9 +7,6 @@ import React, { Component } from "react";
 
 import { translate } from "../../../i18n/functions";
 import type { DialogProps } from "../../constants";
-import { disconnect } from "../../../connection/actions.web";
-
-declare var APP: Object;
 
 /**
  * The ID to be used for the cancel button if enabled.
@@ -233,7 +230,6 @@ class StatelessDialog extends Component<Props> {
             const { onLeave } = this.props;
 
             onLeave && onLeave();
-            APP.store.dispatch(disconnect(true));
         }
     }
 
