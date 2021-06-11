@@ -7,7 +7,7 @@ import React, { Component } from "react";
 
 import { translate } from "../../../i18n/functions";
 import type { DialogProps } from "../../constants";
-import { disconnect } from "../../../connection";
+// import { disconnect } from "../../../connection";
 // import { createToolbarEvent, sendAnalytics } from "../../../../analytics";
 
 declare var APP: Object;
