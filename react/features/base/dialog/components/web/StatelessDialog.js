@@ -119,7 +119,7 @@ class StatelessDialog extends Component<Props> {
         this._onSubmit = this._onSubmit.bind(this);
         this._renderFooter = this._renderFooter.bind(this);
         this._setDialogElement = this._setDialogElement.bind(this);
-        this._onLeave = this._onLeave.bind(this);
+        // this._onLeave = this._onLeave.bind(this);
     }
 
     /**
@@ -222,21 +222,14 @@ class StatelessDialog extends Component<Props> {
         }
     }
 
-    _onLeave: () => void;
-
-    /**
-     * Dispatches action to hide the dialog.
-     *
-     * @returns {void}
-     */
     _onLeave() {
         if (!this.props.isModal) {
             const { onLeave } = this.props;
 
-            // sendAnalytics(createToolbarEvent("hangup"));;
+            sendAnalytics(createToolbarEvent("hangup"));;
             onLeave && onLeave();
 
-            // APP.store.dispatch(disconnect(true));
+            APP.store.dispatch(disconnect(true));
         }
     }
 
@@ -320,7 +313,6 @@ class StatelessDialog extends Component<Props> {
                 onClick={this._onLeave}
                 type="button"
             >
-                {console.log("LEAVE PROPS: ", this.props)}
                 {t("dialog.leave")}
             </Button>
         );
