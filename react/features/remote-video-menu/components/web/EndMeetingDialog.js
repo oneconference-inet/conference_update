@@ -156,9 +156,6 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
 
     async _endJoin() {
         try {
-            const {
-                dispatch
-            } = this.props;
             const domainEnd = interfaceConfig.DOMAIN_BACK;
             const service = infoConf.getService();
             const meetingId = infoConf.getMeetingId();
@@ -312,7 +309,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 });
             }
 
-            dispatch(disconnect(true))  
+            APP.store.dispatch(disconnect(true))  
         } catch (error) {
             console.log(error)
         }
