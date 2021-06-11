@@ -222,16 +222,16 @@ class StatelessDialog extends Component<Props> {
         }
     }
 
-    _onLeave() {
-        if (!this.props.isModal) {
-            const { onLeave } = this.props;
+    // _onLeave() {
+    //     if (!this.props.isModal) {
+    //         const { onLeave } = this.props;
 
-            sendAnalytics(createToolbarEvent("hangup"));;
-            onLeave && onLeave();
+    //         sendAnalytics(createToolbarEvent("hangup"));;
+    //         onLeave && onLeave();
 
-            APP.store.dispatch(disconnect(true));
-        }
-    }
+    //         APP.store.dispatch(disconnect(true));
+    //     }
+    // }
 
     _onDialogDismissed: () => void;
 
@@ -310,7 +310,7 @@ class StatelessDialog extends Component<Props> {
                 appearance="subtle"
                 id={LEAVE_BUTTON_ID}
                 key="leave"
-                onClick={this._onLeave}
+                // onClick={this._onLeave}
                 type="button"
             >
                 {t("dialog.leave")}
