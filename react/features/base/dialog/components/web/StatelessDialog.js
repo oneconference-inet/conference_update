@@ -176,6 +176,7 @@ class StatelessDialog extends Component<Props> {
                      * Atlaskit has this empty span (JustifySim) so...
                      */
                 }
+                {console.log("propsFromModalFooter: ",propsFromModalFooter)}
                 <span />
                 <ButtonGroup>
                     { buttons }
