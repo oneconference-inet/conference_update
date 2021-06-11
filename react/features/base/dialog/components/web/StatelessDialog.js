@@ -230,7 +230,7 @@ class StatelessDialog extends Component<Props> {
      */
     _onLeave() {
         sendAnalytics(createToolbarEvent("hangup"));
-        this.props._endJoin();
+        // this.props._endJoin();
         APP.store.dispatch(disconnect(true));
     }
 

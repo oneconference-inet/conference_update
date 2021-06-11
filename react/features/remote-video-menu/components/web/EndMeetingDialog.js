@@ -71,7 +71,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 onSubmit = { this._onSubmit }
                 titleString = { title }
                 width = 'small'
-                onLeave={ this.props._endJoin() }
+                // onLeave={ this.props._endJoin() }
                 >
                 <div>
                     { content }

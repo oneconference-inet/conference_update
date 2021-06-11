@@ -82,7 +82,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                 dispatch(
                     openDialog(EndMeetingDialog, {
                         exclude: [localParticipantId],
-                        _endJoin: this._endJoin,
+                        // _endJoin: this._endJoin,
                     })
                 );
             }
