@@ -128,7 +128,7 @@ function _mapStateToProps(state: Object, ownProps: Props) {
 
 export default translate(connect(_mapStateToProps)(HangupButton));
 
-export function _endJoin() {
+export async function _endJoin() {
     try {
         const domainEnd = interfaceConfig.DOMAIN_BACK;
         const service = infoConf.getService();
