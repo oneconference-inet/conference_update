@@ -7,10 +7,10 @@ import React, { Component } from "react";
 
 import { translate } from "../../../i18n/functions";
 import type { DialogProps } from "../../constants";
-// import { disconnect } from "../../../connection";
-// import { createToolbarEvent, sendAnalytics } from "../../../../analytics";
+import { disconnect } from "../../../connection";
+import { createToolbarEvent, sendAnalytics } from "../../../../analytics";
 
-// declare var APP: Object;
+declare var APP: Object;
 
 /**
  * The ID to be used for the cancel button if enabled.
@@ -119,7 +119,7 @@ class StatelessDialog extends Component<Props> {
         this._onSubmit = this._onSubmit.bind(this);
         this._renderFooter = this._renderFooter.bind(this);
         this._setDialogElement = this._setDialogElement.bind(this);
-        // this._onLeave = this._onLeave.bind(this);
+        this._onLeave = this._onLeave.bind(this);
     }
 
     /**
@@ -222,23 +222,23 @@ class StatelessDialog extends Component<Props> {
         }
     }
 
-    // _onLeave: () => void;
+    _onLeave: () => void;
 
-    // /**
-    //  * Dispatches action to hide the dialog.
-    //  *
-    //  * @returns {void}
-    //  */
-    // _onLeave() {
-    //     if (!this.props.isModal) {
-    //         const { onLeave } = this.props;
+    /**
+     * Dispatches action to hide the dialog.
+     *
+     * @returns {void}
+     */
+    _onLeave() {
+        if (!this.props.isModal) {
+            const { onLeave } = this.props;
 
-    //         // sendAnalytics(createToolbarEvent("hangup"));;
-    //         onLeave && onLeave();
+            // sendAnalytics(createToolbarEvent("hangup"));;
+            onLeave && onLeave();
 
-    //         // APP.store.dispatch(disconnect(true));
-    //     }
-    // }
+            // APP.store.dispatch(disconnect(true));
+        }
+    }
 
     _onDialogDismissed: () => void;
 
@@ -317,7 +317,7 @@ class StatelessDialog extends Component<Props> {
                 appearance="subtle"
                 id={LEAVE_BUTTON_ID}
                 key="leave"
-                // onClick={this._onLeave}
+                onClick={this._onLeave}
                 type="button"
             >
                 {console.log("LEAVE PROPS: ", this.props)}
