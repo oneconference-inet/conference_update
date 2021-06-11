@@ -173,7 +173,7 @@
         },
         "endmeet": "End-Meeting",
         "endMeetingDialog": "Do you want to end the meeting for all participants or leave the meeting without ending it?",
-        "endMeetingTitle": "End the meeting",
+        "endMeetingTitle": "End Meeting",
         "add": "Add",
         "allow": "Allow",
         "alreadySharedVideoMsg": "Another participant is already sharing a video. This conference allows only one shared video at a time.",
