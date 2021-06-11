@@ -225,11 +225,11 @@ class StatelessDialog extends Component<Props> {
      *
      * @returns {void}
      */
-    _onLeave() {
+    _onLeave(value) {
         if (!this.props.isModal) {
             const { onLeave } = this.props;
 
-            onLeave && onLeave();
+            onLeave && onLeave(value);
         }
     }
 

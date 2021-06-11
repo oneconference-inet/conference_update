@@ -312,6 +312,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
         }
 
         dispatch(disconnect(true))
+        return true;
     };
 
 
