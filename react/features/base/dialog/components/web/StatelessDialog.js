@@ -227,7 +227,6 @@ class StatelessDialog extends Component<Props> {
      */
     _onLeave() {
         if (!this.props.isModal) {
-            console.log("_endJoin: ",this.props);
             const { onLeave } = this.props;
 
             onLeave && onLeave();
