@@ -98,6 +98,10 @@ class StatelessDialog extends Component<Props> {
     constructor(props) {
         super(props);
 
+        this.state = {
+            title: this.props.titleString
+        }
+
         // Bind event handlers so they are only bound once for every instance.
         this._onCancel = this._onCancel.bind(this);
         this._onDialogDismissed = this._onDialogDismissed.bind(this);
@@ -176,7 +180,7 @@ class StatelessDialog extends Component<Props> {
                      * Atlaskit has this empty span (JustifySim) so...
                      */
                 }
-                {console.log("propsFromModalFooter: ",propsFromModalFooter)}
+                {console.log("propsFromModalFooter: ",this.state.title)}
                 <span />
                 <ButtonGroup>
                     { buttons }
