@@ -10,6 +10,7 @@ import { getLogger } from './features/base/logging/functions';
 import { Platform } from './features/base/react';
 import { getJitsiMeetGlobalNS } from './features/base/util';
 import PrejoinApp from './features/prejoin/components/PrejoinApp';
+import { _endJoin } from "./features/toolbox/components/HangupButton";
 
 const logger = getLogger('index.web');
 const OS = Platform.OS;
@@ -54,6 +55,8 @@ window.addEventListener('beforeunload', () => {
     APP.API.notifyConferenceLeft(APP.conference.roomName);
     APP.API.dispose();
     getJitsiMeetTransport().dispose();
+
+    _endJoin()
 });
 
 const globalNS = getJitsiMeetGlobalNS();
