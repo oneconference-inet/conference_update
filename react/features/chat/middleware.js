@@ -218,9 +218,10 @@ function _handleReceivedMessage({ dispatch, getState }, { id, message, privateMe
     const state = getState();
     const { isOpen: isChatOpen } = state['features/chat'];
 
-    if (!isChatOpen) {
-        dispatch(playSound(INCOMING_MSG_SOUND_ID));
-    }
+    // Notification sound when chat close
+    // if (!isChatOpen) {
+    //     dispatch(playSound(INCOMING_MSG_SOUND_ID));
+    // }
 
     // Provide a default for for the case when a message is being
     // backfilled for a participant that has left the conference.
