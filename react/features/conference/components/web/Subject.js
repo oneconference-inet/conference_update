@@ -51,14 +51,6 @@ type Props = {
 declare var interfaceConfig: Object;
 
 class Subject extends Component<Props> {
-    constructor(props: Props) {
-        super(props);
-
-        this.state = {
-            endpoint: interfaceConfig.SOCKET_NODE || "",
-        };
-    }
-
     /**
      * Implements React's {@link Component#render()}.
      *
@@ -135,14 +127,18 @@ function _mapStateToProps(state) {
     const meetingId = infoConf.getMeetingId();
     const participant = getParticipants(state);
     if (participant.length > 1) {
-    console.log("TEST OUT: ", isModerator, participant[1].id);
-        
+        console.log("TEST OUT: ", isModerator, participant[1].id);
     }
 
     window.onbeforeunload = function (event) {
-        console.log("8888888888888888888888888888888888888888888888: ",this.state.endpoint);
-        console.log("888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888");
-        alert("OUT")
+        console.log(
+            "8888888888888888888888888888888888888888888888: ",
+            interfaceConfig.SOCKET_NODE
+        );
+        console.log(
+            "888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888"
+        );
+        alert("OUT");
 
         const socket = socketIOClient(this.state.endpoint);
 
