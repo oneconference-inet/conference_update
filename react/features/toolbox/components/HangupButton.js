@@ -61,7 +61,6 @@ class HangupButton extends AbstractHangupButton<Props, *> {
             } else {
                 const { dispatch, localParticipantId, isModerator } =
                     this.props;
-                    console.log("isModerator: ",isModerator);
                 if (isModerator) {
                     sendAnalytics(createToolbarEvent("endmeeting.pressed"));
                     dispatch(
@@ -70,7 +69,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                         })
                     );
                 } else {
-                    _endJoin()
+                    _endJoin();
                 }
             }
         };
@@ -99,7 +98,7 @@ function _mapStateToProps(state: Object, ownProps: Props) {
     const isModerator = localParticipant.role === PARTICIPANT_ROLE.MODERATOR;
     // const { visible } = ownProps;
     // const { disableRemoteMute } = state["features/base/config"];
-    console.log("localParticipant.role: ",localParticipant.role);
+    
     return {
         isModerator,
         localParticipantId: localParticipant.id,

@@ -131,16 +131,7 @@ function _mapStateToProps(state) {
     }
 
     window.onbeforeunload = function (event) {
-        console.log(
-            "8888888888888888888888888888888888888888888888: ",
-            interfaceConfig.SOCKET_NODE
-        );
-        console.log(
-            "888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888"
-        );
-        alert("OUT");
-
-        const socket = socketIOClient(this.state.endpoint);
+        const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
         // Moderator out of conference, grant moderator with next participant.
         if (isModerator) {
