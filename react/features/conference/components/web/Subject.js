@@ -126,11 +126,9 @@ function _mapStateToProps(state) {
     const isModerator = infoConf.getIsModerator();
     const meetingId = infoConf.getMeetingId();
     const participant = getParticipants(state);
-    if (participant.length > 1) {
-        console.log("TEST OUT: ", isModerator, participant[1].id);
-    }
 
     window.onbeforeunload = function (event) {
+        console.log("8888888888888888888888888: ",interfaceConfig.SOCKET_NODE);
         const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
         // Moderator out of conference, grant moderator with next participant.
