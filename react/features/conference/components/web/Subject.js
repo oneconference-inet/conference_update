@@ -128,6 +128,7 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
+    console.log("TEST OUT: ",isModerator , participant[1].role !== "moderator");
 
     window.onbeforeunload = function (event) {
         const isModerator = infoConf.getIsModerator();
