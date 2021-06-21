@@ -129,20 +129,20 @@ class Subject extends Component<Props> {
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
 
-    // window.onbeforeunload = function (event) {
-    //     const isModerator = infoConf.getIsModerator();
-    //     const meetingId = infoConf.getMeetingId();
-    //     const participant = getParticipants(state);
-    //     const socket = socketIOClient(this.state.endpoint);
+    window.onbeforeunload = function (event) {
+        const isModerator = infoConf.getIsModerator();
+        const meetingId = infoConf.getMeetingId();
+        const participant = getParticipants(state);
+        const socket = socketIOClient(this.state.endpoint);
 
-    //     // Moderator out of conference, grant moderator with next participant.
-    //     if (isModerator && participant[1].role !== "moderator") {
-    //         socket.emit("coHost", {
-    //             meetingId: meetingId,
-    //             participantID: participant[1].id,
-    //         });
-    //     }
-    // };
+        // Moderator out of conference, grant moderator with next participant.
+        if (isModerator && participant[1].role !== "moderator") {
+            socket.emit("coHost", {
+                meetingId: meetingId,
+                participantID: participant[1].id,
+            });
+        }
+    };
 
     return {
         _hideConferenceTimer: Boolean(
