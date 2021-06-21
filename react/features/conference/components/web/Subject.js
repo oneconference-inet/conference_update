@@ -132,13 +132,13 @@ function _mapStateToProps(state) {
 
         // Moderator out of conference, grant moderator with next participant.
         if (isModerator) {
-            console.log("1111111111111111111111111111");
             await socket.emit("coHost", {
                 meetingId: meetingId,
                 participantID: participant[1].id,
             });
-            console.log("2222222222222222222222222222");
         }
+
+        return null;
     };
 
     return {
