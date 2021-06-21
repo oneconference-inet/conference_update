@@ -3,7 +3,10 @@
 import React, { Component } from "react";
 
 import { getConferenceName } from "../../../base/conference/functions";
-import { getParticipantCount, getParticipants } from "../../../base/participants/functions";
+import {
+    getParticipantCount,
+    getParticipants,
+} from "../../../base/participants/functions";
 import { connect } from "../../../base/redux";
 import { isToolboxVisible } from "../../../toolbox/functions.web";
 import ConferenceTimer from "../ConferenceTimer";
@@ -128,12 +131,12 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
-    console.log("TEST OUT: ",isModerator , participant[1].role !== "moderator");
+    const isModerator = infoConf.getIsModerator();
+    const meetingId = infoConf.getMeetingId();
+    const participant = getParticipants(state);
+    console.log("TEST OUT: ", isModerator, participant[1].role !== "moderator");
 
     window.onbeforeunload = function (event) {
-        const isModerator = infoConf.getIsModerator();
-        const meetingId = infoConf.getMeetingId();
-        const participant = getParticipants(state);
         const socket = socketIOClient(this.state.endpoint);
 
         // Moderator out of conference, grant moderator with next participant.
