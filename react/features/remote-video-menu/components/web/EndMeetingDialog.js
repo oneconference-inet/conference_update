@@ -107,7 +107,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             let domainEnd
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference))
             console.log("EXCLUDE: ",exclude);
-            dispatch(endAllParticipants([]))
+            dispatch(endAllParticipants(exclude))
 
             if (service == "onechat") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
