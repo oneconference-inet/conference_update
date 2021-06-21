@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 
 import { getConferenceName } from "../../../base/conference/functions";
-import { getParticipantCount,getParticipants } from "../../../base/participants/functions";
+import { getParticipantCount, getParticipants } from "../../../base/participants/functions";
 import { connect } from "../../../base/redux";
 import { isToolboxVisible } from "../../../toolbox/functions.web";
 import ConferenceTimer from "../ConferenceTimer";
@@ -11,6 +11,8 @@ import ConferenceTimer from "../ConferenceTimer";
 import ParticipantsCount from "./ParticipantsCount";
 import Axios from "axios";
 import infoConf from "../../../../../infoConference";
+import socketIOClient from "socket.io-client";
+
 /**
  * The type of the React {@code Component} props of {@link Subject}.
  */
@@ -46,6 +48,14 @@ type Props = {
 declare var interfaceConfig: Object;
 
 class Subject extends Component<Props> {
+    constructor(props: Props) {
+        super(props);
+
+        this.state = {
+            endpoint: interfaceConfig.SOCKET_NODE || "",
+        };
+    }
+
     /**
      * Implements React's {@link Component#render()}.
      *
@@ -118,9 +128,22 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
-    const allParticipant = getParticipants(state);
 
-    console.log("allParticipant: ",allParticipant,state);
+    window.onbeforeunload = function (event) {
+        const isModerator = infoConf.getIsModerator();
+        const meetingId = infoConf.getMeetingId();
+        const participant = getParticipants(state);
+        const socket = socketIOClient(this.state.endpoint);
+        
+        // Moderator out of conference, grant moderator with next participant.
+        if (isModerator && participant[1].role !== "moderator") {
+            socket.emit("coHost", {
+                meetingId: meetingId,
+                participantID: participant[1].id,
+            });
+        }
+    };
+
     return {
         _hideConferenceTimer: Boolean(
             state["features/base/config"].hideConferenceTimer
