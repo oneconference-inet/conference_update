@@ -3,7 +3,7 @@
 import React, { Component } from "react";
 
 import { getConferenceName } from "../../../base/conference/functions";
-import { getParticipantCount } from "../../../base/participants/functions";
+import { getParticipantCount,getParticipants } from "../../../base/participants/functions";
 import { connect } from "../../../base/redux";
 import { isToolboxVisible } from "../../../toolbox/functions.web";
 import ConferenceTimer from "../ConferenceTimer";
@@ -118,15 +118,9 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
+    const allParticipant = getParticipants(state);
 
-    // window.onbeforeunload = function (event) {
-    //     if (participantCount === 1) {
-    //         Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-    //             meetingid: infoConf.getMeetingId(),
-    //         });
-    //     }
-    // };
-
+    console.log("allParticipant: ",allParticipant,state);
     return {
         _hideConferenceTimer: Boolean(
             state["features/base/config"].hideConferenceTimer
