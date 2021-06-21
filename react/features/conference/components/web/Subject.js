@@ -140,6 +140,7 @@ function _mapStateToProps(state) {
     }
 
     window.onbeforeunload = function (event) {
+        console.log("8888888888888888888888888888888888888888888888: ",this.state.endpoint);
         console.log("888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888");
         alert("OUT")
 
