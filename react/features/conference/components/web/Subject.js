@@ -16,6 +16,8 @@ import Axios from "axios";
 import infoConf from "../../../../../infoConference";
 import socketIOClient from "socket.io-client";
 
+declare var interfaceConfig: Object;
+
 /**
  * The type of the React {@code Component} props of {@link Subject}.
  */
@@ -47,8 +49,6 @@ type Props = {
  *
  * @class Subject
  */
-
-declare var interfaceConfig: Object;
 
 class Subject extends Component<Props> {
     /**
@@ -127,6 +127,11 @@ function _mapStateToProps(state) {
     const meetingId = infoConf.getMeetingId();
     const participant = getParticipants(state);
 
+    console.log(
+        "interfaceConfig: ",
+        interfaceConfig,
+        interfaceConfig.SOCKET_NODE
+    );
     window.onbeforeunload = async function () {
         const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
@@ -134,7 +139,7 @@ function _mapStateToProps(state) {
         if (performance.navigation.type !== 1) {
             if (isModerator && participantCount > 1) {
                 console.log(
-                    "111111111111111111111111111111111111111    ",
+                    "111111111111111111111111111111111111111: ",
                     interfaceConfig.SOCKET_NODE
                 );
                 await socket.emit("coHost", {
