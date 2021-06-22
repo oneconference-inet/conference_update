@@ -138,10 +138,8 @@ function _mapStateToProps(state) {
                     meetingId: meetingId,
                     participantID: participant[1].id,
                 });
-                console.log("22222222222222222222222222222222222");
+                console.log("222222222222222222222222222222222222222");
             }
-        } else {
-            return null;
         }
     };
 
