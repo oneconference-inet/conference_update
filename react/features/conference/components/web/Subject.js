@@ -141,7 +141,6 @@ function _mapStateToProps(state) {
                 console.log("22222222222222222222222222222222222");
             }
         }
-        return null;
     };
 
     return {
