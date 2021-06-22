@@ -63,7 +63,7 @@ class Subject extends Component<Props> {
 
         const isModerator = infoConf.getIsModerator();
         const meetingId = infoConf.getMeetingId();
-        
+
         window.addEventListener("beforeunload", (event: BeforeUnloadEvent) => {
             const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
@@ -74,7 +74,7 @@ class Subject extends Component<Props> {
                         "111111111111111111111111111111111111111: ",
                         interfaceConfig.SOCKET_NODE
                     );
-                    await socket.emit("coHost", {
+                    socket.emit("coHost", {
                         meetingId: meetingId,
                         participantID: props.participant[1].id,
                     });
