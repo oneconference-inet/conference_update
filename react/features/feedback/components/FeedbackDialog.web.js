@@ -176,6 +176,17 @@ class FeedbackDialog extends Component<Props, State> {
         if (typeof APP !== "undefined") {
             APP.API.notifyFeedbackPromptDisplayed();
         }
+    }
+
+    /**
+     * Invokes the onClose callback, if defined, to notify of the close event.
+     *
+     * @inheritdoc
+     */
+    componentWillUnmount() {
+        if (this.props.onClose) {
+            this.props.onClose();
+        }
 
         if (infoConf.getIsModerator()) {
             var state = APP.store.getState();
@@ -192,17 +203,6 @@ class FeedbackDialog extends Component<Props, State> {
                 );
                 _conference.stopRecording(_fileRecordingSession.id);
             }
-        }
-    }
-
-    /**
-     * Invokes the onClose callback, if defined, to notify of the close event.
-     *
-     * @inheritdoc
-     */
-    componentWillUnmount() {
-        if (this.props.onClose) {
-            this.props.onClose();
         }
     }
 
