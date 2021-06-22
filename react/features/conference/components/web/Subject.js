@@ -64,7 +64,7 @@ class Subject extends Component<Props> {
         const isModerator = infoConf.getIsModerator();
         const meetingId = infoConf.getMeetingId();
 
-        window.addEventListener("beforeunload", (event: BeforeUnloadEvent) => {
+        window.onbeforeunload = function (event: BeforeUnloadEvent) {
             const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
             // Moderator out of conference, grant moderator with next participant.
@@ -84,7 +84,7 @@ class Subject extends Component<Props> {
                 }
             }
             // return false;
-        });
+        };
     }
 
     render() {
