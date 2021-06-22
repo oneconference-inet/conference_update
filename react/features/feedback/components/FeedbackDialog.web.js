@@ -12,9 +12,9 @@ import { translate } from "../../base/i18n";
 import { connect } from "../../base/redux";
 import { cancelFeedback, submitFeedback } from "../actions";
 
-
 import { getActiveSession } from "../../recording/functions";
 import { JitsiRecordingConstants } from "../../base/lib-jitsi-meet";
+import infoConf from "../../../../infoConference";
 
 declare var APP: Object;
 declare var interfaceConfig: Object;
@@ -177,18 +177,21 @@ class FeedbackDialog extends Component<Props, State> {
             APP.API.notifyFeedbackPromptDisplayed();
         }
 
-        var state = APP.store.getState();
-        const _fileRecordingSessionOn = Boolean(
-            getActiveSession(state, JitsiRecordingConstants.mode.FILE)
-        );
-
-        if (_fileRecordingSessionOn) {
-            const _conference = state["features/base/conference"].conference;
-            const _fileRecordingSession = getActiveSession(
-                state,
-                JitsiRecordingConstants.mode.FILE
+        if (infoConf.getIsModerator()) {
+            var state = APP.store.getState();
+            const _fileRecordingSessionOn = Boolean(
+                getActiveSession(state, JitsiRecordingConstants.mode.FILE)
             );
-            _conference.stopRecording(_fileRecordingSession.id);
+
+            if (_fileRecordingSessionOn) {
+                const _conference =
+                    state["features/base/conference"].conference;
+                const _fileRecordingSession = getActiveSession(
+                    state,
+                    JitsiRecordingConstants.mode.FILE
+                );
+                _conference.stopRecording(_fileRecordingSession.id);
+            }
         }
     }
 
