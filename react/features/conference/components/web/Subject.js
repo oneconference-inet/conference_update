@@ -79,8 +79,8 @@ class Subject extends Component<Props> {
                         participantID: props.participant[1].id,
                     });
                     console.log("222222222222222222222222222222222222222     ");
-                    event.returnValue = ""; // for Chrome
-                    return "";
+                    // event.returnValue = ""; // for Chrome
+                    // return "";
                 }
             }
             // return false;
