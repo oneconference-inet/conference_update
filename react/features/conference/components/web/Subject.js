@@ -57,6 +57,34 @@ class Subject extends Component<Props> {
      * @inheritdoc
      * @returns {ReactElement}
      */
+
+    constructor(props) {
+        super(props);
+        console.log("PROPS: ", props);
+
+        window.addEventListener("beforeunload", (event: BeforeUnloadEvent) => {
+            const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
+
+            // Moderator out of conference, grant moderator with next participant.
+            if (performance.navigation.type !== 1) {
+                // if (isModerator && participantCount > 1) {
+                //     console.log(
+                //         "111111111111111111111111111111111111111: ",
+                //         interfaceConfig.SOCKET_NODE
+                //     );
+                //     await socket.emit("coHost", {
+                //         meetingId: meetingId,
+                //         participantID: participant[1].id,
+                //     });
+                //     console.log("222222222222222222222222222222222222222     ");
+                //     event.returnValue = ""; // for Chrome
+                //     return "";
+                // }
+            }
+            return false;
+        });
+    }
+
     render() {
         const {
             _hideConferenceTimer,
@@ -123,33 +151,9 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
-    const isModerator = infoConf.getIsModerator();
-    const meetingId = infoConf.getMeetingId();
-    const participant = getParticipants(state);
-
-    console.log(
-        "interfaceConfig: ",
-        interfaceConfig,
-        interfaceConfig.SOCKET_NODE
-    );
-    window.onbeforeunload = async function () {
-        const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
-
-        // Moderator out of conference, grant moderator with next participant.
-        if (performance.navigation.type !== 1) {
-            if (isModerator && participantCount > 1) {
-                console.log(
-                    "111111111111111111111111111111111111111: ",
-                    interfaceConfig.SOCKET_NODE
-                );
-                await socket.emit("coHost", {
-                    meetingId: meetingId,
-                    participantID: participant[1].id,
-                });
-                console.log("222222222222222222222222222222222222222     ");
-            }
-        }
-    };
+    // const isModerator = infoConf.getIsModerator();
+    // const meetingId = infoConf.getMeetingId();
+    // const participant = getParticipants(state);
 
     return {
         _hideConferenceTimer: Boolean(
