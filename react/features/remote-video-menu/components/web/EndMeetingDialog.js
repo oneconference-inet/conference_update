@@ -15,6 +15,9 @@ import AbstractEndMeetingParticipantDialog, {
 } from '../AbstractEndMeetingParticipantDialog';
 import { _endJoin } from "../../../toolbox/components/HangupButton";
 
+import { getActiveSession } from "../../../recording/functions";
+import { JitsiRecordingConstants } from "../../../base/lib-jitsi-meet";
+
 declare var APP: Object;
 declare var interfaceConfig: Object;
 
@@ -138,6 +141,25 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             } else {
                 await axios.post(interfaceConfig.DOMAIN + '/endmeeting' , { meetingid : infoConf.getMeetingId() })
             }
+
+            var state = APP.store.getState();
+            const _fileRecordingSessionOn = Boolean(
+                getActiveSession(
+                    state,
+                    JitsiRecordingConstants.mode.FILE
+                )
+            );
+    
+            if (_fileRecordingSessionOn) {
+                const _conference =
+                    state["features/base/conference"].conference;
+                const _fileRecordingSession = getActiveSession(
+                    state,
+                    JitsiRecordingConstants.mode.FILE
+                );
+                _conference.stopRecording(_fileRecordingSession.id);
+            }
+
             conference.UI.emitEvent(UIEvents.LOGOUT)
 
             return true;
