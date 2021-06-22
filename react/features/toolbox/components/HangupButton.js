@@ -13,9 +13,6 @@ import { getLocalParticipant, PARTICIPANT_ROLE } from "../../base/participants";
 import { EndMeetingDialog } from "../../remote-video-menu/components";
 import { openDialog } from "../../base/dialog";
 
-import { getActiveSession } from "../../recording/functions";
-import { JitsiRecordingConstants } from "../../base/lib-jitsi-meet";
-
 import axios from "axios";
 import infoConf from "../../../../infoConference";
 import infoUser from "../../../../infoUser";
@@ -65,24 +62,6 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                 const { dispatch, localParticipantId, isModerator } =
                     this.props;
                 if (isModerator) {
-                    var state = APP.store.getState();
-                    const _fileRecordingSessionOn = Boolean(
-                        getActiveSession(
-                            state,
-                            JitsiRecordingConstants.mode.FILE
-                        )
-                    );
-
-                    if (_fileRecordingSessionOn) {
-                        const _conference =
-                            state["features/base/conference"].conference;
-                        const _fileRecordingSession = getActiveSession(
-                            state,
-                            JitsiRecordingConstants.mode.FILE
-                        );
-                        _conference.stopRecording(_fileRecordingSession.id);
-                    }
-
                     sendAnalytics(createToolbarEvent("endmeeting.pressed"));
                     dispatch(
                         openDialog(EndMeetingDialog, {
