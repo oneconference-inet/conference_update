@@ -149,7 +149,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                     JitsiRecordingConstants.mode.FILE
                 )
             );
-    
+            console.log("_fileRecordingSessionOn: ",_fileRecordingSessionOn);
             if (_fileRecordingSessionOn) {
                 const _conference =
                     state["features/base/conference"].conference;
