@@ -98,7 +98,7 @@ function _mapStateToProps(state: Object, ownProps: Props) {
     const isModerator = localParticipant.role === PARTICIPANT_ROLE.MODERATOR;
     // const { visible } = ownProps;
     // const { disableRemoteMute } = state["features/base/config"];
-
+    
     return {
         isModerator,
         localParticipantId: localParticipant.id,

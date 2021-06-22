@@ -3,6 +3,8 @@
 import { Component } from 'react';
 
 import UIEvents from '../../../../service/UI/UIEvents';
+import { getActiveSession } from "../../recording/functions";
+import { JitsiRecordingConstants } from "../../base/lib-jitsi-meet";
 
 declare var APP: Object;
 
@@ -49,6 +51,24 @@ export default class AbstractEndMeetingParticipantDialog<P:Props = Props>
      * @returns {boolean} - True (to note that the modal should be closed).
      */
     _onSubmit() {
+        var state = APP.store.getState();
+        const _fileRecordingSessionOn = Boolean(
+            getActiveSession(
+                state,
+                JitsiRecordingConstants.mode.FILE
+            )
+        );
+
+        if (_fileRecordingSessionOn) {
+            const _conference =
+                state["features/base/conference"].conference;
+            const _fileRecordingSession = getActiveSession(
+                state,
+                JitsiRecordingConstants.mode.FILE
+            );
+            _conference.stopRecording(_fileRecordingSession.id);
+        }
+
         APP.UI.emitEvent(UIEvents.LOGOUT);
 
         return true;
