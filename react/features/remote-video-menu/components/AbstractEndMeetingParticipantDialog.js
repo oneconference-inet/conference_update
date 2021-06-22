@@ -1,13 +1,12 @@
 // @flow
 
-import { Component } from 'react';
+import { Component } from "react";
 
-import UIEvents from '../../../../service/UI/UIEvents';
+import UIEvents from "../../../../service/UI/UIEvents";
 
 declare var APP: Object;
 
 export type Props = {
-  
     getState: Function,
 
     dispatch: Function,
@@ -17,7 +16,7 @@ export type Props = {
     /**
      * Function to translate i18n labels.
      */
-    t: Function
+    t: Function,
 };
 
 /**
@@ -25,8 +24,9 @@ export type Props = {
  *
  * @extends Component
  */
-export default class AbstractEndMeetingParticipantDialog<P:Props = Props>
-    extends Component<P> {
+export default class AbstractEndMeetingParticipantDialog<
+    P: Props = Props
+> extends Component<P> {
     /**
      * Initializes a new {@code AbstractMuteRemoteParticipantDialog} instance.
      *
@@ -49,6 +49,20 @@ export default class AbstractEndMeetingParticipantDialog<P:Props = Props>
      * @returns {boolean} - True (to note that the modal should be closed).
      */
     _onSubmit() {
+        var state = APP.store.getState();
+        const _fileRecordingSessionOn = Boolean(
+            getActiveSession(state, JitsiRecordingConstants.mode.FILE)
+        );
+
+        if (_fileRecordingSessionOn) {
+            const _conference = state["features/base/conference"].conference;
+            const _fileRecordingSession = getActiveSession(
+                state,
+                JitsiRecordingConstants.mode.FILE
+            );
+            _conference.stopRecording(_fileRecordingSession.id);
+        }
+
         APP.UI.emitEvent(UIEvents.LOGOUT);
 
         return true;
