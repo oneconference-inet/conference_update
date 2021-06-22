@@ -60,26 +60,28 @@ class Subject extends Component<Props> {
 
     constructor(props) {
         super(props);
-        console.log("PROPS: ", props);
 
+        const isModerator = infoConf.getIsModerator();
+        const meetingId = infoConf.getMeetingId();
+        
         window.addEventListener("beforeunload", (event: BeforeUnloadEvent) => {
             const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
             // Moderator out of conference, grant moderator with next participant.
             if (performance.navigation.type !== 1) {
-                // if (isModerator && participantCount > 1) {
-                //     console.log(
-                //         "111111111111111111111111111111111111111: ",
-                //         interfaceConfig.SOCKET_NODE
-                //     );
-                //     await socket.emit("coHost", {
-                //         meetingId: meetingId,
-                //         participantID: participant[1].id,
-                //     });
-                //     console.log("222222222222222222222222222222222222222     ");
-                //     event.returnValue = ""; // for Chrome
-                //     return "";
-                // }
+                if (isModerator && props._count > 1) {
+                    console.log(
+                        "111111111111111111111111111111111111111: ",
+                        interfaceConfig.SOCKET_NODE
+                    );
+                    await socket.emit("coHost", {
+                        meetingId: meetingId,
+                        participantID: props.participant[1].id,
+                    });
+                    console.log("222222222222222222222222222222222222222     ");
+                    event.returnValue = ""; // for Chrome
+                    return "";
+                }
             }
             return false;
         });
@@ -151,9 +153,7 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
-    // const isModerator = infoConf.getIsModerator();
-    // const meetingId = infoConf.getMeetingId();
-    // const participant = getParticipants(state);
+    const participant = getParticipants(state);
 
     return {
         _hideConferenceTimer: Boolean(
@@ -163,6 +163,7 @@ function _mapStateToProps(state) {
         _subject: getConferenceName(state),
         _visible: isToolboxVisible(state) && participantCount > 1,
         _count: participantCount,
+        _participant: participant,
     };
 }
 
