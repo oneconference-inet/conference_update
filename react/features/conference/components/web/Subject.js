@@ -127,13 +127,13 @@ function _mapStateToProps(state) {
     const meetingId = infoConf.getMeetingId();
     const participant = getParticipants(state);
 
-    window.onbeforeunload = async function (event) {
+    window.addEventListener("beforeunload", (event) => {
         event.preventdefault();
 
         const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
         // Moderator out of conference, grant moderator with next participant.
-        if (performance.navigation.type !== 1) {
+        if (!performance.navigation.type) {
             if (isModerator) {
                 await socket.emit("coHost", {
                     meetingId: meetingId,
@@ -142,7 +142,7 @@ function _mapStateToProps(state) {
             }
         }
         return null;
-    };
+    });
 
     return {
         _hideConferenceTimer: Boolean(
