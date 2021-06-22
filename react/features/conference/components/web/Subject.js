@@ -83,7 +83,7 @@ class Subject extends Component<Props> {
                     return "";
                 }
             }
-            return false;
+            // return false;
         });
     }
 
