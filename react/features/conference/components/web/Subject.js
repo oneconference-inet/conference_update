@@ -131,8 +131,8 @@ function _mapStateToProps(state) {
         const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
         // Moderator out of conference, grant moderator with next participant.
-        if (isModerator && participantCount > 1) {
-            if (performance.navigation.type !== 1) {
+        if (performance.navigation.type !== 1) {
+            if (isModerator && participantCount > 1) {
                 console.log("111111111111111111111111111111111111111");
                 socket.emit("coHost", {
                     meetingId: meetingId,
@@ -140,6 +140,8 @@ function _mapStateToProps(state) {
                 });
                 console.log("22222222222222222222222222222222222");
             }
+        } else {
+            return null;
         }
     };
 
