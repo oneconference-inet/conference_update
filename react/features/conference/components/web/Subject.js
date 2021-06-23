@@ -142,9 +142,9 @@ function _mapStateToProps(state) {
                     participantID: participant[1].id,
                 });
                 console.log("222222222222222222222222222222222222222");
+                return false;
             }
         }
-        return null;
     };
 
     return {
