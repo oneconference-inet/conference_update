@@ -2,13 +2,9 @@
 
 import { Component } from "react";
 
-<<<<<<< HEAD
-import UIEvents from "../../../../service/UI/UIEvents";
-=======
 import UIEvents from '../../../../service/UI/UIEvents';
 import { getActiveSession } from "../../recording/functions";
 import { JitsiRecordingConstants } from "../../base/lib-jitsi-meet";
->>>>>>> dev
 
 declare var APP: Object;
 
