@@ -127,7 +127,7 @@ function _mapStateToProps(state) {
     const meetingId = infoConf.getMeetingId();
     const participant = getParticipants(state);
 
-    window.onbeforeunload = async function () {
+    window.onbeforeunload = async function (event) {
         const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
         // Moderator out of conference, grant moderator with next participant.
@@ -142,9 +142,10 @@ function _mapStateToProps(state) {
                     participantID: participant[1].id,
                 });
                 console.log("222222222222222222222222222222222222222");
-                return false;
+                return;
             }
         }
+        return null;
     };
 
     return {
