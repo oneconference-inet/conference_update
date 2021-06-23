@@ -129,7 +129,7 @@ function _mapStateToProps(state) {
 
     window.onbeforeunload = function () {
         // const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
-
+        console.log("performance.navigation.type: ",performance.navigation.type);
         // // Moderator out of conference, grant moderator with next participant.
         if (performance.navigation.type !== 1) {
             // if (isModerator && participantCount > 1) {
