@@ -382,7 +382,7 @@ class Toolbox extends Component<Props, State> {
         },() => {
             if (isModerator) {
                 
-                if (checkPlatform === "manageAi" || checkPlatform === "followup" || checkPlatform === "onedental" || checkPlatform === "jmc" || checkPlatform === "telemedicine" || checkPlatform === "emeeting") {
+                if (checkPlatform === "manageAi" || checkPlatform === "followup" || checkPlatform === "onedental" || checkPlatform === "jmc" || checkPlatform === "telemedicine" || checkPlatform === "emeeting" || checkPlatform === "onebinar" || checkPlatform === "education") {
                     //Recording when start conference
                     let appData = JSON.stringify({
                         'file_recording_metadata': {

@@ -98,7 +98,7 @@ function _mapStateToProps(state: Object, ownProps: Props) {
     const isModerator = localParticipant.role === PARTICIPANT_ROLE.MODERATOR;
     // const { visible } = ownProps;
     // const { disableRemoteMute } = state["features/base/config"];
-    
+
     return {
         isModerator,
         localParticipantId: localParticipant.id,
@@ -123,6 +123,7 @@ export async function _endJoin() {
         const secretKeyJmc = interfaceConfig.SECRET_KEY_JMC;
         const secretKeyTelemedicine = interfaceConfig.SECRET_KEY_TELEMEDICINE;
         const secretKeyEmeeting = interfaceConfig.SECRET_KEY_EMEETING;
+        const secretKeyEducation = interfaceConfig.SECRET_KEY_EDUCATION;
         if (isModerator) {
             infoConf.setIsHostHangup();
         }
@@ -249,6 +250,20 @@ export async function _endJoin() {
                 {
                     headers: {
                         Authorization: "Bearer " + secretKeyEmeeting,
+                    },
+                }
+            );
+        } else if (service == "education") {
+            await axios.post(
+                domainEnd + "/service/endjoin",
+                {
+                    meetingid: meetingId,
+                    name: nameJoin,
+                    tag: "education",
+                },
+                {
+                    headers: {
+                        Authorization: "Bearer " + secretKeyEducation,
                     },
                 }
             );
