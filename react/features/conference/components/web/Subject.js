@@ -123,28 +123,28 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
-    const isModerator = infoConf.getIsModerator();
-    const meetingId = infoConf.getMeetingId();
-    const participant = getParticipants(state);
+    // const isModerator = infoConf.getIsModerator();
+    // const meetingId = infoConf.getMeetingId();
+    // const participant = getParticipants(state);
 
-    window.onbeforeunload = async function (event) {
-        const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
+    // window.onbeforeunload = async function (event) {
+    //     const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
 
-        // Moderator out of conference, grant moderator with next participant.
-        if (performance.navigation.type !== 1) {
-            if (isModerator && participantCount > 1) {
-                console.log(
-                    "111111111111111111111111111111111111111: ",
-                    interfaceConfig.SOCKET_NODE
-                );
-                await socket.emit("coHost", {
-                    meetingId: meetingId,
-                    participantID: participant[1].id,
-                });
-                console.log("222222222222222222222222222222222222222");
-            }
-        }
-    };
+    //     // Moderator out of conference, grant moderator with next participant.
+    //     if (performance.navigation.type !== 1) {
+    //         if (isModerator && participantCount > 1) {
+    //             console.log(
+    //                 "111111111111111111111111111111111111111: ",
+    //                 interfaceConfig.SOCKET_NODE
+    //             );
+    //             await socket.emit("coHost", {
+    //                 meetingId: meetingId,
+    //                 participantID: participant[1].id,
+    //             });
+    //             console.log("222222222222222222222222222222222222222");
+    //         }
+    //     }
+    // };
 
     return {
         _hideConferenceTimer: Boolean(
