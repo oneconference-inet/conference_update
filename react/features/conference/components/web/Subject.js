@@ -3,7 +3,10 @@
 import React, { Component } from "react";
 
 import { getConferenceName } from "../../../base/conference/functions";
-import { getParticipantCount } from "../../../base/participants/functions";
+import {
+    getParticipantCount,
+    getParticipants,
+} from "../../../base/participants/functions";
 import { connect } from "../../../base/redux";
 import { isToolboxVisible } from "../../../toolbox/functions.web";
 import ConferenceTimer from "../ConferenceTimer";
@@ -11,6 +14,10 @@ import ConferenceTimer from "../ConferenceTimer";
 import ParticipantsCount from "./ParticipantsCount";
 import Axios from "axios";
 import infoConf from "../../../../../infoConference";
+import socketIOClient from "socket.io-client";
+
+declare var interfaceConfig: Object;
+
 /**
  * The type of the React {@code Component} props of {@link Subject}.
  */
@@ -42,8 +49,6 @@ type Props = {
  *
  * @class Subject
  */
-
-declare var interfaceConfig: Object;
 
 class Subject extends Component<Props> {
     /**
@@ -118,14 +123,29 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
+    const isModerator = infoConf.getIsModerator();
+    // const meetingId = infoConf.getMeetingId();
+    // const participant = getParticipants(state);
 
-    // window.onbeforeunload = function (event) {
-    //     if (participantCount === 1) {
-    //         Axios.post(interfaceConfig.DOMAIN + "/endmeeting", {
-    //             meetingid: infoConf.getMeetingId(),
-    //         });
-    //     }
-    // };
+    window.onbeforeunload = function () {
+        if (isModerator) {
+            return "Are you sure to close?";
+        }
+        // const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
+
+        // Moderator out of conference, grant moderator with next participant.
+        // if (isModerator && participantCount > 1) {
+        //     console.log(
+        //         "111111111111111111111111111111111111111: ",
+        //         interfaceConfig.SOCKET_NODE
+        //     );
+        //         meetingId: meetingId,
+        //         participantID: participant[1].id,
+        //     });
+        //     console.log("222222222222222222222222222222222222222");
+        // }
+        //     }
+    };
 
     return {
         _hideConferenceTimer: Boolean(

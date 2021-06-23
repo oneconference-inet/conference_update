@@ -32,7 +32,7 @@ import {
     getLocalParticipant,
     getParticipants,
     participantUpdated,
-    localParticipantRoleChanged
+    participantRoleChanged
 } from '../../../base/participants';
 import { connect, equals } from '../../../base/redux';
 import { OverflowMenuItem } from '../../../base/toolbox/components';
@@ -346,7 +346,7 @@ class Toolbox extends Component<Props, State> {
                     break;
                 case 'coHost':
                     logger.log("coHost Payload: ", payload)
-                    APP.store.dispatch(localParticipantRoleChanged('moderator'));
+                    APP.store.dispatch(participantRoleChanged(payload.participantID, 'moderator'));
                     APP.API.notifyUserRoleChanged(payload.participantID, 'moderator');
 
                     let getApprove = await axios.post(interfaceConfig.DOMAIN + '/getApprove' , { meeting_id: meetingid })
@@ -382,7 +382,7 @@ class Toolbox extends Component<Props, State> {
         },() => {
             if (isModerator) {
                 
-                if (checkPlatform === "manageAi" || checkPlatform === "followup" || checkPlatform === "onedental" || checkPlatform === "jmc" || checkPlatform === "telemedicine" || checkPlatform === "emeeting") {
+                if (checkPlatform === "manageAi" || checkPlatform === "followup" || checkPlatform === "onedental" || checkPlatform === "jmc" || checkPlatform === "telemedicine" || checkPlatform === "emeeting" || checkPlatform === "onebinar" || checkPlatform === "education") {
                     //Recording when start conference
                     let appData = JSON.stringify({
                         'file_recording_metadata': {

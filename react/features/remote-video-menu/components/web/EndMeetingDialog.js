@@ -104,6 +104,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const secretKeyJmc = interfaceConfig.SECRET_KEY_JMC;
             const secretKeyTelemedicine = interfaceConfig.SECRET_KEY_TELEMEDICINE;
             const secretKeyEmeeting = interfaceConfig.SECRET_KEY_EMEETING;
+            const secretKeyEducation = interfaceConfig.SECRET_KEY_EDUCATION;
             let domainEnd
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference))
             dispatch(endAllParticipants(exclude))
@@ -135,6 +136,9 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             } else if (service == "emeeting") {
                 domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
                 await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyEmeeting }})
+            } else if (service == "education") {
+                domainEnd = interfaceConfig.DOMAIN_BACK + '/service/endmeeting'
+                await axios.post(domainEnd, { meetingid : infoConf.getMeetingId(), tag: service }, {headers: { Authorization: "Bearer " + secretKeyEducation }})
             } else {
                 await axios.post(interfaceConfig.DOMAIN + '/endmeeting' , { meetingid : infoConf.getMeetingId() })
             }

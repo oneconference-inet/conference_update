@@ -2,7 +2,13 @@
 
 import { Component } from "react";
 
+<<<<<<< HEAD
 import UIEvents from "../../../../service/UI/UIEvents";
+=======
+import UIEvents from '../../../../service/UI/UIEvents';
+import { getActiveSession } from "../../recording/functions";
+import { JitsiRecordingConstants } from "../../base/lib-jitsi-meet";
+>>>>>>> dev
 
 declare var APP: Object;
 
@@ -51,11 +57,15 @@ export default class AbstractEndMeetingParticipantDialog<
     _onSubmit() {
         var state = APP.store.getState();
         const _fileRecordingSessionOn = Boolean(
-            getActiveSession(state, JitsiRecordingConstants.mode.FILE)
+            getActiveSession(
+                state,
+                JitsiRecordingConstants.mode.FILE
+            )
         );
 
         if (_fileRecordingSessionOn) {
-            const _conference = state["features/base/conference"].conference;
+            const _conference =
+                state["features/base/conference"].conference;
             const _fileRecordingSession = getActiveSession(
                 state,
                 JitsiRecordingConstants.mode.FILE

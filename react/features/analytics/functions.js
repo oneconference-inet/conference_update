@@ -272,6 +272,15 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: "emeeting",
                         }
                     );
+                } else if (dataDecode.service == "education") {
+                    infoConf.setService(dataDecode.service);
+                    keydb = await axios.post(
+                        interfaceConfig.DOMAIN_BACK + "/checkkey",
+                        {
+                            meetingid: dataDecode.meetingId,
+                            clientname: "education",
+                        }
+                    );
                 } else {
                     infoConf.setService("oneconference");
                     keydb = await axios.post(
