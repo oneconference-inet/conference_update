@@ -92,6 +92,9 @@ export function endAllParticipants(exclude: Array<string>) {
         console.log('111123', exclude);
         const localId = getLocalParticipant(state).id;
         console.log('111124', localId);
+        // participantRoleChanged
+        dispatch(participantRoleChanged(localId, "participant"));
+
         console.log('1111test', state["features/base/participants"]);
         const participantIds = state["features/base/participants"].map(
             (p) => p.id
@@ -99,10 +102,10 @@ export function endAllParticipants(exclude: Array<string>) {
         console.log('1111test2', participantIds);
 
         /* eslint-disable no-confusing-arrow */
-        const setParticipants = participantIds.filter(
-            (id) => String(id) !== String(localId)
-        );
-        // const setParticipants = participantIds
+        // const setParticipants = participantIds.filter(
+        //     (id) => String(id) !== String(localId)
+        // );
+        const setParticipants = participantIds
         console.log('1111test3', setParticipants);
 
         setParticipants.map((person) => {
