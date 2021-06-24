@@ -101,8 +101,11 @@ export function endAllParticipants(exclude: Array<string>) {
         // );
         const setParticipants = participantIds
 
-        setParticipants.map((person) => {
-            dispatch(kickParticipant(person));
-        });
+        for (let i = 0; i < setParticipants.length; i++) {
+            dispatch(kickParticipant(setParticipants[i]));
+        }
+        // setParticipants.map((person) => {
+        //     dispatch(kickParticipant(person));
+        // });
     };
 }
