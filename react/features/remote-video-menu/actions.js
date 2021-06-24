@@ -17,7 +17,7 @@ import {
 
 import { RemoteVideoMenu } from "./components";
 
-import { kickParticipant } from "../base/participants";
+import { kickParticipant, participantRoleChanged } from "../base/participants";
 
 declare var APP: Object;
 
