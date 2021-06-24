@@ -91,6 +91,7 @@ export function endAllParticipants(exclude: Array<string>) {
         const state = getState();
         console.log('111123', exclude);
         const localId = getLocalParticipant(state).id;
+        console.log('111124', localId);
         console.log('1111test', state["features/base/participants"]);
         const participantIds = state["features/base/participants"].map(
             (p) => p.id
