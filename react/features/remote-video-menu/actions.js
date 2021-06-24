@@ -96,9 +96,10 @@ export function endAllParticipants(exclude: Array<string>) {
         );
 
         /* eslint-disable no-confusing-arrow */
-        const setParticipants = participantIds.filter(
-            (id) => !exclude.includes(id)
-        );
+        // const setParticipants = participantIds.filter(
+        //     (id) => !exclude.includes(id)
+        // );
+        const setParticipants = participantIds
 
         setParticipants.map((person) => {
             dispatch(kickParticipant(person));
