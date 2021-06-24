@@ -90,6 +90,7 @@ export function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
         console.log('111123', exclude);
+        const localId = getLocalParticipant(state).id;
         console.log('1111test', state["features/base/participants"]);
         const participantIds = state["features/base/participants"].map(
             (p) => p.id
@@ -98,7 +99,7 @@ export function endAllParticipants(exclude: Array<string>) {
 
         /* eslint-disable no-confusing-arrow */
         const setParticipants = participantIds.filter(
-            (id) => !exclude.includes(String(id))
+            (id) => String(id) !== String(localId)
         );
         // const setParticipants = participantIds
         console.log('1111test3', setParticipants);
