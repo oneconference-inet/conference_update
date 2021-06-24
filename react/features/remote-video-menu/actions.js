@@ -89,8 +89,6 @@ export function muteAllParticipants(exclude: Array<string>) {
 export function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
-        console.log('1111test', state["features/base/participants"]);
-        console.log('1111test2', participantIds);
         const participantIds = state["features/base/participants"].map(
             (p) => p.id
         );
