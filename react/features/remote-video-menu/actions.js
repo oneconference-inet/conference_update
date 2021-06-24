@@ -94,7 +94,7 @@ export function endAllParticipants(exclude: Array<string>) {
         console.log('111124', localId);
 
         console.log('1111testparticipant1 ');
-        // dispatch(participantRoleChanged(localId, "participant"));
+        dispatch(participantRoleChanged(localId, "participant"));
         console.log('1111testparticipant2 ');
 
         console.log('1111test', state["features/base/participants"]);
