@@ -96,10 +96,11 @@ export function endAllParticipants(exclude: Array<string>) {
         console.log('1111test2', participantIds);
 
         /* eslint-disable no-confusing-arrow */
-        // const setParticipants = participantIds.filter(
-        //     (id) => !exclude.includes(id)
-        // );
-        const setParticipants = participantIds
+        const setParticipants = participantIds.filter(
+            (id) => !exclude.includes(String(id))
+        );
+        // const setParticipants = participantIds
+        console.log('1111test3', setParticipants);
 
         setParticipants.map((person) => {
             dispatch(kickParticipant(person));
