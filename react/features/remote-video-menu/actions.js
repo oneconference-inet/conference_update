@@ -90,10 +90,10 @@ export function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
         console.log('1111test', state["features/base/participants"]);
-        console.log('1111test2', participantIds);
         const participantIds = state["features/base/participants"].map(
             (p) => p.id
         );
+        console.log('1111test2', participantIds);
 
         /* eslint-disable no-confusing-arrow */
         // const setParticipants = participantIds.filter(
@@ -101,11 +101,8 @@ export function endAllParticipants(exclude: Array<string>) {
         // );
         const setParticipants = participantIds
 
-        for (let i = 0; i < setParticipants.length; i++) {
-            dispatch(kickParticipant(setParticipants[i]));
-        }
-        // setParticipants.map((person) => {
-        //     dispatch(kickParticipant(person));
-        // });
+        setParticipants.map((person) => {
+            dispatch(kickParticipant(person));
+        });
     };
 }
