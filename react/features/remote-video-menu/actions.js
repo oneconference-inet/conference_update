@@ -86,7 +86,7 @@ export function muteAllParticipants(exclude: Array<string>) {
 
 /////////////////////////// End Meeting - Kick all PARTICIPANT //////////////////////////////////////
 
-export function endAllParticipants(exclude: Array<string>) {
+export async function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
         console.log('111123', exclude);
@@ -104,14 +104,11 @@ export function endAllParticipants(exclude: Array<string>) {
         // const setParticipants = participantIds
         console.log('1111test3', setParticipants);
 
-        console.log('1111testparticipant1 ');
-        setParticipants.map((person) => {
+        await setParticipants.map((person) => {
             dispatch(participantRoleChanged(person, "participant"));
         });
-        console.log('1111testparticipant2 ');
-        console.log('1111test4', state["features/base/participants"]);
 
-        participantIds.map((person) => {
+        await setParticipants.map((person) => {
             dispatch(kickParticipant(person));
         });
     };
