@@ -107,8 +107,8 @@ export async function endAllParticipants(exclude: Array<string>) {
         await setParticipants.map((person) => {
             dispatch(participantRoleChanged(person, "participant"));
         });
-        await console.log('1111RoleChanged1');
-        await console.log('1111RoleChanged2', state["features/base/participants"]);
+        console.log('1111RoleChanged1');
+        console.log('1111RoleChanged2', state["features/base/participants"]);
 
 
         await setParticipants.map((person) => {
