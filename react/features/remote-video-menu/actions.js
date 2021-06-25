@@ -109,6 +109,7 @@ export function endAllParticipants(exclude: Array<string>) {
             dispatch(participantRoleChanged(person, "participant"));
         });
         console.log('1111testparticipant2 ');
+        console.log('1111test', state["features/base/participants"]);
 
         setParticipants.map((person) => {
             dispatch(kickParticipant(person));
