@@ -89,27 +89,16 @@ export function muteAllParticipants(exclude: Array<string>) {
 export async function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
-        console.log('111123', exclude);
         
-        console.log('1111test', state["features/base/participants"]);
         const participantIds = state["features/base/participants"].map(
             (p) => p.id
         );
-        console.log('1111test2', participantIds);
 
         /* eslint-disable no-confusing-arrow */
-        const setParticipants = participantIds.filter(
-            (id) => !exclude.includes(id)
-        );
-        // const setParticipants = participantIds
-        console.log('1111test3', setParticipants);
-
-        await setParticipants.map((person) => {
-            dispatch(participantRoleChanged(person, "participant"));
-        });
-        console.log('1111RoleChanged1');
-        console.log('1111RoleChanged2', state["features/base/participants"]);
-
+        // const setParticipants = participantIds.filter(
+        //     (id) => !exclude.includes(id)
+        // );
+        const setParticipants = participantIds
 
         await setParticipants.map((person) => {
             dispatch(kickParticipant(person));
