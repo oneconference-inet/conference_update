@@ -98,14 +98,20 @@ export function endAllParticipants(exclude: Array<string>) {
         console.log('1111test2', participantIds);
 
         /* eslint-disable no-confusing-arrow */
-        // const setParticipants = participantIds.filter(
-        //     (id) => String(id) !== String(localId)
-        // );
-        const setParticipants = participantIds
+        const setParticipants = participantIds.filter(
+            (id) => !exclude.includes(id)
+        );
+        // const setParticipants = participantIds
         console.log('1111test3', setParticipants);
 
+        console.log('1111testparticipant1 ');
         setParticipants.map((person) => {
-            dispatch(kickParticipant(person));
+            dispatch(participantRoleChanged(person, "participant"));
         });
+        console.log('1111testparticipant2 ');
+
+        // setParticipants.map((person) => {
+        //     dispatch(kickParticipant(person));
+        // });
     };
 }

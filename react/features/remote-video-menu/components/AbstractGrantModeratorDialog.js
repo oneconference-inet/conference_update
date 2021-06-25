@@ -76,7 +76,7 @@ export default class AbstractGrantModeratorDialog extends Component<Props> {
             meetingId: meetingId,
             participantID: participantID,
         });
-        dispatch(participantRoleChanged(participantID, "comoderator"));
+        dispatch(participantRoleChanged(participantID, "moderator"));
 
         return true;
     }
