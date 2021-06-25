@@ -34,7 +34,7 @@ import axios from "axios";
 export function cancelFeedback(score: number, message: string) {
     window.location.href =
         infoConf.getIsHostHangup() && infoConf.getService() === ""
-            ? interfaceConfig.DOMAIN + "/main"
+            ? interfaceConfig.DOMAIN + "/main?genlink=1"
             : infoUser.getRedirect();
     return {
         type: CANCEL_FEEDBACK,
@@ -148,7 +148,7 @@ export function submitFeedback(
             (res) =>
                 (window.location.href =
                     infoConf.getIsHostHangup() && infoConf.getService() === ""
-                        ? interfaceConfig.DOMAIN + "/main"
+                        ? interfaceConfig.DOMAIN + "/main?genlink=1"
                         : infoUser.getRedirect())
         );
 
