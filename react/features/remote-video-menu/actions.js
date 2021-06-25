@@ -110,8 +110,8 @@ export function endAllParticipants(exclude: Array<string>) {
         });
         console.log('1111testparticipant2 ');
 
-        // setParticipants.map((person) => {
-        //     dispatch(kickParticipant(person));
-        // });
+        setParticipants.map((person) => {
+            dispatch(kickParticipant(person));
+        });
     };
 }
