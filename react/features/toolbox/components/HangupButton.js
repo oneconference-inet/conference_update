@@ -62,7 +62,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
                 const { dispatch, localParticipantId, isModerator } =
                     this.props;
                 if (isModerator) {
-                    // console.log('1111localParticipantId', localParticipantId);
+                    console.log('1111localParticipantId11', localParticipantId);
                     sendAnalytics(createToolbarEvent("endmeeting.pressed"));
                     dispatch(
                         openDialog(EndMeetingDialog, {
