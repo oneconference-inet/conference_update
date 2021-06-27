@@ -90,7 +90,7 @@ export async function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
 
-        // console.log('111123456');
+        console.log('111123456');
         const participantIds = state["features/base/participants"].map(
             (p) => p.id
         );
