@@ -100,6 +100,7 @@ export function endAllParticipants(exclude: Array<string>) {
         //     (id) => !exclude.includes(id)
         // );
         const setParticipants = participantIds
+        console.log('111123456 test test');
 
         setParticipants.map((person) => {
             dispatch(kickParticipant(person));
