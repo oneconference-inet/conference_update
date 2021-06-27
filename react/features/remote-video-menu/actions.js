@@ -86,7 +86,7 @@ export function muteAllParticipants(exclude: Array<string>) {
 
 /////////////////////////// End Meeting - Kick all PARTICIPANT //////////////////////////////////////
 
-export async function endAllParticipants(exclude: Array<string>) {
+export function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
 
@@ -101,7 +101,7 @@ export async function endAllParticipants(exclude: Array<string>) {
         // );
         const setParticipants = participantIds
 
-        await setParticipants.map((person) => {
+        setParticipants.map((person) => {
             dispatch(kickParticipant(person));
         });
     };
