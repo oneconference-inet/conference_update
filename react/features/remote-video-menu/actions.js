@@ -90,17 +90,15 @@ export function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
 
-        console.log('111123456');
         const participantIds = state["features/base/participants"].map(
             (p) => p.id
         );
 
         /* eslint-disable no-confusing-arrow */
-        // const setParticipants = participantIds.filter(
-        //     (id) => !exclude.includes(id)
-        // );
-        const setParticipants = participantIds
-        console.log('111123456 test test');
+        const setParticipants = participantIds.filter(
+            (id) => !exclude.includes(id)
+        );
+        // const setParticipants = participantIds
 
         setParticipants.map((person) => {
             dispatch(kickParticipant(person));
