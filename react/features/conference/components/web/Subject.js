@@ -14,7 +14,6 @@ import ConferenceTimer from "../ConferenceTimer";
 import ParticipantsCount from "./ParticipantsCount";
 import Axios from "axios";
 import infoConf from "../../../../../infoConference";
-import socketIOClient from "socket.io-client";
 
 declare var interfaceConfig: Object;
 
@@ -123,29 +122,6 @@ class Subject extends Component<Props> {
  */
 function _mapStateToProps(state) {
     const participantCount = getParticipantCount(state);
-    const isModerator = infoConf.getIsModerator();
-    // const meetingId = infoConf.getMeetingId();
-    // const participant = getParticipants(state);
-
-    window.onbeforeunload = function () {
-        if (isModerator) {
-            return "Are you sure to close?";
-        }
-        // const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
-
-        // Moderator out of conference, grant moderator with next participant.
-        // if (isModerator && participantCount > 1) {
-        //     console.log(
-        //         "111111111111111111111111111111111111111: ",
-        //         interfaceConfig.SOCKET_NODE
-        //     );
-        //         meetingId: meetingId,
-        //         participantID: participant[1].id,
-        //     });
-        //     console.log("222222222222222222222222222222222222222");
-        // }
-        //     }
-    };
 
     return {
         _hideConferenceTimer: Boolean(
