@@ -33,10 +33,10 @@ var interfaceConfig = {
 
     // service Intregate ['oneconference','onechat','ManageAi'] // onemail only!!
     SERVICE_INT: ['onechat', 'manageAi','onebinar', 'onedental', 'jmc', 'telemedicine', 'emeeting', 'education'],
-    SERVICE_INVITE_FEATURE: ['oneconference'],
+    SERVICE_INVITE_FEATURE: ['oneconference','onemail_dga'],
     SERVICE_RECORD_FEATURE: ['oneconference'],
     SERVICE_LIVE_FEATURE: ['oneconference'],
-    SERVICE_APPROVE_FEATURE: ['oneconference'],
+    SERVICE_APPROVE_FEATURE: ['oneconference','onemail_dga'],
 
     AUTO_PIN_LATEST_SCREEN_SHARE: 'remote-only',
     BRAND_WATERMARK_LINK: '',
