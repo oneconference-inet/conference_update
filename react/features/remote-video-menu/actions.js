@@ -92,7 +92,8 @@ export function endAllParticipants(exclude: Array<string>) {
         const localId = getLocalParticipant(state).id;
         const participantIds = state['features/base/participants']
             .map(p => p.id);
-
+        
+        console.log('1111testendAllParticipant', participantIds);
         /* eslint-disable no-confusing-arrow */
         participantIds
             .filter(id => !exclude.includes(id))
