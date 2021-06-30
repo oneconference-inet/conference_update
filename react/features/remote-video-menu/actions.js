@@ -95,7 +95,7 @@ export function endAllParticipants(exclude: Array<string>) {
 
         console.log('1111testendAllParticipant1', exclude);
         console.log('1111testendAllParticipant', participantIds);
-        console.log('1111testendAllParticipant2', state['features/base/participants']);
+        console.log('1111testendAllParticipant23', state['features/base/participants']);
             
         /* eslint-disable no-confusing-arrow */
         participantIds
