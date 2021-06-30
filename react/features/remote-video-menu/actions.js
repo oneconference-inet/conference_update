@@ -17,7 +17,7 @@ import {
 
 import { RemoteVideoMenu } from "./components";
 
-import { kickParticipant, participantRoleChanged } from "../base/participants";
+import { kickParticipant } from "../base/participants";
 
 declare var APP: Object;
 
@@ -89,18 +89,16 @@ export function muteAllParticipants(exclude: Array<string>) {
 export function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
-
-        const participantIds = state["features/base/participants"].map(
-            (p) => p.id
-        );
+        const localId = getLocalParticipant(state).id;
+        const participantIds = state['features/base/participants']
+            .map(p => p.id);
 
         /* eslint-disable no-confusing-arrow */
-        const setParticipants = participantIds.filter(
-            (id) => !exclude.includes(id)
-        );
-
-        setParticipants.map((person) => {
-            dispatch(kickParticipant(person));
-        });
+        participantIds
+            .filter(id => !exclude.includes(id))
+            .map(id => id === localId ? kickParticipant(true) : kickParticipant(id))
+        
+            .map(dispatch);
+        /* eslint-enable no-confusing-arrow */
     };
 }
