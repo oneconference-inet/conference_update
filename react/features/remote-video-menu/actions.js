@@ -92,12 +92,15 @@ export function endAllParticipants(exclude: Array<string>) {
         const localId = getLocalParticipant(state).id;
         const participantIds = state['features/base/participants']
             .map(p => p.id);
-        
+
         console.log('1111testendAllParticipant1', exclude);
+        const particID = participantIds.map(id => id === localId ? kickParticipant(true) : kickParticipant(id))
         console.log('1111testendAllParticipant', participantIds);
-        console.log('1111testendAllParticipant2', participantIds.map(id => id === localId ? kickParticipant(true) : kickParticipant(id)));
+        console.log('1111testendAllParticipant2', particID);
+            
         /* eslint-disable no-confusing-arrow */
         participantIds
+            .filter(id => !exclude.includes(id))
             .map(id => id === localId ? kickParticipant(true) : kickParticipant(id))
         
             .map(dispatch);
