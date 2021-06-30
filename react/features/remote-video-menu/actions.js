@@ -95,6 +95,7 @@ export function endAllParticipants(exclude: Array<string>) {
         
         console.log('1111testendAllParticipant1', exclude);
         console.log('1111testendAllParticipant', participantIds);
+        console.log('1111testendAllParticipant2', participantIds.map(id => id === localId ? kickParticipant(true) : kickParticipant(id)));
         /* eslint-disable no-confusing-arrow */
         participantIds
             .map(id => id === localId ? kickParticipant(true) : kickParticipant(id))
