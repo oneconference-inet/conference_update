@@ -94,9 +94,8 @@ export function endAllParticipants(exclude: Array<string>) {
             .map(p => p.id);
 
         console.log('1111testendAllParticipant1', exclude);
-        const particID = participantIds.map(id => id === localId ? kickParticipant(true) : kickParticipant(id))
         console.log('1111testendAllParticipant', participantIds);
-        console.log('1111testendAllParticipant2', particID);
+        console.log('1111testendAllParticipant2', state['features/base/participants']);
             
         /* eslint-disable no-confusing-arrow */
         participantIds
