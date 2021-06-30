@@ -96,7 +96,6 @@ export function endAllParticipants(exclude: Array<string>) {
         console.log('1111testendAllParticipant', participantIds);
         /* eslint-disable no-confusing-arrow */
         participantIds
-            .filter(id => !exclude.includes(id))
             .map(id => id === localId ? kickParticipant(true) : kickParticipant(id))
         
             .map(dispatch);
