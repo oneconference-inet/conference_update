@@ -91,6 +91,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const conference = APP;
             const { dispatch, exclude } = this.props;
             const service = infoConf.getService();
+            const isModerator = infoConf.getIsModerator();
             const secretKeyManageAi = interfaceConfig.SECRET_KEY_MANAGE_AI;
             const secretKeyOnechat = interfaceConfig.SECRET_KEY_ONECHAT;
             const secretKeyOneDental = interfaceConfig.SECRET_KEY_ONE_DENTAL;
@@ -101,13 +102,14 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const secretKeyEmeeting = interfaceConfig.SECRET_KEY_EMEETING;
             const secretKeyEducation = interfaceConfig.SECRET_KEY_EDUCATION;
             let domainEnd;
+
             const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
             const meetingId = infoConf.getMeetingId();
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference));
 
             socket.emit("endMeet", {
                 meetingId: meetingId,
-                isMod: infoConf.getIsModerator()
+                isMod: isModerator,
             });
 
             dispatch(endAllParticipants(exclude));
