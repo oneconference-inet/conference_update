@@ -70,7 +70,6 @@ export default class AbstractEndMeetingParticipantDialog<P:Props = Props>
         }
 
         // APP.UI.emitEvent(UIEvents.LOGOUT);
-        console.log("APP.UI.emitEvent");
 
         return true;
     }
