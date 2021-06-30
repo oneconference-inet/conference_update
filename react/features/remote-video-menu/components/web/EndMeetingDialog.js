@@ -13,7 +13,6 @@ import AbstractEndMeetingParticipantDialog, {
     type Props as AbstractProps,
 } from "../AbstractEndMeetingParticipantDialog";
 import { _endJoin } from "../../../toolbox/components/HangupButton";
-import { maybeOpenFeedbackDialog } from "../../../feedback";
 
 import socketIOClient from "socket.io-client";
 
@@ -104,12 +103,11 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             let domainEnd;
             const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
             const meetingId = infoConf.getMeetingId();
+            // APP.store.dispatch(maybeOpenFeedbackDialog(conference));
 
-            APP.store.dispatch(maybeOpenFeedbackDialog(conference));
-
-            socket.emit("endMeet", {
-                meetingId: meetingId,
-            });
+            // socket.emit("endMeet", {
+            //     meetingId: meetingId,
+            // });
 
             dispatch(endAllParticipants(exclude));
 
