@@ -93,6 +93,7 @@ export function endAllParticipants(exclude: Array<string>) {
         const participantIds = state['features/base/participants']
             .map(p => p.id);
         
+        console.log('1111testendAllParticipant1', exclude);
         console.log('1111testendAllParticipant', participantIds);
         /* eslint-disable no-confusing-arrow */
         participantIds
