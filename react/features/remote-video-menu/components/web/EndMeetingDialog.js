@@ -3,7 +3,6 @@
 import React from 'react';
 import axios from 'axios'
 import infoConf from '../../../../../infoConference'
-import infoUser from '../../../../../infoUser'
 
 import { Dialog } from '../../../base/dialog';
 import { translate } from '../../../base/i18n';
@@ -14,6 +13,8 @@ import AbstractEndMeetingParticipantDialog, {
     type Props as AbstractProps
 } from '../AbstractEndMeetingParticipantDialog';
 import { _endJoin } from "../../../toolbox/components/HangupButton";
+
+import socketIOClient from "socket.io-client";
 
 declare var APP: Object;
 declare var interfaceConfig: Object;
@@ -106,7 +107,14 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const secretKeyEmeeting = interfaceConfig.SECRET_KEY_EMEETING;
             const secretKeyEducation = interfaceConfig.SECRET_KEY_EDUCATION;
             let domainEnd
+            const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
+            const meetingId = infoConf.getMeetingId();
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference))
+
+            socket.emit("endMeet", {
+                meetingId: meetingId,
+            });
+
             dispatch(endAllParticipants(exclude))
 
             if (service == "onechat") {

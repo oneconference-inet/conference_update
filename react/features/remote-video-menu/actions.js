@@ -19,11 +19,7 @@ import { RemoteVideoMenu } from "./components";
 
 import { kickParticipant, participantRoleChanged } from "../base/participants";
 
-import socketIOClient from "socket.io-client";
-import infoConf from "../../../infoConference";
-
 declare var APP: Object;
-declare var interfaceConfig: Object;
 
 /**
  * Hides the remote video menu.
@@ -91,9 +87,6 @@ export function muteAllParticipants(exclude: Array<string>) {
 /////////////////////////// End Meeting - Kick all PARTICIPANT //////////////////////////////////////
 
 export function endAllParticipants(exclude: Array<string>) {
-    const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
-    const meetingId = infoConf.getMeetingId();
-
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
 
@@ -108,10 +101,6 @@ export function endAllParticipants(exclude: Array<string>) {
 
         setParticipants.map((person) => {
             dispatch(kickParticipant(person));
-        });
-
-        socket.emit("endMeet", {
-            meetingId: meetingId,
         });
     };
 }
