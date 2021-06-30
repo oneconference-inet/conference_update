@@ -400,7 +400,9 @@ class Toolbox extends Component<Props, State> {
                     break;
                 case "endMeet":
                     logger.log("coHost endMeet");
-                    APP.UI.emitEvent(UIEvents.LOGOUT);
+                    if (payload.isMod) {
+                        APP.UI.emitEvent(UIEvents.LOGOUT);
+                    }
                     break;
                 default:
                     logger.warn("Event coming is not defined!!");
