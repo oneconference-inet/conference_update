@@ -95,13 +95,11 @@ export function endAllParticipants(exclude: Array<string>) {
         );
 
         /* eslint-disable no-confusing-arrow */
-        // const setParticipants = participantIds.filter(
-        //     (id) => !exclude.includes(id)
-        // );
+        const setParticipants = participantIds.filter(
+            (id) => !exclude.includes(id)
+        );
 
-        console.log("actions end participantIds: ",participantIds);
-
-        participantIds.map((person) => {
+        setParticipants.map((person) => {
             dispatch(kickParticipant(person));
         });
     };

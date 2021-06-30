@@ -142,7 +142,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             } else {
                 await axios.post(interfaceConfig.DOMAIN + '/endmeeting' , { meetingid : infoConf.getMeetingId() })
             }
-            conference.UI.emitEvent(UIEvents.LOGOUT)
+            // conference.UI.emitEvent(UIEvents.LOGOUT)
 
             return true;
         } catch (error) {
