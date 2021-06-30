@@ -69,7 +69,7 @@ export default class AbstractEndMeetingParticipantDialog<
             _conference.stopRecording(_fileRecordingSession.id);
         }
 
-        APP.UI.emitEvent(UIEvents.LOGOUT);
+        // APP.UI.emitEvent(UIEvents.LOGOUT);
 
         return true;
     }

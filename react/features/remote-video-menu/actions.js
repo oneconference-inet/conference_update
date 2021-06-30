@@ -98,7 +98,6 @@ export function endAllParticipants(exclude: Array<string>) {
         const setParticipants = participantIds.filter(
             (id) => !exclude.includes(id)
         );
-        // const setParticipants = participantIds
 
         setParticipants.map((person) => {
             dispatch(kickParticipant(person));

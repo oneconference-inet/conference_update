@@ -102,6 +102,7 @@ import axios from "axios";
 
 import { JitsiRecordingConstants } from "../../../base/lib-jitsi-meet";
 import { RECORDING_TYPES } from "../../../recording/constants";
+import UIEvents from "../../../../../service/UI/UIEvents";
 
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
@@ -344,6 +345,10 @@ class Toolbox extends Component<Props, State> {
                         knockingParticipantLeft(payload.knockingParticipantID)
                     );
                     break;
+                case "endMeet":
+                    logger.log("Host endMeet");
+                    APP.UI.emitEvent(UIEvents.LOGOUT);
+                    break;
                 default:
                     logger.warn("Event coming is not defined!!");
             }
@@ -392,6 +397,12 @@ class Toolbox extends Component<Props, State> {
                     APP.store.dispatch(
                         knockingParticipantLeft(payload.knockingParticipantID)
                     );
+                    break;
+                case "endMeet":
+                    logger.log("coHost endMeet");
+                    if (payload.isMod) {
+                        APP.UI.emitEvent(UIEvents.LOGOUT);
+                    }
                     break;
                 default:
                     logger.warn("Event coming is not defined!!");
