@@ -107,7 +107,6 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const secretKeyEducation = interfaceConfig.SECRET_KEY_EDUCATION;
             let domainEnd
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference))
-            console.log("EXCLUDE: ", exclude);
             dispatch(endAllParticipants(exclude))
 
             if (service == "onechat") {
