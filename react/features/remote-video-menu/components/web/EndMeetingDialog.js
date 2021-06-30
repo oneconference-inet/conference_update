@@ -106,7 +106,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const socket = socketIOClient(interfaceConfig.SOCKET_NODE);
             const meetingId = infoConf.getMeetingId();
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference));
-
+            console.log("TEST ENDMEET: ", isModerator);
             socket.emit("endMeet", {
                 meetingId: meetingId,
                 isMod: isModerator,
