@@ -99,6 +99,8 @@ export function endAllParticipants(exclude: Array<string>) {
         //     (id) => !exclude.includes(id)
         // );
 
+        console.log("actions end participantIds: ",participantIds);
+
         participantIds.map((person) => {
             dispatch(kickParticipant(person));
         });
