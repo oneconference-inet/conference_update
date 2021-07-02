@@ -408,12 +408,12 @@ class Toolbox extends Component<Props, State> {
                         "local ",
                         infoUser.getUserId()
                     );
-                    if (
-                        payload.isMod ||
-                        payload.userId !== infoUser.getUserId()
-                    ) {
+                    // if (
+                    //     payload.isMod ||
+                    //     payload.userId !== infoUser.getUserId()
+                    // ) {
                         APP.UI.emitEvent(UIEvents.LOGOUT);
-                    }
+                    // }
                     break;
                 default:
                     logger.warn("Event coming is not defined!!");
