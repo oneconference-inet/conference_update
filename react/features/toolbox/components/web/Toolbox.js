@@ -400,7 +400,10 @@ class Toolbox extends Component<Props, State> {
                     );
                     break;
                 case "endMeet":
-                    logger.log("coHost endMeet");
+                    logger.log(
+                        "coHost endMeet",
+                        payload.isMod || payload.userId !== infoUser.getUserId()
+                    );
                     if (
                         payload.isMod ||
                         payload.userId !== infoUser.getUserId()
