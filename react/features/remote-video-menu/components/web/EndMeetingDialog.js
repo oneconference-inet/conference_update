@@ -115,6 +115,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 userId: userId,
             });
 
+            console.log("Code Updated!!");
             dispatch(endAllParticipants(exclude));
 
             if (service == "onechat") {
