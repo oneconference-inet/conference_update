@@ -89,16 +89,18 @@ export function muteAllParticipants(exclude: Array<string>) {
 export function endAllParticipants(exclude: Array<string>) {
     return (dispatch: Dispatch<any>, getState: Function) => {
         const state = getState();
-        const localId = getLocalParticipant(state).id;
-        const participantIds = state['features/base/participants']
-            .map(p => p.id);
-            
+
+        const participantIds = state["features/base/participants"].map(
+            (p) => p.id
+        );
+
         /* eslint-disable no-confusing-arrow */
-        participantIds
-            .filter(id => !exclude.includes(id))
-            .map(id => id === localId ? kickParticipant(true) : kickParticipant(id))
-        
-            .map(dispatch);
-        /* eslint-enable no-confusing-arrow */
+        const setParticipants = participantIds.filter(
+            (id) => !exclude.includes(id)
+        );
+
+        setParticipants.map((person) => {
+            dispatch(kickParticipant(person));
+        });
     };
 }
