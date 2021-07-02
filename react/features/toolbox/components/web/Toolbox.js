@@ -402,7 +402,11 @@ class Toolbox extends Component<Props, State> {
                 case "endMeet":
                     logger.log(
                         "coHost endMeet",
-                        payload.isMod || payload.userId !== infoUser.getUserId()
+                        payload.isMod,
+                        "end ",
+                        payload.userId,
+                        "local ",
+                        infoUser.getUserId()
                     );
                     if (
                         payload.isMod ||
