@@ -97,6 +97,7 @@ import {
     knockingParticipantLeft,
 } from "../../../lobby";
 import infoConf from "../../../../../infoConference";
+import infoUser from "../../../../../infoUser";
 import socketIOClient from "socket.io-client";
 import axios from "axios";
 
@@ -400,7 +401,10 @@ class Toolbox extends Component<Props, State> {
                     break;
                 case "endMeet":
                     logger.log("coHost endMeet");
-                    if (payload.isMod) {
+                    if (
+                        payload.isMod ||
+                        payload.userId !== infoUser.getUserId()
+                    ) {
                         APP.UI.emitEvent(UIEvents.LOGOUT);
                     }
                     break;
@@ -1312,9 +1316,7 @@ class Toolbox extends Component<Props, State> {
             //     && <SharedDocumentButton
             //         key = 'etherpad'
             //         showLabel = { true } />,
-            <PollCreateButton
-                key = 'poll'
-                showLabel = { true } />,
+            <PollCreateButton key="poll" showLabel={true} />,
             <VideoBlurButton
                 key="videobackgroundblur"
                 showLabel={true}

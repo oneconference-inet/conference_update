@@ -3,6 +3,7 @@
 import React from "react";
 import axios from "axios";
 import infoConf from "../../../../../infoConference";
+import infoUser from "../../../../../infoUser";
 
 import { Dialog } from "../../../base/dialog";
 import { translate } from "../../../base/i18n";
@@ -92,6 +93,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const { dispatch, exclude } = this.props;
             const service = infoConf.getService();
             const isModerator = infoConf.getIsModerator();
+            const userId = infoUser.getUserId();
             const secretKeyManageAi = interfaceConfig.SECRET_KEY_MANAGE_AI;
             const secretKeyOnechat = interfaceConfig.SECRET_KEY_ONECHAT;
             const secretKeyOneDental = interfaceConfig.SECRET_KEY_ONE_DENTAL;
@@ -110,6 +112,7 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             socket.emit("endMeet", {
                 meetingId: meetingId,
                 isMod: isModerator,
+                userId: userId,
             });
 
             dispatch(endAllParticipants(exclude));
