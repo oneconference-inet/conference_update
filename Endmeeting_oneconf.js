@@ -1,6 +1,7 @@
 const https = require("https");
 
-const domain = "meet-test.one.th";
+const domain = "meet-poc.one.th";
+const domain_back = "meet-poc.one.th/backend";
 // const domain = "oneconference-new.inet.co.th";
 
 async function httpsGet(hostname, path, headers) {
@@ -64,7 +65,7 @@ async function httpsPost(hostname, path, data) {
   });
 }
 
-const resGET = httpsGet(domain, "/api/rooms/getAllroom", {
+const resGET = httpsGet(domain_back, "/api/rooms/getAllroom", {
   Authorization:
     "Bearer OoLdyF822kaIi28K35qCzXMwAxQP56Mt53p0T3O3VcgofWjbq8Kr9Ajz6WId3ffilkZXm0pWBCgfd8FVqaPBkYAbH4kXbqFph4p7",
 });
@@ -79,7 +80,7 @@ resGET.then(function (result) {
     if (parseInt(room.timelastuser) && now - parseInt(room.timelastuser) > timeDiff) {
       console.log(`Got room with id: ${room.meeting_id} Deleted`);
 
-      httpsPost(domain, "/endmeeting", {
+      httpsPost(domain_back, "/endmeeting", {
         meetingid: room.meeting_id,
       });
     }
