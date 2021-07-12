@@ -310,8 +310,6 @@ class Toolbox extends Component<Props, State> {
         const socket = socketIOClient(endpoint);
         // Get approve incomming conference
         let getApprove;
-        console.log("services_check: ", services_check);
-        console.log("services_check checkPlatform: ", checkPlatform);
 
         if (services_check.includes(checkPlatform)) {
             getApprove = await axios.post(
