@@ -1,6 +1,6 @@
 const https = require("https");
 
-const domain = "meet-test.one.th";
+const domain = "https://meet-poc.one.th";
 // const domain = "oneconference-new.inet.co.th";
 
 async function httpsGet(hostname, path, headers) {
@@ -64,7 +64,7 @@ async function httpsPost(hostname, path, data) {
   });
 }
 
-const resGET = httpsGet(domain, "/api/rooms/getAllroom", {
+const resGET = httpsGet(domain, "/backend/api/rooms/getAllroom", {
   Authorization:
     "Bearer OoLdyF822kaIi28K35qCzXMwAxQP56Mt53p0T3O3VcgofWjbq8Kr9Ajz6WId3ffilkZXm0pWBCgfd8FVqaPBkYAbH4kXbqFph4p7",
 });
