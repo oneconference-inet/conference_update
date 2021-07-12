@@ -57,7 +57,7 @@ function setIsHostHangup() {
     listUrl.isHostHangup = true;
 }
 
-function setisHostEndmeet() {
+function setIsHostEndmeet() {
     listUrl.isHostEndmeet = true;
 }
 
