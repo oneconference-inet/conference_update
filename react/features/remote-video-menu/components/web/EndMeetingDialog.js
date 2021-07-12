@@ -114,7 +114,8 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
                 isMod: isModerator,
                 userId: userId,
             });
-            
+
+            infoConf.getIsHostEndmeet();
             dispatch(endAllParticipants(exclude));
 
             if (service == "onechat") {

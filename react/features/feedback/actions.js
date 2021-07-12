@@ -33,9 +33,9 @@ import axios from "axios";
  */
 export function cancelFeedback(score: number, message: string) {
     window.location.href =
-        infoConf.getIsHangup() && infoConf.getService() === "" // วางสาย และ มาจาก oneconf
+        infoConf.getIsHostHangup() && infoConf.getService() === ""
             ? interfaceConfig.DOMAIN + "/main"
-            : infoConf.getService() === "" // มาจาก oneconf
+            : infoConf.getIsHostEndmeet()
             ? interfaceConfig.DOMAIN + "/main?genlink=1"
             : infoUser.getRedirect();
     return {
@@ -149,9 +149,9 @@ export function submitFeedback(
         .then(
             (res) =>
                 (window.location.href =
-                    infoConf.getIsHangup() && infoConf.getService() === "" // วางสาย และ มาจาก oneconf
+                    infoConf.getIsHostHangup() && infoConf.getService() === ""
                         ? interfaceConfig.DOMAIN + "/main"
-                        : infoConf.getService() === "" // มาจาก oneconf
+                        : infoConf.getIsHostEndmeet()
                         ? interfaceConfig.DOMAIN + "/main?genlink=1"
                         : infoUser.getRedirect())
         );
