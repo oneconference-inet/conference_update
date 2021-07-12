@@ -8,6 +8,8 @@ import React, { Component } from "react";
 import { translate } from "../../../i18n/functions";
 import type { DialogProps } from "../../constants";
 
+import infoConf from "../../../../../../infoConference";
+
 /**
  * The ID to be used for the cancel button if enabled.
  * @type {string}
@@ -228,6 +230,7 @@ class StatelessDialog extends Component<Props> {
     _onLeave() {
         if (!this.props.isModal) {
             const { onLeave } = this.props;
+            infoConf.setIsHangup();
 
             onLeave && onLeave();
         }

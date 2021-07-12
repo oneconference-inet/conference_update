@@ -9,7 +9,7 @@ var listUrl = {
   isApprove: false,
   muteAllState: false,
   isSecretRoom: false,
-  isHostHangup: false,
+  isHangup: false,
 };
 
 function setRoomName(roomname) {
@@ -52,8 +52,8 @@ function setApprove(set) {
   listUrl.isApprove = set;
 }
 
-function setIsHostHangup() {
-  listUrl.isHostHangup = true;
+function setIsHangup() {
+  listUrl.isHangup = true;
 }
 
 function getRoomName() {
@@ -100,8 +100,8 @@ function getListInfo() {
   return listUrl;
 }
 
-function getIsHostHangup() {
-  return listUrl.isHostHangup;
+function getIsHangup() {
+  return listUrl.isHangup;
 }
 
 export default {
@@ -126,6 +126,6 @@ export default {
   setMuteAllState,
   setIsSecretRoom,
   getIsSecretRoom,
-  setIsHostHangup,
-  getIsHostHangup,
+  setIsHangup,
+  getIsHangup,
 };
