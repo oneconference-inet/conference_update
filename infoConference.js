@@ -137,6 +137,6 @@ export default {
     getIsSecretRoom,
     setIsHostHangup,
     getIsHostHangup,
-    setisHostEndmeet,
+    setIsHostEndmeet,
     getIsHostEndmeet,
 };
