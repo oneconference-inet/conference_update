@@ -68,7 +68,7 @@ class Subject extends Component<Props> {
         if (_count === 1) {
             // If participant==1 use set end-meet time API
             Axios.post(
-                interfaceConfig.DOMAIN + "/api/rooms/settimelastuser",
+                interfaceConfig.DOMAIN + "/backend/api/rooms/settimelastuser",
                 {
                     meetingid: infoConf.getMeetingId(),
                     time: Date.now(),
@@ -83,7 +83,7 @@ class Subject extends Component<Props> {
         } else if (_count === 2) {
             // If participant!=1 give reset end-meet time API
             Axios.post(
-                interfaceConfig.DOMAIN + "/api/rooms/settimelastuser",
+                interfaceConfig.DOMAIN + "/backend/api/rooms/settimelastuser",
                 {
                     meetingid: infoConf.getMeetingId(),
                     time: 0,
