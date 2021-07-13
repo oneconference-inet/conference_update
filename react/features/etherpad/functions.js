@@ -20,6 +20,8 @@ export function getSharedDocumentUrl(stateful: Function | Object) {
     const { documentUrl } = state['features/etherpad'];
     const { displayName } = state['features/base/settings'];
 
+    console.log("documentUrl: ", documentUrl);
+    
     if (!documentUrl) {
         return undefined;
     }
@@ -29,6 +31,5 @@ export function getSharedDocumentUrl(stateful: Function | Object) {
     if (displayName) {
         params.append('userName', displayName);
     }
-    console.log("documentUrl: ", documentUrl);
     return `${documentUrl}?${params.toString()}`;
 }
