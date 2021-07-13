@@ -19,8 +19,6 @@ export function getSharedDocumentUrl(stateful: Function | Object) {
     const state = toState(stateful);
     const { documentUrl } = state['features/etherpad'];
     const { displayName } = state['features/base/settings'];
-
-    console.log("documentUrl: ", documentUrl);
     
     if (!documentUrl) {
         return undefined;
