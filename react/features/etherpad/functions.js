@@ -29,6 +29,6 @@ export function getSharedDocumentUrl(stateful: Function | Object) {
     if (displayName) {
         params.append('userName', displayName);
     }
-
+    console.log("documentUrl: ", documentUrl);
     return `${documentUrl}?${params.toString()}`;
 }
