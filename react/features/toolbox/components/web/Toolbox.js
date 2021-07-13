@@ -312,12 +312,18 @@ class Toolbox extends Component<Props, State> {
         let getApprove;
 
         if (services_check.includes(checkPlatform)) {
-            getApprove = await axios.post(
-                interfaceConfig.DOMAIN + "/getApprove",
-                { meeting_id: meetingid }
-            );
+            if (checkPlatform === "onemail_dga") {
+                getApprove = await axios.post(
+                    "https://meetgov.one.th/getApprove",
+                    { meeting_id: meetingid }
+                );
+            } else {
+                getApprove = await axios.post(
+                    interfaceConfig.DOMAIN + "/getApprove",
+                    { meeting_id: meetingid }
+                );
+            }
 
-            // console.log("Approve: ", getApprove)
             if (getApprove.data.approve) {
                 logger.log("Room is require approve to join.");
                 APP.store.dispatch(setLobbyModeEnabled(true));
