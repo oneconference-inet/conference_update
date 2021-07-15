@@ -153,15 +153,16 @@ export function submitFeedback(
         .then(
             (res) =>
                 (window.location.href =
-                    iinfoConf.getIsHostHangup() && infoConf.getService() === ""
-                    ? interfaceConfig.DOMAIN + "/main"
-                    : infoConf.getIsHostEndmeet()
-                    ? infoConf.getService() === "onemail_dga"
-                        ? interfaceConfig.DOMAIN_ONEMAIL_DGA + "/main?genlink=1"
-                        : infoConf.getService()
-                        ? infoUser.getRedirect()
-                        : interfaceConfig.DOMAIN + "/main?genlink=1"
-                    : infoUser.getRedirect();
+                    infoConf.getIsHostHangup() && infoConf.getService() === ""
+                        ? interfaceConfig.DOMAIN + "/main"
+                        : infoConf.getIsHostEndmeet()
+                        ? infoConf.getService() === "onemail_dga"
+                            ? interfaceConfig.DOMAIN_ONEMAIL_DGA +
+                              "/main?genlink=1"
+                            : infoConf.getService()
+                            ? infoUser.getRedirect()
+                            : interfaceConfig.DOMAIN + "/main?genlink=1"
+                        : infoUser.getRedirect())
         );
 
     // return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)
