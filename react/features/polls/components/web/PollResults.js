@@ -22,8 +22,9 @@ const PollResults = (props: AbstractProps) => {
 
     const renderRow = useCallback((name, percentage, voterCount) =>
         (<div className = 'poll-answer-header'>
-            <span className = 'poll-answer-vote-count'> ( { t('polls.answer.vote', { count: voterCount }) } ) </span>
-            <span>{ name } - { percentage }% </span>
+            <span>{ name } -  </span>
+            <span className = 'poll-answer-vote-count'> {voterCount ? ` ( ${voterCount} ) ` : ''}</span>
+            <span> { percentage }% </span>
         </div>)
     );
 
@@ -50,7 +51,7 @@ const PollResults = (props: AbstractProps) => {
                     )
                     : answers.map(({ name, percentage, voterCount }, index) =>
                         (<li key = { index }>
-                            { renderRow(name, percentage, voterCount) }
+                            { renderRow(name, percentage) }
                             <div className = 'poll-bar-container'>
                                 <div
                                     className = 'poll-bar'
