@@ -36,7 +36,9 @@ export function cancelFeedback(score: number, message: string) {
         infoConf.getIsHostHangup() && infoConf.getService() === ""
             ? interfaceConfig.DOMAIN + "/main"
             : infoConf.getIsHostEndmeet()
-            ? interfaceConfig.DOMAIN + "/main?genlink=1"
+            ? infoConf.getService() === "onemail_dga"
+                ? interfaceConfig.DOMAIN_ONEMAIL_DGA + "/main?genlink=1"
+                : interfaceConfig.DOMAIN + "/main?genlink=1"
             : infoUser.getRedirect();
     return {
         type: CANCEL_FEEDBACK,
@@ -152,7 +154,10 @@ export function submitFeedback(
                     infoConf.getIsHostHangup() && infoConf.getService() === ""
                         ? interfaceConfig.DOMAIN + "/main"
                         : infoConf.getIsHostEndmeet()
-                        ? interfaceConfig.DOMAIN + "/main?genlink=1"
+                        ? infoConf.getService() === "onemail_dga"
+                            ? interfaceConfig.DOMAIN_ONEMAIL_DGA +
+                              "/main?genlink=1"
+                            : interfaceConfig.DOMAIN + "/main?genlink=1"
                         : infoUser.getRedirect())
         );
 
