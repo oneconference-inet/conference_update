@@ -33,12 +33,10 @@ import axios from "axios";
  */
 export function cancelFeedback(score: number, message: string) {
     window.location.href =
-        infoConf.getIsHostHangup() && infoConf.getService() === ""
+        iinfoConf.getIsHostHangup() && infoConf.getService() === ""
             ? interfaceConfig.DOMAIN + "/main"
             : infoConf.getIsHostEndmeet()
-            ? infoConf.getService() === "onemail_dga"
-                ? interfaceConfig.DOMAIN_ONEMAIL_DGA + "/main?genlink=1"
-                : infoConf.getService()
+            ? infoConf.getService()
                 ? infoUser.getRedirect()
                 : interfaceConfig.DOMAIN + "/main?genlink=1"
             : infoUser.getRedirect();
@@ -156,10 +154,7 @@ export function submitFeedback(
                     infoConf.getIsHostHangup() && infoConf.getService() === ""
                         ? interfaceConfig.DOMAIN + "/main"
                         : infoConf.getIsHostEndmeet()
-                        ? infoConf.getService() === "onemail_dga"
-                            ? interfaceConfig.DOMAIN_ONEMAIL_DGA +
-                              "/main?genlink=1"
-                            : infoConf.getService()
+                        ? infoConf.getService()
                             ? infoUser.getRedirect()
                             : interfaceConfig.DOMAIN + "/main?genlink=1"
                         : infoUser.getRedirect())
