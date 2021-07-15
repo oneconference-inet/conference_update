@@ -33,7 +33,7 @@ import axios from "axios";
  */
 export function cancelFeedback(score: number, message: string) {
     window.location.href =
-        iinfoConf.getIsHostHangup() && infoConf.getService() === ""
+        infoConf.getIsHostHangup() && infoConf.getService() === ""
             ? interfaceConfig.DOMAIN + "/main"
             : infoConf.getIsHostEndmeet()
             ? infoConf.getService() && infoConf.getService() !== "oneconference"
