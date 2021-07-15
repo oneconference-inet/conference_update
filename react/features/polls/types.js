@@ -41,6 +41,11 @@ export type Poll = {
     oneChoice: boolean,
 
     /**
+     * Weight vote calculation mode of this poll.
+     */
+     weightMode: boolean,
+
+    /**
      * An array of answers:
      * the name of the answer name and a set of ids of voters voting for this option
      */

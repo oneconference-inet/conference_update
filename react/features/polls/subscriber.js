@@ -18,6 +18,7 @@ StateListenerRegistry.register(
                     senderId: attributes.senderId,
                     question: attributes.question,
                     oneChoice: attributes.oneChoice,
+                    weightMode: attributes.weightMode,
                     answers: children.map(answerData => {
                         return {
                             name: answerData.value,
