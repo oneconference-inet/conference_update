@@ -38,6 +38,8 @@ export function cancelFeedback(score: number, message: string) {
             : infoConf.getIsHostEndmeet()
             ? infoConf.getService() === "onemail_dga"
                 ? interfaceConfig.DOMAIN_ONEMAIL_DGA + "/main?genlink=1"
+                : infoConf.getService()
+                ? infoUser.getRedirect()
                 : interfaceConfig.DOMAIN + "/main?genlink=1"
             : infoUser.getRedirect();
     return {
@@ -151,14 +153,15 @@ export function submitFeedback(
         .then(
             (res) =>
                 (window.location.href =
-                    infoConf.getIsHostHangup() && infoConf.getService() === ""
-                        ? interfaceConfig.DOMAIN + "/main"
-                        : infoConf.getIsHostEndmeet()
-                        ? infoConf.getService() === "onemail_dga"
-                            ? interfaceConfig.DOMAIN_ONEMAIL_DGA +
-                              "/main?genlink=1"
-                            : interfaceConfig.DOMAIN + "/main?genlink=1"
-                        : infoUser.getRedirect())
+                    iinfoConf.getIsHostHangup() && infoConf.getService() === ""
+                    ? interfaceConfig.DOMAIN + "/main"
+                    : infoConf.getIsHostEndmeet()
+                    ? infoConf.getService() === "onemail_dga"
+                        ? interfaceConfig.DOMAIN_ONEMAIL_DGA + "/main?genlink=1"
+                        : infoConf.getService()
+                        ? infoUser.getRedirect()
+                        : interfaceConfig.DOMAIN + "/main?genlink=1"
+                    : infoUser.getRedirect();
         );
 
     // return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)

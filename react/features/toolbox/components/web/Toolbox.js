@@ -314,7 +314,7 @@ class Toolbox extends Component<Props, State> {
         if (services_check.includes(checkPlatform)) {
             if (checkPlatform === "onemail_dga") {
                 getApprove = await axios.post(
-                    "https://meetgov.one.th/getApprove",
+                    interfaceConfig.DOMAIN_ONEMAIL_DGA + "/getApprove",
                     { meeting_id: meetingid }
                 );
             } else {
