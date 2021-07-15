@@ -51,9 +51,9 @@ const PollResults = (props: AbstractProps) => {
                             </ul>} */}
                         </li>)
                     )
-                    : answers.map(({ name, percentage, voters, voterCount }, index) =>
+                    : answers.map(({ name, percentage, voterCount }, index) =>
                         (<li key = { index }>
-                            { renderRow(name, percentage, voters.length) }
+                            { renderRow(name, percentage, voterCount) }
                             <div className = 'poll-bar-container'>
                                 <div
                                     className = 'poll-bar'
