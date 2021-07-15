@@ -23,7 +23,9 @@ const PollResults = (props: AbstractProps) => {
     const renderRow = useCallback((name, percentage, voterCount) =>
         (<div className = 'poll-answer-header'>
             <span>{ name } -  </span>
-            <span className = 'poll-answer-vote-count'> {voterCount ? ` ( ${voterCount} ) ` : ''}</span>
+            <span className = 'poll-answer-vote-count'>
+                {voterCount && Number(voterCount) !== 0 ? ` (${voterCount}) ` : voterCount ? '(0)' : ''}
+            </span>
             <span> { percentage }% </span>
         </div>)
     );
