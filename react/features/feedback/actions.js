@@ -36,7 +36,7 @@ export function cancelFeedback(score: number, message: string) {
         iinfoConf.getIsHostHangup() && infoConf.getService() === ""
             ? interfaceConfig.DOMAIN + "/main"
             : infoConf.getIsHostEndmeet()
-            ? infoConf.getService()
+            ? infoConf.getService() && infoConf.getService() !== "oneconference"
                 ? infoUser.getRedirect()
                 : interfaceConfig.DOMAIN + "/main?genlink=1"
             : infoUser.getRedirect();
@@ -154,7 +154,8 @@ export function submitFeedback(
                     infoConf.getIsHostHangup() && infoConf.getService() === ""
                         ? interfaceConfig.DOMAIN + "/main"
                         : infoConf.getIsHostEndmeet()
-                        ? infoConf.getService()
+                        ? infoConf.getService() &&
+                          infoConf.getService() !== "oneconference"
                             ? infoUser.getRedirect()
                             : interfaceConfig.DOMAIN + "/main?genlink=1"
                         : infoUser.getRedirect())
