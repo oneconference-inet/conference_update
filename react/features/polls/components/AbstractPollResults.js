@@ -61,10 +61,10 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
         const senderWeights = pollDetails.senderWeights
 
         let totalSenderWeight = 0
-        // let totalVoters = 0
+        let totalVoters = 0
         for (const senderWeight of pollDetails.senderWeights) {
             totalSenderWeight = totalSenderWeight + Number(senderWeight.weight)
-            // totalVoters = totalVoters + 1
+            totalVoters = totalVoters + 1
         }
 
         // Getting every voters ID that participates to the poll
@@ -74,7 +74,7 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
             }
         }
 
-        const totalVoters = voterSet.size;
+        // const totalVoters = voterSet.size;
 
         // Calculate the voter weight of the answer. 
         const answerWeight = (voters) => {
