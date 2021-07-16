@@ -24,7 +24,7 @@ const PollResults = (props: AbstractProps) => {
         (<div className = 'poll-answer-header'>
             <span>{ name } -  </span>
             <span className = 'poll-answer-vote-count'>
-                {Number(voterCount) && Number(voterCount) !== 0 ? ` ( ${voterCount} ` : '( 0 ' }
+                {Number(voterCount) && Number(voterCount) !== 0 ? ` (${voterCount}` : '(0' }
                 {`/${totalVoters})`}
             </span>
             <span> { percentage }% </span>
