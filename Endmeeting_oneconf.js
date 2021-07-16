@@ -1,4 +1,5 @@
 const https = require("https");
+import Logger from "jitsi-meet-logger";
 
 const domain = "meet-poc.one.th";
 // const domain = "oneconference-new.inet.co.th";
@@ -68,6 +69,7 @@ const resGET = httpsGet(domain, "/backend/api/rooms/getAllroom", {
   Authorization:
     "Bearer OoLdyF822kaIi28K35qCzXMwAxQP56Mt53p0T3O3VcgofWjbq8Kr9Ajz6WId3ffilkZXm0pWBCgfd8FVqaPBkYAbH4kXbqFph4p7",
 });
+logger.log('Endmeeting script is running...');
 
 resGET.then(function (result) {
   let rooms = JSON.parse(result);
@@ -77,10 +79,13 @@ resGET.then(function (result) {
 
   for (room of rooms.data) {
     if (parseInt(room.timelastuser) && now - parseInt(room.timelastuser) > timeDiff) {
-      console.log(`Got room with id: ${room.meeting_id} Deleted`);
+      console.log(`Got room with meeting_id: ${room.meeting_id} Deleted`);
+      logger.log(`Got room with meeting_id: ${room.meeting_id} Deleted`);
 
       httpsPost(domain, "/endmeeting", {
         meetingid: room.meeting_id,
+      }).then(function (resp) {
+        logger.log(`endmeeting resp: ${resp}`);
       });
     }
   }
