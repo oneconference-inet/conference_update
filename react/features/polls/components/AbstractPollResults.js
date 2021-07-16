@@ -109,7 +109,8 @@ const AbstractPollResults = (Component: AbstractComponent<AbstractProps>) => (pr
                 name: answer.name,
                 percentage,
                 voters,
-                voterCount: answer.voters.size
+                voterCount: answer.voters.size,
+                totalVoters: (pollDetails.senderWeights).lenght
             };
         });
     }, [ pollDetails.answers ]);
