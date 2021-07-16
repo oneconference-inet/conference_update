@@ -3,6 +3,7 @@ import Logger from "jitsi-meet-logger";
 
 const domain = "meet-poc.one.th";
 // const domain = "oneconference-new.inet.co.th";
+const logger = Logger.getLogger(__filename);
 
 async function httpsGet(hostname, path, headers) {
   return new Promise(async (resolve, reject) => {
