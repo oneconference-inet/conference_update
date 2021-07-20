@@ -186,8 +186,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: dataDecode.service,
                         }
                     );
-                    console.log("~ keydb data ~")
-                    console.log(keydb.data);
+                    logger.log("keydb data: ", keydb.data);
                     infoConf.seturlInvite(keydb.data.urlInvite);
                 } else {
                     infoConf.setService("oneconference");
@@ -247,6 +246,8 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: "onemail_dga",
                         }
                     );
+                    logger.log("keydb data: ", keydb.data);
+                    infoConf.seturlInvite(keydb.data.urlInvite);
                 } else if (dataDecode.service == "onedental") {
                     infoConf.setService(dataDecode.service);
                     keydb = await axios.post(
