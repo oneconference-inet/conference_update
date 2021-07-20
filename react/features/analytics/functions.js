@@ -179,7 +179,6 @@ export async function createHandlers({ getState }: { getState: Function }) {
                     );
                 } else if (dataDecode.service == "onemail_dga") {
                     infoConf.setService(dataDecode.service);
-                    infoConf.seturlInvite(keydb.data.urlInvite);
                     keydb = await axios.post(
                         interfaceConfig.DOMAIN_ONEMAIL_DGA + "/checkkey",
                         {
@@ -187,6 +186,7 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: dataDecode.service,
                         }
                     );
+                    infoConf.seturlInvite(keydb.data.urlInvite);
                 } else {
                     infoConf.setService("oneconference");
                     keydb = await axios.post(
