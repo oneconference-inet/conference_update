@@ -186,6 +186,8 @@ export async function createHandlers({ getState }: { getState: Function }) {
                             clientname: dataDecode.service,
                         }
                     );
+                    console.log("~ keydb data ~")
+                    console.log(keydb.data);
                     infoConf.seturlInvite(keydb.data.urlInvite);
                 } else {
                     infoConf.setService("oneconference");
