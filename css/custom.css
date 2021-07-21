@@ -58,10 +58,11 @@ ul.poll-answer-list {
 .large-video-background {
     height: 150%;
     width: 150%;
+    box-shadow: none;
 }
 
 #largeVideoBackgroundContainer {
-    filter: blur(20px);
+    filter: blur(15px);
     filter: box-shadow(inset 0 0 0 0 white);
     box-shadow: none;
 }
