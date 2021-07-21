@@ -54,8 +54,14 @@ ul.poll-answer-list {
     flex-direction: column;
 }
 
+#largeVideoBackgroundContainer,
+.large-video-background {
+    height: 120%;
+    width: 120%;
+}
+
 #largeVideoBackgroundContainer {
-    filter: blur(0px);
+    filter: blur(20px);
     filter: box-shadow(inset 0 0 0 0 white);
     box-shadow: none;
 }
