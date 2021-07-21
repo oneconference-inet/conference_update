@@ -55,5 +55,6 @@ ul.poll-answer-list {
 }
 
 #largeVideoBackgroundContainer {
-    filter: blur(0px);
+    filter: blur(40px);
+    box-shadow: none;
 }
