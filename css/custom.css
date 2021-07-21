@@ -54,12 +54,10 @@ ul.poll-answer-list {
     flex-direction: column;
 }
 
-/* #largeVideoBackgroundContainer,
+#largeVideoBackgroundContainer,
 .large-video-background {
-    height: 150%;
-    width: 150%;
-    box-shadow: none;
-} */
+    box-shadow: 0px 0px 5px 5px white;;
+}
 
 #largeVideoBackgroundContainer {
     filter: blur(10px);
