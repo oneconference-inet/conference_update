@@ -121,6 +121,8 @@ export async function createHandlers({ getState }: { getState: Function }) {
     // var data = [{id: 1}, {id: 2}]
     // var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), interfaceConfig.DECODE_TOKEN).toString();
 
+    logger.log("test train oneconf.");
+    
     const state = getState();
     const config = state["features/base/config"];
     const { locationURL } = state["features/base/connection"];
