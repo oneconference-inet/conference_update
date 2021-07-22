@@ -53,3 +53,10 @@ ul.poll-answer-list {
 .vertical-filmstrip .filmstrip #filmstripRemoteVideos #filmstripRemoteVideosContainer {
     flex-direction: column;
 }
+
+#largeVideoBackgroundContainer {
+    left: -7px;
+    border-left: 9px solid white;
+    border-right: 9px solid white;
+    filter: blur(7px);
+}
