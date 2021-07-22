@@ -73,6 +73,7 @@ class LargeVideo extends Component<Props> {
      * @returns {React$Element}
      */
     render() {
+        console.log('1111start1?');
         const style = this._getCustomSyles();
         // const className = `videocontainer${this.props._isChatOpen ? ' shift-right' : ''}`;
 
