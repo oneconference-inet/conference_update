@@ -54,8 +54,7 @@ ul.poll-answer-list {
     flex-direction: column;
 }
 
-#largeVideoBackgroundContainer,
-.large-video-background {
+#largeVideoBackgroundContainer .large-video-background {
     background-color: white;
 }
 
