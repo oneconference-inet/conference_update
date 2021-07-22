@@ -56,6 +56,8 @@ class LargeVideo extends Component<Props> {
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log('1111work!');
+        console.log('1111this.props', this.props);
         if (nextProps.backgroundImageUrl) {
             console.log('1111nextProps.backgroundImageUrl', nextProps.backgroundImageUrl);
         } else {
