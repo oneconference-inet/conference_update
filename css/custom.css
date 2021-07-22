@@ -55,8 +55,8 @@ ul.poll-answer-list {
 }
 
 #largeVideoBackgroundContainer {
-    border-left: 10px inset white;
-    border-right: 10px inset white;
+    border-left: 10px solid white;
+    border-right: 10px solid white;
     filter: blur(0px);
     /* filter: box-shadow(0px 0px 10px 10px white); */
     /* box-shadow: none; */
