@@ -59,4 +59,5 @@ ul.poll-answer-list {
     border-left: 7px solid white;
     border-right: 7px solid white;
     filter: blur(10px);
+    transform: scale(1.1);
 }
