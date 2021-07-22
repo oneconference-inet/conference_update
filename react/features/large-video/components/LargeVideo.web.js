@@ -46,6 +46,10 @@ type Props = {
  * @extends Component
  */
 class LargeVideo extends Component<Props> {
+
+    state = {
+        style: {},
+    }
     /**
      * Implements React's {@link Component#componentDidMount}.
      *
@@ -53,13 +57,6 @@ class LargeVideo extends Component<Props> {
      */
     componentDidMount() {
         this.props._fetchCustomBrandingData();
-        if(this.props._customBackgroundImageUrl) {
-            console.log('1111wwwwwww');
-        }
-    }
-
-    componentDidUpdate() {
-        console.log('1111change');
     }
 
     /**
@@ -70,8 +67,8 @@ class LargeVideo extends Component<Props> {
      */
     render() {
         console.log('1111start1?');
-        const style = this._getCustomSyles();
-        console.log('1111_customBackgroundImageUrl', this.props._customBackgroundImageUrl);
+        style = this._getCustomSyles();
+        console.log('1111style11', style);
         // const className = `videocontainer${this.props._isChatOpen ? ' shift-right' : ''}`;
 
         return (
