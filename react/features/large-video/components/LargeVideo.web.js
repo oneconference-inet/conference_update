@@ -55,6 +55,14 @@ class LargeVideo extends Component<Props> {
         this.props._fetchCustomBrandingData();
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.backgroundImageUrl) {
+            console.log('1111nextProps.backgroundImageUrl', nextProps.backgroundImageUrl);
+        } else {
+            console.log('1111nextProps', nextProps);
+        }
+    }
+
     /**
      * Implements React's {@link Component#render()}.
      *

@@ -32,7 +32,6 @@ export function fetchCustomBrandingData() {
             if (baseUrl && fqn) {
                 try {
                     const res = await doGetJSON(`${baseUrl}?conferenceFqn=${encodeURIComponent(fqn)}`);
-                    console.log('1111res', res);
 
                     return dispatch(setDynamicBrandingData(res));
                 } catch (err) {
