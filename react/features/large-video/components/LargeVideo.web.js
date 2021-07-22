@@ -52,18 +52,11 @@ class LargeVideo extends Component<Props> {
      * @inheritdoc
      */
     componentDidMount() {
-        console.log('1111start');
         this.props._fetchCustomBrandingData();
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log('1111work!');
-        console.log('1111this.props', this.props);
-        if (nextProps.backgroundImageUrl) {
-            console.log('1111nextProps.backgroundImageUrl', nextProps.backgroundImageUrl);
-        } else {
-            console.log('1111nextProps', nextProps);
-        }
+    componentDidUpdate() {
+        console.log('1111change');
     }
 
     /**
