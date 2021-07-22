@@ -68,7 +68,7 @@ var interfaceConfig = {
      */
     CONNECTION_INDICATOR_DISABLED: false,
 
-    DEFAULT_BACKGROUND: "#474747",
+    DEFAULT_BACKGROUND: "#FFFFFF",
     DEFAULT_LOCAL_DISPLAY_NAME: "me",
     DEFAULT_LOGO_URL: "https://meet-room.one.th/images/logo_inet.png", // DEL
     DEFAULT_REMOTE_DISPLAY_NAME: "OneConference",
