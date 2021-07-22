@@ -77,11 +77,11 @@ resGET.then(function (result) {
 
   for (room of rooms.data) {
     if (parseInt(room.timelastuser) && now - parseInt(room.timelastuser) > timeDiff) {
-      console.log(`Got room with id: ${room.meeting_id} Deleted`);
+      console.log(`Got room with meeting_id: ${room.meeting_id} Deleted`);
 
       httpsPost(domain, "/endmeeting", {
         meetingid: room.meeting_id,
-      });
+      })
     }
   }
 
