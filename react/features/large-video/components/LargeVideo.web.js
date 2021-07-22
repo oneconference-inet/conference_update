@@ -53,6 +53,9 @@ class LargeVideo extends Component<Props> {
      */
     componentDidMount() {
         this.props._fetchCustomBrandingData();
+        if(this.props._customBackgroundImageUrl) {
+            console.log('1111wwwwwww');
+        }
     }
 
     componentDidUpdate() {
@@ -68,6 +71,7 @@ class LargeVideo extends Component<Props> {
     render() {
         console.log('1111start1?');
         const style = this._getCustomSyles();
+        console.log('1111_customBackgroundImageUrl', _customBackgroundImageUrl);
         // const className = `videocontainer${this.props._isChatOpen ? ' shift-right' : ''}`;
 
         return (
