@@ -120,12 +120,14 @@ class LargeVideo extends Component<Props> {
         const styles = {};
         const { _customBackgroundColor, _customBackgroundImageUrl } = this.props;
 
-        styles.backgroundColor = _customBackgroundColor || interfaceConfig.DEFAULT_WHITE_BACKGROUND;
+        styles.backgroundColor = _customBackgroundColor || interfaceConfig.DEFAULT_BACKGROUND;
 
         if (_customBackgroundImageUrl) {
             styles.backgroundImage = `url(${_customBackgroundImageUrl})`;
             styles.backgroundSize = 'cover';
         }
+
+        console.log('1111styles', styles);
 
         return styles;
     }
