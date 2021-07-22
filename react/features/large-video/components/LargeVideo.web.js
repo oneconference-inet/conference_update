@@ -71,7 +71,7 @@ class LargeVideo extends Component<Props> {
     render() {
         console.log('1111start1?');
         const style = this._getCustomSyles();
-        console.log('1111_customBackgroundImageUrl', _customBackgroundImageUrl);
+        console.log('1111_customBackgroundImageUrl', this.props._customBackgroundImageUrl);
         // const className = `videocontainer${this.props._isChatOpen ? ' shift-right' : ''}`;
 
         return (
