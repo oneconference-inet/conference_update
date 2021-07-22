@@ -52,6 +52,7 @@ class LargeVideo extends Component<Props> {
      * @inheritdoc
      */
     componentDidMount() {
+        console.log('1111start');
         this.props._fetchCustomBrandingData();
     }
 
