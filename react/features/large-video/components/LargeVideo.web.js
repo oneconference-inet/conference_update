@@ -127,8 +127,6 @@ class LargeVideo extends Component<Props> {
             styles.backgroundSize = 'cover';
         }
 
-        console.log('1111styles', styles);
-
         return styles;
     }
 }
