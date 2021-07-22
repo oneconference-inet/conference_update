@@ -46,10 +46,6 @@ type Props = {
  * @extends Component
  */
 class LargeVideo extends Component<Props> {
-
-    state = {
-        style: {},
-    }
     /**
      * Implements React's {@link Component#componentDidMount}.
      *
@@ -67,8 +63,8 @@ class LargeVideo extends Component<Props> {
      */
     render() {
         console.log('1111start1?');
-        style = this._getCustomSyles();
-        console.log('1111style11', style);
+        const style = this._getCustomSyles();
+        console.log('1111style11');
         // const className = `videocontainer${this.props._isChatOpen ? ' shift-right' : ''}`;
 
         return (
