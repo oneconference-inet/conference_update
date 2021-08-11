@@ -61,7 +61,7 @@ class HangupButton extends AbstractHangupButton<Props, *> {
             } else {
                 const { dispatch, localParticipantId, isModerator } =
                     this.props;
-                    
+
                 console.log('1111ismod??', isModerator);
                 console.log('1111userrole', infoConf.getUserRole());
 
@@ -129,7 +129,7 @@ export async function _endJoin() {
         const secretKeyEmeeting = interfaceConfig.SECRET_KEY_EMEETING;
         const secretKeyEducation = interfaceConfig.SECRET_KEY_EDUCATION;
         
-        if (isModerator) {
+        if (isModerator && infoConf.getUserRole() == 'moderator') {
             infoConf.setIsHostHangup();
         }
 
