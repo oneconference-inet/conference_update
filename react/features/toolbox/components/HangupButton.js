@@ -59,9 +59,6 @@ class HangupButton extends AbstractHangupButton<Props, *> {
             if (navigator.product === "ReactNative") {
                 this.props.dispatch(appNavigate(undefined));
             } else {
-                console.log('1111ismod??', isModerator);
-                console.log('1111userrole', infoConf.getUserRole());
-
                 const { dispatch, localParticipantId, isModerator } =
                     this.props;
                 if (isModerator) {
@@ -127,8 +124,7 @@ export async function _endJoin() {
         const secretKeyTelemedicine = interfaceConfig.SECRET_KEY_TELEMEDICINE;
         const secretKeyEmeeting = interfaceConfig.SECRET_KEY_EMEETING;
         const secretKeyEducation = interfaceConfig.SECRET_KEY_EDUCATION;
-        
-        if (isModerator && infoConf.getUserRole() == 'moderator') {
+        if (isModerator) {
             infoConf.setIsHostHangup();
         }
 
