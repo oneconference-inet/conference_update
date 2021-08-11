@@ -11,6 +11,7 @@ var listUrl = {
     isSecretRoom: false,
     isHostHangup: false,
     isHostEndmeet: false,
+    userRole: "",
 };
 
 function setRoomName(roomname) {
