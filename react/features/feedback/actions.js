@@ -32,12 +32,12 @@ import axios from "axios";
  * }}
  */
 export function cancelFeedback(score: number, message: string) {
-    // window.location.href =
-    //     infoConf.getIsHostHangup() && infoConf.getService() === ""
-    //         ? interfaceConfig.DOMAIN + "/main"
-    //         : infoConf.getIsHostEndmeet()
-    //         ? interfaceConfig.DOMAIN + "/main?genlink=1"
-    //         : infoUser.getRedirect();
+    window.location.href =
+        infoConf.getIsHostHangup() && infoConf.getService() === ""
+            ? interfaceConfig.DOMAIN + "/main"
+            : infoConf.getIsHostEndmeet()
+            ? interfaceConfig.DOMAIN + "/main?genlink=1"
+            : infoUser.getRedirect();
 
     console.log('1111windowhref', infoConf.getIsHostHangup() && infoConf.getService() === "" ? interfaceConfig.DOMAIN + "/main" : infoConf.getIsHostEndmeet() ? interfaceConfig.DOMAIN + "/main?genlink=1" : infoUser.getRedirect());
     return {

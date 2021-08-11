@@ -109,13 +109,14 @@ class EndMeetingDialog extends AbstractEndMeetingParticipantDialog<Props> {
             const meetingId = infoConf.getMeetingId();
             // APP.store.dispatch(maybeOpenFeedbackDialog(conference));
 
+            infoConf.setIsHostEndmeet();
+            
             socket.emit("endMeet", {
                 meetingId: meetingId,
                 isMod: isModerator,
                 userId: userId,
             });
 
-            infoConf.setIsHostEndmeet();
             dispatch(endAllParticipants(exclude));
 
             if (service == "onechat") {
