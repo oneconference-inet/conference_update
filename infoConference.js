@@ -61,6 +61,10 @@ function setIsHostEndmeet() {
     listUrl.isHostEndmeet = true;
 }
 
+function setUserRole(role) {
+    listUrl.userRole = role;
+}
+
 function getRoomName() {
     return listUrl.roomname;
 }
@@ -113,6 +117,10 @@ function getIsHostEndmeet() {
     return listUrl.isHostEndmeet;
 }
 
+function getUserRole() {
+    return listUrl.userRole;
+}
+
 export default {
     getRoomName,
     getService,
@@ -139,4 +147,6 @@ export default {
     getIsHostHangup,
     setIsHostEndmeet,
     getIsHostEndmeet,
+    setUserRole,
+    getUserRole
 };
