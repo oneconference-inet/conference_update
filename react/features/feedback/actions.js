@@ -160,7 +160,7 @@ export function submitFeedback(
                         ? infoConf.getService() && infoConf.getService() !== "oneconference"
                             ? infoUser.getRedirect()
                             : interfaceConfig.DOMAIN + "/main?genlink=1"
-                        : infoUser.getRedirect();)
+                        : infoUser.getRedirect())
         );
 
     // return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)
