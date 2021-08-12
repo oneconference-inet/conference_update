@@ -64,7 +64,6 @@ class HangupButton extends AbstractHangupButton<Props, *> {
 
                 console.log('1111ismod??', isModerator);
                 console.log('1111userrole', infoConf.getUserRole());
-                console.log('1111checkuserrole', infoConf.getUserRole() == "moderator");
 
                 if (isModerator) {
                     sendAnalytics(createToolbarEvent("endmeeting.pressed"));
