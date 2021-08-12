@@ -156,9 +156,11 @@ export function submitFeedback(
                 (window.location.href =
                     infoConf.getIsHostHangup() && infoConf.getService() === ""
                         ? interfaceConfig.DOMAIN + "/main"
-                        : infoConf.getIsHostEndmeet()
-                        ? interfaceConfig.DOMAIN + "/main?genlink=1"
-                        : infoUser.getRedirect())
+                        : infoConf.getUserRole() == "moderator"
+                        ? infoConf.getService() && infoConf.getService() !== "oneconference"
+                            ? infoUser.getRedirect()
+                            : interfaceConfig.DOMAIN + "/main?genlink=1"
+                        : infoUser.getRedirect();)
         );
 
     // return (dispatch: Dispatch<any>) => conference.sendFeedback(score, message)
