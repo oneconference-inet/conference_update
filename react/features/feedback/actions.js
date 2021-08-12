@@ -40,8 +40,6 @@ export function cancelFeedback(score: number, message: string) {
                 ? infoUser.getRedirect()
                 : interfaceConfig.DOMAIN + "/main?genlink=1"
             : infoUser.getRedirect();
-
-    console.log('1111getIsHostEndmeet?', infoConf.getIsHostEndmeet());
     
     return {
         type: CANCEL_FEEDBACK,
