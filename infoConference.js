@@ -11,6 +11,7 @@ var listUrl = {
     isSecretRoom: false,
     isHostHangup: false,
     isHostEndmeet: false,
+    userRole: "",
 };
 
 function setRoomName(roomname) {
@@ -59,6 +60,10 @@ function setIsHostHangup() {
 
 function setIsHostEndmeet() {
     listUrl.isHostEndmeet = true;
+}
+
+function setUserRole(role) {
+    listUrl.userRole = role;
 }
 
 function getRoomName() {
@@ -113,6 +118,10 @@ function getIsHostEndmeet() {
     return listUrl.isHostEndmeet;
 }
 
+function getUserRole() {
+    return listUrl.userRole;
+}
+
 export default {
     getRoomName,
     getService,
@@ -139,4 +148,6 @@ export default {
     getIsHostHangup,
     setIsHostEndmeet,
     getIsHostEndmeet,
+    setUserRole,
+    getUserRole
 };

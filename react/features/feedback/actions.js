@@ -35,11 +35,12 @@ export function cancelFeedback(score: number, message: string) {
     window.location.href =
         infoConf.getIsHostHangup() && infoConf.getService() === ""
             ? interfaceConfig.DOMAIN + "/main"
-            : infoConf.getIsHostEndmeet()
+            : infoConf.getUserRole() == "moderator"
             ? infoConf.getService() && infoConf.getService() !== "oneconference"
                 ? infoUser.getRedirect()
                 : interfaceConfig.DOMAIN + "/main?genlink=1"
             : infoUser.getRedirect();
+    
     return {
         type: CANCEL_FEEDBACK,
         message,
@@ -153,9 +154,8 @@ export function submitFeedback(
                 (window.location.href =
                     infoConf.getIsHostHangup() && infoConf.getService() === ""
                         ? interfaceConfig.DOMAIN + "/main"
-                        : infoConf.getIsHostEndmeet()
-                        ? infoConf.getService() &&
-                          infoConf.getService() !== "oneconference"
+                        : infoConf.getUserRole() == "moderator"
+                        ? infoConf.getService() && infoConf.getService() !== "oneconference"
                             ? infoUser.getRedirect()
                             : interfaceConfig.DOMAIN + "/main?genlink=1"
                         : infoUser.getRedirect())
